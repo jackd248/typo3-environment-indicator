@@ -6,7 +6,6 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class GeneralHelper
 {
@@ -33,10 +32,5 @@ class GeneralHelper
             return $defaultPath;
         }
         return $path;
-    }
-
-    public static function getFaviconFont(): string
-    {
-        return GeneralUtility::getFileAbsFileName($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['font']);
     }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Middleware;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
-use KonradMichalik\Typo3EnvironmentIndicator\Service\HandlerInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Service\FaviconHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -27,8 +27,7 @@ class BackendFaviconMiddleware implements MiddlewareInterface
     {
         if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['favicon']) {
             $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
-            $faviconHandler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['handler']);
-            /** @var HandlerInterface $faviconHandler */
+            $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
             $newBackendFavicon = $faviconHandler->process($currentBackendFavicon);
             $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon'] = $newBackendFavicon;
         }

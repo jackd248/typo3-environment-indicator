@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\ViewHelpers;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
-use KonradMichalik\Typo3EnvironmentIndicator\Service\HandlerInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Service\FaviconHandler;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\ApplicationType;
@@ -46,8 +46,7 @@ class FaviconViewHelper extends AbstractViewHelper
         }
 
         $favicon = $this->renderChildren();
-        $handler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['handler']);
-        /** @var HandlerInterface $handler */
+        $handler = GeneralUtility::makeInstance(FaviconHandler::class);
         return $handler->process($favicon);
     }
 }

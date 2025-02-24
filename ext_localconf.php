@@ -23,11 +23,14 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 'color' => '#f39c12',
             ],
             'favicon' => [
-                'type' => 'text',
-                'text' => 'STAGE',
-                'color' => '#f39c12',
-                'stroke_color' => '#ffffff',
-                'stroke_width' => '3',
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                    'text' => 'STAGE',
+                    'color' => '#f39c12',
+                    'stroke' => [
+                        'color' => '#ffffff',
+                        'width' => 3,
+                    ],
+                ],
             ],
         ],
         'Testing' => [
@@ -35,11 +38,14 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 'color' => '#f39c12',
             ],
             'favicon' => [
-                'type' => 'text',
-                'text' => 'TEST',
-                'color' => '#f39c12',
-                'stroke_color' => '#ffffff',
-                'stroke_width' => '3',
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                    'text' => 'TEST',
+                    'color' => '#f39c12',
+                    'stroke' => [
+                        'color' => '#ffffff',
+                        'width' => 3,
+                    ],
+                ],
             ],
         ],
         'Development' => [
@@ -47,11 +53,14 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 'color' => '#bd593a',
             ],
             'favicon' => [
-                'type' => 'text',
-                'text' => 'DEV',
-                'color' => '#bd593a',
-                'stroke_color' => '#ffffff',
-                'stroke_width' => '3',
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                    'text' => 'DEV',
+                    'color' => '#bd593a',
+                    'stroke' => [
+                        'color' => '#ffffff',
+                        'width' => 3,
+                    ],
+                ],
             ],
         ],
     ],
@@ -63,7 +72,6 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
         ],
         'favicon' => [
-            'handler' => \KonradMichalik\Typo3EnvironmentIndicator\Service\FaviconHandler::class,
             'path' => 'typo3temp/assets/favicons/',
             'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
         ],

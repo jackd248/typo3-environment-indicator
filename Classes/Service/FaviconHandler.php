@@ -6,79 +6,56 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
 
 use Intervention\Image\Drivers\Imagick\Driver;
 use Intervention\Image\ImageManager;
-use Intervention\Image\Interfaces\ImageInterface;
-use Intervention\Image\Typography\FontFactory;
-use KonradMichalik\Typo3EnvironmentIndicator\Enum\FaviconType;
-use KonradMichalik\Typo3EnvironmentIndicator\Model\Favicon;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class FaviconHandler implements HandlerInterface
+class FaviconHandler
 {
     public function process(string $path): string
     {
-        $favicon = new Favicon($path);
-        if ($favicon->getType() === FaviconType::IMAGE) {
-            return $favicon->getImage();
+        $newImageFilename = $this->generateFilename($path) . '.png';
+        $newImagePath = GeneralHelper::getFaviconFolder(false) . $newImageFilename;
+
+        if ($path === $newImagePath) {
+            return $newImagePath;
         }
 
         $manager = new ImageManager(
             new Driver()
         );
-
-        $newImageFilename = $favicon->getFilename() . '.png';
-        $newImagePath = GeneralHelper::getFaviconFolder(false) . $newImageFilename;
-        if ($path === $newImagePath) {
-            return $newImagePath;
-        }
         $image = $manager->read(GeneralUtility::getFileAbsFileName($path));
 
-        switch ($favicon->getType()) {
-            case FaviconType::TEXT:
-                $this->addDynamicTextToFavicon($image, $favicon);
-                break;
-            case FaviconType::BORDER:
-                break;
-            default:
-                break;
+        foreach ($this->getEnvironmentImageModifiers() as $modifier => $configuration) {
+            if (!class_exists($modifier)) {
+                throw new \RuntimeException('Modifier class ' . $modifier . ' does not exist', 1740401911);
+            }
+
+            $modifierInstance = ImageModifyManager::makeInstance($modifier, $configuration);
+            $modifierInstance->modify($image);
         }
 
         $image->save(GeneralHelper::getFaviconFolder() . $newImageFilename);
         return $newImagePath;
     }
 
-    public function shouldProcess(): bool
+    public function getEnvironmentImageModifiers(): array
     {
-        return true;
+        return isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']) ?
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon'] : [];
     }
 
-    protected function addDynamicTextToFavicon(ImageInterface $image, Favicon $favicon): void
+    public function generateFilename(string $originalPath): string
     {
-        $padding = 5;
-        $maxWidth = $image->width() - 4;
-        $maxHeight = $image->height() / 2;
-
-        $text = $favicon->getText();
-        $fontPath = GeneralHelper::getFaviconFont();
-        $fontSize = 10;
-
-        do {
-            $fontSize++;
-            $wrappedText = wordwrap($text, (int)($maxWidth / ($fontSize * 0.4)), "\n", true);
-            $lines = explode("\n", $wrappedText);
-            $estimatedHeight = count($lines) * $fontSize * 1.2;
-        } while ($estimatedHeight < $maxHeight && $fontSize < 50);
-        $fontSize--;
-
-        $image->text($wrappedText, $image->width() / 2, $image->height() - $padding, function (FontFactory $font) use ($image, $fontSize, $favicon, $fontPath) {
-            $font->filename($fontPath);
-            $font->size($fontSize);
-            $font->color($favicon->getColor());
-            if ($favicon->getStrokeColor() !== null) {
-                $font->stroke($favicon->getStrokeColor(), $favicon->getStrokeWidth() ?? 1);
-            }
-            $font->align('center');
-            $font->valign('bottom');
-        });
+        $parts = [
+            $originalPath,
+            Environment::getContext()->__toString(),
+        ];
+        foreach ($this->getEnvironmentImageModifiers() as $modifier => $configuration) {
+            $parts[] = $modifier;
+            $parts[] = json_encode($configuration);
+        }
+        return md5(implode('_', $parts));
     }
 }

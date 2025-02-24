@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Middleware;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
-use KonradMichalik\Typo3EnvironmentIndicator\Service\HandlerInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Service\FaviconHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -32,8 +32,7 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
             $GLOBALS['TSFE']->pSetup['shortcutIcon'] !== ''
         ) {
             $currentFrontendFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
-            $faviconHandler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['handler']);
-            /** @var HandlerInterface $faviconHandler */
+            $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
             $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon);
             $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFrontendFavicon;
         }
