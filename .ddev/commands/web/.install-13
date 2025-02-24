@@ -1,0 +1,23 @@
+#!/bin/bash
+
+. .ddev/commands/web/.utils.sh
+
+VERSION=13
+
+rm -rf /var/www/html/.test/$VERSION/*
+intro_typo3 $VERSION
+install_start $VERSION
+
+composer req typo3/cms-base-distribution:'^13.4' helhum/typo3-console:'^8.2.1' $PACKAGE_NAME:'*@dev' test/sitepackage:'*@dev' \
+    --no-progress -n -d /var/www/html/.test/$VERSION
+
+cd $BASE_PATH
+TYPO3_INSTALL_DB_DBNAME=$DATABASE
+mysql -h db -u root -p"root" -e "CREATE DATABASE $DATABASE;"
+$TYPO3_BIN  setup -n --dbname=$DATABASE --password=$TYPO3_DB_PASSWORD --create-site="https://${VERSION}.typo3-environment-indicator.ddev.site" --admin-user-password=$TYPO3_SETUP_ADMIN_PASSWORD
+setup_typo3
+
+sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.test/$VERSION/config/system/settings.php
+
+import_data
+update_typo3

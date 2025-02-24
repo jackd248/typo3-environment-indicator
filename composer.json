@@ -1,0 +1,96 @@
+{
+	"name": "konradmichalik/typo3-environment-indicator",
+	"description": "",
+	"license": [
+		"GPL-2.0-or-later"
+	],
+	"type": "typo3-cms-extension",
+	"authors": [
+		{
+			"name": "Konrad Michalik",
+			"email": "hej@konradmichalik.dev"
+		}
+	],
+	"require": {
+		"php": "^8.1",
+		"intervention/image": "^2.4 || ^3.0",
+		"typo3/cms-core": "^11.5 || ^12.4 || ^13.4"
+	},
+	"require-dev": {
+		"armin/editorconfig-cli": "^1.0 || ^2.0",
+		"ergebnis/composer-normalize": "^2.44",
+		"friendsofphp/php-cs-fixer": "^3.52",
+		"helhum/typo3-console": "^8.1",
+		"helmich/typo3-typoscript-lint": "^3.2",
+		"roave/security-advisories": "dev-latest",
+		"saschaegerer/phpstan-typo3": "^1.0 || ^2.0",
+		"ssch/typo3-rector": "^2.0 || ^3.0",
+		"symfony/translation": "^6.3 || ^7.0",
+		"typo3/cms-base-distribution": "^11.5 || ^12.4 || ^13.4",
+		"typo3/cms-lowlevel": "^11.5 || ^12.4 || ^13.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"KonradMichalik\\Typo3EnvironmentIndicator\\": "Classes"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"ergebnis/composer-normalize": true,
+			"helhum/dotenv-connector": true,
+			"php-http/discovery": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
+		"lock": false,
+		"sort-packages": true
+	},
+	"extra": {
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"extension-key": "typo3_environment_indicator",
+			"web-dir": "public"
+		}
+	},
+	"scripts": {
+		"check": [
+			"@composer:normalize:check",
+			"@editorconfig:lint:check",
+			"@php:lint:check",
+			"@yaml:lint:check",
+			"@xml:lint:check",
+			"@typoscript:lint:check",
+			"@php:stan:check",
+			"@php:rector:check",
+			"@php:fixer:check"
+		],
+		"composer:normalize": "@composer normalize --no-check-lock",
+		"composer:normalize:check": "@composer normalize --no-check-lock --dry-run",
+		"editorconfig:lint": "ec --strict --fix --git-only -n",
+		"editorconfig:lint:check": "ec --strict --git-only -n",
+		"fix": [
+			"@composer:normalize",
+			"@editorconfig:lint",
+			"@php:fixer",
+			"@yaml:lint",
+			"@xml:lint",
+			"@typoscript:lint",
+			"@php:stan",
+			"@php:rector"
+		],
+		"php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
+		"php:fixer:check": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
+		"php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*'  ! -path './.test/*' ! -path './public/*' -print0 | xargs -0 -n 1 -P 4 php -l",
+		"php:lint:check": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*'  ! -path './.test/*' ! -path './public/*' -print0 | xargs -0 -n 1 -P 4 php -l",
+		"php:rector": "rector",
+		"php:rector:check": "rector --dry-run",
+		"php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline --memory-limit=2G",
+		"php:stan:check": "phpstan --no-progress --error-format=checkstyle > phpstan.xml || true",
+		"typoscript:lint": "typoscript-lint",
+		"typoscript:lint:check": "typoscript-lint --fail-on-warnings",
+		"xml:lint": "find . -name '*.xlf' ! -path './vendor/*' ! -path './var/*' ! -path './.test/*'  ! -path './public/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
+		"xml:lint:check": "find ./ -name '*.xlf' ! -path './vendor/*' ! -path './var/*' ! -path './.test/*'  ! -path './public/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
+		"yaml:lint": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' ! -path './.test/*'  ! -path './public/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint",
+		"yaml:lint:check": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' ! -path './.test/*'  ! -path './public/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint"
+	}
+}

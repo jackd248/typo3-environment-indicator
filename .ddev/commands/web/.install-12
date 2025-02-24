@@ -1,0 +1,28 @@
+#!/bin/bash
+
+. .ddev/commands/web/.utils.sh
+
+VERSION=12
+
+rm -rf /var/www/html/.test/$VERSION/*
+intro_typo3 $VERSION
+install_start $VERSION
+
+composer config allow-plugins.helhum/dotenv-connector true -d /var/www/html/.test/$VERSION
+composer req typo3/cms-base-distribution:'^12.4' helhum/typo3-console:'^8.1' $PACKAGE_NAME:'*@dev' test/sitepackage:'*@dev' \
+    --no-progress -n -d /var/www/html/.test/$VERSION
+
+cd $BASE_PATH
+TYPO3_INSTALL_DB_DBNAME=$DATABASE
+$TYPO3_BIN install:setup -n --database-name $DATABASE
+setup_typo3
+
+sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.test/$VERSION/config/system/settings.php
+
+sed -i -e "s/base: ht\//base: \//g" /var/www/html/.test/$VERSION/config/sites/main/config.yaml
+sed -i -e 's/base: \/en\//base: \//g' /var/www/html/.test/$VERSION/config/sites/main/config.yaml
+
+echo "TYPO3_CONTEXT=Development" >> /var/www/html/.test/$VERSION/.env
+
+import_data
+update_typo3

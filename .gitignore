@@ -1,0 +1,14 @@
+.idea
+.test/
+config
+composer.lock
+public
+!Resources/Public
+vendor
+var
+Documentation-*
+.phpdoc
+node_modules
+.php-cs-fixer.cache
+php-cs-fixer.xml
+phpstan.xml

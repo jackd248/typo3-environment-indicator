@@ -1,0 +1,26 @@
+#!/bin/bash
+
+. .ddev/commands/web/.utils.sh
+
+VERSION=11
+
+rm -rf /var/www/html/.test/$VERSION/*
+intro_typo3 $VERSION
+install_start $VERSION
+export TYPO3_BIN="$BASE_PATH/vendor/bin/typo3cms"
+
+composer req typo3/cms-base-distribution:'^11.5' helhum/typo3-console:'^7.1' $PACKAGE_NAME:'*@dev' \
+    --no-progress -n -d /var/www/html/.test/$VERSION
+
+cd $BASE_PATH
+TYPO3_INSTALL_DB_DBNAME=$DATABASE
+$TYPO3_BIN install:setup -n --database-name $DATABASE
+setup_typo3
+$TYPO3_BIN configuration:set 'GFX/processor_path_lzw' '/usr/bin/'
+
+sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.test/$VERSION/public/typo3conf/LocalConfiguration.php
+
+sed -i -e "s/base: ht\//base: \//g" /var/www/html/.test/$VERSION/config/sites/main/config.yaml
+sed -i -e 's/base: \/en\//base: \//g' /var/www/html/.test/$VERSION/config/sites/main/config.yaml
+
+update_typo3
