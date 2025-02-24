@@ -86,6 +86,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                     'padding' => 0.1,
                     'position' => 'bottom right',
                 ],
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
+                    'borderSize' => 5,
+                ],
             ],
         ],
     ],
