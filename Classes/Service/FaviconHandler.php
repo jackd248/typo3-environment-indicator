@@ -15,6 +15,10 @@ class FaviconHandler
 {
     public function process(string $path): string
     {
+        if (!in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']))) {
+            return $path;
+        }
+
         $newImageFilename = $this->generateFilename($path) . '.png';
         $newImagePath = GeneralHelper::getFaviconFolder(false) . $newImageFilename;
 
