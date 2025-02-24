@@ -14,7 +14,7 @@ use TYPO3\CMS\Backend\Template\PageRendererBackendSetupTrait;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class FaviconMiddleware implements MiddlewareInterface
+class BackendFaviconMiddleware implements MiddlewareInterface
 {
     use PageRendererBackendSetupTrait;
 
@@ -25,13 +25,14 @@ class FaviconMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
+        if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['favicon']['backend']) {
+            $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
+            $faviconHandler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['handler']);
+            /** @var HandlerInterface $faviconHandler */
+            $newBackendFavicon = $faviconHandler->process($currentBackendFavicon);
+            $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon'] = $newBackendFavicon;
+        }
 
-        $faviconHandler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['handler']);
-        /** @var HandlerInterface $faviconHandler */
-        $newBackendFavicon = $faviconHandler->process($currentBackendFavicon);
-
-        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon'] = $newBackendFavicon;
         return $handler->handle($request);
     }
 
