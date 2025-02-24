@@ -12,8 +12,8 @@ class GeneralHelper
 {
     public static function getFaviconConfiguration(string $key): string|bool
     {
-        foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['environment'] as $environment => $extension) {
-            if ($environment === Environment::getContext()->__toString()) {
+        foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'] as $context => $extension) {
+            if ($context === Environment::getContext()->__toString()) {
                 return $extension['favicon'][$key];
             }
         }

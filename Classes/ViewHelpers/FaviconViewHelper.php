@@ -41,7 +41,7 @@ class FaviconViewHelper extends AbstractViewHelper
         $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
         $applicationType = ApplicationType::fromRequest($request);
 
-        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['favicon'][$applicationType->value]) {
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)[$applicationType->value]['favicon']) {
             return '';
         }
 

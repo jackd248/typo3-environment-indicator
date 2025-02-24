@@ -25,7 +25,7 @@ class BackendFaviconMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['favicon']['backend']) {
+        if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['favicon']) {
             $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
             $faviconHandler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['handler']);
             /** @var HandlerInterface $faviconHandler */

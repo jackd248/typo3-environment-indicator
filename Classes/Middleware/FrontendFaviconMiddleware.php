@@ -26,7 +26,7 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
         * $GLOBALS['TSFE'] is deprecated in v13
         * @see https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/ApiOverview/RequestLifeCycle/RequestAttributes/FrontendController.html
         */
-        if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['favicon']['frontend'] &&
+        if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['frontend']['favicon'] &&
             is_array($GLOBALS['TSFE']->pSetup) &&
             array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup) &&
             $GLOBALS['TSFE']->pSetup['shortcutIcon'] !== ''
