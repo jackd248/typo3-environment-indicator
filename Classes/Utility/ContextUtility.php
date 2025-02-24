@@ -9,7 +9,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class ApplicationContextUtility
+class ContextUtility
 {
     public function getContext(): string
     {
@@ -18,7 +18,7 @@ class ApplicationContextUtility
 
     public function getColor(): string
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['toolbar']['color'] ?? 'transparent';
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']['color'] ?? 'transparent';
     }
 
     public function getTitle(): string

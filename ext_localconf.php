@@ -6,20 +6,21 @@ use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ProjectStatusI
 
 defined('TYPO3') || die();
 
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['ei'] = ['KonradMichalik\\Typo3EnvironmentIndicator\\ViewHelpers'];
-
 $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = ProjectStatusItem::class;
 
 // Preset configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY] = [
     'context' => [
         'Production/Standby' => [
-            'toolbar' => [
+            'backendToolbar' => [
                 'color' => '#2f9c91',
             ],
         ],
         'Production/Staging' => [
-            'toolbar' => [
+            'frontendHint' => [
+                'color' => '#f39c12',
+            ],
+            'backendToolbar' => [
                 'color' => '#f39c12',
             ],
             'favicon' => [
@@ -34,7 +35,10 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
         ],
         'Testing' => [
-            'toolbar' => [
+            'frontendHint' => [
+                'color' => '#f39c12',
+            ],
+            'backendToolbar' => [
                 'color' => '#f39c12',
             ],
             'favicon' => [
@@ -49,7 +53,10 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
         ],
         'Development' => [
-            'toolbar' => [
+            'frontendHint' => [
+                'color' => '#bd593a',
+            ],
+            'backendToolbar' => [
                 'color' => '#bd593a',
             ],
             'favicon' => [
@@ -65,7 +72,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
         ],
     ],
     'global' => [
-        'toolbar' => [
+        'backendToolbar' => [
             'icon' => [
                 'context' => 'information-application-context',
                 'version' => 'actions-tag',

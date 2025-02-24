@@ -32,7 +32,8 @@ class TechnicalContextConditionFunctionsProvider implements ExpressionFunctionPr
             static fn () => null,
             static function () use ($extensionConfiguration) {
                 return $extensionConfiguration->get(Configuration::EXT_KEY)['frontend']['context'] &&
-                    in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']));
+                    in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'])) &&
+                    isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']);
             }
         );
     }
