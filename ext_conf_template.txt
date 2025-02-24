@@ -1,10 +1,10 @@
-# cat=frontend//10; type=boolean; label=Enable the favicon generation in frontend context
+# cat=frontend/enable/10; type=boolean; label=Enable the favicon generation in frontend context
 frontend.favicon = 1
-# cat=frontend//20; type=boolean; label=Enable the context frontend hint
+# cat=frontend/enable/20; type=boolean; label=Enable the context frontend hint
 frontend.context = 1
-# cat=backend//10; type=boolean; label=Enable the favicon generation in backend context
+# cat=backend/enable/10; type=boolean; label=Enable the favicon generation in backend context
 backend.favicon = 1
-# cat=backend//20; type=boolean; label=Enable the context backend hint within the toolbar
+# cat=backend/enable/20; type=boolean; label=Enable the context backend hint within the toolbar
 backend.context = 1
-# cat=backend//30; type=boolean; label=Enable the version backend hint within the toolbar
+# cat=backend/enable/30; type=boolean; label=Enable the version backend hint within the toolbar
 backend.version = 1

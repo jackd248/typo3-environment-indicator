@@ -22,7 +22,7 @@ class GeneralHelper
 
     public static function getFaviconFolder(bool $publicPath = true): string
     {
-        $defaultPath = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['path'];
+        $defaultPath = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['path'];
 
         $path = Environment::getPublicPath() . '/' . $defaultPath;
         if (!file_exists($path)) {
@@ -37,6 +37,6 @@ class GeneralHelper
 
     public static function getFaviconFont(): string
     {
-        return GeneralUtility::getFileAbsFileName($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['font']);
+        return GeneralUtility::getFileAbsFileName($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['font']);
     }
 }

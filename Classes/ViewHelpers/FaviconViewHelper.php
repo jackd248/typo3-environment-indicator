@@ -46,7 +46,7 @@ class FaviconViewHelper extends AbstractViewHelper
         }
 
         $favicon = $this->renderChildren();
-        $handler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['handler']);
+        $handler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['handler']);
         /** @var HandlerInterface $handler */
         return $handler->process($favicon);
     }

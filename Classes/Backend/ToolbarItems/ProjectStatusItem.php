@@ -39,10 +39,10 @@ class ProjectStatusItem implements ToolbarItemInterface
         return $view->assignMultiple([
             'version' => $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['version'] && $this->getWebsiteVersion() ? [
                 'number' => $this->getWebsiteVersion(),
-                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['toolbar']['icon']['version'],
+                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['toolbar']['icon']['version'],
             ] : null,
             'context' => $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ? [
-                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['toolbar']['icon']['context'],
+                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['toolbar']['icon']['context'],
                 'name' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['toolbar']['name'] ?? Environment::getContext()->__toString(),
                 'color' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['toolbar']['color'] ?? 'transparent',
             ] : null,

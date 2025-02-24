@@ -32,7 +32,7 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
             $GLOBALS['TSFE']->pSetup['shortcutIcon'] !== ''
         ) {
             $currentFrontendFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
-            $faviconHandler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['handler']);
+            $faviconHandler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['handler']);
             /** @var HandlerInterface $faviconHandler */
             $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon);
             $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFrontendFavicon;

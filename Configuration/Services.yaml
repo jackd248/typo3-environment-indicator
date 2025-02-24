@@ -7,3 +7,6 @@ services:
   KonradMichalik\Typo3EnvironmentIndicator\:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
+
+  KonradMichalik\Typo3EnvironmentIndicator\TypoScript\TechnicalContextConditionFunctionsProvider:
+    public: true

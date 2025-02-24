@@ -1,1 +1,26 @@
+page = PAGE
 page.shortcutIcon = EXT:sitepackage/Resources/Public/Icons/favicon.png
+page {
+  10 = TEXT
+  10.value = <div class="demo">Hello World</div>
+  cssInline {
+    10 = TEXT
+    10.value (
+      .demo {
+        background: #f1f1f1;
+        color: #333;
+        padding: 20px;
+        margin: 20px 0;
+        border: 1px solid #ccc;
+      }
+    )
+  }
+  100 = CONTENT
+  100 {
+      table = tt_content
+      select {
+          orderBy = sorting
+          where = {#colPos}=0
+      }
+  }
+}
