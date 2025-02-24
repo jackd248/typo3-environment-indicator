@@ -10,7 +10,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['ei'] = ['KonradMichal
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = ProjectStatusItem::class;
 
-// Default configuration
+// Preset configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY] = [
     'context' => [
         'Production/Standby' => [
@@ -73,7 +73,20 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
         ],
         'favicon' => [
             'path' => 'typo3temp/assets/favicons/',
-            'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
+            'defaults' => [
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                    'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
+                ],
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class => [
+                    'size' => 0.7,
+                    'position' => 'bottom right',
+                ],
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class => [
+                    'size' => 0.4,
+                    'padding' => 0.1,
+                    'position' => 'bottom right',
+                ],
+            ],
         ],
     ],
 ];
