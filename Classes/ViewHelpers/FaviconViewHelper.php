@@ -6,11 +6,28 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\ViewHelpers;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Service\HandlerInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
+/**
+* Favicon ViewHelper
+*
+* This ViewHelper processes the given favicon regarding the application context.
+*
+* Usages:
+* ::
+*     {f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> ei:favicon()}
+*/
 class FaviconViewHelper extends AbstractViewHelper
 {
+    public function __construct(
+        private readonly ExtensionConfiguration $extensionConfiguration
+    ) {
+    }
+
     public function initializeArguments(): void
     {
         parent::initializeArguments();
@@ -19,6 +36,15 @@ class FaviconViewHelper extends AbstractViewHelper
 
     public function render(): string
     {
+        // get request
+
+        $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
+        $applicationType = ApplicationType::fromRequest($request);
+
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['favicon'][$applicationType->value]) {
+            return '';
+        }
+
         $favicon = $this->renderChildren();
         $handler = GeneralUtility::makeInstance($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['general']['favicon']['handler']);
         /** @var HandlerInterface $handler */

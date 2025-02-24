@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 defined('TYPO3') || die();
 
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['fluid']['namespaces']['ei'] = ['KonradMichalik\\Typo3EnvironmentIndicator\\ViewHelpers'];
+
+// Default configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY] = [
     'environment' => [
         'Production/Staging' => [

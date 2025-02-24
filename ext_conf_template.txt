@@ -1,0 +1,4 @@
+# cat=favicon//10; type=boolean; label=Enable the favicon generation in frontend context
+favicon.frontend = 1
+# cat=favicon//20; type=boolean; label=Enable the favicon generation in backend context
+favicon.backend = 1
