@@ -13,7 +13,7 @@
 	],
 	"require": {
 		"php": "^8.1",
-		"intervention/image": "^2.4 || ^3.0",
+		"intervention/image": "^3.0",
 		"typo3/cms-core": "^11.5 || ^12.4 || ^13.4"
 	},
 	"require-dev": {

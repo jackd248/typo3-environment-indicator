@@ -12,9 +12,12 @@ class ImageModifyManager
 {
     public static function makeInstance(string $modifierClass, array $configuration = []): ModifierInterface
     {
+        if (!class_exists($modifierClass)) {
+            throw new \RuntimeException('Modifier class "' . $modifierClass . '" does not exist', 1740401911);
+        }
         return GeneralUtility::makeInstance(
             $modifierClass,
-            array_merge(self::getGlobalConfiguration()['favicon'], $configuration)
+            array_merge(self::getGlobalConfiguration()['favicon']['defaults'][$modifierClass], $configuration)
         );
     }
 

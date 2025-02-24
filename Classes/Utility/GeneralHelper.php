@@ -9,16 +9,6 @@ use TYPO3\CMS\Core\Core\Environment;
 
 class GeneralHelper
 {
-    public static function getFaviconConfiguration(string $key): string|bool
-    {
-        foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'] as $context => $extension) {
-            if ($context === Environment::getContext()->__toString()) {
-                return $extension['favicon'][$key];
-            }
-        }
-        return false;
-    }
-
     public static function getFaviconFolder(bool $publicPath = true): string
     {
         $defaultPath = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['favicon']['path'];

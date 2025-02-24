@@ -28,10 +28,6 @@ class FaviconHandler
         $image = $manager->read(GeneralUtility::getFileAbsFileName($path));
 
         foreach ($this->getEnvironmentImageModifiers() as $modifier => $configuration) {
-            if (!class_exists($modifier)) {
-                throw new \RuntimeException('Modifier class ' . $modifier . ' does not exist', 1740401911);
-            }
-
             $modifierInstance = ImageModifyManager::makeInstance($modifier, $configuration);
             $modifierInstance->modify($image);
         }
