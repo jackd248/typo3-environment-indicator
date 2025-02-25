@@ -17,7 +17,7 @@ class ImageModifyManager
         }
         return GeneralUtility::makeInstance(
             $modifierClass,
-            array_merge(self::getGlobalConfiguration()['favicon']['defaults'][$modifierClass], $configuration)
+            array_key_exists($modifierClass, self::getGlobalConfiguration()['favicon']['defaults']) ? array_merge(self::getGlobalConfiguration()['favicon']['defaults'][$modifierClass], $configuration) : $configuration
         );
     }
 
