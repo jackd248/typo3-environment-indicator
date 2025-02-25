@@ -6,17 +6,17 @@
 
 </div>
 
+[![Supported TYPO3 versions](https://badgen.net/badge/TYPO3/11%20&%2012%20&%2013/orange)]()
 [![License](https://poser.pugx.org/xima/xima-typo3-content-planner/license)](LICENSE.md)
 
 This extension provides several features to show an environment indicator in the TYPO3 frontend and backend.
 
-![Intro](Documentation/Images/intro.png)
 
-**Features**:
-- [Modified favicon](#favicon) regarding application context
-- [Frontend hint](#frontend-hint) for application context information
-- [Backend toolbar item](#backend-toolbar-item) for project version and application context
-
+| Feature                                                                                                                                                                    | Preview                                                                                                                                                                             |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Frontend Hint Preview](Documentation/Images/preview-frontend-hint.png)                      | **[Frontend hint](#frontend-hint)** <br/><br/> Adds an informative hint to the frontend showing the website title and the current <br/>application context.                         |
+| ![Frontend Hint Preview](Documentation/Images/preview-backend-toolbar-item.png)                                  | **[Backend toolbar item](#backend-toolbar-item)** <br/><br/> Adds an informative item with the current application context to the backend toolbar.                                  |
+| ![Favicon Preview](Documentation/Images/preview-favicon.png) | **[Modified favicon](#favicon)** <br/><br/> Modify the favicon for frontend and backend based on the original favicon, <br/>the current application context and your configuration. |
 
 > [!NOTE]  
 > These environment indicators are mainly for development purposes (e.g. distinguishing between different test systems) and will not show in production environments.
@@ -42,6 +42,35 @@ Include the static TypoScript template "Environment Indicator" or directly impor
 ```
 
 You can en- and disable every single feature in the extension settings.
+
+
+## Frontend hint
+
+The frontend hint will show the current application context information and the website title as clickable note in the upper right corner.
+
+![Favicon TYPO3 Text](Documentation/Images/frontend-hint.png)
+
+You can adjust the color of the hint in your `ext_localconf.php`:
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['frontendHint'] => [
+    'color' => '#bd593a',
+]
+```
+
+## Backend toolbar item
+
+The backend toolbar item will show the current project version and application context.
+
+![Favicon TYPO3 Text](Documentation/Images/backend-toolbar-item.png)
+
+You can adjust the color of the toolbar item in your `ext_localconf.php`:
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['backendToolbar'] => [
+    'color' => '#bd593a',
+]
+```
 
 ## Favicon
 
@@ -81,7 +110,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 ![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-test.png)
 
 
-The modifiers will be executed one after the other. You can combine them if you want. 
+The modifiers will be executed one after the other. You can combine them if you want.
 
 The following modifier classes are available:
 
@@ -182,40 +211,12 @@ See the [Intervention Image documentation](http://image.intervention.io/v3) for 
 
 
 
-## Frontend hint
-
-The frontend hint will show the current application context information and the website title as clickable note in the upper right corner.
-
-![Favicon TYPO3 Text](Documentation/Images/frontend-hint.png)
-
-You can adjust the color of the hint in your `ext_localconf.php`:
-
-```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['frontendHint'] => [
-    'color' => '#bd593a',
-]
-```
-
-## Backend toolbar item
-
-The backend toolbar item will show the current project version and application context.
-
-![Favicon TYPO3 Text](Documentation/Images/backend-toolbar-item.png)
-
-You can adjust the color of the toolbar item in your `ext_localconf.php`:
-
-```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['backendToolbar'] => [
-    'color' => '#bd593a',
-]
-```
-
 ## Development
 
 Use the following ddev command to easily install all supported TYPO3 versions for locale development.
 
 ```bash
-$ ddev install all
+$ ddev install
 ```
 
 ## Credits
