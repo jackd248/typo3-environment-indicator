@@ -20,6 +20,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                     'color' => '#ffffff',
                     'width' => 3,
                 ],
+                'position' => 'top',
             ],
         ],
     ],
@@ -61,6 +62,32 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
         'favicon' => [
             \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
                 'color' => '#AA00FF',
+            ],
+        ],
+    ],
+    'Development/Colorize' => [
+        'frontendHint' => [
+            'color' => '#039BE5',
+        ],
+        'backendToolbar' => [
+            'color' => '#039BE5',
+        ],
+        'favicon' => [
+            \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
+                'color' => '#039BE5',
+            ],
+        ],
+    ],
+    'Development/Replace' => [
+        'frontendHint' => [
+            'color' => '#FFF176',
+        ],
+        'backendToolbar' => [
+            'color' => '#FFF176',
+        ],
+        'favicon' => [
+            \KonradMichalik\Typo3EnvironmentIndicator\Image\ReplaceModifier::class => [
+                'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
             ],
         ],
     ],

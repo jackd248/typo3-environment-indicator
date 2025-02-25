@@ -19,6 +19,7 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         $configuration = $this->configuration;
         $text = $configuration['text'];
         $fontPath = GeneralUtility::getFileAbsFileName($configuration['font']);
+        $position = $configuration['position'] ?? 'bottom';
         $fontSize = 10;
 
         do {
@@ -29,7 +30,10 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         } while ($estimatedHeight < $maxHeight && $fontSize < 50);
         $fontSize--;
 
-        $image->text($wrappedText, $image->width() / 2, $image->height() - $padding, function (FontFactory $font) use ($fontSize, $configuration, $fontPath) {
+        // Position des Textes berechnen
+        $yPosition = ($position === 'top') ? $padding : $image->height() - $padding;
+
+        $image->text($wrappedText, $image->width() / 2, $yPosition, function (FontFactory $font) use ($fontSize, $configuration, $fontPath, $position) {
             $font->filename($fontPath);
             $font->size($fontSize);
             $font->color($configuration['color']);
@@ -37,7 +41,7 @@ class TextModifier extends AbstractModifier implements ModifierInterface
                 $font->stroke($configuration['stroke']['color'], (int)$configuration['stroke']['width']);
             }
             $font->align('center');
-            $font->valign('bottom');
+            $font->valign($position === 'top' ? 'top' : 'bottom');
         });
     }
 
