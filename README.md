@@ -219,6 +219,10 @@ Use the following ddev command to easily install all supported TYPO3 versions fo
 $ ddev install all
 ```
 
+## Credits
+
+This project is partly inspired by the [laravel-favicon](https://github.com/beyondcode/laravel-favicon) package.
+
 ## License
 
 This project is licensed
