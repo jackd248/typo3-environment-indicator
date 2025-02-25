@@ -11,15 +11,15 @@
 
 This extension provides several features to show an environment indicator in the TYPO3 frontend and backend.
 
-
-| Feature                                                                                                                                                                    | Preview                                                                                                                                                                             |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![Frontend Hint Preview](Documentation/Images/preview-frontend-hint.png)                      | **[Frontend hint](#frontend-hint)** <br/><br/> Adds an informative hint to the frontend showing the website title and the current <br/>application context.                         |
-| ![Frontend Hint Preview](Documentation/Images/preview-backend-toolbar-item.png)                                  | **[Backend toolbar item](#backend-toolbar-item)** <br/><br/> Adds an informative item with the current application context to the backend toolbar.                                  |
-| ![Favicon Preview](Documentation/Images/preview-favicon.png) | **[Modified favicon](#favicon)** <br/><br/> Modify the favicon for frontend and backend based on the original favicon, <br/>the current application context and your configuration. |
+| Preview                                                                         | Feature                                                                                                                                                                             |
+|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Frontend Hint Preview](Documentation/Images/preview-frontend-hint.png)        | **[Frontend hint](#frontend-hint)** <br/><br/> Adds an informative hint to the frontend showing the website title and the current <br/>application context.                         |
+| ![Frontend Hint Preview](Documentation/Images/preview-backend-toolbar-item.png) | **[Backend toolbar item](#backend-toolbar-item)** <br/><br/> Adds an informative item with the current application context to the backend toolbar.                                  |
+| ![Favicon Preview](Documentation/Images/preview-favicon.png)                    | **[Modified favicon](#favicon)** <br/><br/> Modify the favicon for frontend and backend based on the original favicon, <br/>the current application context and your configuration. |
 
 > [!NOTE]  
-> These environment indicators are mainly for development purposes (e.g. distinguishing between different test systems) and will not show in production environments.
+> These environment indicators are mainly for development purposes (e.g. distinguishing between different test systems)
+> and will not show in production environments.
 
 ## Requirements
 
@@ -41,12 +41,14 @@ Include the static TypoScript template "Environment Indicator" or directly impor
 @import 'EXT:typo3_environment_indicator/Configuration/TypoScript/setup.typoscript'
 ```
 
-You can en- and disable every single feature in the extension settings.
+### Extension settings
 
+You can en- and disable every single feature in the extension settings.
 
 ## Frontend hint
 
-The frontend hint will show the current application context information and the website title as clickable note in the upper right corner.
+The frontend hint will show the current application context information and the website title as clickable note in the
+upper right corner.
 
 ![Favicon TYPO3 Text](Documentation/Images/frontend-hint.png)
 
@@ -74,23 +76,30 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 
 ## Favicon
 
-The favicon of the frontend or backend context will be modified regarding the application context and the associated configuration.
+The favicon of the frontend or backend context will be modified regarding the application context and the associated
+configuration.
 
-For the **frontend**, the original favicon will either be fetched from the typoscript configuration `page.shortcutIcon` (see [typoscript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Guide/Page/Index.html#guide-page-favicon)) or can be handled by your own fluid template via the [FaviconViewHelper](Classes/ViewHelpers/FaviconViewHelper.php):
+For the **frontend**, the original favicon will either be fetched from the typoscript configuration
+`page.shortcutIcon` (
+see [typoscript reference](https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/Guide/Page/Index.html#guide-page-favicon))
+or can be handled by your own fluid template via the [FaviconViewHelper](Classes/ViewHelpers/FaviconViewHelper.php):
 
 ```html
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" 
-      xmlns:ei="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers" 
+
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ei="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
 {f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> ei:favicon()}
 ```
 
-For the **backend**, the favicon will be fetched by the extension configuration of `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon']`.
+For the **backend**, the favicon will be fetched by the extension configuration of
+`$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon']`.
 
 ### Modification
 
-The favicon modification configuration can be found in `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']`.
+The favicon modification configuration can be found in
+`$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']`.
 
 Add a configured favicon modifier to the desired application context (e.g. `Testing`) in your `ext_localconf.php`:
 
@@ -108,7 +117,6 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 ```
 
 ![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-test.png)
-
 
 The modifiers will be executed one after the other. You can combine them if you want.
 
@@ -165,7 +173,6 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 
 #### [FrameModifier](Classes/Image/FrameModifier.php)
 
-
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
     \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
@@ -180,7 +187,8 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 
 #### CustomModifier
 
-Implement your own image modifier by extending the [AbstractModifier](Classes/Image/AbstractModifier.php) class and implementing the [ModifierInterface](Classes/Image/ModifierInterface.php) method.
+Implement your own image modifier by extending the [AbstractModifier](Classes/Image/AbstractModifier.php) class and
+implementing the [ModifierInterface](Classes/Image/ModifierInterface.php) method.
 
 ```php
 <?php
@@ -204,12 +212,13 @@ class CustomModifier extends AbstractModifier implements ModifierInterface {
 }
 ```
 
-See the [Intervention Image documentation](http://image.intervention.io/v3) for more information about image manipulation.
+See the [Intervention Image documentation](http://image.intervention.io/v3) for more information about image
+manipulation.
 
 > [!NOTE]  
-> Having fun with colorful favicons? Use the [ColorUtility::getColoredString()](Classes/Utility/ColorUtility.php) function as color entry in your modifier configuration to generate a color based on a string (default is the `$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename']`).
-
-
+> Having fun with colorful favicons? Use the [ColorUtility::getColoredString()](Classes/Utility/ColorUtility.php)
+> function as color entry in your modifier configuration to generate a color based on a string (default is the
+`$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename']`).
 
 ## Development
 
