@@ -11,11 +11,11 @@
 
 This extension provides several features to show an environment indicator in the TYPO3 frontend and backend.
 
-| Preview                                                                         | Feature                                                                                                                                                                             |
-|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![Frontend Hint Preview](Documentation/Images/preview-frontend-hint.png)        | **[Frontend hint](#frontend-hint)** <br/><br/> Adds an informative hint to the frontend showing the website title and the current <br/>application context.                         |
-| ![Frontend Hint Preview](Documentation/Images/preview-backend-toolbar-item.png) | **[Backend toolbar item](#backend-toolbar-item)** <br/><br/> Adds an informative item with the current application context to the backend toolbar.                                  |
-| ![Favicon Preview](Documentation/Images/preview-favicon.png)                    | **[Modified favicon](#favicon)** <br/><br/> Modify the favicon for frontend and backend based on the original favicon, <br/>the current application context and your configuration. |
+| Preview                                                                         | Feature                                                                                                                                                                        |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![Frontend Hint Preview](Documentation/Images/preview-frontend-hint.png)        | **[Frontend hint](#frontend-hint)** <br/><br/> Adds an informative hint to the frontend showing the website title and the current application context.                         |
+| ![Frontend Hint Preview](Documentation/Images/preview-backend-toolbar-item.png) | **[Backend toolbar item](#backend-toolbar-item)** <br/><br/> Adds an informative item with the current application context to the backend toolbar.                             |
+| ![Favicon Preview](Documentation/Images/preview-favicon.png)                    | **[Modified favicon](#favicon)** <br/><br/> Modify the favicon for frontend and backend based on the original favicon, the current application context and your configuration. |
 
 > [!NOTE]  
 > These environment indicators are mainly for development purposes (e.g. distinguishing between different test systems)
@@ -24,6 +24,8 @@ This extension provides several features to show an environment indicator in the
 ## Requirements
 
 * TYPO3 >= 11.5 & PHP 8.1+
+* ImageMagick
+    * Required for the ICO file modification
 
 ## Installation
 
@@ -43,7 +45,7 @@ Include the static TypoScript template "Environment Indicator" or directly impor
 
 ### Extension settings
 
-You can en- and disable every single feature in the extension settings.
+You can enable and disable every single feature in the extension settings.
 
 ## Frontend hint
 
@@ -96,6 +98,8 @@ or can be handled by your own fluid template via the [FaviconViewHelper](Classes
 For the **backend**, the favicon will be fetched by the extension configuration of
 `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon']`.
 
+![Favicon Examples](Documentation/Images/favicon-examples.png)
+
 ### Modification
 
 The favicon modification configuration can be found in
@@ -141,9 +145,17 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 
 ![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-text.png)
 
+Additional optional configuration keys:
+
+- `font` (string): The font file path for the text. Default is
+  `EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf`.
+- `position` (string): The position of the text. Default is `bottom`. Possible values are `bottom`, `top`.
+
 <hr/>
 
 #### [TriangleModifier](Classes/Image/TriangleModifier.php)
+
+Adds a triangle indicator to the favicon.
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
@@ -153,11 +165,19 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 ]
 ```
 
-![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-triangle.png)
+![Favicon TYPO3 Triangle](Documentation/Images/Favicons/typo3-triangle.png)
+
+Additional optional configuration keys:
+
+- `size` (float): The percentage size of the triangle. Default is `0.7`.
+- `position` (string): The position of the triangle. Default is `bottom right`. Possible values are `bottom left`,
+  `bottom right`, `top left`, `top right`.
 
 <hr/>
 
 #### [CircleModifier](Classes/Image/CircleModifier.php)
+
+Adds a circle indicator to the favicon.
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
@@ -167,11 +187,20 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 ]
 ```
 
-![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-circle.png)
+![Favicon TYPO3 Circle](Documentation/Images/Favicons/typo3-circle.png)
+
+Additional optional configuration keys:
+
+- `size` (float): The percentage size of the circle. Default is `0.4`.
+- `position` (string): The position of the circle. Default is `bottom right`. Possible values are `bottom left`,
+  `bottom right`, `top left`, `top right`.
+- `padding` (float): The percentage padding of the circle. Default is `0.1`.
 
 <hr/>
 
 #### [FrameModifier](Classes/Image/FrameModifier.php)
+
+Adds a frame around the favicon.
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
@@ -182,6 +211,40 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 ```
 
 ![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-frame.png)
+
+Additional optional configuration keys:
+
+- `borderSize` (float): The border size of the frame. Default is `5`.
+
+<hr/>
+
+#### [ReplaceModifier](Classes/Image/ReplaceModifier.php)
+
+Replace the original favicon with a custom one regarding the application context.
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\ReplaceModifier::class => [
+        'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
+    ],
+]
+```
+
+![Favicon TYPO3 Replace](Documentation/Images/Favicons/replace.png)
+
+<hr/>
+
+#### [ColorizeModifier](Classes/Image/ColorizeModifier.php)
+
+```php
+$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
+        'color' => '#039BE5',
+    ],
+]
+```
+
+![Favicon TYPO3 Colorize](Documentation/Images/Favicons/typo3-colorize.png)
 
 <hr/>
 
