@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3RecordDocument>
+	<header type="array">
+		<XMLversion>1.0</XMLversion>
+		<meta type="array">
+			<title></title>
+			<description></description>
+			<notes></notes>
+			<packager_username>admin</packager_username>
+			<packager_name></packager_name>
+			<packager_email>admin@example.com</packager_email>
+			<TYPO3_version>13.4.5</TYPO3_version>
+			<created>Tue 25. February 2025</created>
+		</meta>
+		<static_tables index="relStaticTables" type="array"></static_tables>
+		<excludeMap type="array"></excludeMap>
+		<softrefCfg type="array"></softrefCfg>
+		<extensionDependencies type="array"></extensionDependencies>
+		<charset>utf-8</charset>
+		<pagetree type="array">
+			<node index="1" type="array">
+				<uid>1</uid>
+			</node>
+		</pagetree>
+		<records type="array">
+			<table index="pages" type="array">
+				<rec index="1" type="array">
+					<uid>1</uid>
+					<pid>0</pid>
+					<title>Home</title>
+					<relations index="rels" type="array"></relations>
+					<softrefs type="array"></softrefs>
+				</rec>
+			</table>
+			<table index="sys_template" type="array">
+				<rec index="1" type="array">
+					<uid>1</uid>
+					<pid>1</pid>
+					<title>Main TypoScript Rendering</title>
+					<relations index="rels" type="array"></relations>
+					<softrefs type="array">
+						<softref_element index="include_static_file:ext_fileref:2" type="array">
+							<field>include_static_file</field>
+							<spKey>ext_fileref</spKey>
+							<matchString>EXT:fluid_styled_content/Configuration/TypoScript/</matchString>
+						</softref_element>
+						<softref_element index="include_static_file:ext_fileref:5" type="array">
+							<field>include_static_file</field>
+							<spKey>ext_fileref</spKey>
+							<matchString>EXT:fluid_styled_content/Configuration/TypoScript/Styling/</matchString>
+						</softref_element>
+						<softref_element index="include_static_file:ext_fileref:8" type="array">
+							<field>include_static_file</field>
+							<spKey>ext_fileref</spKey>
+							<matchString>EXT:sitepackage/Configuration/TypoScript</matchString>
+						</softref_element>
+						<softref_element index="include_static_file:ext_fileref:11" type="array">
+							<field>include_static_file</field>
+							<spKey>ext_fileref</spKey>
+							<matchString>EXT:typo3_environment_indicator/Configuration/TypoScript</matchString>
+						</softref_element>
+					</softrefs>
+				</rec>
+			</table>
+		</records>
+		<pid_lookup type="array">
+			<page_contents index="0" type="array">
+				<table index="pages" type="array">
+					<item index="1">1</item>
+				</table>
+			</page_contents>
+			<page_contents index="1" type="array">
+				<table index="sys_template" type="array">
+					<item index="1">1</item>
+				</table>
+			</page_contents>
+		</pid_lookup>
+	</header>
+	<records type="array">
+		<tablerow index="pages:1" type="array">
+			<fieldlist index="data" type="array">
+				<field index="uid" type="integer">1</field>
+				<field index="pid" type="integer">0</field>
+				<field index="tstamp" type="integer">1740469233</field>
+				<field index="crdate" type="integer">1740469233</field>
+				<field index="deleted" type="integer">0</field>
+				<field index="hidden" type="integer">0</field>
+				<field index="starttime" type="integer">0</field>
+				<field index="endtime" type="integer">0</field>
+				<field index="fe_group">0</field>
+				<field index="sorting" type="integer">0</field>
+				<field index="rowDescription" type="NULL"></field>
+				<field index="editlock" type="integer">0</field>
+				<field index="sys_language_uid" type="integer">0</field>
+				<field index="l10n_parent" type="integer">0</field>
+				<field index="l10n_source" type="integer">0</field>
+				<field index="l10n_state" type="NULL"></field>
+				<field index="l10n_diffsource" type="NULL"></field>
+				<field index="t3ver_oid" type="integer">0</field>
+				<field index="t3ver_wsid" type="integer">0</field>
+				<field index="t3ver_state" type="integer">0</field>
+				<field index="t3ver_stage" type="integer">0</field>
+				<field index="perms_userid" type="integer">1</field>
+				<field index="perms_groupid" type="integer">1</field>
+				<field index="perms_user" type="integer">31</field>
+				<field index="perms_group" type="integer">31</field>
+				<field index="perms_everybody" type="integer">1</field>
+				<field index="SYS_LASTCHANGED" type="integer">1740469233</field>
+				<field index="shortcut" type="integer">0</field>
+				<field index="content_from_pid" type="integer">0</field>
+				<field index="mount_pid" type="integer">0</field>
+				<field index="tx_impexp_origuid" type="integer">0</field>
+				<field index="sitemap_priority">0.5</field>
+				<field index="doktype" type="integer">1</field>
+				<field index="title">Home</field>
+				<field index="slug">/</field>
+				<field index="TSconfig" type="NULL"></field>
+				<field index="php_tree_stop" type="integer">0</field>
+				<field index="categories" type="integer">0</field>
+				<field index="layout" type="integer">0</field>
+				<field index="extendToSubpages" type="integer">0</field>
+				<field index="nav_title"></field>
+				<field index="nav_hide" type="integer">0</field>
+				<field index="subtitle"></field>
+				<field index="target"></field>
+				<field index="url"></field>
+				<field index="lastUpdated" type="integer">0</field>
+				<field index="newUntil" type="integer">0</field>
+				<field index="cache_timeout" type="integer">0</field>
+				<field index="cache_tags"></field>
+				<field index="no_search" type="integer">0</field>
+				<field index="shortcut_mode" type="integer">0</field>
+				<field index="keywords" type="NULL"></field>
+				<field index="description" type="NULL"></field>
+				<field index="abstract" type="NULL"></field>
+				<field index="author"></field>
+				<field index="author_email"></field>
+				<field index="media" type="integer">0</field>
+				<field index="is_siteroot" type="integer">1</field>
+				<field index="mount_pid_ol" type="integer">0</field>
+				<field index="module"></field>
+				<field index="l18n_cfg" type="integer">0</field>
+				<field index="backend_layout"></field>
+				<field index="backend_layout_next_level"></field>
+				<field index="tsconfig_includes"></field>
+				<field index="seo_title"></field>
+				<field index="no_index" type="integer">0</field>
+				<field index="no_follow" type="integer">0</field>
+				<field index="sitemap_changefreq"></field>
+				<field index="canonical_link"></field>
+				<field index="og_title"></field>
+				<field index="og_description" type="NULL"></field>
+				<field index="og_image" type="integer">0</field>
+				<field index="twitter_title"></field>
+				<field index="twitter_description" type="NULL"></field>
+				<field index="twitter_image" type="integer">0</field>
+				<field index="twitter_card"></field>
+			</fieldlist>
+			<related index="rels" type="array"></related>
+		</tablerow>
+		<tablerow index="sys_template:1" type="array">
+			<fieldlist index="data" type="array">
+				<field index="uid" type="integer">1</field>
+				<field index="pid" type="integer">1</field>
+				<field index="tstamp" type="integer">1740469337</field>
+				<field index="crdate" type="integer">1740469233</field>
+				<field index="deleted" type="integer">0</field>
+				<field index="hidden" type="integer">0</field>
+				<field index="starttime" type="integer">0</field>
+				<field index="endtime" type="integer">0</field>
+				<field index="sorting" type="integer">0</field>
+				<field index="description">This is an Empty Site Package TypoScript record.
+
+For each website you need a TypoScript record on the main page of your website (on the top level). For better maintenance all TypoScript should be extracted into external files via @import &#039;EXT:site_myproject/Configuration/TypoScript/setup.typoscript&#039;</field>
+				<field index="tx_impexp_origuid" type="integer">0</field>
+				<field index="title">Main TypoScript Rendering</field>
+				<field index="root" type="integer">1</field>
+				<field index="clear" type="integer">3</field>
+				<field index="constants"></field>
+				<field index="include_static_file">EXT:fluid_styled_content/Configuration/TypoScript/,EXT:fluid_styled_content/Configuration/TypoScript/Styling/,EXT:sitepackage/Configuration/TypoScript,EXT:typo3_environment_indicator/Configuration/TypoScript</field>
+				<field index="basedOn" type="NULL"></field>
+				<field index="includeStaticAfterBasedOn" type="integer">0</field>
+				<field index="config"></field>
+				<field index="static_file_mode" type="integer">0</field>
+			</fieldlist>
+			<related index="rels" type="array">
+				<field index="include_static_file" type="array">
+					<softrefs type="array">
+						<keys type="array">
+							<softref_key index="ext_fileref" type="array">
+								<softref_element index="2" type="array">
+									<matchString>EXT:fluid_styled_content/Configuration/TypoScript/</matchString>
+								</softref_element>
+								<softref_element index="5" type="array">
+									<matchString>EXT:fluid_styled_content/Configuration/TypoScript/Styling/</matchString>
+								</softref_element>
+								<softref_element index="8" type="array">
+									<matchString>EXT:sitepackage/Configuration/TypoScript</matchString>
+								</softref_element>
+								<softref_element index="11" type="array">
+									<matchString>EXT:typo3_environment_indicator/Configuration/TypoScript</matchString>
+								</softref_element>
+							</softref_key>
+						</keys>
+					</softrefs>
+				</field>
+			</related>
+		</tablerow>
+	</records>
+</T3RecordDocument>

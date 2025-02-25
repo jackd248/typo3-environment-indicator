@@ -8,6 +8,7 @@ rm -rf /var/www/html/.test/$VERSION/*
 intro_typo3 $VERSION
 install_start $VERSION
 
+composer config allow-plugins.helhum/dotenv-connector true -d /var/www/html/.test/$VERSION
 composer req typo3/cms-base-distribution:'^13.4' helhum/typo3-console:'^8.2.1' $PACKAGE_NAME:'*@dev' test/sitepackage:'*@dev' \
     --no-progress -n -d /var/www/html/.test/$VERSION
 

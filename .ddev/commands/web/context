@@ -1,0 +1,27 @@
+#!/bin/bash
+
+## Description: Change the application context for all available TYPO3 integration instances.
+## Usage: context
+## Example: "ddev context Development"
+
+. .ddev/commands/web/.utils.sh
+
+TYPO3=${1}
+
+. .ddev/commands/web/.utils.sh
+
+mapfile -t versions < <(get_supported_typo3_versions)
+for version in "${versions[@]}"; do
+    TYPO3_PATH=".test/${version}/vendor/bin/typo3"
+    if [ -f "$TYPO3_PATH" ]; then
+          message magenta "[TYPO3 v${version}] Update context to $1"
+          ENV_PATH=".test/${version}/.env"
+          echo "TYPO3_CONTEXT=$1" > $ENV_PATH
+          /usr/bin/php $TYPO3_PATH cache:flush
+      else
+          message red "TYPO3 not found for version ${version}"
+      fi
+done
+
+
+
