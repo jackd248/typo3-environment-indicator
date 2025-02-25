@@ -10,14 +10,11 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use TYPO3\CMS\Backend\Template\PageRendererBackendSetupTrait;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class BackendFaviconMiddleware implements MiddlewareInterface
 {
-    use PageRendererBackendSetupTrait;
-
     public function __construct(
         protected readonly ExtensionConfiguration $extensionConfiguration
     ) {
