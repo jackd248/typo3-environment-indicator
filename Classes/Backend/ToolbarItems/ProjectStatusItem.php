@@ -3,6 +3,7 @@
 namespace KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Core\Environment;
@@ -39,12 +40,13 @@ class ProjectStatusItem implements ToolbarItemInterface
         return $view->assignMultiple([
             'version' => $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['version'] && $this->getWebsiteVersion() ? [
                 'number' => $this->getWebsiteVersion(),
-                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['backendToolbar']['icon']['version'],
+                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['backendToolbar']['icon']['version'] ?? 'actions-tag',
             ] : null,
             'context' => $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ? [
-                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['backendToolbar']['icon']['context'],
+                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['backendToolbar']['icon']['context'] ?? 'information-application-context',
                 'name' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['name'] ?? Environment::getContext()->__toString(),
                 'color' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['color'] ?? 'transparent',
+                'textColor' => ColorUtility::getOptimalTextColor($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['color'] ?? 'transparent'),
             ] : null,
         ])->render();
     }
