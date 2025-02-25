@@ -23,7 +23,7 @@ class ColorUtility
         } elseif (preg_match('/hsl\((\d+),\s*(\d+)%?,\s*(\d+)%?\)/', $color, $matches)) {
             $rgb = self::hslToRgb((int)$matches[1], (int)$matches[2], (int)$matches[3]);
         } else {
-            return '#000000';
+            return '#FFFFFF';
         }
 
         return self::calculateLuminance($rgb[0], $rgb[1], $rgb[2]) > 0.5 ? '#000000' : '#FFFFFF';
