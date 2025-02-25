@@ -10,3 +10,6 @@ services:
 
   KonradMichalik\Typo3EnvironmentIndicator\TypoScript\TechnicalContextConditionFunctionsProvider:
     public: true
+
+  KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ProjectStatusItem:
+    public: true
