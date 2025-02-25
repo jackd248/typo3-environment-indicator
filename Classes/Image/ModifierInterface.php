@@ -10,7 +10,5 @@ interface ModifierInterface
 {
     public function modify(ImageInterface &$image): void;
 
-    public function shouldModify(): bool;
-
     public function getRequiredConfigurationKeys(): array;
 }

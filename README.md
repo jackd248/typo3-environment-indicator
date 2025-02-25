@@ -168,15 +168,14 @@ class CustomModifier extends AbstractModifier implements ModifierInterface {
         // Modify the image
     }
 
-    public function shouldModify(): bool {
-        // Check if the image should be modified
-    }
-
-    public function getRequiredConfigurationKeys(): array {
+    public function getRequiredConfigurationKeys(): array 
+    {
         // Return the required configuration keys
     }
 }
 ```
+
+See the [Intervention Image documentation](http://image.intervention.io/v3) for more information about image manipulation.
 
 > [!NOTE]  
 > Having fun with colorful favicons? Use the [ColorUtility::getColoredString()](Classes/Utility/ColorUtility.php) function as color entry in your modifier configuration to generate a color based on a string (default is the `$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename']`).

@@ -52,11 +52,6 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         );
     }
 
-    public function shouldModify(): bool
-    {
-        return true;
-    }
-
     public function getRequiredConfigurationKeys(): array
     {
         return ['color', 'size', 'padding', 'position'];
