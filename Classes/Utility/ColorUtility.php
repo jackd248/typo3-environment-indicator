@@ -16,17 +16,22 @@ class ColorUtility
 
     public static function getOptimalTextColor(string $color): string
     {
-        if (preg_match('/^#([a-fA-F0-9]{3,6})$/', $color, $matches)) {
-            $rgb = self::hexToRgb($color);
-        } elseif (preg_match('/rgb\((\d+),\s*(\d+),\s*(\d+)\)/', $color, $matches)) {
-            $rgb = [(int)$matches[1], (int)$matches[2], (int)$matches[3]];
-        } elseif (preg_match('/hsl\((\d+),\s*(\d+)%?,\s*(\d+)%?\)/', $color, $matches)) {
-            $rgb = self::hslToRgb((int)$matches[1], (int)$matches[2], (int)$matches[3]);
-        } else {
-            return '#FFFFFF';
-        }
-
+        $rgb = self::colorToRgb($color);
         return self::calculateLuminance($rgb[0], $rgb[1], $rgb[2]) > 0.5 ? '#000000' : '#FFFFFF';
+    }
+
+    public static function colorToRgb(string $color): array
+    {
+        if (preg_match('/^#([a-fA-F0-9]{3,6})$/', $color, $matches)) {
+            return self::hexToRgb($color);
+        }
+        if (preg_match('/rgb\((\d+),\s*(\d+),\s*(\d+)\)/', $color, $matches)) {
+            return [(int)$matches[1], (int)$matches[2], (int)$matches[3]];
+        }
+        if (preg_match('/hsl\((\d+),\s*(\d+)%?,\s*(\d+)%?\)/', $color, $matches)) {
+            return self::hslToRgb((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+        }
+        return [0, 0, 0];
     }
 
     public static function hexToRgb($hex): array
