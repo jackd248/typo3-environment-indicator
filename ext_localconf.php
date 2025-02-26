@@ -75,7 +75,6 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
         'backendToolbar' => [
             'icon' => [
                 'context' => 'information-application-context',
-                'version' => 'actions-tag',
             ],
         ],
         'favicon' => [

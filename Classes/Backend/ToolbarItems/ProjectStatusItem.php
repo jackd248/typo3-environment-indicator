@@ -25,9 +25,7 @@ class ProjectStatusItem implements ToolbarItemInterface
 
     public function getItem(): string
     {
-        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] &&
-            !$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['version']
-        ) {
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context']) {
             return '';
         }
 
@@ -38,10 +36,6 @@ class ProjectStatusItem implements ToolbarItemInterface
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:' . Configuration::EXT_KEY
             . '/Resources/Private/Templates/ToolbarItems/ProjectStatusItem.html'));
         return $view->assignMultiple([
-            'version' => $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['version'] && $this->getWebsiteVersion() ? [
-                'number' => $this->getWebsiteVersion(),
-                'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['backendToolbar']['icon']['version'] ?? 'actions-tag',
-            ] : null,
             'context' => $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ? [
                 'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['backendToolbar']['icon']['context'] ?? 'information-application-context',
                 'name' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['name'] ?? Environment::getContext()->__toString(),
@@ -49,11 +43,6 @@ class ProjectStatusItem implements ToolbarItemInterface
                 'textColor' => ColorUtility::getOptimalTextColor($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['color'] ?? 'transparent'),
             ] : null,
         ])->render();
-    }
-
-    protected function getWebsiteVersion(): string
-    {
-        return GeneralUtility::makeInstance(PackageManager::class)->getComposerManifest(Environment::getProjectPath() . '/', true)->version ?? '';
     }
 
     public function hasDropDown(): bool

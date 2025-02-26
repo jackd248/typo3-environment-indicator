@@ -6,5 +6,3 @@ frontend.context = 1
 backend.favicon = 1
 # cat=backend/enable/20; type=boolean; label=Enable the context backend hint within the toolbar
 backend.context = 1
-# cat=backend/enable/30; type=boolean; label=Enable the version backend hint within the toolbar
-backend.version = 1
