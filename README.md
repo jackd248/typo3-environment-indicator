@@ -131,6 +131,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 
 The modifiers will be executed one after the other. You can combine them if you want.
 
+> [!NOTE]
+> If you want to specify the frontend or backend favicon separately, you can use the `frontendFavicon` or `backendFavicon` key in the application context configuration.
+
 The following modifier classes are available:
 
 #### [TextModifier](Classes/Image/TextModifier.php)

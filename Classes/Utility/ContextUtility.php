@@ -8,7 +8,6 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 class ContextUtility
 {
@@ -49,7 +48,8 @@ class ContextUtility
         return $site->getConfiguration()['websiteTitle'] ?: $site->getIdentifier();
     }
 
-    private function getFrontendHintConfiguration(): array {
+    private function getFrontendHintConfiguration(): array
+    {
         return array_merge(GeneralHelper::getGlobalConfiguration()['frontendHint'], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']);
     }
 }

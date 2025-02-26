@@ -77,6 +77,11 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 'color' => '#039BE5',
             ],
         ],
+        'frontendFavicon' => [
+            \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
+                'opacity' => 0.5,
+            ],
+        ],
     ],
     'Development/Replace' => [
         'frontendHint' => [

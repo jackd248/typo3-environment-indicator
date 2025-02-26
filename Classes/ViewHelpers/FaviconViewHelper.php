@@ -37,7 +37,6 @@ class FaviconViewHelper extends AbstractViewHelper
     public function render(): string
     {
         // get request
-
         $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
         $applicationType = ApplicationType::fromRequest($request);
 
@@ -47,6 +46,6 @@ class FaviconViewHelper extends AbstractViewHelper
 
         $favicon = $this->renderChildren();
         $handler = GeneralUtility::makeInstance(FaviconHandler::class);
-        return $handler->process($favicon);
+        return $handler->process($favicon, $request);
     }
 }
