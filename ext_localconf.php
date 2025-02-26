@@ -99,6 +99,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
                     'borderSize' => 5,
                 ],
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
+                    'opacity' => 1,
+                ],
             ],
         ],
     ],

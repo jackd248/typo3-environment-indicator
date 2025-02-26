@@ -255,6 +255,10 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 
 ![Favicon TYPO3 Colorize](Documentation/Images/Favicons/typo3-colorize.png)
 
+Additional optional configuration keys:
+
+- `opacity` (float): Controls the opacity of the colorization. Default is `1`.
+
 <hr/>
 
 #### CustomModifier

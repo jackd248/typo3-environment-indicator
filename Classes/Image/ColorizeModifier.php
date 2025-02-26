@@ -13,11 +13,12 @@ class ColorizeModifier extends AbstractModifier implements ModifierInterface
     public function modify(ImageInterface &$image): void
     {
         $targetColorArray = ColorUtility::hexToRgb($this->configuration['color']);
+        $opacityPercentage = ($this->configuration['opacity'] * 100) . '%';
         $targetColor = sprintf('rgb(%d, %d, %d)', $targetColorArray[0], $targetColorArray[1], $targetColorArray[2]);
         $imagick = $image->core()->native();
         $imagick->modulateImage(100, 0, 100);
         $color = new ImagickPixel($targetColor);
-        $opacity = new ImagickPixel('rgb(100%, 100%, 100%)');
+        $opacity = new ImagickPixel(sprintf('rgb(%s, %s, %s)', $opacityPercentage, $opacityPercentage, $opacityPercentage));
         $imagick->colorizeImage($color, $opacity);
     }
 
