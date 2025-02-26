@@ -23,4 +23,9 @@ class GeneralHelper
         }
         return $path;
     }
+
+    public static function getGlobalConfiguration(): array
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global'];
+    }
 }

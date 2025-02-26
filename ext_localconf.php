@@ -72,6 +72,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
         ],
     ],
     'global' => [
+        'frontendHint' => [
+            'position' => 'top left',
+        ],
         'backendToolbar' => [
             'icon' => [
                 'context' => 'information-application-context',

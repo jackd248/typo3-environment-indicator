@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\ModifierInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ImageModifyManager
@@ -17,12 +18,7 @@ class ImageModifyManager
         }
         return GeneralUtility::makeInstance(
             $modifierClass,
-            array_key_exists($modifierClass, self::getGlobalConfiguration()['favicon']['defaults']) ? array_merge(self::getGlobalConfiguration()['favicon']['defaults'][$modifierClass], $configuration) : $configuration
+            array_key_exists($modifierClass, GeneralHelper::getGlobalConfiguration()['favicon']['defaults']) ? array_merge(GeneralHelper::getGlobalConfiguration()['favicon']['defaults'][$modifierClass], $configuration) : $configuration
         );
-    }
-
-    public static function getGlobalConfiguration(): array
-    {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global'];
     }
 }
