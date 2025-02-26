@@ -1,14 +1,12 @@
 <style nonce="{f:security.nonce()}">
     .technical-context {
         position: absolute;
-        top: 0;
-        left: 0;
         z-index: 99999;
         display: flex;
         gap: 0.5rem;
         align-items: center;
         margin: 0.25rem;
-        padding: 0.5rem;
+        padding: 0.5rem 1rem;
         background-color: #f39c12;
         color: #ffffff;
         font-size: 12px;
@@ -40,7 +38,7 @@
     class="technical-context"
     data-context="{context}"
     aria-hidden="true"
-    style="background-color:{color};"
+    style="background-color:{color};color:{textColor};{f:if(condition: '{positionX} = \'right\'', then: 'right:0;', else: 'left:0;')}{f:if(condition: '{positionY} = \'bottom\'', then: 'bottom:0;', else: 'top:0;')}"
     title="This is part of environment indicator extension and shows the actual site name of the website. This hint will not be displayed in production context."
 >
     {title}

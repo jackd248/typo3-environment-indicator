@@ -21,8 +21,27 @@ class ContextUtility
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']['color'] ?? 'transparent';
     }
 
+    public function getTextColor(): string
+    {
+        return ColorUtility::getOptimalTextColor($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']['color'] ?? 'transparent');
+    }
+
+    public function getPositionX(): string
+    {
+        return explode(' ', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']['position'])[0];
+    }
+
+    public function getPositionY(): string
+    {
+        return explode(' ', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']['position'])[1];
+    }
+
     public function getTitle(): string
     {
+        $title = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']['text'] ?? null;
+        if ($title !== null) {
+            return $title;
+        }
         $pid = $GLOBALS['TSFE']->id;
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
         $site = $siteFinder->getSiteByPageId($pid);

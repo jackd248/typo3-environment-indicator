@@ -83,6 +83,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             'defaults' => [
                 \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
                     'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
+                    'position' => 'top left',
                 ],
                 \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class => [
                     'size' => 0.7,

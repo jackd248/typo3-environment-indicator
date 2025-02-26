@@ -62,6 +62,13 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 ]
 ```
 
+Additional optional configuration keys:
+
+- `text` (string): The text of the hint. Default is the website title.
+- `position` (string): The position of the frontend hint. Default is `top left`. Possible values are `bottom left`,
+  `bottom right`, `top left`, `top right`.
+
+
 ## Backend toolbar item
 
 The backend toolbar item will show the current project version and application context.
@@ -235,6 +242,8 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 <hr/>
 
 #### [ColorizeModifier](Classes/Image/ColorizeModifier.php)
+
+Colorize the original favicon in a desired color regarding the application context.
 
 ```php
 $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [

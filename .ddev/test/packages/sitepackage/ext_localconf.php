@@ -91,4 +91,19 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
         ],
     ],
+    'Development/FrontendHint' => [
+        'frontendHint' => [
+            'color' => '#80CBC4',
+            'text' => 'Frontend',
+            'position' => 'bottom right',
+        ],
+        'backendToolbar' => [
+            'color' => '#80CBC4',
+        ],
+        'favicon' => [
+            \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
+                'color' => '#80CBC4',
+            ],
+        ],
+    ],
 ]);
