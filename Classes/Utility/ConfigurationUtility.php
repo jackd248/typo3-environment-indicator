@@ -18,15 +18,18 @@ class ConfigurationUtility
     * @param array $configuration - configuration for the modifier
     * @param string $requestContext - '*' for all requests, 'backend' for backend requests, 'frontend' for frontend requests
     */
-    public static function addFaviconModifierConfigurationByContext(string $applicationContext, string $modifierClass, array $configuration = [], string $requestContext = '*'): void
+    public static function addFaviconModifierConfigurationByContext(string $applicationContext, string $modifierClass, array $configuration = [], string $requestContext = '*', bool $clearPreviousModifierConfiguration = false): void
     {
+        if ($clearPreviousModifierConfiguration) {
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon'][$requestContext] = [];
+        }
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon'][$requestContext][$modifierClass] = $configuration;
     }
 
     /**
-    * @param string $applicationContext - application context
-    * @param array $configuration - configuration for the frontend hint
-    */
+     * @param string $applicationContext - application context
+     * @param array|null $configuration - configuration for the frontend hint
+     */
     public static function addFrontendHintConfigurationByContext(string $applicationContext, ?array $configuration): void
     {
         if ($configuration) {
@@ -37,9 +40,9 @@ class ConfigurationUtility
     }
 
     /**
-    * @param string $applicationContext - application context
-    * @param array $configuration - configuration for the backend toolbar
-    */
+     * @param string $applicationContext - application context
+     * @param array|null $configuration - configuration for the backend toolbar
+     */
     public static function addBackendToolbarConfigurationByContext(string $applicationContext, ?array $configuration): void
     {
         if ($configuration) {
