@@ -57,9 +57,12 @@ upper right corner.
 You can adjust the color of the hint in your `ext_localconf.php`:
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['frontendHint'] => [
-    'color' => '#bd593a',
-]
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFrontendHintConfigurationByContext(
+    'Development',
+    [
+        'color' => '#bd593a',
+    ]
+);
 ```
 
 Additional optional configuration keys:
@@ -81,6 +84,12 @@ You can adjust the color of the toolbar item in your `ext_localconf.php`:
 $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['backendToolbar'] => [
     'color' => '#bd593a',
 ]
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
+    'Development',
+    [
+        'color' => '#bd593a',
+    ]
+);
 ```
 
 ## Favicon
@@ -94,12 +103,9 @@ see [typoscript reference](https://docs.typo3.org/m/typo3/reference-typoscript/m
 or can be handled by your own fluid template via the [FaviconViewHelper](Classes/ViewHelpers/FaviconViewHelper.php):
 
 ```html
+<html xmlns:env="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ei="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers"
-      data-namespace-typo3-fluid="true">
-
-{f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> ei:favicon()}
+{f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> env:favicon()}
 ```
 
 For the **backend**, the favicon will be fetched by the extension configuration of
@@ -115,16 +121,18 @@ The favicon modification configuration can be found in
 Add a configured favicon modifier to the desired application context (e.g. `Testing`) in your `ext_localconf.php`:
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Testing']['favicon'] => [
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Testing',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class,
+    [
         'text' => 'TEST',
-        'color' => '#f39c12',
+         'color' => '#f39c12',
         'stroke' => [
             'color' => '#ffffff',
             'width' => 3,
         ],
     ]
-]
+);
 ```
 
 ![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-test.png)
@@ -132,7 +140,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 The modifiers will be executed one after the other. You can combine them if you want.
 
 > [!NOTE]
-> If you want to specify the frontend or backend favicon separately, you can use the `frontendFavicon` or `backendFavicon` key in the application context configuration.
+> If you want to specify the frontend or backend favicon separately, you can add the third parameter for the request context `frontend` or `backend` to the `addFaviconModifierConfigurationByContext()` method.
 
 The following modifier classes are available:
 
@@ -141,8 +149,10 @@ The following modifier classes are available:
 > This is the default modifier if no own configuration is set.
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class,
+    [
         'text' => 'DEV',
         'color' => '#bd593a',
         'stroke' => [
@@ -150,7 +160,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
             'width' => 3,
         ],
     ]
-]
+);
 ```
 
 ![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-text.png)
@@ -168,11 +178,13 @@ Additional optional configuration keys:
 Adds a triangle indicator to the favicon.
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class => [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class,
+    [
         'color' => '#bd593a',
-    ],
-]
+    ]
+);
 ```
 
 ![Favicon TYPO3 Triangle](Documentation/Images/Favicons/typo3-triangle.png)
@@ -190,11 +202,13 @@ Additional optional configuration keys:
 Adds a circle indicator to the favicon.
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class => [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Circle',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class,
+    [
         'color' => '#bd593a',
-    ],
-]
+    ]
+);
 ```
 
 ![Favicon TYPO3 Circle](Documentation/Images/Favicons/typo3-circle.png)
@@ -213,11 +227,13 @@ Additional optional configuration keys:
 Adds a frame around the favicon.
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class,
+    [
         'color' => '#bd593a',
-    ],
-]
+    ]
+);
 ```
 
 ![Favicon TYPO3 Text](Documentation/Images/Favicons/typo3-frame.png)
@@ -249,11 +265,13 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 Colorize the original favicon in a desired color regarding the application context.
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Colorize',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class,
+    [
         'color' => '#039BE5',
     ],
-]
+);
 ```
 
 ![Favicon TYPO3 Colorize](Documentation/Images/Favicons/typo3-colorize.png)
@@ -298,6 +316,25 @@ manipulation.
 > Having fun with colorful favicons? Use the [ColorUtility::getColoredString()](Classes/Utility/ColorUtility.php)
 > function as color entry in your modifier configuration to generate a color based on a string (default is the
 `$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename']`).
+
+### ConfigurationUtility
+
+Generally the whole configuration can be found in `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_environment_indicator']`. 
+You can/should use the [ConfigurationUtility](Classes/Utility/ConfigurationUtility.php) to easily add necessary configuration for the environment indicator.
+
+```php
+// Add a triangle favicon modifier configuration for the Development context
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class
+);
+// Helper method to add the color configuration for the Development context fot the backend toolbar and all previously configured favicon modifiers
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development',
+    '#bd593a',
+    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::OPTION_BACKEND_TOOLBAR | \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::OPTION_FAVICON // If this is not set, the color will applied to all features
+);
+```
 
 ## Development
 

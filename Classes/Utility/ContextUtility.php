@@ -28,12 +28,12 @@ class ContextUtility
 
     public function getPositionX(): string
     {
-        return explode(' ', $this->getFrontendHintConfiguration()['position'])[0];
+        return explode(' ', $this->getFrontendHintConfiguration()['position'])[0] . ':0';
     }
 
     public function getPositionY(): string
     {
-        return explode(' ', $this->getFrontendHintConfiguration()['position'])[1];
+        return explode(' ', $this->getFrontendHintConfiguration()['position'])[1] . ':0';
     }
 
     public function getTitle(): string
@@ -42,6 +42,7 @@ class ContextUtility
         if ($title !== null) {
             return $title;
         }
+        // Deprecated: $GLOBALS['TSFE'] is deprecated since TYPO3 v13.
         $pid = $GLOBALS['TSFE']->id;
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
         $site = $siteFinder->getSiteByPageId($pid);

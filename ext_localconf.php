@@ -24,12 +24,14 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 'color' => '#f39c12',
             ],
             'favicon' => [
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
-                    'text' => 'STAGE',
-                    'color' => '#f39c12',
-                    'stroke' => [
-                        'color' => '#ffffff',
-                        'width' => 3,
+                '*' => [
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                        'text' => 'STAGE',
+                        'color' => '#f39c12',
+                        'stroke' => [
+                            'color' => '#ffffff',
+                            'width' => 3,
+                        ],
                     ],
                 ],
             ],
@@ -42,12 +44,14 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 'color' => '#f39c12',
             ],
             'favicon' => [
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
-                    'text' => 'TEST',
-                    'color' => '#f39c12',
-                    'stroke' => [
-                        'color' => '#ffffff',
-                        'width' => 3,
+                '*' => [
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                        'text' => 'TEST',
+                        'color' => '#f39c12',
+                        'stroke' => [
+                            'color' => '#ffffff',
+                            'width' => 3,
+                        ],
                     ],
                 ],
             ],
@@ -60,12 +64,14 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 'color' => '#bd593a',
             ],
             'favicon' => [
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
-                    'text' => 'DEV',
-                    'color' => '#bd593a',
-                    'stroke' => [
-                        'color' => '#ffffff',
-                        'width' => 3,
+                '*' => [
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                        'text' => 'DEV',
+                        'color' => '#bd593a',
+                        'stroke' => [
+                            'color' => '#ffffff',
+                            'width' => 3,
+                        ],
                     ],
                 ],
             ],

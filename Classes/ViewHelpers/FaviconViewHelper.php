@@ -19,7 +19,9 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 *
 * Usages:
 * ::
-*     {f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> ei:favicon()}
+*    <html xmlns:env="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers" data-namespace-typo3-fluid="true">
+*
+*     {f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> env:favicon()}
 */
 class FaviconViewHelper extends AbstractViewHelper
 {

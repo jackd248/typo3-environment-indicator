@@ -2,113 +2,121 @@
 
 declare(strict_types=1);
 
+
 defined('TYPO3') || die();
 
-$GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY]['context'] = array_merge($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY]['context'],[
-    'Development/Text' => [
-        'frontendHint' => [
-            'color' => '#283593',
-        ],
-        'backendToolbar' => [
-            'color' => '#283593',
-        ],
-        'favicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
-                'text' => 'TEXT',
-                'color' => '#283593',
-                'stroke' => [
-                    'color' => '#ffffff',
-                    'width' => 3,
-                ],
-                'position' => 'top',
+/**
+ * Context "Development/Text"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Text',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class,
+    [
+            'text' => 'TEXT',
+            'stroke' => [
+                'color' => '#ffffff',
+                'width' => 3,
             ],
-        ],
+            'position' => 'top',
+        ]
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development/Text',
+    '#283593'
+);
+
+/**
+ * Context "Development/Triangle"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Triangle',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class,
+    [
+        'position' => 'top right'
+    ]
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development/Triangle',
+    '#B39DDB'
+);
+
+/**
+ * Context "Development/Circle"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Circle',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class,
+    [
+        'position' => 'top left'
+    ]
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development/Circle',
+    '#1B5E20'
+);
+
+/**
+ * Context "Development/Frame"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Frame',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development/Frame',
+    '#AA00FF'
+);
+
+/**
+ * Context "Development/Colorize"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Colorize',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Colorize',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class,
+    [
+        'opacity' => 0.5
     ],
-    'Development/Triangle' => [
-        'frontendHint' => [
-            'color' => '#B39DDB',
-        ],
-        'backendToolbar' => [
-            'color' => '#B39DDB',
-        ],
-        'favicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class => [
-                'color' => '#B39DDB',
-                'position' => 'top right'
-            ],
-        ],
-    ],
-    'Development/Circle' => [
-        'frontendHint' => [
-            'color' => '#1B5E20',
-        ],
-        'backendToolbar' => [
-            'color' => '#1B5E20',
-        ],
-        'favicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class => [
-                'color' => '#1B5E20',
-                'position' => 'top left'
-            ],
-        ],
-    ],
-    'Development/Frame' => [
-        'frontendHint' => [
-            'color' => '#AA00FF',
-        ],
-        'backendToolbar' => [
-            'color' => '#AA00FF',
-        ],
-        'favicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
-                'color' => '#AA00FF',
-            ],
-        ],
-    ],
-    'Development/Colorize' => [
-        'frontendHint' => [
-            'color' => '#039BE5',
-        ],
-        'backendToolbar' => [
-            'color' => '#039BE5',
-        ],
-        'favicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
-                'color' => '#039BE5',
-            ],
-        ],
-        'frontendFavicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
-                'opacity' => 0.5,
-            ],
-        ],
-    ],
-    'Development/Replace' => [
-        'frontendHint' => [
-            'color' => '#FFF176',
-        ],
-        'backendToolbar' => [
-            'color' => '#FFF176',
-        ],
-        'favicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\ReplaceModifier::class => [
-                'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
-            ],
-        ],
-    ],
-    'Development/FrontendHint' => [
-        'frontendHint' => [
-            'color' => '#80CBC4',
-            'text' => 'Frontend',
-            'position' => 'bottom right',
-        ],
-        'backendToolbar' => [
-            'color' => '#80CBC4',
-        ],
-        'favicon' => [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
-                'color' => '#80CBC4',
-            ],
-        ],
-    ],
-]);
+    'frontend'
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development/Colorize',
+    '#039BE5'
+);
+
+/**
+ * Context "Development/Replace"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/Replace',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\ReplaceModifier::class,
+    [
+        'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
+    ]
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development/Replace',
+    '#FFF176'
+);
+
+/**
+ * Context "Development/FrontendHint"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development/FrontendHint',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFrontendHintConfigurationByContext(
+    'Development/FrontendHint',
+    [
+        'text' => 'Frontend',
+        'position' => 'bottom right',
+    ]
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
+    'Development/FrontendHint',
+    '#FFF176'
+);

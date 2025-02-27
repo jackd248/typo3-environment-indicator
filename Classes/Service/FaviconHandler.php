@@ -44,12 +44,12 @@ class FaviconHandler
 
     public function getEnvironmentImageModifiers(ServerRequestInterface $request): array
     {
-        $configuration = isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']) ?
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon'] : [];
+        $configuration = isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['*']) ?
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['*'] : [];
         if (ApplicationType::fromRequest($request)->isFrontend()) {
-            $configuration = array_replace_recursive($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendFavicon'] ?? []);
+            $configuration = array_replace_recursive($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['frontend'] ?? []);
         } elseif (ApplicationType::fromRequest($request)->isBackend()) {
-            $configuration = array_replace_recursive($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendFavicon'] ?? []);
+            $configuration = array_replace_recursive($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['backend'] ?? []);
         }
         return $configuration;
     }
