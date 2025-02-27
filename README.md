@@ -359,7 +359,7 @@ You can/should use the [ConfigurationUtility](Classes/Utility/ConfigurationUtili
     'Development',
     \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class
 );
-// Helper method to add the color configuration for the Development context fot the backend toolbar and all previously configured favicon modifiers
+// Helper method to add the color configuration for the Development context for the backend toolbar and all previously configured favicon modifiers
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
     'Development',
     '#bd593a',
