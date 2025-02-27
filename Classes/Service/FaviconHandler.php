@@ -12,6 +12,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\PathUtility;
 
 class FaviconHandler
 {
@@ -31,7 +32,8 @@ class FaviconHandler
         $manager = new ImageManager(
             new Driver()
         );
-        $image = $manager->read(GeneralUtility::getFileAbsFileName($path));
+        $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
+        $image = $manager->read($absolutePath);
 
         foreach ($this->getEnvironmentImageModifiers($request) as $modifier => $configuration) {
             $modifierInstance = ImageModifyManager::makeInstance($modifier, $configuration);
