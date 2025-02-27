@@ -134,6 +134,25 @@ defined('TYPO3') || die();
 );
 
 /**
+ * Context "Development/Overlay"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development/Overlay',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\OverlayModifier::class =>
+        [
+            'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
+        ]
+    ],
+    frontendHintConfiguration: [
+        'color' => '#827717',
+    ],
+    backendToolbarConfiguration: [
+        'color' => '#827717',
+    ]
+);
+
+/**
  * Context "Development/FrontendHint"
  */
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(

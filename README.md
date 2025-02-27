@@ -39,6 +39,7 @@ This extension provides several features to show an environment indicator in the
       - [CircleModifier](#circlemodifier)
       - [FrameModifier](#framemodifier)
       - [ReplaceModifier](#replacemodifier)
+      - [OverlayModifier](#overlaymodifier)
       - [ColorizeModifier](#colorizemodifier)
       - [CustomModifier](#custommodifier)
     - [ConfigurationUtility](#configurationutility)
@@ -302,6 +303,33 @@ Replace the original favicon with a custom one regarding the application context
 ```
 
 ![Favicon TYPO3 Replace](Documentation/Images/Favicons/replace.png)
+
+<hr/>
+
+#### [OverlayModifier](Classes/Image/OverlayModifier.php)
+
+Overlay an additional image to the original favicon regarding the application context.
+
+```php
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\OverlayModifier::class =>
+        [
+             'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
+        ]
+    ],
+);
+```
+
+![Favicon TYPO3 Overlay](Documentation/Images/Favicons/typo3-overlay.png)
+
+Additional optional configuration keys:
+
+- `size` (float): The percentage size of the overlay. Default is `0.5`.
+- `position` (string): The position of the overlay. Default is `bottom right`. Possible values are `bottom left`,
+  `bottom right`, `top left`, `top right`.
+- `padding` (float): The percentage padding of the overlay. Default is `0.1`.
 
 <hr/>
 

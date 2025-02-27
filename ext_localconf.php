@@ -108,6 +108,11 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                 \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
                     'opacity' => 1,
                 ],
+                \KonradMichalik\Typo3EnvironmentIndicator\Image\OverlayModifier::class => [
+                    'size' => 0.5,
+                    'padding' => 0.1,
+                    'position' => 'bottom right',
+                ],
             ],
         ],
     ],
