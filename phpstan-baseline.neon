@@ -1,7 +1,2 @@
 parameters:
-	ignoreErrors:
-		-
-			message: '#^Ternary operator condition is always true\.$#'
-			identifier: ternary.alwaysTrue
-			count: 1
-			path: Classes/Backend/ToolbarItems/ProjectStatusItem.php
+	ignoreErrors: []

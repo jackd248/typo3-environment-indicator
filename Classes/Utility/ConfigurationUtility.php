@@ -27,18 +27,26 @@ class ConfigurationUtility
     * @param string $applicationContext - application context
     * @param array $configuration - configuration for the frontend hint
     */
-    public static function addFrontendHintConfigurationByContext(string $applicationContext, array $configuration): void
+    public static function addFrontendHintConfigurationByContext(string $applicationContext, ?array $configuration): void
     {
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint'] = $configuration;
+        if ($configuration) {
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint'] = $configuration;
+        } else {
+            unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint']);
+        }
     }
 
     /**
     * @param string $applicationContext - application context
     * @param array $configuration - configuration for the backend toolbar
     */
-    public static function addBackendToolbarConfigurationByContext(string $applicationContext, array $configuration): void
+    public static function addBackendToolbarConfigurationByContext(string $applicationContext, ?array $configuration): void
     {
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar'] = $configuration;
+        if ($configuration) {
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar'] = $configuration;
+        } else {
+            unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar']);
+        }
     }
 
     /**

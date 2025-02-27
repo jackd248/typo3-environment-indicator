@@ -118,5 +118,22 @@ defined('TYPO3') || die();
 );
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
     'Development/FrontendHint',
-    '#FFF176'
+    '#FFF176',
+    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::OPTION_FRONTEND_HINT | \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::OPTION_FAVICON
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
+    'Development/FrontendHint',
+    null
+);
+
+/**
+ * Context "Development/Unset"
+ */
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFrontendHintConfigurationByContext(
+    'Development/Unset',
+    null
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
+    'Development/Unset',
+    null
 );

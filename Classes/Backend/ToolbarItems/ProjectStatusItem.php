@@ -24,7 +24,8 @@ class ProjectStatusItem implements ToolbarItemInterface
 
     public function getItem(): string
     {
-        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context']) {
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
+            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'])) {
             return '';
         }
 
@@ -35,12 +36,12 @@ class ProjectStatusItem implements ToolbarItemInterface
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:' . Configuration::EXT_KEY
             . '/Resources/Private/Templates/ToolbarItems/ProjectStatusItem.html'));
         return $view->assignMultiple([
-            'context' => $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ? [
+            'context' => [
                 'icon' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['backendToolbar']['icon']['context'] ?? 'information-application-context',
                 'name' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['name'] ?? Environment::getContext()->__toString(),
                 'color' => $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['color'] ?? 'transparent',
                 'textColor' => ColorUtility::getOptimalTextColor($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']['color']),
-            ] : null,
+            ],
         ])->render();
     }
 

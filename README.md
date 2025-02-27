@@ -341,6 +341,32 @@ You can/should use the [ConfigurationUtility](Classes/Utility/ConfigurationUtili
 );
 ```
 
+The previous example is equivalent to the following configuration:
+
+```php
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
+    'Development',
+    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class,
+    [
+        'color' => '#bd593a',
+    ]
+);
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
+    'Development',
+    [
+        'color' => '#bd593a',
+    ]
+);
+```
+
+You can also unset a feature for a specific context when setting the configuration to `null`:
+
+```php
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
+    'Testing',
+    null
+);
+```
 ## Development
 
 Use the following ddev command to easily install all supported TYPO3 versions for locale development.
