@@ -21,15 +21,41 @@ This extension provides several features to show an environment indicator in the
 > These environment indicators are mainly for development purposes (e.g. distinguishing between different test systems)
 > and will not show in production environments.
 
+## Table of contents
+
+* [Requirements](#requirements)
+* [Installation](#installation)
+    + [Composer](#composer)
+    + [Configuration](#configuration)
+    + [Extension settings](#extension-settings)
+* [Frontend hint](#frontend-hint)
+* [Backend toolbar item](#backend-toolbar-item)
+* [Favicon](#favicon)
+    + [Modification](#modification)
+        - [TextModifier](#textmodifier)
+        - [TriangleModifier](#trianglemodifier)
+        - [CircleModifier](#circlemodifier)
+        - [FrameModifier](#framemodifier)
+        - [ReplaceModifier](#replacemodifier)
+        - [ColorizeModifier](#colorizemodifier)
+        - [CustomModifier](#custommodifier)
+    + [ConfigurationUtility](#configurationutility)
+* [Development](#development)
+* [Credits](#credits)
+* [License](#license)
+
+
 ## Requirements
 
 * TYPO3 >= 11.5 & PHP 8.1+
 * ImageMagick
-    * Required for the ICO file modification
+    * Required for the `.ico` favicon file modification
 
 ## Installation
 
 ### Composer
+
+Use the following composer command to install the extension:
 
 ```bash
 composer require konradmichalik/typo3-environment-indicator
