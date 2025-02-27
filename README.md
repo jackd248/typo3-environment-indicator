@@ -92,6 +92,11 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 );
 ```
 
+Additional optional configuration keys:
+
+- `text` (string): The text of the toolbar item. Default is the application context.
+- `icon` (string): The icon of the toolbar item. Default is `information-application-context`.
+
 ## Favicon
 
 The favicon of the frontend or backend context will be modified regarding the application context and the associated
