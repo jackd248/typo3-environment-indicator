@@ -15,11 +15,21 @@ class ColorizeModifier extends AbstractModifier implements ModifierInterface
         $targetColorArray = ColorUtility::hexToRgb($this->configuration['color']);
         $opacityPercentage = ($this->configuration['opacity'] * 100) . '%';
         $targetColor = sprintf('rgb(%d, %d, %d)', $targetColorArray[0], $targetColorArray[1], $targetColorArray[2]);
+
         $imagick = $image->core()->native();
         $imagick->modulateImage(100, 0, 100);
         $color = new ImagickPixel($targetColor);
         $opacity = new ImagickPixel(sprintf('rgb(%s, %s, %s)', $opacityPercentage, $opacityPercentage, $opacityPercentage));
+
         $imagick->colorizeImage($color, $opacity);
+
+        if (array_key_exists('brightness', $this->configuration)) {
+            $image->brightness((int)$this->configuration['brightness']);
+        }
+
+        if (array_key_exists('contrast', $this->configuration)) {
+            $image->brightness((int)$this->configuration['contrast']);
+        }
     }
 
     public function getRequiredConfigurationKeys(): array

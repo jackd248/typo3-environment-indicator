@@ -326,6 +326,8 @@ Colorize the original favicon in a desired color regarding the application conte
 Additional optional configuration keys:
 
 - `opacity` (float): Controls the opacity of the colorization. Default is `1`.
+- `brightness` (integer): Controls the brightness of the colorization. Possible values are from `-100` to `100`.
+- `contrast` (integer): Controls the contrast of the colorization. Possible values are from `-100` to `100`.
 
 <hr/>
 

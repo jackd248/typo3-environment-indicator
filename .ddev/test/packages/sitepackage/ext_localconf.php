@@ -142,6 +142,7 @@ defined('TYPO3') || die();
         \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class =>
         [
             'color' => '#FFF176',
+            'brightness' => 100,
         ]
     ],
     frontendHintConfiguration: [
