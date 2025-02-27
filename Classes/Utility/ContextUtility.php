@@ -46,7 +46,7 @@ class ContextUtility
         $pid = $GLOBALS['TSFE']->id;
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
         $site = $siteFinder->getSiteByPageId($pid);
-        return $site->getConfiguration()['websiteTitle'] ?: $site->getIdentifier();
+        return array_key_exists('websiteTitle', $site->getConfiguration()) ? $site->getConfiguration()['websiteTitle'] : $site->getIdentifier();
     }
 
     private function getFrontendHintConfiguration(): array

@@ -8,70 +8,45 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 
 class ConfigurationUtility
 {
-    const OPTION_FRONTEND_HINT = 1 << 0;
-    const OPTION_BACKEND_TOOLBAR = 1 << 1;
-    const OPTION_FAVICON = 1 << 2;
-
-    /**
-    * @param string $applicationContext - application context
-    * @param string $modifierClass - class name of the modifier
-    * @param array $configuration - configuration for the modifier
-    * @param string $requestContext - '*' for all requests, 'backend' for backend requests, 'frontend' for frontend requests
-    */
-    public static function addFaviconModifierConfigurationByContext(string $applicationContext, string $modifierClass, array $configuration = [], string $requestContext = '*', bool $clearPreviousModifierConfiguration = false): void
+    public static function configByContext(string $applicationContext, ?array $frontendHintConfiguration = [], ?array $backendToolbarConfiguration = [], ?array $faviconModifierConfiguration = [], ?array $faviconModifierFrontendConfiguration = [], ?array $faviconModifierBackendConfiguration = []): void
     {
-        if ($clearPreviousModifierConfiguration) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon'][$requestContext] = [];
+        if ($frontendHintConfiguration !== []) {
+            if ($frontendHintConfiguration === null) {
+                unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint']);
+            } else {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint'] = $frontendHintConfiguration;
+            }
         }
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon'][$requestContext][$modifierClass] = $configuration;
-    }
 
-    /**
-     * @param string $applicationContext - application context
-     * @param array|null $configuration - configuration for the frontend hint
-     */
-    public static function addFrontendHintConfigurationByContext(string $applicationContext, ?array $configuration): void
-    {
-        if ($configuration) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint'] = $configuration;
-        } else {
-            unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint']);
+        if ($backendToolbarConfiguration !== []) {
+            if ($backendToolbarConfiguration === null) {
+                unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar']);
+            } else {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar'] = $backendToolbarConfiguration;
+            }
         }
-    }
 
-    /**
-     * @param string $applicationContext - application context
-     * @param array|null $configuration - configuration for the backend toolbar
-     */
-    public static function addBackendToolbarConfigurationByContext(string $applicationContext, ?array $configuration): void
-    {
-        if ($configuration) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar'] = $configuration;
-        } else {
-            unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar']);
+        if ($faviconModifierConfiguration !== []) {
+            if ($faviconModifierConfiguration === null) {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon']['*'] = [];
+            } else {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon']['*'] = $faviconModifierConfiguration;
+            }
         }
-    }
 
-    /**
-    * Helper function to add the main color configuration to the context
-    *
-    * @param string $applicationContext - application context
-    * @param string $color - color
-    * @param int $options - options to apply the color to, e.g. OPTION_FRONTEND_HINT | OPTION_BACKEND_TOOLBAR | OPTION_FAVICON
-    */
-    public static function addMainColorConfigurationByContext(string $applicationContext, string $color, int $options = self::OPTION_FRONTEND_HINT | self::OPTION_BACKEND_TOOLBAR | self::OPTION_FAVICON): void
-    {
-        if ($options & self::OPTION_FRONTEND_HINT) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['frontendHint']['color'] = $color;
+        if ($faviconModifierFrontendConfiguration !== []) {
+            if ($faviconModifierFrontendConfiguration === null) {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon']['frontend'] = [];
+            } else {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon']['frontend'] = $faviconModifierFrontendConfiguration;
+            }
         }
-        if ($options & self::OPTION_BACKEND_TOOLBAR) {
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar']['color'] = $color;
-        }
-        if ($options & self::OPTION_FAVICON) {
-            foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon'] as $requestContext => $modifiers) {
-                foreach ($modifiers as $modifierClass => $modifierConfiguration) {
-                    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon'][$requestContext][$modifierClass]['color'] = $color;
-                }
+
+        if ($faviconModifierBackendConfiguration !== []) {
+            if ($faviconModifierBackendConfiguration === null) {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon']['backend'] = [];
+            } else {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['favicon']['backend'] = $faviconModifierBackendConfiguration;
             }
         }
     }

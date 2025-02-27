@@ -23,26 +23,28 @@ This extension provides several features to show an environment indicator in the
 
 ## Table of contents
 
-* [Requirements](#requirements)
-* [Installation](#installation)
-    + [Composer](#composer)
-    + [Configuration](#configuration)
-    + [Extension settings](#extension-settings)
-* [Frontend hint](#frontend-hint)
-* [Backend toolbar item](#backend-toolbar-item)
-* [Favicon](#favicon)
-    + [Modification](#modification)
-        - [TextModifier](#textmodifier)
-        - [TriangleModifier](#trianglemodifier)
-        - [CircleModifier](#circlemodifier)
-        - [FrameModifier](#framemodifier)
-        - [ReplaceModifier](#replacemodifier)
-        - [ColorizeModifier](#colorizemodifier)
-        - [CustomModifier](#custommodifier)
-    + [ConfigurationUtility](#configurationutility)
-* [Development](#development)
-* [Credits](#credits)
-* [License](#license)
+- [TYPO3 extension `typo3_environment_indicator`](#typo3-extension-typo3_environment_indicator)
+  - [Table of contents](#table-of-contents)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [Composer](#composer)
+    - [Configuration](#configuration)
+    - [Extension settings](#extension-settings)
+  - [Frontend hint](#frontend-hint)
+  - [Backend toolbar item](#backend-toolbar-item)
+  - [Favicon](#favicon)
+    - [Modification](#modification)
+      - [TextModifier](#textmodifier)
+      - [TriangleModifier](#trianglemodifier)
+      - [CircleModifier](#circlemodifier)
+      - [FrameModifier](#framemodifier)
+      - [ReplaceModifier](#replacemodifier)
+      - [ColorizeModifier](#colorizemodifier)
+      - [CustomModifier](#custommodifier)
+    - [ConfigurationUtility](#configurationutility)
+  - [Development](#development)
+  - [Credits](#credits)
+  - [License](#license)
 
 
 ## Requirements
@@ -83,11 +85,11 @@ upper right corner.
 You can adjust the color of the hint in your `ext_localconf.php`:
 
 ```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFrontendHintConfigurationByContext(
-    'Development',
-    [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    frontendHintConfiguration: [
         'color' => '#bd593a',
-    ]
+    ],
 );
 ```
 
@@ -107,12 +109,9 @@ The backend toolbar item will show the current project version and application c
 You can adjust the color of the toolbar item in your `ext_localconf.php`:
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['backendToolbar'] => [
-    'color' => '#bd593a',
-]
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
-    'Development',
-    [
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    backendToolbarConfiguration: [
         'color' => '#bd593a',
     ]
 );
@@ -137,6 +136,7 @@ or can be handled by your own fluid template via the [FaviconViewHelper](Classes
 <html xmlns:env="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers" data-namespace-typo3-fluid="true">
 
 {f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> env:favicon()}
+{env:favicon(favicon:'EXT:your_extension/Resources/Public/Favicon/favicon.png')}
 ```
 
 For the **backend**, the favicon will be fetched by the extension configuration of
@@ -152,17 +152,19 @@ The favicon modification configuration can be found in
 Add a configured favicon modifier to the desired application context (e.g. `Testing`) in your `ext_localconf.php`:
 
 ```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Testing',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class,
-    [
-        'text' => 'TEST',
-         'color' => '#f39c12',
-        'stroke' => [
-            'color' => '#ffffff',
-            'width' => 3,
-        ],
-    ]
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Testing',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+        [
+            'text' => 'TEST',
+            'color' => '#f39c12',
+            'stroke' => [
+                'color' => '#ffffff',
+                'width' => 3,
+            ],
+        ]
+    ],
 );
 ```
 
@@ -180,17 +182,19 @@ The following modifier classes are available:
 > This is the default modifier if no own configuration is set.
 
 ```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Development',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class,
-    [
-        'text' => 'DEV',
-        'color' => '#bd593a',
-        'stroke' => [
-            'color' => '#ffffff',
-            'width' => 3,
-        ],
-    ]
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+        [
+            'text' => 'DEV',
+            'color' => '#bd593a',
+            'stroke' => [
+                'color' => '#ffffff',
+                'width' => 3,
+            ],
+        ]
+    ],
 );
 ```
 
@@ -209,12 +213,14 @@ Additional optional configuration keys:
 Adds a triangle indicator to the favicon.
 
 ```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Development',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class,
-    [
-        'color' => '#bd593a',
-    ]
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class =>
+        [
+             'color' => '#bd593a',
+        ]
+    ],
 );
 ```
 
@@ -233,12 +239,14 @@ Additional optional configuration keys:
 Adds a circle indicator to the favicon.
 
 ```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Development/Circle',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class,
-    [
-        'color' => '#bd593a',
-    ]
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class =>
+        [
+             'color' => '#bd593a',
+        ]
+    ],
 );
 ```
 
@@ -258,12 +266,14 @@ Additional optional configuration keys:
 Adds a frame around the favicon.
 
 ```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Development',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class,
-    [
-        'color' => '#bd593a',
-    ]
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class =>
+        [
+             'color' => '#bd593a',
+        ]
+    ],
 );
 ```
 
@@ -280,11 +290,15 @@ Additional optional configuration keys:
 Replace the original favicon with a custom one regarding the application context.
 
 ```php
-$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['context']['Development']['favicon'] => [
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\ReplaceModifier::class => [
-        'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\ReplaceModifier::class =>
+        [
+             'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
+        ]
     ],
-]
+);
 ```
 
 ![Favicon TYPO3 Replace](Documentation/Images/Favicons/replace.png)
@@ -296,11 +310,13 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']['contex
 Colorize the original favicon in a desired color regarding the application context.
 
 ```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Development/Colorize',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class,
-    [
-        'color' => '#039BE5',
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class =>
+        [
+             'color' => '#039BE5',
+        ]
     ],
 );
 ```
@@ -351,48 +367,31 @@ manipulation.
 ### ConfigurationUtility
 
 Generally the whole configuration can be found in `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_environment_indicator']`. 
-You can/should use the [ConfigurationUtility](Classes/Utility/ConfigurationUtility.php) to easily add necessary configuration for the environment indicator.
+You can/should use the [ConfigurationUtility::configByContext()](Classes/Utility/ConfigurationUtility.php) to easily add necessary configuration for the environment indicator.
 
 ```php
-// Add a triangle favicon modifier configuration for the Development context
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Development',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class
-);
-// Helper method to add the color configuration for the Development context for the backend toolbar and all previously configured favicon modifiers
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addMainColorConfigurationByContext(
-    'Development',
-    '#bd593a',
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::OPTION_BACKEND_TOOLBAR | \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::OPTION_FAVICON // If this is not set, the color will applied to all features
-);
-```
-
-The previous example is equivalent to the following configuration:
-
-```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addFaviconModifierConfigurationByContext(
-    'Development',
-    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class,
-    [
-        'color' => '#bd593a',
-    ]
-);
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
-    'Development',
-    [
-        'color' => '#bd593a',
+// Add a colorized favicon modifier, add a colorful backend toolbar item and unset the frontend hint for the Development context
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development',
+    faviconModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class =>
+        [
+            'color' => '#039BE5',
+        ]
+    ],
+    faviconModifierFrontendConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class =>
+        [
+            'opacity' => 0.5 // Change just the opacity for the frontend favicon configuration
+        ]
+    ],
+    frontendHintConfiguration: null,
+    backendToolbarConfiguration: [
+        'color' => '#039BE5',
     ]
 );
 ```
 
-You can also unset a feature for a specific context when setting the configuration to `null`:
-
-```php
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::addBackendToolbarConfigurationByContext(
-    'Testing',
-    null
-);
-```
 ## Development
 
 Use the following ddev command to easily install all supported TYPO3 versions for locale development.
@@ -400,6 +399,8 @@ Use the following ddev command to easily install all supported TYPO3 versions fo
 ```bash
 $ ddev install
 ```
+
+Use the `context` command to easily change the application context in all supported TYPO3 versions.
 
 ## Credits
 
