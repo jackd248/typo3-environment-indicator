@@ -20,7 +20,7 @@ corepack_enable: false
 hooks:
   post-start:
     - exec: composer install --no-scripts
-    - exec: mkdir -p /var/www/html/.test/ && cp /var/www/html/.ddev/templates/* /var/www/html/.test/
+    - exec: mkdir -p /var/www/html/.test/ && cp /var/www/html/.ddev/.typo3-setup/templates/* /var/www/html/.test/
 
 # Key features of DDEV's config.yaml:
 
