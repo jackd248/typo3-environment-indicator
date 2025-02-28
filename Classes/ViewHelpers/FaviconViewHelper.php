@@ -45,11 +45,11 @@ class FaviconViewHelper extends AbstractViewHelper
         $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
         $applicationType = ApplicationType::fromRequest($request);
 
-        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)[$applicationType->value]['favicon']) {
-            return '';
-        }
-
         $favicon = $this->renderChildren();
+
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)[$applicationType->value]['favicon'] || !in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']))) {
+            return $favicon;
+        }
 
         if (!PathUtility::isExtensionPath($favicon)) {
             $favicon = Environment::getPublicPath() . (str_contains($favicon, '?') ? strtok($favicon, '?') : $favicon);
