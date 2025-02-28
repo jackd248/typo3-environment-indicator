@@ -18,7 +18,8 @@ class FaviconHandler
 {
     public function process(string $path, ServerRequestInterface $request): string
     {
-        if (!in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']))) {
+        if (!in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']))
+            || array_key_exists('favicon', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]) === false) {
             return $path;
         }
 

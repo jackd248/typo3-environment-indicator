@@ -29,6 +29,19 @@ class ProjectStatusItem implements ToolbarItemInterface
             return '';
         }
 
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProduction'] && Environment::getContext()->__toString() === 'Production') {
+            return '';
+        }
+
+        if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionGroups'] !== '' && Environment::getContext()->__toString() === 'Production' && !$GLOBALS['BE_USER']->isAdmin()) {
+            $backendUser = $GLOBALS['BE_USER']->user;
+            $matchingGroupIds = array_intersect(explode(',', $backendUser['usergroup']), GeneralUtility::trimExplode(',', $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'], true));
+
+            if (empty($matchingGroupIds)) {
+                return '';
+            }
+        }
+
         /*
         * ToDo: StandaloneView is deprecated in v13
         */

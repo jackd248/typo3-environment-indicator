@@ -4,5 +4,9 @@ frontend.favicon = 1
 frontend.context = 1
 # cat=backend/enable/10; type=boolean; label=Enable the favicon generation in backend context
 backend.favicon = 1
-# cat=backend/enable/20; type=boolean; label=Enable the context backend hint within the toolbar
+# cat=backend/enable/20; type=boolean; label=Enable the context item within the backend toolbar
 backend.context = 1
+# cat=backend/enable/30; type=boolean; label=Enable the backend toolbar item also in production context
+backend.contextProduction = 1
+# cat=backend/enable/40; type=string; label=Restrict the backend user groups that are shown the toolbar item in the production context (comma separated list of group ids)
+backend.contextProductionUserGroups =
