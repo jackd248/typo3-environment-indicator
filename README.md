@@ -24,29 +24,28 @@ This extension provides several features to show an environment indicator in the
 ## Table of contents
 
 - [TYPO3 extension `typo3_environment_indicator`](#typo3-extension-typo3_environment_indicator)
-  - [Table of contents](#table-of-contents)
-  - [Requirements](#requirements)
-  - [Installation](#installation)
-    - [Composer](#composer)
-    - [Configuration](#configuration)
-    - [Extension settings](#extension-settings)
-  - [Frontend hint](#frontend-hint)
-  - [Backend toolbar item](#backend-toolbar-item)
-  - [Favicon](#favicon)
-    - [Modification](#modification)
-      - [TextModifier](#textmodifier)
-      - [TriangleModifier](#trianglemodifier)
-      - [CircleModifier](#circlemodifier)
-      - [FrameModifier](#framemodifier)
-      - [ReplaceModifier](#replacemodifier)
-      - [OverlayModifier](#overlaymodifier)
-      - [ColorizeModifier](#colorizemodifier)
-      - [CustomModifier](#custommodifier)
-    - [ConfigurationUtility](#configurationutility)
-  - [Development](#development)
-  - [Credits](#credits)
-  - [License](#license)
-
+    - [Table of contents](#table-of-contents)
+    - [Requirements](#requirements)
+    - [Installation](#installation)
+        - [Composer](#composer)
+        - [Configuration](#configuration)
+        - [Extension settings](#extension-settings)
+    - [Frontend hint](#frontend-hint)
+    - [Backend toolbar item](#backend-toolbar-item)
+    - [Favicon](#favicon)
+        - [Modification](#modification)
+            - [TextModifier](#textmodifier)
+            - [TriangleModifier](#trianglemodifier)
+            - [CircleModifier](#circlemodifier)
+            - [FrameModifier](#framemodifier)
+            - [ReplaceModifier](#replacemodifier)
+            - [OverlayModifier](#overlaymodifier)
+            - [ColorizeModifier](#colorizemodifier)
+            - [CustomModifier](#custommodifier)
+        - [ConfigurationUtility](#configurationutility)
+    - [Development](#development)
+    - [Credits](#credits)
+    - [License](#license)
 
 ## Requirements
 
@@ -100,7 +99,6 @@ Additional optional configuration keys:
 - `position` (string): The position of the frontend hint. Default is `top left`. Possible values are `bottom left`,
   `bottom right`, `top left`, `top right`.
 
-
 ## Backend toolbar item
 
 The backend toolbar item will show the current project version and application context.
@@ -134,7 +132,9 @@ see [typoscript reference](https://docs.typo3.org/m/typo3/reference-typoscript/m
 or can be handled by your own fluid template via the [FaviconViewHelper](Classes/ViewHelpers/FaviconViewHelper.php):
 
 ```html
-<html xmlns:env="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<html xmlns:env="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
 {f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> env:favicon()}
 {env:favicon(favicon:'EXT:your_extension/Resources/Public/Favicon/favicon.png')}
@@ -174,7 +174,8 @@ Add a configured favicon modifier to the desired application context (e.g. `Test
 The modifiers will be executed one after the other. You can combine them if you want.
 
 > [!NOTE]
-> If you want to specify the frontend or backend favicon separately, you can add the third parameter for the request context `frontend` or `backend` to the `addFaviconModifierConfigurationByContext()` method.
+> If you want to specify the frontend or backend favicon separately, you can add the third parameter for the request
+> context `frontend` or `backend` to the `addFaviconModifierConfigurationByContext()` method.
 
 The following modifier classes are available:
 
@@ -396,8 +397,10 @@ manipulation.
 
 ### ConfigurationUtility
 
-Generally the whole configuration can be found in `$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_environment_indicator']`. 
-You can/should use the [ConfigurationUtility::configByContext()](Classes/Utility/ConfigurationUtility.php) to easily add necessary configuration for the environment indicator.
+Generally the whole configuration can be found in
+`$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['typo3_environment_indicator']`.
+You can/should use the [ConfigurationUtility::configByContext()](Classes/Utility/ConfigurationUtility.php) to easily add
+necessary configuration for the environment indicator.
 
 ```php
 // Add a colorized favicon modifier, add a colorful backend toolbar item and unset the frontend hint for the Development context
@@ -415,7 +418,7 @@ You can/should use the [ConfigurationUtility::configByContext()](Classes/Utility
             'opacity' => 0.5 // Change just the opacity for the frontend favicon configuration
         ]
     ],
-    frontendHintConfiguration: null,
+    frontendHintConfiguration: null, // Unset frontend hint for Development context
     backendToolbarConfiguration: [
         'color' => '#039BE5',
     ]

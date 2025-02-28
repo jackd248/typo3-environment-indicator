@@ -34,7 +34,7 @@ class ColorUtility
         return [0, 0, 0];
     }
 
-    public static function hexToRgb($hex): array
+    public static function hexToRgb(string $hex): array
     {
         $hex = ltrim($hex, '#');
         if (strlen($hex) === 3) {

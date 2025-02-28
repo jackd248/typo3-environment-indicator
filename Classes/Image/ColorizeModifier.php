@@ -12,7 +12,7 @@ class ColorizeModifier extends AbstractModifier implements ModifierInterface
 {
     public function modify(ImageInterface &$image): void
     {
-        $targetColorArray = ColorUtility::hexToRgb($this->configuration['color']);
+        $targetColorArray = ColorUtility::colorToRgb($this->configuration['color']);
         $opacityPercentage = ($this->configuration['opacity'] * 100) . '%';
         $targetColor = sprintf('rgb(%d, %d, %d)', $targetColorArray[0], $targetColorArray[1], $targetColorArray[2]);
 
