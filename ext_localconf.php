@@ -90,6 +90,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             'icon' => [
                 'context' => 'information-application-context',
             ],
+            'index' => 0,
         ],
         'favicon' => [
             'path' => 'typo3temp/assets/favicons/',

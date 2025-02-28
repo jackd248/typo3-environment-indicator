@@ -120,6 +120,10 @@ Additional optional configuration keys:
 
 - `text` (string): The text of the toolbar item. Default is the application context.
 - `icon` (string): The icon of the toolbar item. Default is `information-application-context`.
+- `index` (int): The positioning index of the toolbar item. Default is `0`.
+
+> [!NOTE]
+> The backend toolbar item is the only feature, which can also be shown in production environments. Use the extension settings to enable, disable or restrict it.
 
 ## Favicon
 
