@@ -178,8 +178,8 @@ Add a configured favicon modifier to the desired application context (e.g. `Test
 The modifiers will be executed one after the other. You can combine them if you want.
 
 > [!NOTE]
-> If you want to specify the frontend or backend favicon separately, you can add the third parameter for the request
-> context `frontend` or `backend` to the `addFaviconModifierConfigurationByContext()` method.
+> If you want to specify the frontend or backend favicon separately, you can add the another parameter for the request
+> context `faviconModifierFrontendConfiguration` or `faviconModifierBackendConfiguration` to the `configByContext()` method.
 
 The following modifier classes are available:
 
