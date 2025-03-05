@@ -6,8 +6,8 @@ declare(strict_types=1);
 defined('TYPO3') || die();
 
 /**
- * Context "Development/Text"
- */
+* Context "Development/Text"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/Text',
     faviconModifierConfiguration: [
@@ -31,8 +31,8 @@ defined('TYPO3') || die();
 );
 
 /**
- * Context "Development/Triangle"
- */
+* Context "Development/Triangle"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/Triangle',
     faviconModifierConfiguration: [
@@ -51,8 +51,8 @@ defined('TYPO3') || die();
 );
 
 /**
- * Context "Development/Circle"
- */
+* Context "Development/Circle"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/Circle',
     faviconModifierConfiguration: [
@@ -71,8 +71,8 @@ defined('TYPO3') || die();
 );
 
 /**
- * Context "Development/Frame"
- */
+* Context "Development/Frame"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/Frame',
     faviconModifierConfiguration: [
@@ -90,8 +90,8 @@ defined('TYPO3') || die();
 );
 
 /**
- * Context "Development/Colorize"
- */
+* Context "Development/Colorize"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/Colorize',
     faviconModifierConfiguration: [
@@ -115,8 +115,8 @@ defined('TYPO3') || die();
 );
 
 /**
- * Context "Development/Replace"
- */
+* Context "Development/Replace"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/Replace',
     faviconModifierConfiguration: [
@@ -134,8 +134,8 @@ defined('TYPO3') || die();
 );
 
 /**
- * Context "Development/Overlay"
- */
+* Context "Development/Overlay"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/Overlay',
     faviconModifierConfiguration: [
@@ -153,8 +153,8 @@ defined('TYPO3') || die();
 );
 
 /**
- * Context "Development/FrontendHint"
- */
+* Context "Development/FrontendHint"
+*/
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/FrontendHint',
     faviconModifierConfiguration: [

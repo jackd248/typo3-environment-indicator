@@ -172,7 +172,7 @@ function create_symlinks_main_extension() {
 # It iterates over the directories in the specified path and creates symbolic links
 # for each directory in the base path.
 function create_symlinks_additional_extensions() {
-    for dir in Test/.typo3-setup/packages/*/; do
+    for dir in Tests/.typo3-setup/packages/*/; do
         ln -sr "$dir" "$BASE_PATH/packages/$(basename "$dir")"
     done
 }
@@ -220,7 +220,7 @@ function update_typo3() {
 function import_data() {
     PUBLIC_DIR="/var/www/html/.Build/${VERSION}/public"
     EXPORT_DIR="${PUBLIC_DIR}/fileadmin/user_upload/_temp_/importexport"
-    DATA_FILE="/var/www/html/Test/.typo3-setup/data/data.xml"
+    DATA_FILE="/var/www/html/Tests/.typo3-setup/data/data.xml"
 
     if [ ! -f "$DATA_FILE" ]; then
         message yellow "Data file $DATA_FILE not found. Skipping import."
