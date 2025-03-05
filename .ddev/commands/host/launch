@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## Description: Open a browser with the launch site or a specific TYPO3 version.
-## Usage: open
-## Example: "ddev open" or "ddev open 13" or "ddev open 13 /typo3"
+## Usage: launch
+## Example: "ddev launch" or "ddev launch 13" or "ddev launch 13 /typo3"
 
 . .ddev/.typo3-setup/scripts/.utils.sh
 
@@ -56,6 +56,5 @@ case $OSTYPE in
     ;;
   "win*"* | "msys"*)
     start ${FULLURL}
-
     ;;
 esac

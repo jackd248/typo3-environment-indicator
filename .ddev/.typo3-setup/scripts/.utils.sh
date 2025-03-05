@@ -85,7 +85,7 @@ function check_typo3_version() {
 #   pre_setup <TYPO3_VERSION>
 function pre_setup() {
   export VERSION=$1
-  export BASE_PATH="/var/www/html/.test/$VERSION"
+  export BASE_PATH="/var/www/html/.Build/$VERSION"
   intro_typo3
   message blue "Pre Setup for TYPO3 $VERSION"
   install_start
@@ -128,7 +128,7 @@ function intro_typo3() {
 # sets up the environment, creates symlinks for the main and additional extensions,
 # and sets up Composer for the TYPO3 installation.
 function install_start() {
-    rm -rf /var/www/html/.test/$VERSION/*
+    rm -rf /var/www/html/.Build/$VERSION/*
     setup_environment
     create_symlinks_main_extension
     create_symlinks_additional_extensions
@@ -140,12 +140,10 @@ function install_start() {
 # creates necessary directories, sets permissions, and exports environment variables.
 # Additionally, it drops the existing database for the TYPO3 version.
 function setup_environment() {
-    BASE_PATH="/var/www/html/.test/$VERSION"
     rm -rf "$BASE_PATH"
     mkdir -p "$BASE_PATH/packages/$EXTENSION_KEY"
     chmod 775 -R $BASE_PATH
     export DATABASE="database_$VERSION"
-    export BASE_PATH
     if [ "$VERSION" == "11" ]; then
         export TYPO3_BIN="$BASE_PATH/vendor/bin/typo3cms"
     else
@@ -174,7 +172,7 @@ function create_symlinks_main_extension() {
 # It iterates over the directories in the specified path and creates symbolic links
 # for each directory in the base path.
 function create_symlinks_additional_extensions() {
-    for dir in .ddev/.typo3-setup/typo3/packages/*/; do
+    for dir in Test/.typo3-setup/packages/*/; do
         ln -sr "$dir" "$BASE_PATH/packages/$(basename "$dir")"
     done
 }
@@ -220,9 +218,9 @@ function update_typo3() {
 # It sets the public directory and export directory paths, checks if the data file exists,
 # and if it does, it copies the data file to the export directory and imports the data using TYPO3's import/export tool.
 function import_data() {
-    PUBLIC_DIR="/var/www/html/.test/${VERSION}/public"
+    PUBLIC_DIR="/var/www/html/.Build/${VERSION}/public"
     EXPORT_DIR="${PUBLIC_DIR}/fileadmin/user_upload/_temp_/importexport"
-    DATA_FILE="/var/www/html/.ddev/.typo3-setup/typo3/data/data.xml"
+    DATA_FILE="/var/www/html/Test/.typo3-setup/data/data.xml"
 
     if [ ! -f "$DATA_FILE" ]; then
         message yellow "Data file $DATA_FILE not found. Skipping import."
@@ -242,10 +240,10 @@ function post_setup_11 {
   setup_typo3
   $TYPO3_BIN configuration:set 'GFX/processor_path_lzw' '/usr/bin/'
 
-  sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.test/$VERSION/public/typo3conf/LocalConfiguration.php
+  sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.Build/$VERSION/public/typo3conf/LocalConfiguration.php
 
-  sed -i -e "s/base: ht\//base: \//g" /var/www/html/.test/$VERSION/config/sites/main/config.yaml
-  sed -i -e 's/base: \/en\//base: \//g' /var/www/html/.test/$VERSION/config/sites/main/config.yaml
+  sed -i -e "s/base: ht\//base: \//g" /var/www/html/.Build/$VERSION/config/sites/main/config.yaml
+  sed -i -e 's/base: \/en\//base: \//g' /var/www/html/.Build/$VERSION/config/sites/main/config.yaml
 }
 
 # Function to perform post-setup tasks for TYPO3 version 12.
@@ -255,10 +253,10 @@ function post_setup_12 {
   $TYPO3_BIN install:setup -n --database-name $DATABASE
   setup_typo3
 
-  sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.test/$VERSION/config/system/settings.php
+  sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.Build/$VERSION/config/system/settings.php
 
-  sed -i -e "s/base: ht\//base: \//g" /var/www/html/.test/$VERSION/config/sites/main/config.yaml
-  sed -i -e 's/base: \/en\//base: \//g' /var/www/html/.test/$VERSION/config/sites/main/config.yaml
+  sed -i -e "s/base: ht\//base: \//g" /var/www/html/.Build/$VERSION/config/sites/main/config.yaml
+  sed -i -e 's/base: \/en\//base: \//g' /var/www/html/.Build/$VERSION/config/sites/main/config.yaml
 }
 
 # Function to perform post-setup tasks for TYPO3 version 13.
@@ -269,7 +267,7 @@ function post_setup_13 {
   $TYPO3_BIN  setup -n --dbname=$DATABASE --password=$TYPO3_DB_PASSWORD --create-site="https://${VERSION}.${EXTENSION_NAME}.ddev.site" --admin-user-password=$TYPO3_SETUP_ADMIN_PASSWORD
   setup_typo3
 
-  sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.test/$VERSION/config/system/settings.php
+  sed -i "/'deprecations'/,/^[[:space:]]*'disabled' => true,/s/'disabled' => true,/'disabled' => false,/" /var/www/html/.Build/$VERSION/config/system/settings.php
 }
 
 # Function to display a colored message.

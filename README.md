@@ -434,7 +434,7 @@ necessary configuration for the environment indicator.
 Use the following ddev command to easily install all supported TYPO3 versions for locale development.
 
 ```bash
-$ ddev install
+$ ddev install all
 ```
 
 Use the `context` command to easily change the application context in all supported TYPO3 versions.
