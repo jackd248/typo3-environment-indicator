@@ -2,13 +2,13 @@
 
 /** @var string $_EXTKEY */
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Dump Server',
-    'description' => 'This extension brings the Symfony Var Dump Server to TYPO3.',
+    'title' => 'Environment Indicator',
+    'description' => 'This extension comes with several features to show an environment indicator in the TYPO3 frontend and backend.',
     'category' => 'misc',
     'author' => 'Konrad Michalik',
     'author_email' => 'hej@konradmichalik.dev',
     'state' => 'stable',
-    'version' => '0.1.0',
+    'version' => '1.0.0',
     'constraints' => [
         'depends' => [
             'php' => '8.1.0-8.4.99',
