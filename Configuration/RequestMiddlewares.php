@@ -4,8 +4,8 @@ return [
     'frontend' => [
         'konradmichalik/typo3-environment-indicator/frontend-favicon' => [
             'target' => \KonradMichalik\Typo3EnvironmentIndicator\Middleware\FrontendFaviconMiddleware::class,
-            'before' => [
-                'typo3/cms-core/response-propagation',
+            'after' => [
+                'typo3/cms-frontend/prepare-tsfe-rendering',
             ],
         ],
     ],
