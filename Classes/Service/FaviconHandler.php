@@ -58,8 +58,8 @@ class FaviconHandler
     }
 
     /*
-     * Can't use array_replace_recursive here, cause it keeps the order of the first array, not of the second overwriting array
-     */
+    * Can't use array_replace_recursive here, cause it keeps the order of the first array, not of the second overwriting array
+    */
     private function mergeConfigurationRecursiveOrdered(array $array1, array $array2): array
     {
         foreach ($array2 as $key => $value) {
