@@ -34,6 +34,10 @@ class ProjectStatusItem implements ToolbarItemInterface
             return '';
         }
 
+        if (empty($this->getBackendToolbarConfiguration())) {
+            return '';
+        }
+
         if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'] !== '' && Environment::getContext()->__toString() === 'Production' && !$GLOBALS['BE_USER']->isAdmin()) {
             $backendUser = $GLOBALS['BE_USER']->user;
             $matchingGroupIds = array_intersect(explode(',', $backendUser['usergroup']), GeneralUtility::trimExplode(',', $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'], true));
@@ -76,11 +80,15 @@ class ProjectStatusItem implements ToolbarItemInterface
 
     public function getIndex(): int
     {
-        return $this->getBackendToolbarConfiguration()['index'];
+        return !empty($this->getBackendToolbarConfiguration()) ? $this->getBackendToolbarConfiguration()['index'] : 0;
     }
 
     private function getBackendToolbarConfiguration(): array
     {
-        return array_merge(GeneralHelper::getGlobalConfiguration()['backendToolbar'], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar']);
+        return array_merge(
+            GeneralHelper::getGlobalConfiguration()['backendToolbar'],
+            array_key_exists('backendToolbar', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]) ?
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'] : []
+        );
     }
 }
