@@ -45,19 +45,34 @@ class FaviconHandler
         return $newImagePath;
     }
 
-    public function getEnvironmentImageModifiers(ServerRequestInterface $request): array
+    private function getEnvironmentImageModifiers(ServerRequestInterface $request): array
     {
         $configuration = isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['*']) ?
             $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['*'] : [];
         if (ApplicationType::fromRequest($request)->isFrontend()) {
-            $configuration = array_replace_recursive($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['frontend'] ?? []);
+            $configuration = $this->mergeConfigurationRecursiveOrdered($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['frontend'] ?? []);
         } elseif (ApplicationType::fromRequest($request)->isBackend()) {
-            $configuration = array_replace_recursive($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['backend'] ?? []);
+            $configuration = $this->mergeConfigurationRecursiveOrdered($configuration, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['favicon']['backend'] ?? []);
         }
         return $configuration;
     }
 
-    public function generateFilename(string $originalPath, ServerRequestInterface $request): string
+    /*
+     * Can't use array_replace_recursive here, cause it keeps the order of the first array, not of the second overwriting array
+     */
+    private function mergeConfigurationRecursiveOrdered(array $array1, array $array2): array
+    {
+        foreach ($array2 as $key => $value) {
+            if (is_array($value) && isset($array1[$key]) && is_array($array1[$key])) {
+                $array1[$key] = $this->mergeConfigurationRecursiveOrdered($array1[$key], $value);
+            } else {
+                $array1[$key] = $value;
+            }
+        }
+        return $array1;
+    }
+
+    private function generateFilename(string $originalPath, ServerRequestInterface $request): string
     {
         $parts = [
             $originalPath,
