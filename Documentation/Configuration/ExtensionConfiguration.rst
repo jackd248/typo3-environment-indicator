@@ -11,6 +11,17 @@ Extension configuration
 
 The extension currently provides the following configuration options:
 
+General
+=======
+
+..  _extconf-general.imageDriver:
+
+..  confval:: general.imageDriver
+    :type: option
+    :Default: "gd"
+
+    Intervention Image supports "GD Library", "Imagick" and "libvips" to process images internally. You may choose one of them according to your PHP configuration. Options are "gd", "imagick" and "vips".
+
 Frontend
 =======
 
