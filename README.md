@@ -50,8 +50,6 @@ This extension provides several features to show an environment indicator in the
 ## Requirements
 
 * TYPO3 >= 11.5 & PHP 8.1+
-* ImageMagick
-    * Required for the `.ico` favicon file modification
 
 ## Installation
 
@@ -74,6 +72,11 @@ Include the static TypoScript template "Environment Indicator" or directly impor
 ### Extension settings
 
 You can enable and disable every single feature in the extension settings.
+
+By default, the `gd` PHP extension is used for image manipulation. If you want to use the another extension (e.g. `imagick` or `libvips`), you can set the image driver in the extension settings.
+
+> [!NOTE]
+> The `gd` image driver doesn`t support `.ico` files. If you want to use `.ico` files, you have to use the `imagick` driver.
 
 ## Frontend hint
 

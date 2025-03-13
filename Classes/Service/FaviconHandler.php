@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
 
-use Intervention\Image\Drivers\Imagick\Driver;
 use Intervention\Image\ImageManager;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
+use ValueError;
 
 class FaviconHandler
 {
@@ -31,10 +32,17 @@ class FaviconHandler
         }
 
         $manager = new ImageManager(
-            new Driver()
+            ImageDriverUtility::resolveDriver()
         );
         $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
-        $image = $manager->read($absolutePath);
+        try {
+            $image = $manager->read($absolutePath);
+        } catch (ValueError $e) { // @phpstan-ignore-line
+            if ($e->getMessage() === '"image/vnd.microsoft.icon" is not a valid backing value for enum Intervention\Image\MediaType') {
+                throw new ValueError(sprintf('.ico files are not supported by "%s" image driver: %s', ImageDriverUtility::getImageDriverConfiguration(), $absolutePath), 1741786477);
+            }
+            throw $e;
+        }
 
         foreach ($this->getEnvironmentImageModifiers($request) as $modifier => $configuration) {
             $modifierInstance = ImageModifyManager::makeInstance($modifier, $configuration);
