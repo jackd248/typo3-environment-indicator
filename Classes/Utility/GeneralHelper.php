@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class GeneralHelper
 {
@@ -15,7 +16,7 @@ class GeneralHelper
 
         $path = Environment::getPublicPath() . '/' . $defaultPath;
         if (!file_exists($path)) {
-            mkdir($path, 0777, true);
+            GeneralUtility::mkdir_deep($path);
         }
 
         if (!$publicPath) {

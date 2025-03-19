@@ -13,9 +13,7 @@ Requirements
 
 -   PHP 8.1 - 8.4
 -   TYPO3 11.5 LTS - 13.4 LTS
--   ImageMagick
-
-    -    Required for the `.ico` favicon file modification
+-   ImageDriver: GD, Imagick or libvips
 
 ..  _steps:
 
@@ -34,7 +32,7 @@ Or download it from the
 Configuration
 ============
 
-Include the static TypoScript template "Environment Indicator" or directly import it in your sitepackage:
+Include the static TypoScript template "Environment Indicator" or directly import it in your sitepackage (only necessary for the :ref:`frontend Hint <frontend-hint>`):
 
 
 ..  code-block:: typoscript

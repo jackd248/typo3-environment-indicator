@@ -301,6 +301,9 @@ ColorizeModifier
 
 Overlay an additional image to the original favicon regarding the application context.
 
+..  warning::
+    This modifier is only available with "Imagick" image driver.
+
 ..  code-block:: php
     :caption: ext_localconf.php
 

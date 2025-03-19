@@ -35,6 +35,14 @@ class FaviconHandler
             ImageDriverUtility::resolveDriver()
         );
         $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
+
+        /*
+        * GD driver does not support .ico files, so we need to convert them to .png before processing them
+        */
+        if (ImageDriverUtility::getImageDriverConfiguration() === ImageDriverUtility::IMAGE_DRIVER_GD && pathinfo($absolutePath, PATHINFO_EXTENSION) === 'ico') {
+            $this->convertIcoToPng($absolutePath, $newImageFilename);
+        }
+
         try {
             $image = $manager->read($absolutePath);
         } catch (ValueError $e) { // @phpstan-ignore-line
@@ -91,5 +99,27 @@ class FaviconHandler
             $parts[] = json_encode($configuration);
         }
         return md5(implode('_', $parts));
+    }
+
+    private function convertIcoToPng(string &$path, string $filename): void
+    {
+        $loader = new \Elphin\IcoFileLoader\IcoFileService();
+        $icon = $loader->fromFile($path);
+
+        foreach ($icon as $idx => $image) {
+            $tmp = $loader->renderImage($image);
+
+            $basePath = Environment::getPublicPath() . '/' . GeneralHelper::getFaviconFolder(false) . 'convert/';
+            if (!file_exists($basePath)) {
+                GeneralUtility::mkdir_deep($basePath);
+            }
+
+            $path = $basePath . $idx . '--' . $filename;
+
+            if (file_exists($path)) {
+                continue;
+            }
+            imagepng($tmp, $path);
+        }
     }
 }
