@@ -39,3 +39,8 @@ Include the static TypoScript template "Environment Indicator" or directly impor
     :caption: Configuration/TypoScript/setup.typoscript
 
     @import 'EXT:typo3_environment_indicator/Configuration/TypoScript/setup.typoscript'
+
+..  note::
+    Only the following favicon image formats are supported*: https://image.intervention.io/v3/introduction/formats
+
+    * Due to the wide distribution of .ico files, these images are also supported.
