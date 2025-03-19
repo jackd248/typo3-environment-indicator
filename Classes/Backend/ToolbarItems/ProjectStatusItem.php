@@ -87,8 +87,7 @@ class ProjectStatusItem implements ToolbarItemInterface
     {
         return array_merge(
             GeneralHelper::getGlobalConfiguration()['backendToolbar'],
-            array_key_exists('backendToolbar', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]) ?
-                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'] : []
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'] ?? []
         );
     }
 }
