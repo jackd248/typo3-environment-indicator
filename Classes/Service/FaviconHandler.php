@@ -36,6 +36,11 @@ class FaviconHandler
         );
         $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
 
+        $format = pathinfo($absolutePath, PATHINFO_EXTENSION);
+        if (!GeneralHelper::supportFormat($manager, $format)) {
+            return $path;
+        }
+
         /*
         * GD driver does not support .ico files, so we need to convert them to .png before processing them
         */

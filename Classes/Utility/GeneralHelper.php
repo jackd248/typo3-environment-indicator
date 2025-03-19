@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
+use Intervention\Image\Interfaces\ImageManagerInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -28,5 +29,10 @@ class GeneralHelper
     public static function getGlobalConfiguration(): array
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global'];
+    }
+
+    public static function supportFormat(ImageManagerInterface $manager, string $format): bool
+    {
+        return ($format === 'ico') || $manager->driver()->supports($format);
     }
 }
