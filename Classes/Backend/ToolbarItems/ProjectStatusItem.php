@@ -58,7 +58,7 @@ class ProjectStatusItem implements ToolbarItemInterface
                 'icon' => $this->getBackendToolbarConfiguration()['icon']['context'] ?? 'information-application-context',
                 'name' => $this->getBackendToolbarConfiguration()['name'] ?? Environment::getContext()->__toString(),
                 'color' => $this->getBackendToolbarConfiguration()['color'] ?? 'transparent',
-                'textColor' => ColorUtility::getOptimalTextColor($this->getBackendToolbarConfiguration()['color']),
+                'textColor' => ColorUtility::getOptimalTextColor($this->getBackendToolbarConfiguration()['color'] ?? 'transparent'),
             ],
         ])->render();
     }
