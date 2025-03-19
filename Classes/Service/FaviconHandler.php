@@ -19,6 +19,11 @@ class FaviconHandler
 {
     public function process(string $path, ServerRequestInterface $request): string
     {
+        $absolutePath = GeneralUtility::getFileAbsFileName($path);
+        if (!file_exists($absolutePath)) {
+            return $path;
+        }
+
         if (!in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']))
             || array_key_exists('favicon', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]) === false) {
             return $path;
