@@ -4,10 +4,11 @@
 
 # TYPO3 extension `typo3_environment_indicator`
 
+[![Supported TYPO3 versions](https://badgen.net/badge/TYPO3/11%20&%2012%20&%2013/orange)]()
+[![License](https://poser.pugx.org/konradmichalik/typo3-environment-indicator/license)](LICENSE.md)
+
 </div>
 
-[![Supported TYPO3 versions](https://badgen.net/badge/TYPO3/11%20&%2012%20&%2013/orange)]()
-[![License](https://poser.pugx.org/xima/xima-typo3-content-planner/license)](LICENSE.md)
 
 This extension provides several features to show an environment indicator in the TYPO3 frontend and backend.
 
