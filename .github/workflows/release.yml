@@ -10,4 +10,4 @@ jobs:
     secrets:
       typo3-api-token: ${{ secrets.TYPO3_API_TOKEN }}
     with:
-      typo3-custom-extension-key: 'typo3_environment_indicator'
+      typo3-extension-key: 'typo3_environment_indicator'
