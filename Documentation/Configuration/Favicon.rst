@@ -122,8 +122,7 @@ This is the default modifier if no own configuration is set.
 
 Additional optional configuration keys:
 
-- :code:`font` (string): The font file path for the text. Default is
-:code:`EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf`.
+- :code:`font` (string): The font file path for the text. Default is :code:`EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf`.
 - :code:`position` (string): The position of the text. Default is :code:`bottom`. Possible values are :code:`bottom`, :code:`top`.
 
 ..  seealso::
@@ -158,8 +157,7 @@ Adds a triangle indicator to the favicon.
 Additional optional configuration keys:
 
 - :code:`size` (float): The percentage size of the triangle. Default is :code:`0.7`.
-- :code:`position` (string): The position of the triangle. Default is :code:`bottom right`. Possible values are :code:`bottom left`,
-:code:`bottom right`, :code:`top left`, :code:`top right`.
+- :code:`position` (string): The position of the triangle. Default is :code:`bottom right`. Possible values are :code:`bottom left`, :code:`bottom right`, :code:`top left`, :code:`top right`.
 
 ..  seealso::
 
@@ -192,8 +190,7 @@ Adds a circle indicator to the favicon.
 Additional optional configuration keys:
 
 - :code:`size` (float): The percentage size of the circle. Default is :code:`0.4`.
-- :code:`position` (string): The position of the circle. Default is :code:`bottom right`. Possible values are :code:`bottom left`,
-:code:`bottom right`, :code:`top left`, :code:`top right`.
+- :code:`position` (string): The position of the circle. Default is :code:`bottom right`. Possible values are :code:`bottom left`, :code:`bottom right`, :code:`top left`, :code:`top right`.
 - :code:`padding` (float): The percentage padding of the circle. Default is :code:`0.1`.
 
 ..  seealso::
@@ -286,8 +283,7 @@ Overlay an additional image to the original favicon regarding the application co
 Additional optional configuration keys:
 
 - :code:`size` (float): The percentage size of the overlay. Default is :code:`0.5`.
-- :code:`position` (string): The position of the overlay. Default is :code:`bottom right`. Possible values are :code:`bottom left`,
-:code:`bottom right`, :code:`top left`, :code:`top right`.
+- :code:`position` (string): The position of the overlay. Default is :code:`bottom right`. Possible values are :code:`bottom left`, :code:`bottom right`, :code:`top left`, :code:`top right`.
 - :code:`padding` (float): The percentage padding of the overlay. Default is :code:`0.1`.
 
 ..  seealso::
