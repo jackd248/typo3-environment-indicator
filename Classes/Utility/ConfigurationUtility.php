@@ -8,7 +8,7 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 
 class ConfigurationUtility
 {
-    public static function configByContext(string $applicationContext, ?array $frontendHintConfiguration = [], ?array $backendToolbarConfiguration = [], ?array $faviconModifierConfiguration = [], ?array $faviconModifierFrontendConfiguration = [], ?array $faviconModifierBackendConfiguration = []): void
+    public static function configByContext(string $applicationContext, ?array $frontendHintConfiguration = [], ?array $backendToolbarConfiguration = [], ?array $backendTopbarConfiguration = [], ?array $faviconModifierConfiguration = [], ?array $faviconModifierFrontendConfiguration = [], ?array $faviconModifierBackendConfiguration = []): void
     {
         if ($frontendHintConfiguration !== []) {
             if ($frontendHintConfiguration === null) {
@@ -23,6 +23,14 @@ class ConfigurationUtility
                 unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar']);
             } else {
                 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendToolbar'] = $backendToolbarConfiguration;
+            }
+        }
+
+        if ($backendTopbarConfiguration !== []) {
+            if ($backendTopbarConfiguration === null) {
+                unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendTopbar']);
+            } else {
+                $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][$applicationContext]['backendTopbar'] = $backendTopbarConfiguration;
             }
         }
 

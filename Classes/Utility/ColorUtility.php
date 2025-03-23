@@ -14,10 +14,10 @@ class ColorUtility
         return sprintf('hsl(%d, 70%%, 60%%)', $hue);
     }
 
-    public static function getOptimalTextColor(string $color): string
+    public static function getOptimalTextColor(string $color, float $opacity = 1): string
     {
         $rgb = self::colorToRgb($color);
-        return self::calculateLuminance($rgb[0], $rgb[1], $rgb[2]) > 0.5 ? '#000000' : '#FFFFFF';
+        return self::calculateLuminance($rgb[0], $rgb[1], $rgb[2]) > 0.5 ? "rgba(0,0,0,$opacity)" : "rgba(255,255,255,$opacity)";
     }
 
     public static function colorToRgb(string $color): array

@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ProjectStatusItem;
-
 defined('TYPO3') || die();
 
-$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = ProjectStatusItem::class;
+$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = \KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ContextItem::class;
 
 // Preset configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY] = [

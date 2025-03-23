@@ -27,7 +27,7 @@ defined('TYPO3') || die();
     ],
     backendToolbarConfiguration: [
         'color' => '#283593',
-    ]
+    ],
 );
 
 /**
@@ -149,6 +149,9 @@ defined('TYPO3') || die();
     ],
     backendToolbarConfiguration: [
         'color' => '#827717',
+    ],
+    backendTopbarConfiguration: [
+        'color' => '#827717',
     ]
 );
 
@@ -170,4 +173,15 @@ defined('TYPO3') || die();
         'position' => 'bottom right',
     ],
     backendToolbarConfiguration: null
+);
+
+/**
+* Context "Development/FrontendHint"
+*/
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development/BackendTopbar',
+    backendToolbarConfiguration: null,
+    backendTopbarConfiguration: [
+        'color' => '#9E9D24',
+    ]
 );

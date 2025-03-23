@@ -11,7 +11,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
-class ProjectStatusItem implements ToolbarItemInterface
+class ContextItem implements ToolbarItemInterface
 {
     public function __construct(
         protected readonly ExtensionConfiguration $extensionConfiguration
@@ -25,17 +25,19 @@ class ProjectStatusItem implements ToolbarItemInterface
 
     public function getItem(): string
     {
+        $return = false;
+
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
             !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'])) {
-            return '';
+            $return = true;
         }
 
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProduction'] && Environment::getContext()->__toString() === 'Production') {
-            return '';
+            $return = true;
         }
 
         if (empty($this->getBackendToolbarConfiguration())) {
-            return '';
+            $return = true;
         }
 
         if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'] !== '' && Environment::getContext()->__toString() === 'Production' && !$GLOBALS['BE_USER']->isAdmin()) {
@@ -43,8 +45,13 @@ class ProjectStatusItem implements ToolbarItemInterface
             $matchingGroupIds = array_intersect(explode(',', $backendUser['usergroup']), GeneralUtility::trimExplode(',', $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'], true));
 
             if (empty($matchingGroupIds)) {
-                return '';
+                $return = true;
             }
+        }
+        GeneralHelper::generateTopbarBackendCss(!$return);
+
+        if ($return) {
+            return '';
         }
 
         /*
