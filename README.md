@@ -4,11 +4,11 @@
 
 # TYPO3 extension `typo3_environment_indicator`
 
-[![Supported TYPO3 versions](https://badgen.net/badge/TYPO3/11%20&%2012%20&%2013/orange)]()
+[![Latest Stable Version](https://typo3-badges.dev/badge/typo3_environment_indicator/version/shields.svg)](https://extensions.typo3.org/extension/typo3_environment_indicator)
+[![Supported TYPO3 versions](https://typo3-badges.dev/badge/typo3_environment_indicator/typo3/shields.svg)](https://extensions.typo3.org/extension/typo3_environment_indicator)
 [![License](https://poser.pugx.org/konradmichalik/typo3-environment-indicator/license)](LICENSE.md)
 
 </div>
-
 
 This extension provides several features to show an environment indicator in the TYPO3 frontend and backend.
 
@@ -25,42 +25,53 @@ This extension provides several features to show an environment indicator in the
 ## Table of contents
 
 - [TYPO3 extension `typo3_environment_indicator`](#typo3-extension-typo3_environment_indicator)
-    - [Table of contents](#table-of-contents)
-    - [Requirements](#requirements)
-    - [Installation](#installation)
-        - [Composer](#composer)
-        - [Configuration](#configuration)
-        - [Extension settings](#extension-settings)
-    - [Frontend hint](#frontend-hint)
-    - [Backend toolbar item](#backend-toolbar-item)
-    - [Favicon](#favicon)
-        - [Modification](#modification)
-            - [TextModifier](#textmodifier)
-            - [TriangleModifier](#trianglemodifier)
-            - [CircleModifier](#circlemodifier)
-            - [FrameModifier](#framemodifier)
-            - [ReplaceModifier](#replacemodifier)
-            - [OverlayModifier](#overlaymodifier)
-            - [ColorizeModifier](#colorizemodifier)
-            - [CustomModifier](#custommodifier)
-        - [ConfigurationUtility](#configurationutility)
-    - [Development](#development)
-    - [Credits](#credits)
-    - [License](#license)
+  - [Table of contents](#table-of-contents)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+    - [Composer](#composer)
+    - [TER](#ter)
+    - [Configuration](#configuration)
+    - [Extension settings](#extension-settings)
+  - [Frontend hint](#frontend-hint)
+  - [Backend toolbar item](#backend-toolbar-item)
+  - [Favicon](#favicon)
+    - [Modification](#modification)
+      - [TextModifier](#textmodifier)
+      - [TriangleModifier](#trianglemodifier)
+      - [CircleModifier](#circlemodifier)
+      - [FrameModifier](#framemodifier)
+      - [ReplaceModifier](#replacemodifier)
+      - [OverlayModifier](#overlaymodifier)
+      - [ColorizeModifier](#colorizemodifier)
+      - [CustomModifier](#custommodifier)
+    - [ConfigurationUtility](#configurationutility)
+  - [Development](#development)
+  - [Credits](#credits)
+  - [License](#license)
 
 ## Requirements
 
-* TYPO3 >= 11.5 & PHP 8.1+
+- TYPO3 >= 11.5 & PHP 8.1+
 
 ## Installation
 
 ### Composer
+
+[![Packagist](https://img.shields.io/packagist/v/konradmichalik/typo3-environment-indicator?label=version&logo=packagist)](https://packagist.org/packages/konradmichalik/typo3-environment-indicator)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/konradmichalik/typo3-environment-indicator?color=brightgreen)](https://packagist.org/packages/konradmichalik/typo3-environment-indicator)
 
 Use the following composer command to install the extension:
 
 ```bash
 composer require konradmichalik/typo3-environment-indicator
 ```
+
+### TER
+
+[![TER version](https://typo3-badges.dev/badge/typo3_environment_indicator/version/shields.svg)](https://extensions.typo3.org/extension/typo3_environment_indicator)
+[![TER downloads](https://typo3-badges.dev/badge/typo3_environment_indicator/downloads/shields.svg)](https://extensions.typo3.org/extension/typo3_environment_indicator)
+
+Download the zip file from [TYPO3 extension repository (TER)](https://extensions.typo3.org/extension/typo3_environment_indicator).
 
 ### Configuration
 
