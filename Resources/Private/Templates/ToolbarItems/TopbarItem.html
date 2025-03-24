@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <f:spaceless>
+    .topbar > div {
+        background-color: {color};
+        color: {textColor};
+    }
+    .topbar [class$="-site-version"] {
+        color: {subTextColor};
+    }
+
+    /* Only relevant for v13 */
+    .topbar-site {
+        padding-left: 1em;
+    }
+
+    <f:if condition="{removeTransition}">
+        .topbar [class$="-header-site"]::before, .topbar [class$="-header-site"]::after {
+            display:none;
+        }
+        #konradmichalik-typo3environmentindicator-backend-toolbaritems-contextitem {
+            margin-left:0;
+        }
+    </f:if>
+    </f:spaceless>
+</html>

@@ -11,7 +11,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
-class ProjectStatusItem implements ToolbarItemInterface
+class ContextItem implements ToolbarItemInterface
 {
     public function __construct(
         protected readonly ExtensionConfiguration $extensionConfiguration
@@ -52,7 +52,7 @@ class ProjectStatusItem implements ToolbarItemInterface
         */
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:' . Configuration::EXT_KEY
-            . '/Resources/Private/Templates/ToolbarItems/ProjectStatusItem.html'));
+            . '/Resources/Private/Templates/ToolbarItems/ContextItem.html'));
         return $view->assignMultiple([
             'context' => [
                 'icon' => $this->getBackendToolbarConfiguration()['icon']['context'] ?? 'information-application-context',

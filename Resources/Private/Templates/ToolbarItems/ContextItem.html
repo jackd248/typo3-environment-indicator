@@ -1,11 +1,11 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:asset.css identifier="project-status">
-    .topbar-header-project-status__context, .topbar-header-project-status__version {
-        display: inline-block;
-        padding: 13.5px;
-    }
-</f:asset.css>
+    <f:asset.css identifier="project-status">
+        .topbar-header-project-status__context {
+            display: inline-block;
+            padding: 13.5px;
+        }
+    </f:asset.css>
     <div class="topbar-header-project-status">
         <f:if condition="{context}">
             <div class="topbar-header-project-status__context" data-context="{context.name}" title="Application context" style="background-color:{context.color};color:{context.textColor}"><core:icon identifier="{context.icon}" size="small" /> {context.name}</div>

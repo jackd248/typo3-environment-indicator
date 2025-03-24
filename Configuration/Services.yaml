@@ -11,5 +11,8 @@ services:
   KonradMichalik\Typo3EnvironmentIndicator\TypoScript\TechnicalContextConditionFunctionsProvider:
     public: true
 
-  KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ProjectStatusItem:
+  KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ContextItem:
+    public: true
+
+  KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\TopbarItem:
     public: true

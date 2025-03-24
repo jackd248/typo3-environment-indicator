@@ -33,4 +33,4 @@ Additional optional configuration keys:
 - :code:`index` (int): The positioning index of the toolbar item. Default is :code:`0`.
 
 ..  note::
-    The backend toolbar item is the only feature, which can also be shown in production environments. Use the :ref:`extension settings <extconf-backend.contextProduction>` to enable, disable or restrict it.
+    The backend toolbar item is a feature, which can also be shown in production environments. Use the :ref:`extension settings <extconf-backend.contextProduction>` to enable, disable or restrict it.
