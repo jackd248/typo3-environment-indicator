@@ -16,5 +16,11 @@ return [
                 'typo3/cms-core/normalized-params-attribute',
             ],
         ],
+        'konradmichalik/typo3-environment-indicator/backend-logo' => [
+            'target' => \KonradMichalik\Typo3EnvironmentIndicator\Middleware\BackendLogoMiddleware::class,
+            'after' => [
+                'typo3/cms-core/normalized-params-attribute',
+            ],
+        ],
     ],
 ];

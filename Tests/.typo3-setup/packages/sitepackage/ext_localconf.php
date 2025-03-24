@@ -22,6 +22,17 @@ defined('TYPO3') || die();
             'position' => 'top',
         ]
     ],
+    backendLogoModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+        [
+            'text' => 'TEXT',
+            'color' => '#283593',
+            'stroke' => [
+                'color' => '#ffffff',
+                'width' => 3,
+            ],
+        ]
+    ],
     frontendHintConfiguration: [
         'color' => '#283593',
     ],

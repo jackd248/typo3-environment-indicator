@@ -13,8 +13,8 @@ class TextModifier extends AbstractModifier implements ModifierInterface
     public function modify(ImageInterface &$image): void
     {
         $padding = 5;
-        $maxWidth = $image->width() - 4;
-        $maxHeight = $image->height() / 2;
+        $maxWidth = (int) $image->width() - 4;
+        $maxHeight = (int) ($image->height() / 2);
 
         $configuration = $this->configuration;
         $text = $configuration['text'];
@@ -30,10 +30,9 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         } while ($estimatedHeight < $maxHeight && $fontSize < 50);
         $fontSize--;
 
-        // Position des Textes berechnen
         $yPosition = ($position === 'top') ? $padding : $image->height() - $padding;
 
-        $image->text($wrappedText, $image->width() / 2, $yPosition, function (FontFactory $font) use ($fontSize, $configuration, $fontPath, $position) {
+        $image->text($wrappedText, (int)($image->width() / 2), $yPosition, function (FontFactory $font) use ($fontSize, $configuration, $fontPath, $position) {
             $font->filename($fontPath);
             $font->size($fontSize);
             $font->color($configuration['color']);
