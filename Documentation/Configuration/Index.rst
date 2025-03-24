@@ -33,3 +33,4 @@ Learn what configuration options are available on the following pages:
     BackendToolbar
     BackendTopbar
     Favicon
+    BackendLogo

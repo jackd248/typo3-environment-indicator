@@ -42,6 +42,11 @@ Features
 ..  figure:: /Images/preview-favicon.png
     :alt: Favicon Preview
 
+- :ref:`Modified backend logo <backend-logo>`: Modify the backend logo based on the original logo, the current application context and your configuration.
+
+..  figure:: /Images/preview-backend-logo.jpg
+    :alt: Backend Logo Preview
+
 
 ..  _support:
 

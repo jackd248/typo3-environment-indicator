@@ -13,8 +13,8 @@ class TextModifier extends AbstractModifier implements ModifierInterface
     public function modify(ImageInterface &$image): void
     {
         $padding = 5;
-        $maxWidth = (int) $image->width() - 4;
-        $maxHeight = (int) ($image->height() / 2);
+        $maxWidth = (int)$image->width() - 4;
+        $maxHeight = (int)($image->height() / 2);
 
         $configuration = $this->configuration;
         $text = $configuration['text'];
