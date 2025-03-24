@@ -52,6 +52,14 @@ Backend
 
     Enable the favicon generation in backend context
 
+..  _extconf-backend.logo:
+
+..  confval:: backend.logo
+    :type: boolean
+    :Default: 1
+
+    Enable the logo generation in backend context
+
 ..  _extconf-backend.context:
 
 ..  confval:: backend.context
