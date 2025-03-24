@@ -86,6 +86,9 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
             'index' => 0,
         ],
+        'image' => [
+            'path' => 'typo3temp/assets/images/',
+        ],
         'favicon' => [
             'path' => 'typo3temp/assets/favicons/',
             'defaults' => [
