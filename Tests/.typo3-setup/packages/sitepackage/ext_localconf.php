@@ -182,6 +182,6 @@ defined('TYPO3') || die();
     applicationContext: 'Development/BackendTopbar',
     backendToolbarConfiguration: null,
     backendTopbarConfiguration: [
-        'color' => '#9E9D24',
+        'color' => '#EF5350',
     ]
 );

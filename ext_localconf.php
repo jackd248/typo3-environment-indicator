@@ -5,6 +5,7 @@ declare(strict_types=1);
 defined('TYPO3') || die();
 
 $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = \KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ContextItem::class;
+$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = \KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\TopbarItem::class;
 
 // Preset configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY] = [

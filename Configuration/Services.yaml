@@ -13,3 +13,6 @@ services:
 
   KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ContextItem:
     public: true
+
+  KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\TopbarItem:
+    public: true

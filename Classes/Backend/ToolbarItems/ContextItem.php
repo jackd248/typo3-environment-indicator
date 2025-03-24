@@ -25,19 +25,17 @@ class ContextItem implements ToolbarItemInterface
 
     public function getItem(): string
     {
-        $return = false;
-
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
             !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'])) {
-            $return = true;
+            return '';
         }
 
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProduction'] && Environment::getContext()->__toString() === 'Production') {
-            $return = true;
+            return '';
         }
 
         if (empty($this->getBackendToolbarConfiguration())) {
-            $return = true;
+            return '';
         }
 
         if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'] !== '' && Environment::getContext()->__toString() === 'Production' && !$GLOBALS['BE_USER']->isAdmin()) {
@@ -45,13 +43,8 @@ class ContextItem implements ToolbarItemInterface
             $matchingGroupIds = array_intersect(explode(',', $backendUser['usergroup']), GeneralUtility::trimExplode(',', $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'], true));
 
             if (empty($matchingGroupIds)) {
-                $return = true;
+                return '';
             }
-        }
-        GeneralHelper::generateTopbarBackendCss(!$return);
-
-        if ($return) {
-            return '';
         }
 
         /*
@@ -59,7 +52,7 @@ class ContextItem implements ToolbarItemInterface
         */
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:' . Configuration::EXT_KEY
-            . '/Resources/Private/Templates/ToolbarItems/ProjectStatusItem.html'));
+            . '/Resources/Private/Templates/ToolbarItems/ContextItem.html'));
         return $view->assignMultiple([
             'context' => [
                 'icon' => $this->getBackendToolbarConfiguration()['icon']['context'] ?? 'information-application-context',
