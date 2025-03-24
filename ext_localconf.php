@@ -10,11 +10,6 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = \KonradMichalik\
 // Preset configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY] = [
     'context' => [
-        'Production' => [
-            'backendToolbar' => [
-                'color' => 'transparent',
-            ],
-        ],
         'Production/Standby' => [
             'backendToolbar' => [
                 'color' => '#2f9c91',
