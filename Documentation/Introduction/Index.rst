@@ -27,10 +27,15 @@ Features
 ..  figure:: /Images/preview-frontend-hint.png
     :alt: Frontend Hint Preview
 
-- :ref:`Backend toolbar: item <backend-toolbar-item>`: Adds an informative item with the current application context to the backend toolbar.
+- :ref:`Backend toolbar item <backend-toolbar-item>`: Adds an informative item with the current application context to the backend toolbar.
 
 ..  figure:: /Images/preview-backend-toolbar-item.png
     :alt: Backend Toolbar Item Preview
+
+- :ref:`Backend topbar <backend-topbar>`: Colorize the backend header topbar regarding the application context.
+
+..  figure:: /Images/preview-backend-topbar.jpg
+    :alt: Backend Topbar Preview
 
 - :ref:`Modified favicon <favicon>`: Modify the favicon for frontend and backend based on the original favicon, the current application context and your configuration.
 

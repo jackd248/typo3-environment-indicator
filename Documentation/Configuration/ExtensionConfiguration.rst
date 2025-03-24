@@ -66,7 +66,7 @@ Backend
     :type: boolean
     :Default: 1
 
-    Enable the backend toolbar item also in production context
+    Enable the backend toolbar item / backend topbar also in production context
 
 ..  _extconf-backend.contextProductionUserGroups:
 
@@ -74,4 +74,4 @@ Backend
     :type: string
     :Default:
 
-    Restrict the backend user groups that are shown the toolbar item in the production context (comma separated list of group ids)
+    Restrict the backend user groups that are shown the toolbar item / topbar in the production context (comma separated list of group ids)

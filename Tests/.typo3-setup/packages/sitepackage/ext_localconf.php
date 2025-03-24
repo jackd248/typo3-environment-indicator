@@ -176,12 +176,12 @@ defined('TYPO3') || die();
 );
 
 /**
-* Context "Development/FrontendHint"
+* Context "Development/BackendTopbar"
 */
 \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
     applicationContext: 'Development/BackendTopbar',
     backendToolbarConfiguration: null,
     backendTopbarConfiguration: [
-        'color' => '#EF5350',
+        'color' => '#bd593a',
     ]
 );
