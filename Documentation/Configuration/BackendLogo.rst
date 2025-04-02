@@ -6,7 +6,7 @@
 Backend Logo
 =======================
 
-The favicon of the frontend or backend context will be modified regarding the application context and the associated
+The backend logo will be modified regarding the application context and the associated
 configuration.
 
 ..  figure:: /Images/preview-backend-logo.jpg
