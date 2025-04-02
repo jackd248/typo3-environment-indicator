@@ -14,9 +14,9 @@ use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
-* Favicon ViewHelper
+* Image ViewHelper
 *
-* This ViewHelper processes the given favicon regarding the application context.
+* This ViewHelper processes the given image regarding the application context.
 *
 * Usages:
 * ::
