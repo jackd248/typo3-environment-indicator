@@ -142,7 +142,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                         'position' => 'bottom right',
                     ],
                 ],
-            ]
+            ],
         ],
     ],
 ];
