@@ -6,6 +6,8 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
 
 use Intervention\Image\ImageManager;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Enum\HandlerType;
+use KonradMichalik\Typo3EnvironmentIndicator\Enum\Scope;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
 use Psr\Http\Message\ServerRequestInterface;
@@ -15,7 +17,7 @@ use TYPO3\CMS\Core\Utility\PathUtility;
 
 abstract class AbstractImageHandler
 {
-    public function __construct(protected HandlerType $type)
+    public function __construct(protected Scope $scope, protected HandlerType $type)
     {
     }
 
@@ -24,12 +26,14 @@ abstract class AbstractImageHandler
     public function process(string $path, ServerRequestInterface $request): string
     {
         $absolutePath = GeneralUtility::getFileAbsFileName($path);
+
         if (!file_exists($absolutePath)) {
             return $path;
         }
 
-        if (!in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']))
-            || array_key_exists($this->type->value, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]) === false) {
+        if (!array_key_exists(Environment::getContext()->__toString(), $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'])
+            || !array_key_exists($this->scope->value, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()])
+            || !array_key_exists($this->type->value, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()][$this->scope->value])) {
             return $path;
         }
 

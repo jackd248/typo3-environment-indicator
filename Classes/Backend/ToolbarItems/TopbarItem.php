@@ -26,7 +26,7 @@ class TopbarItem implements ToolbarItemInterface
     public function getItem(): string
     {
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
-            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendTopbar'])) {
+            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['topbar'])) {
             return '';
         }
 
@@ -34,7 +34,7 @@ class TopbarItem implements ToolbarItemInterface
             return '';
         }
 
-        $color = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendTopbar']['color'] ?? [];
+        $color = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['topbar']['color'] ?? [];
 
         if (empty($color)) {
             return '';
@@ -45,7 +45,7 @@ class TopbarItem implements ToolbarItemInterface
             GeneralUtility::mkdir_deep($backendCssPath);
         }
 
-        $removeTransition = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendTopbar']['removeTransition'] ?? false;
+        $removeTransition = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['topbar']['removeTransition'] ?? false;
         $backendCssFile = sprintf(
             '%sbackend-%s.css',
             $backendCssPath,

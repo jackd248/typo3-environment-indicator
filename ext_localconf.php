@@ -11,22 +11,28 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = \KonradMichalik\
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator\Configuration::EXT_KEY] = [
     'context' => [
         'Production/Standby' => [
-            'backendToolbar' => [
-                'color' => '#2f9c91',
+            'backend' => [
+                'toolbar' => [
+                    'color' => '#2f9c91',
+                ],
             ],
         ],
         'Production/Staging' => [
-            'frontendHint' => [
-                'color' => '#f39c12',
+            'frontend' => [
+                'hint' => [
+                    'color' => '#2f9c91',
+                ],
             ],
-            'backendToolbar' => [
-                'color' => '#f39c12',
+            'backend' => [
+                'toolbar' => [
+                    'color' => '#2f9c91',
+                ],
             ],
-            'favicon' => [
-                '*' => [
+            'both' => [
+                'favicon' => [
                     \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
-                        'text' => 'STAGE',
-                        'color' => '#f39c12',
+                        'text' => 'STG',
+                        'color' => '#2f9c91',
                         'stroke' => [
                             'color' => '#ffffff',
                             'width' => 3,
@@ -36,14 +42,18 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
         ],
         'Testing' => [
-            'frontendHint' => [
-                'color' => '#f39c12',
+            'frontend' => [
+                'hint' => [
+                    'color' => '#f39c12',
+                ],
             ],
-            'backendToolbar' => [
-                'color' => '#f39c12',
+            'backend' => [
+                'toolbar' => [
+                    'color' => '#f39c12',
+                ],
             ],
-            'favicon' => [
-                '*' => [
+            'both' => [
+                'favicon' => [
                     \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
                         'text' => 'TEST',
                         'color' => '#f39c12',
@@ -56,14 +66,18 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
         ],
         'Development' => [
-            'frontendHint' => [
-                'color' => '#bd593a',
+            'frontend' => [
+                'hint' => [
+                    'color' => '#bd593a',
+                ],
             ],
-            'backendToolbar' => [
-                'color' => '#bd593a',
+            'backend' => [
+                'toolbar' => [
+                    'color' => '#bd593a',
+                ],
             ],
-            'favicon' => [
-                '*' => [
+            'both' => [
+                'favicon' => [
                     \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
                         'text' => 'DEV',
                         'color' => '#bd593a',
@@ -77,44 +91,54 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
         ],
     ],
     'global' => [
-        'frontendHint' => [
-            'position' => 'top left',
-        ],
-        'backendToolbar' => [
-            'icon' => [
-                'context' => 'information-application-context',
+        'frontend' => [
+            'hint' => [
+                'position' => 'top left',
             ],
-            'index' => 0,
         ],
-        'image' => [
-            'path' => 'typo3temp/assets/images/',
+        'backend' => [
+            'toolbar' => [
+
+                'icon' => [
+                    'context' => 'information-application-context',
+                ],
+                'index' => 0,
+            ],
         ],
-        'favicon' => [
-            'path' => 'typo3temp/assets/favicons/',
-            'defaults' => [
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
-                    'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
-                    'position' => 'top left',
-                ],
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class => [
-                    'size' => 0.7,
-                    'position' => 'bottom right',
-                ],
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class => [
-                    'size' => 0.4,
-                    'padding' => 0.1,
-                    'position' => 'bottom right',
-                ],
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
-                    'borderSize' => 5,
-                ],
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
-                    'opacity' => 1,
-                ],
-                \KonradMichalik\Typo3EnvironmentIndicator\Image\OverlayModifier::class => [
-                    'size' => 0.5,
-                    'padding' => 0.1,
-                    'position' => 'bottom right',
+        'both' => [
+            'image' => [
+                'path' => 'typo3temp/assets/images/',
+            ],
+            'logo' => [
+                'path' => 'typo3temp/assets/images/',
+            ],
+            'favicon' => [
+                'path' => 'typo3temp/assets/favicons/',
+                'defaults' => [
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
+                        'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
+                        'position' => 'top left',
+                    ],
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class => [
+                        'size' => 0.7,
+                        'position' => 'bottom right',
+                    ],
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class => [
+                        'size' => 0.4,
+                        'padding' => 0.1,
+                        'position' => 'bottom right',
+                    ],
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class => [
+                        'borderSize' => 5,
+                    ],
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class => [
+                        'opacity' => 1,
+                    ],
+                    \KonradMichalik\Typo3EnvironmentIndicator\Image\OverlayModifier::class => [
+                        'size' => 0.5,
+                        'padding' => 0.1,
+                        'position' => 'bottom right',
+                    ],
                 ],
             ],
         ],

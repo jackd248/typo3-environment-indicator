@@ -4,6 +4,8 @@ general.imageDriver = gd
 frontend.favicon = 1
 # cat=frontend/enable/20; type=boolean; label=Enable the context frontend hint
 frontend.context = 1
+# cat=frontend/enable/30; type=boolean; label=Enable the image generation in frontend context
+frontend.image = 1
 # cat=backend/enable/10; type=boolean; label=Enable the favicon generation in backend context
 backend.favicon = 1
 # cat=backend/enable/20; type=boolean; label=Enable the logo generation in backend context

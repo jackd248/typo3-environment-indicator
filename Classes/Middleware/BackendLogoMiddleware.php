@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Middleware;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
-use KonradMichalik\Typo3EnvironmentIndicator\Service\ImageHandler;
+use KonradMichalik\Typo3EnvironmentIndicator\Service\BackendLogoHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -24,7 +24,7 @@ class BackendLogoMiddleware implements MiddlewareInterface
     {
         if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['logo'] ?? false) {
             $currentBackendLogo = $this->getBackendLogo($this->extensionConfiguration, $request);
-            $imageHandler = GeneralUtility::makeInstance(ImageHandler::class);
+            $imageHandler = GeneralUtility::makeInstance(BackendLogoHandler::class);
             $newBackendLogo = $imageHandler->process($currentBackendLogo, $request);
             $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendLogo'] = $newBackendLogo;
         }

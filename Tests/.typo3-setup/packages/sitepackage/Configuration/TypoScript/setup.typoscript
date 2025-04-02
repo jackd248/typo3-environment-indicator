@@ -15,6 +15,17 @@ cssInline {
     }
     )
 }
+20 = FLUIDTEMPLATE
+20 {
+    file = EXT:sitepackage/Resources/Private/Templates/Page/Default.html
+    variables {
+        contentMain < styles.content.get
+        contentMain.select.where = colPos=0
+        contentSidebar < styles.content.get
+        contentSidebar.select.where = colPos=1
+    }
+}
+}
 100 = CONTENT
 100 {
     table = tt_content

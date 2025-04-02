@@ -33,6 +33,17 @@ defined('TYPO3') || die();
             ],
         ]
     ],
+    frontendImageModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+            [
+                'text' => 'TEXT',
+                'color' => '#283593',
+                'stroke' => [
+                    'color' => '#ffffff',
+                    'width' => 3,
+                ],
+            ]
+    ],
     frontendHintConfiguration: [
         'color' => '#283593',
     ],
@@ -195,4 +206,22 @@ defined('TYPO3') || die();
     backendTopbarConfiguration: [
         'color' => '#bd593a',
     ]
+);
+
+/**
+* Context "Development/GlobalImage"
+*/
+\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+    applicationContext: 'Development/GlobalImage',
+    globalImageModifierConfiguration: [
+        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+            [
+                'text' => 'ALL',
+                'color' => '#283593',
+                'stroke' => [
+                    'color' => '#ffffff',
+                    'width' => 3,
+                ],
+            ]
+    ],
 );
