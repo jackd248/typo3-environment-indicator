@@ -114,6 +114,8 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
             ],
             'favicon' => [
                 'path' => 'typo3temp/assets/favicons/',
+            ],
+            'modifier' => [
                 'defaults' => [
                     \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class => [
                         'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
@@ -140,7 +142,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][\KonradMichalik\Typo3EnvironmentIndicator
                         'position' => 'bottom right',
                     ],
                 ],
-            ],
+            ]
         ],
     ],
 ];

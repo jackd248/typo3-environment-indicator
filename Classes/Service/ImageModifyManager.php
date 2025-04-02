@@ -18,7 +18,7 @@ class ImageModifyManager
 
         return GeneralUtility::makeInstance(
             $modifierClass,
-            array_key_exists($modifierClass, GeneralHelper::getGlobalConfiguration()['both']['favicon']['defaults']) ? array_replace_recursive(GeneralHelper::getGlobalConfiguration()['both']['favicon']['defaults'][$modifierClass], $configuration) : $configuration
+            array_key_exists($modifierClass, GeneralHelper::getGlobalConfiguration()['both']['modifier']['defaults']) ? array_replace_recursive(GeneralHelper::getGlobalConfiguration()['both']['modifier']['defaults'][$modifierClass], $configuration) : $configuration
         );
     }
 }
