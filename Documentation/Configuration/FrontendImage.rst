@@ -24,7 +24,7 @@ The image path can be adjusted via the :code:`ImageViewHelper`:
         data-namespace-typo3-fluid="true">
 
     {f:uri.resource(path:'EXT:your_extension/Resources/Public/Image/Default.png') -> env:image()}
-    {env:image(favicon:'EXT:your_extension/Resources/Public/Image/Default.png')}
+    {env:image(path:'EXT:your_extension/Resources/Public/Image/Default.png')}
 
 ..  seealso::
 
