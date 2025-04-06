@@ -16,7 +16,7 @@ class OverlayModifier extends AbstractModifier implements ModifierInterface
         $manager = new ImageManager(
             ImageDriverUtility::resolveDriver()
         );
-        $overlay = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['path']));
+        $overlay = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['_path']));
 
         $newWidth = (int)($image->width() * $this->configuration['size']);
         $newHeight = (int)($overlay->height() * ($newWidth / $overlay->width()));
@@ -32,6 +32,6 @@ class OverlayModifier extends AbstractModifier implements ModifierInterface
 
     public function getRequiredConfigurationKeys(): array
     {
-        return ['path', 'size', 'position', 'padding'];
+        return ['_path', 'size', 'position', 'padding'];
     }
 }

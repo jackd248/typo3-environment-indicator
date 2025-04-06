@@ -3,6 +3,7 @@
 namespace KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Toolbar;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
@@ -26,7 +27,7 @@ class ContextItem implements ToolbarItemInterface
     public function getItem(): string
     {
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
-            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['toolbar'])) {
+            ! GeneralHelper::isCurrentIndicator(Toolbar::class)) {
             return '';
         }
 
@@ -85,9 +86,6 @@ class ContextItem implements ToolbarItemInterface
 
     private function getBackendToolbarConfiguration(): array
     {
-        return array_merge(
-            GeneralHelper::getGlobalConfiguration()['backend']['toolbar'],
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['toolbar'] ?? []
-        );
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][Toolbar::class];
     }
 }

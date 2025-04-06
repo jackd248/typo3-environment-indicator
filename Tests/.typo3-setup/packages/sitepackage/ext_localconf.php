@@ -2,55 +2,107 @@
 
 declare(strict_types=1);
 
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 defined('TYPO3') || die();
 
 /**
 * Context "Development/Text"
 */
-\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-    applicationContext: 'Development/Text',
-    faviconModifierConfiguration: [
-        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
-        [
-            'text' => 'TEXT',
-            'color' => '#283593',
-            'stroke' => [
-                'color' => '#ffffff',
-                'width' => 3,
-            ],
-            'position' => 'top',
-        ]
+Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development/*', 'Testing')
     ],
-    backendLogoModifierConfiguration: [
-        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
-        [
-            'text' => 'TEXT',
-            'color' => '#283593',
-            'stroke' => [
-                'color' => '#ffffff',
-                'width' => 3,
-            ],
-        ]
-    ],
-    frontendImageModifierConfiguration: [
-        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
-            [
-                'text' => 'TEXT',
-                'color' => '#283593',
+    indicators: [
+        new Indicator\Favicon([
+            new Image\TextModifier([
+                'text' => 'TEST',
+                'color' => '#f39c12',
                 'stroke' => [
                     'color' => '#ffffff',
                     'width' => 3,
                 ],
-            ]
-    ],
-    frontendHintConfiguration: [
-        'color' => '#283593',
-    ],
-    backendToolbarConfiguration: [
-        'color' => '#283593',
-    ],
+            ])
+        ]),
+        new Indicator\Backend\Logo([
+            new Image\TextModifier([
+                'text' => 'TEST',
+                'color' => '#f39c12',
+                'stroke' => [
+                    'color' => '#ffffff',
+                    'width' => 3,
+                ],
+            ])
+        ]),
+        new Indicator\Frontend\Image([
+            new Image\TextModifier([
+                'text' => 'TEST',
+                'color' => '#f39c12',
+                'stroke' => [
+                    'color' => '#ffffff',
+                    'width' => 3,
+                ],
+            ])
+        ]),
+        new Indicator\Frontend\Hint([
+            'color' => '#f39c12',
+        ]),
+        new Indicator\Backend\Toolbar([
+            'color' => '#f39c12',
+        ]),
+        new Indicator\Backend\Topbar([
+            'color' => '#f39c12',
+            'removeTransition' => true,
+        ])
+    ]
 );
+
+//\KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
+//    applicationContext: 'Development/Text',
+//    faviconModifierConfiguration: [
+//        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+//        [
+//            'text' => 'TEXT',
+//            'color' => '#283593',
+//            'stroke' => [
+//                'color' => '#ffffff',
+//                'width' => 3,
+//            ],
+//            'position' => 'top',
+//        ]
+//    ],
+//    backendLogoModifierConfiguration: [
+//        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+//        [
+//            'text' => 'TEXT',
+//            'color' => '#283593',
+//            'stroke' => [
+//                'color' => '#ffffff',
+//                'width' => 3,
+//            ],
+//        ]
+//    ],
+//    frontendImageModifierConfiguration: [
+//        \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
+//            [
+//                'text' => 'TEXT',
+//                'color' => '#283593',
+//                'stroke' => [
+//                    'color' => '#ffffff',
+//                    'width' => 3,
+//                ],
+//            ]
+//    ],
+//    frontendHintConfiguration: [
+//        'color' => '#283593',
+//    ],
+//    backendToolbarConfiguration: [
+//        'color' => '#283593',
+//    ],
+//);
 
 /**
 * Context "Development/Triangle"

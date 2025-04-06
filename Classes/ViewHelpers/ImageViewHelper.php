@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\ViewHelpers;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Image;
 use KonradMichalik\Typo3EnvironmentIndicator\Service\FrontendImageHandler;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Core\Environment;
@@ -35,7 +37,7 @@ class ImageViewHelper extends AbstractViewHelper
     public function initializeArguments(): void
     {
         parent::initializeArguments();
-        $this->registerArgument('path', 'string', 'Image path');
+        $this->registerArgument('_path', 'string', 'Image path');
     }
 
     public function render(): string
@@ -44,9 +46,7 @@ class ImageViewHelper extends AbstractViewHelper
         $image = $this->renderChildren();
 
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['frontend']['image']
-            || !array_key_exists(Environment::getContext()->__toString(), $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'])
-            || !array_key_exists('frontend', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()])
-            || !array_key_exists('image', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontend'])
+            || !GeneralHelper::isCurrentIndicator(Image::class)
         ) {
             return $image;
         }

@@ -6,15 +6,15 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use Intervention\Image\Interfaces\ImageManagerInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
-use KonradMichalik\Typo3EnvironmentIndicator\Enum\HandlerType;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class GeneralHelper
 {
-    public static function getFolder(HandlerType $type, bool $publicPath = true): string
+    public static function getFolder(IndicatorInterface $indicator, bool $publicPath = true): string
     {
-        $defaultPath = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global']['both'][$type->value]['path'];
+        $defaultPath = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'][$indicator::class]['_path'];
 
         $path = Environment::getPublicPath() . '/' . $defaultPath;
         if (!file_exists($path)) {
@@ -30,6 +30,14 @@ class GeneralHelper
     public static function getGlobalConfiguration(): array
     {
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global'];
+    }
+
+    public static function isCurrentIndicator(string $indicatorClass): bool
+    {
+        return array_key_exists(
+            $indicatorClass,
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current']
+        );
     }
 
     public static function supportFormat(ImageManagerInterface $manager, string $format): bool

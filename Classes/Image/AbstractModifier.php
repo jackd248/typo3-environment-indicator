@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
 
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+
 class AbstractModifier
 {
     protected array $configuration = [];
@@ -11,7 +13,7 @@ class AbstractModifier
     public function __construct(array $configuration)
     {
         $this->verifyRequiredArrayKeys($configuration);
-        $this->configuration = $configuration;
+        $this->configuration = $this->mergeGlobalConfiguration($configuration);
     }
 
     public function getRequiredConfigurationKeys(): array
@@ -31,5 +33,11 @@ class AbstractModifier
                 1740401564
             );
         }
+    }
+
+    protected function mergeGlobalConfiguration(array $configuration): array
+    {
+        $globalConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'][static::class] ?? [];
+        return array_replace_recursive($globalConfiguration, $configuration);
     }
 }

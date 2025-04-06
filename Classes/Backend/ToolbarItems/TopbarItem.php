@@ -3,7 +3,9 @@
 namespace KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Topbar;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Core\Environment;
@@ -26,7 +28,7 @@ class TopbarItem implements ToolbarItemInterface
     public function getItem(): string
     {
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
-            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['topbar'])) {
+            !GeneralHelper::isCurrentIndicator(Topbar::class)) {
             return '';
         }
 
@@ -34,7 +36,7 @@ class TopbarItem implements ToolbarItemInterface
             return '';
         }
 
-        $color = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['topbar']['color'] ?? [];
+        $color = $this->getBackendTopbarConfiguration()['color'] ?? [];
 
         if (empty($color)) {
             return '';
@@ -45,7 +47,7 @@ class TopbarItem implements ToolbarItemInterface
             GeneralUtility::mkdir_deep($backendCssPath);
         }
 
-        $removeTransition = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['topbar']['removeTransition'] ?? false;
+        $removeTransition = $this->getBackendTopbarConfiguration()['removeTransition'] ?? false;
         $backendCssFile = sprintf(
             '%sbackend-%s.css',
             $backendCssPath,
@@ -97,5 +99,10 @@ class TopbarItem implements ToolbarItemInterface
     public function getIndex(): int
     {
         return 0;
+    }
+
+    private function getBackendTopbarConfiguration(): array
+    {
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][Topbar::class];
     }
 }

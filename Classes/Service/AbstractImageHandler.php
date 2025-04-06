@@ -6,8 +6,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
 
 use Intervention\Image\ImageManager;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
-use KonradMichalik\Typo3EnvironmentIndicator\Enum\HandlerType;
-use KonradMichalik\Typo3EnvironmentIndicator\Enum\Scope;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
 use Psr\Http\Message\ServerRequestInterface;
@@ -17,11 +16,9 @@ use TYPO3\CMS\Core\Utility\PathUtility;
 
 abstract class AbstractImageHandler
 {
-    public function __construct(protected Scope $scope, protected HandlerType $type)
+    public function __construct(protected IndicatorInterface $indicator)
     {
     }
-
-    abstract protected function getEnvironmentImageModifiers(ServerRequestInterface $request): array;
 
     public function process(string $path, ServerRequestInterface $request): string
     {
@@ -31,14 +28,12 @@ abstract class AbstractImageHandler
             return $path;
         }
 
-        if (!array_key_exists(Environment::getContext()->__toString(), $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'])
-            || !array_key_exists($this->scope->value, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()])
-            || !array_key_exists($this->type->value, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()][$this->scope->value])) {
+        if (!GeneralHelper::isCurrentIndicator($this->indicator::class)) {
             return $path;
         }
 
         $newImageFilename = $this->generateFilename($path, $request) . '.png';
-        $newImagePath = GeneralHelper::getFolder($this->type, false) . $newImageFilename;
+        $newImagePath = GeneralHelper::getFolder($this->indicator, false) . $newImageFilename;
 
         if ($path === $newImagePath) {
             return $newImagePath;
@@ -58,12 +53,15 @@ abstract class AbstractImageHandler
 
         $image = $manager->read($absolutePath);
 
-        foreach ($this->getEnvironmentImageModifiers($request) as $modifier => $configuration) {
-            $modifierInstance = ImageModifyManager::makeInstance($modifier, $configuration);
-            $modifierInstance->modify($image);
+        foreach ($this->getImageModifiers($request) as $key => $modifier) {
+            if (is_string($key) && str_starts_with($key, '_')) {
+                continue;
+            }
+
+            $modifier->modify($image);
         }
 
-        $image->save(GeneralHelper::getFolder($this->type) . $newImageFilename);
+        $image->save(GeneralHelper::getFolder($this->indicator) . $newImageFilename);
         return $newImagePath;
     }
 
@@ -81,19 +79,9 @@ abstract class AbstractImageHandler
         }
     }
 
-    /*
-    * Can't use array_replace_recursive here, cause it keeps the order of the first array, not of the second overwriting array
-    */
-    protected function mergeConfigurationRecursiveOrdered(array $array1, array $array2): array
+    protected function getImageModifiers(ServerRequestInterface $request): array
     {
-        foreach ($array2 as $key => $value) {
-            if (is_array($value) && isset($array1[$key]) && is_array($array1[$key])) {
-                $array1[$key] = $this->mergeConfigurationRecursiveOrdered($array1[$key], $value);
-            } else {
-                $array1[$key] = $value;
-            }
-        }
-        return $array1;
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$this->indicator::class] ?? [];
     }
 
     protected function generateFilename(string $originalPath, ServerRequestInterface $request): string
@@ -102,7 +90,7 @@ abstract class AbstractImageHandler
             $originalPath,
             Environment::getContext()->__toString(),
         ];
-        foreach ($this->getEnvironmentImageModifiers($request) as $modifier => $configuration) {
+        foreach ($this->getImageModifiers($request) as $modifier => $configuration) {
             $parts[] = $modifier;
             $parts[] = json_encode($configuration);
         }
@@ -117,7 +105,7 @@ abstract class AbstractImageHandler
         foreach ($icoImage as $idx => $image) {
             $tmp = $loader->renderImage($image);
 
-            $basePath = Environment::getPublicPath() . '/' . GeneralHelper::getFolder(HandlerType::Image, false) . 'processed/';
+            $basePath = Environment::getPublicPath() . '/' . GeneralHelper::getFolder($this->indicator, false) . 'processed/';
             if (!file_exists($basePath)) {
                 GeneralUtility::mkdir_deep($basePath);
             }
@@ -141,7 +129,7 @@ abstract class AbstractImageHandler
         $loader = new \SVG\SVG();
         $svgImage = $loader::fromFile($path);
 
-        $basePath = Environment::getPublicPath() . '/' . GeneralHelper::getFolder(HandlerType::Image, false) . 'processed/';
+        $basePath = Environment::getPublicPath() . '/' . GeneralHelper::getFolder($this->indicator, false) . 'processed/';
         if (!file_exists($basePath)) {
             GeneralUtility::mkdir_deep($basePath);
         }

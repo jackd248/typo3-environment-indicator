@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Image\ModifierInterface;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ImageModifyManager
@@ -18,7 +17,7 @@ class ImageModifyManager
 
         return GeneralUtility::makeInstance(
             $modifierClass,
-            array_key_exists($modifierClass, GeneralHelper::getGlobalConfiguration()['both']['modifier']['defaults']) ? array_replace_recursive(GeneralHelper::getGlobalConfiguration()['both']['modifier']['defaults'][$modifierClass], $configuration) : $configuration
+            $configuration
         );
     }
 }
