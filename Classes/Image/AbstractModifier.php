@@ -12,8 +12,9 @@ class AbstractModifier
 
     public function __construct(array $configuration)
     {
+        $this->mergeGlobalConfiguration($configuration);
         $this->verifyRequiredArrayKeys($configuration);
-        $this->configuration = $this->mergeGlobalConfiguration($configuration);
+        $this->configuration = $configuration;
     }
 
     public function getRequiredConfigurationKeys(): array
@@ -27,7 +28,8 @@ class AbstractModifier
         if (!empty($missingKeys)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'Missing required configuration keys: %s',
+                    'Missing required configuration keys for %s: %s',
+                    static::class,
                     implode(', ', $missingKeys)
                 ),
                 1740401564
@@ -35,9 +37,9 @@ class AbstractModifier
         }
     }
 
-    protected function mergeGlobalConfiguration(array $configuration): array
+    protected function mergeGlobalConfiguration(array &$configuration): void
     {
         $globalConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'][static::class] ?? [];
-        return array_replace_recursive($globalConfiguration, $configuration);
+        $configuration = array_replace_recursive($globalConfiguration, $configuration);
     }
 }

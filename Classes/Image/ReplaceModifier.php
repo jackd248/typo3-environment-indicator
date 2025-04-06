@@ -21,6 +21,6 @@ class ReplaceModifier extends AbstractModifier implements ModifierInterface
 
     public function getRequiredConfigurationKeys(): array
     {
-        return ['_path'];
+        return [];
     }
 }

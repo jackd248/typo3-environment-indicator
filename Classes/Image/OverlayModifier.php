@@ -32,6 +32,6 @@ class OverlayModifier extends AbstractModifier implements ModifierInterface
 
     public function getRequiredConfigurationKeys(): array
     {
-        return ['_path', 'size', 'position', 'padding'];
+        return ['size', 'position', 'padding'];
     }
 }
