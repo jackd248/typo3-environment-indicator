@@ -51,6 +51,6 @@ class ContextUtility
 
     private function getFrontendHintConfiguration(): array
     {
-        return array_merge(GeneralHelper::getGlobalConfiguration()['frontendHint'], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontendHint']);
+        return array_merge(GeneralHelper::getGlobalConfiguration()['frontend']['hint'], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontend']['hint']);
     }
 }

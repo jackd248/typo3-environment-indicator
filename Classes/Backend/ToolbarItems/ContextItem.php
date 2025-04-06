@@ -26,7 +26,7 @@ class ContextItem implements ToolbarItemInterface
     public function getItem(): string
     {
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
-            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'])) {
+            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['toolbar'])) {
             return '';
         }
 
@@ -86,8 +86,8 @@ class ContextItem implements ToolbarItemInterface
     private function getBackendToolbarConfiguration(): array
     {
         return array_merge(
-            GeneralHelper::getGlobalConfiguration()['backendToolbar'],
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backendToolbar'] ?? []
+            GeneralHelper::getGlobalConfiguration()['backend']['toolbar'],
+            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['toolbar'] ?? []
         );
     }
 }

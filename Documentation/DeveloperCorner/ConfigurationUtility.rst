@@ -48,7 +48,10 @@ necessary configuration for the environment indicator.
         :param string $applicationContext: Name of the TYPO3 application context.
         :param array|null $frontendHintConfiguration: Configuration for the :ref:`frontend hint <frontend-hint>`. Set to :code:`null` to unset the configuration.
         :param array|null $backendToolbarConfiguration: Configuration for the :ref:`backend toolbar item <backend-toolbar-item>`. Set to :code:`null` to unset the configuration.
+        :param array|null $backendTopbarConfiguration: Configuration for the :ref:`backend topbar <backend-topbar>`. Set to :code:`null` to unset the configuration.
         :param array|null $faviconModifierConfiguration: Configuration for the :ref:`favicon modification <favicon-modifiers>`. This configuration applies to frontend and backend. Set to :code:`null` to unset the configuration.
         :param array|null $faviconModifierFrontendConfiguration: **Frontend** configuration for the :ref:`favicon modification <favicon-modifiers>`. Set to :code:`null` to unset the configuration.
-        :param array|null $faviconModifierBackendConfiguration: **Frontend** configuration for the :ref:`favicon modification <favicon-modifiers>`. Set to :code:`null` to unset the configuration.
+        :param array|null $faviconModifierBackendConfiguration: **Backend** configuration for the :ref:`favicon modification <favicon-modifiers>`. Set to :code:`null` to unset the configuration.
+        :param array|null $backendLogoModifierConfiguration: Configuration for the :ref:`backend logo modification <backend-logo>`. Set to :code:`null` to unset the configuration.
+        :param array|null $frontendImageModifierConfiguration: Configuration for the :ref:`frontend image modification <frontend-image>`. Set to :code:`null` to unset the configuration.
         :returntype: :php:`void`

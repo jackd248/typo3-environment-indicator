@@ -47,8 +47,8 @@ class FaviconViewHelper extends AbstractViewHelper
         $favicon = $this->renderChildren();
 
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)[$applicationType->value]['favicon']
-            || !in_array(Environment::getContext()->__toString(), array_keys($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']))
-            || array_key_exists('favicon', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]) === false
+            || !array_key_exists(Environment::getContext()->__toString(), $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'])
+            || !array_key_exists('favicon', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()])
         ) {
             return $favicon;
         }
@@ -56,7 +56,6 @@ class FaviconViewHelper extends AbstractViewHelper
         if (!PathUtility::isExtensionPath($favicon)) {
             $favicon = Environment::getPublicPath() . (str_contains($favicon, '?') ? strtok($favicon, '?') : $favicon);
         }
-        $handler = GeneralUtility::makeInstance(FaviconHandler::class);
-        return $handler->process($favicon, $request);
+        return GeneralUtility::makeInstance(FaviconHandler::class)->process($favicon, $request);
     }
 }

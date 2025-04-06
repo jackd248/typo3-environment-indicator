@@ -47,6 +47,11 @@ Features
 ..  figure:: /Images/preview-backend-logo.jpg
     :alt: Backend Logo Preview
 
+- :ref:`Modified frontend image <frontend-image>`: Modify frontend image based on the original image, the current application context and your configuration.
+
+..  figure:: /Images/preview-frontend-image.jpg
+    :alt: Frontend Image Preview
+
 
 ..  _support:
 
