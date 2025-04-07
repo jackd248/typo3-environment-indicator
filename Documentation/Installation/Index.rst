@@ -32,7 +32,7 @@ Or download it from the
 Configuration
 ============
 
-Include the static TypoScript template "Environment Indicator" or directly import it in your sitepackage (only necessary for the :ref:`frontend Hint <frontend-hint>`):
+Include the static TypoScript template "Environment Indicator" or directly import it in your sitepackage:
 
 
 ..  code-block:: typoscript
@@ -41,6 +41,11 @@ Include the static TypoScript template "Environment Indicator" or directly impor
     @import 'EXT:typo3_environment_indicator/Configuration/TypoScript/setup.typoscript'
 
 ..  note::
-    Only the following favicon image formats are supported*: https://image.intervention.io/v3/introduction/formats
+    This is only necessary if you want to use the :ref:`frontend hint <frontend-hint>`.
 
-    * Due to the wide distribution of .ico files, these images are also supported.
+Image Support
+============
+
+Only the following favicon image formats are supported: https://image.intervention.io/v3/introduction/formats
+
+* Due to the wide distribution of :code:`.ico` and :code:`.svg` files, these images are also supported.

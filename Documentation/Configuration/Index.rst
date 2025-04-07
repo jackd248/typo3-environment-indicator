@@ -8,29 +8,25 @@ Configuration
 
 The extension is ready to use without any further setup.
 
-By default the following application context are preset:
+By default the following environment are preset:
 
 - :code:`Production/Standby`
 - :code:`Production/Staging`
-- :code:`Testing`
-- :code:`Development`
+- :code:`Production/Stage`
+- :code:`Testing*`
+- :code:`Development*`
 
 ..  seealso::
 
-    View the sources on GitHub:
+    See the :ref:`example` for the complete configuration.
 
-    -   `ext_localconf.php <https://github.com/jackd248/typo3-environment-indicator/blob/main/ext_localconf.php>`__
 
-You can also adapt the extension to your needs, switch single features on and off and influence the presentation of the indicators.
+You can adapt the extension to your needs, switch single features on and off and influence the presentation of the indicators.
 
-Learn what configuration options are available on the following pages:
+If you want to add your own indicators, you should disable the :ref:`default configuration<extconf-general.defaultConfiguration>` within the extension configuration.
 
 ..  toctree::
     :maxdepth: 3
 
     ExtensionConfiguration
-    FrontendHint
-    BackendToolbar
-    BackendTopbar
-    Favicon
-    BackendLogo
+    Handler

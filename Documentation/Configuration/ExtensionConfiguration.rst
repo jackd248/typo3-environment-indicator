@@ -22,6 +22,14 @@ General
 
     Intervention Image supports "GD Library", "Imagick" and "libvips" to process images internally. You may choose one of them according to your PHP configuration. Options are "gd", "imagick" and "vips".
 
+..  _extconf-general.defaultConfiguration:
+
+..  confval:: general.defaultConfiguration
+    :type: boolean
+    :Default: 1
+
+    Enable the default configuration for the environment indicators. If you want to configure the environment indicators by yourself, set this to false.
+
 Frontend
 =======
 
@@ -75,11 +83,3 @@ Backend
     :Default: 1
 
     Enable the backend toolbar item / backend topbar also in production context
-
-..  _extconf-backend.contextProductionUserGroups:
-
-..  confval:: backend.contextProductionUserGroups
-    :type: string
-    :Default:
-
-    Restrict the backend user groups that are shown the toolbar item / topbar in the production context (comma separated list of group ids)
