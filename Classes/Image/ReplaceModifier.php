@@ -16,11 +16,11 @@ class ReplaceModifier extends AbstractModifier implements ModifierInterface
         $manager = new ImageManager(
             ImageDriverUtility::resolveDriver()
         );
-        $image = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['_path']));
+        $image = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['path']));
     }
 
     public function getRequiredConfigurationKeys(): array
     {
-        return [];
+        return ['path'];
     }
 }
