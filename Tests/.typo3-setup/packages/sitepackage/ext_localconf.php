@@ -244,3 +244,22 @@ Configuration\Handler::addIndicator(
         ]),
     ]
 );
+
+/**
+ * Context "Development/Custom"
+ */
+Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development/Custom'),
+        new Trigger\Custom(
+            function () {
+                return false;
+            }
+        )
+    ],
+    indicators: [
+        new Indicator\Backend\Topbar([
+            'color' => '#00ACC1',
+        ]),
+    ]
+);
