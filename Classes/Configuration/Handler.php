@@ -53,7 +53,7 @@ class Handler
 
             foreach ($configuration['indicators'] as $indicator) {
                 if (isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class])) {
-                    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class] = array_merge_recursive(
+                    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class] = array_replace_recursive(
                         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class],
                         $indicator->getConfiguration()
                     );
