@@ -229,3 +229,18 @@ Configuration\Handler::addIndicator(
         ]),
     ]
 );
+
+/**
+* Context "Development/Admin"
+*/
+Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development/Admin'),
+        new Trigger\Admin()
+    ],
+    indicators: [
+        new Indicator\Backend\Topbar([
+            'color' => '#00ACC1',
+        ]),
+    ]
+);
