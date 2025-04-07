@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Site\SiteFinder;
@@ -52,6 +51,6 @@ class ContextUtility
 
     private function getFrontendHintConfiguration(): array
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][Hint::class];
+        return GeneralHelper::getIndicatorConfiguration()[Hint::class];
     }
 }

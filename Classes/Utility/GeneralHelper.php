@@ -6,6 +6,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use Intervention\Image\Interfaces\ImageManagerInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -27,16 +28,16 @@ class GeneralHelper
         return $path;
     }
 
-    public static function getGlobalConfiguration(): array
+    public static function getIndicatorConfiguration(): array
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['global'];
+        return Handler::resolveIndicators();
     }
 
     public static function isCurrentIndicator(string $indicatorClass): bool
     {
         return array_key_exists(
             $indicatorClass,
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current']
+            GeneralHelper::getIndicatorConfiguration()
         );
     }
 

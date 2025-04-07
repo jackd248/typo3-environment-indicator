@@ -28,7 +28,8 @@ class ConfigurationUtility
                 'The "%s" method is deprecated and no longer support. Use the "%s" method instead. See the documentation for the correct usage.',
                 __METHOD__,
                 Configuration\Handler::class . '::addIndicator'
-            ), 5404480452
+            ),
+            5404480452
         );
     }
 }

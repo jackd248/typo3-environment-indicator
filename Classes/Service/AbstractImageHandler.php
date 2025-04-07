@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
 
 use Intervention\Image\ImageManager;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
@@ -81,7 +80,7 @@ abstract class AbstractImageHandler
 
     protected function getImageModifiers(ServerRequestInterface $request): array
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$this->indicator::class] ?? [];
+        return GeneralHelper::getIndicatorConfiguration()[$this->indicator::class] ?? [];
     }
 
     protected function generateFilename(string $originalPath, ServerRequestInterface $request): string

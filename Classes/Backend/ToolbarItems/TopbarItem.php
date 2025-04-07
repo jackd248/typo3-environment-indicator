@@ -103,6 +103,6 @@ class TopbarItem implements ToolbarItemInterface
 
     private function getBackendTopbarConfiguration(): array
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][Topbar::class] ?? [];
+        return GeneralHelper::getIndicatorConfiguration()[Topbar::class] ?? [];
     }
 }
