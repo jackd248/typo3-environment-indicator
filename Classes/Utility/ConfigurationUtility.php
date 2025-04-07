@@ -8,9 +8,6 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 
 class ConfigurationUtility
 {
-    /*
-    * @Deprecated
-    */
     public static function configByContext(
         string $applicationContext,
         ?array $frontendHintConfiguration = [],

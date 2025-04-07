@@ -45,8 +45,8 @@ class ImageViewHelper extends AbstractViewHelper
         $request = $this->renderingContext->hasAttribute(ServerRequestInterface::class) ? $this->renderingContext->getAttribute(ServerRequestInterface::class) : $GLOBALS['TYPO3_REQUEST'];
         $image = $this->renderChildren();
 
-        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['frontend']['image']
-            || !GeneralHelper::isCurrentIndicator(Image::class)
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['frontend']['image'] ||
+            !GeneralHelper::isCurrentIndicator(Image::class)
         ) {
             return $image;
         }

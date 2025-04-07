@@ -51,6 +51,6 @@ class ContextUtility
 
     private function getFrontendHintConfiguration(): array
     {
-        return GeneralHelper::getIndicatorConfiguration()[Hint::class];
+        return GeneralHelper::getIndicatorConfiguration()[Hint::class] ?? [];
     }
 }
