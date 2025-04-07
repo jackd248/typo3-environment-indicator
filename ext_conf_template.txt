@@ -16,5 +16,3 @@ backend.logo = 1
 backend.context = 1
 # cat=backend/enable/40; type=boolean; label=Enable the backend toolbar item / backend topbar also in production context
 backend.contextProduction = 1
-# cat=backend/enable/50; type=string; label=Restrict the backend user groups that are shown the toolbar item / topbar in the production context (comma separated list of group ids)
-backend.contextProductionUserGroups =
