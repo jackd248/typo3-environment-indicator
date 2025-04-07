@@ -25,12 +25,12 @@ class Ip implements TriggerInterface
     }
 
     /**
-     * Checks if the current IP matches the given IP or CIDR range.
-     *
-     * @param string $currentIp The current IP address.
-     * @param string $ip The IP address or CIDR range to match against.
-     * @return bool True if the current IP matches, false otherwise.
-     */
+    * Checks if the current IP matches the given IP or CIDR range.
+    *
+    * @param string $currentIp The current IP address.
+    * @param string $ip The IP address or CIDR range to match against.
+    * @return bool True if the current IP matches, false otherwise.
+    */
     protected function ipMatches(string $currentIp, string $ip): bool
     {
         if (strpos($ip, '/') !== false) {
@@ -40,18 +40,19 @@ class Ip implements TriggerInterface
     }
 
     /**
-     * Checks if the current IP is within the given CIDR range.
-     *
-     * @param string $ip The current IP address.
-     * @param string $cidr The CIDR range to match against.
-     * @return bool True if the current IP is within the CIDR range, false otherwise.
-     */
+    * Checks if the current IP is within the given CIDR range.
+    *
+    * @param string $ip The current IP address.
+    * @param string $cidr The CIDR range to match against.
+    * @return bool True if the current IP is within the CIDR range, false otherwise.
+    */
     protected function cidrMatch(string $ip, string $cidr): bool
     {
         list($subnet, $mask) = explode('/', $cidr);
         if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
             $ip = ip2long($ip);
             $subnet = ip2long($subnet);
+            $mask = (int)$mask;
             $mask = ~((1 << (32 - $mask)) - 1);
             return ($ip & $mask) === ($subnet & $mask);
         }
@@ -59,8 +60,12 @@ class Ip implements TriggerInterface
         if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
             $ip = inet_pton($ip);
             $subnet = inet_pton($subnet);
-            $mask = str_repeat("f", $mask / 4) . str_repeat("0", 32 - $mask / 4);
-            $mask = pack("H*", $mask);
+            if ($ip === false || $subnet === false) {
+                return false;
+            }
+            $mask = (int)$mask;
+            $mask = str_repeat('f', $mask / 4) . str_repeat('0', 32 - $mask / 4);
+            $mask = pack('H*', $mask);
             return ($ip & $mask) === ($subnet & $mask);
         }
         return false;
