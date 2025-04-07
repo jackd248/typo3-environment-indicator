@@ -1,5 +1,7 @@
 # cat=general/enable/10; type=options[GD=gd,Imagick=imagick,libvips=vips]; label=Intervention Image supports "GD Library", "Imagick" and "libvips" to process images.
 general.imageDriver = gd
+# cat=general/enable/20; type=boolean; label=Enable the default configuration for the environment indicators. If you want to configure the environment indicators by yourself, set this to false.
+general.defaultConfiguration = 1
 # cat=frontend/enable/10; type=boolean; label=Enable the favicon generation in frontend context
 frontend.favicon = 1
 # cat=frontend/enable/20; type=boolean; label=Enable the context frontend hint

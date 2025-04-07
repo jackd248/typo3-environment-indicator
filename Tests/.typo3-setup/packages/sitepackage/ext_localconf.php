@@ -5,6 +5,7 @@ declare(strict_types=1);
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+use KonradMichalik\Typo3EnvironmentIndicator\Enum;
 use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 defined('TYPO3') || die();
@@ -139,8 +140,14 @@ Configuration\Handler::addIndicator(
         new Indicator\Favicon([
             new Image\ColorizeModifier([
                 'color' => '#039BE5',
-            ]) // @ToDo: Make Frontend Favicon Modifier Opacity 0.5
+            ]),
         ]),
+        new Indicator\Favicon([
+            new Image\ColorizeModifier([
+                'color' => '#EC407A',
+                'opacity' => 0.5,
+            ])
+        ], scope: Enum\Scope::Frontend),
         new Indicator\Frontend\Hint([
             'color' => '#039BE5',
         ]),
@@ -246,8 +253,8 @@ Configuration\Handler::addIndicator(
 );
 
 /**
- * Context "Development/Custom"
- */
+* Context "Development/Custom"
+*/
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Custom'),
