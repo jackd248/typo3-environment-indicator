@@ -17,7 +17,6 @@ class Favicon extends AbstractIndicator implements IndicatorInterface
 
     public function getConfiguration(): array
     {
-        // @todo: check if this is the right way to get the request
         $request = $this->getRequest();
         $applicationType = $request ? ApplicationType::fromRequest($request) : null;
 
@@ -40,6 +39,6 @@ class Favicon extends AbstractIndicator implements IndicatorInterface
 
     protected function getRequest(): ?ServerRequestInterface
     {
-        return null;
+        return $GLOBALS['TYPO3_REQUEST'] ?? null;
     }
 }
