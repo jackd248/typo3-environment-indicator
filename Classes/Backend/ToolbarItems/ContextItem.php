@@ -86,6 +86,6 @@ class ContextItem implements ToolbarItemInterface
 
     private function getBackendToolbarConfiguration(): array
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][Toolbar::class];
+        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][Toolbar::class] ?? [];
     }
 }
