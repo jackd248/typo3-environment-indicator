@@ -21,4 +21,3 @@ The :code:`Admin` trigger is used to show the indicators in the TYPO3 backend fo
             ]),
         ]
     );
-

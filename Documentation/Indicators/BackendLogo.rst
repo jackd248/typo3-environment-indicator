@@ -32,22 +32,22 @@ The backend logo modification is identical to the :ref:`favicon modification <fa
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
     Configuration\Handler::addIndicator(
-       triggers: [
-           new Trigger\ApplicationContext('Testing')
-       ],
-       indicators: [
-           new Indicator\Backend\Logo([
-               new Image\TextModifier([
-                   'text' => 'TEST',
-                   'color' => '#f39c12',
-                   'stroke' => [
-                       'color' => '#ffffff',
-                       'width' => 3,
-                   ],
-               ])
-           ])
-       ]
-   );
+    triggers: [
+        new Trigger\ApplicationContext('Testing')
+    ],
+    indicators: [
+        new Indicator\Backend\Logo([
+            new Image\TextModifier([
+                'text' => 'TEST',
+                'color' => '#f39c12',
+                'stroke' => [
+                    'color' => '#ffffff',
+                    'width' => 3,
+                ],
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-test.png
     :alt: Backend Logo Modifier Example
