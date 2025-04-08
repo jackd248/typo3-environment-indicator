@@ -63,7 +63,7 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'] = [
 if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']['defaultConfiguration'] ?? false) {
     Configuration\Handler::addIndicator(
         triggers: [
-            new Trigger\ApplicationContext('Development*')
+            new Trigger\ApplicationContext('Development*'),
         ],
         indicators: [
             new Indicator\Favicon([
@@ -74,20 +74,20 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
                         'color' => '#ffffff',
                         'width' => 3,
                     ],
-                ])
+                ]),
             ]),
             new Indicator\Frontend\Hint([
                 'color' => '#bd593a',
             ]),
             new Indicator\Backend\Toolbar([
                 'color' => '#bd593a',
-            ])
+            ]),
         ]
     );
 
     Configuration\Handler::addIndicator(
         triggers: [
-            new Trigger\ApplicationContext('Testing*')
+            new Trigger\ApplicationContext('Testing*'),
         ],
         indicators: [
             new Indicator\Favicon([
@@ -98,20 +98,20 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
                         'color' => '#ffffff',
                         'width' => 3,
                     ],
-                ])
+                ]),
             ]),
             new Indicator\Frontend\Hint([
                 'color' => '#f39c12',
             ]),
             new Indicator\Backend\Toolbar([
                 'color' => '#f39c12',
-            ])
+            ]),
         ]
     );
 
     Configuration\Handler::addIndicator(
         triggers: [
-            new Trigger\ApplicationContext('Production/Staging', 'Production/Stage')
+            new Trigger\ApplicationContext('Production/Staging', 'Production/Stage'),
         ],
         indicators: [
             new Indicator\Favicon([
@@ -122,25 +122,25 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
                         'color' => '#ffffff',
                         'width' => 3,
                     ],
-                ])
+                ]),
             ]),
             new Indicator\Frontend\Hint([
                 'color' => '#2f9c91',
             ]),
             new Indicator\Backend\Toolbar([
                 'color' => '#2f9c91',
-            ])
+            ]),
         ]
     );
 
     Configuration\Handler::addIndicator(
         triggers: [
-            new Trigger\ApplicationContext('Production/Standby')
+            new Trigger\ApplicationContext('Production/Standby'),
         ],
         indicators: [
             new Indicator\Backend\Toolbar([
                 'color' => '#2f9c91',
-            ])
+            ]),
         ]
     );
 }
