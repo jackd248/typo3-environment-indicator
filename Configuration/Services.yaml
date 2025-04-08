@@ -16,3 +16,15 @@ services:
 
   KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\TopbarItem:
     public: true
+
+  dashboard.widget.EnvironmentIndicator:
+    class: 'KonradMichalik\Typo3EnvironmentIndicator\Widgets\EnvironmentIndicatorWidget'
+    tags:
+      - name: dashboard.widget
+        identifier: 'environmentIndicator'
+        groupNames: 'systemInfo'
+        title: 'LLL:EXT:typo3_environment_indicator/Resources/Private/Language/locallang.xlf:widgets.environmentIndicator.title'
+        description: 'LLL:EXT:xima_typo3_content_planner/Resources/Private/Language/locallang.xlf:widgets.environmentIndicator.description'
+        iconIdentifier: 'actions-globe-alt'
+        height: 'small'
+        width: 'small'

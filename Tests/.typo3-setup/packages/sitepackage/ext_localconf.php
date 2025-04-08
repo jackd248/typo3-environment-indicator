@@ -57,6 +57,9 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Topbar([
             'color' => '#f39c12',
             'removeTransition' => true,
+        ]),
+        new Indicator\Backend\Widget([
+            'color' => '#f39c12',
         ])
     ]
 );

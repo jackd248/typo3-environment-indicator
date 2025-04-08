@@ -1,0 +1,16 @@
+.environment-indicator-widget {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.environment-indicator-widget__text {
+    margin-top: 10px;
+}
+.environment-indicator-widget__help {
+    margin-top: 10px;
+    font-size: 10px;
+}
