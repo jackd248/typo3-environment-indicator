@@ -46,9 +46,9 @@ class FaviconViewHelper extends AbstractViewHelper
 
         $favicon = $this->renderChildren();
 
-        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)[$applicationType->value]['favicon']
-            || !array_key_exists(Environment::getContext()->__toString(), $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'])
-            || !array_key_exists('favicon', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()])
+        if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)[$applicationType->value]['favicon'] ||
+            !array_key_exists(Environment::getContext()->__toString(), $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']) ||
+            !array_key_exists('favicon', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()])
         ) {
             return $favicon;
         }

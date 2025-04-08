@@ -6,7 +6,7 @@
 Backend topbar
 =======================
 
-The backend toolbar item will show the current project version and application context.
+The backend toolbar item will show the current project version and environment.
 
 ..  figure:: /Images/backend-topbar.jpg
     :alt: Backend topbar
@@ -19,12 +19,20 @@ You can adjust the color of the topbar in your :code:`ext_localconf.php`:
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        backendTopbarConfiguration: [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Testing')
+    ],
+    indicators: [
+        new Indicator\Backend\Topbar([
             'color' => '#bd593a',
-        ]
-    );
+        ])
+    ]
+);
 
 Additional optional configuration keys:
 

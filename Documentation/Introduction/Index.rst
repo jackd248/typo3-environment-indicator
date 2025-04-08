@@ -22,36 +22,52 @@ This extension provides several features to show an environment indicator in the
 Features
 ========
 
-- :ref:`Frontend Hint <frontend-hint>`: Adds an informative hint to the frontend showing the website title and the current application context.
+Combine :ref:`trigger <triggers>` and :ref:`indicator <indicators>` classes to show the environment in the TYPO3 frontend and backend. The extension provides several trigger and indicator classes out of the box. You can also create your own trigger and indicator classes.
 
-..  figure:: /Images/preview-frontend-hint.png
-    :alt: Frontend Hint Preview
+.. figure:: /Images/example1.jpg
+    :alt: Example
+    :class: with-shadow
 
-- :ref:`Backend toolbar item <backend-toolbar-item>`: Adds an informative item with the current application context to the backend toolbar.
+    Backend with several environment indicators
 
-..  figure:: /Images/preview-backend-toolbar-item.png
-    :alt: Backend Toolbar Item Preview
+..  list-table:: Features
+:header-rows: 1
+:class: center
 
-- :ref:`Backend topbar <backend-topbar>`: Colorize the backend header topbar regarding the application context.
-
-..  figure:: /Images/preview-backend-topbar.jpg
-    :alt: Backend Topbar Preview
-
-- :ref:`Modified favicon <favicon>`: Modify the favicon for frontend and backend based on the original favicon, the current application context and your configuration.
-
-..  figure:: /Images/preview-favicon.png
-    :alt: Favicon Preview
-
-- :ref:`Modified backend logo <backend-logo>`: Modify the backend logo based on the original logo, the current application context and your configuration.
-
-..  figure:: /Images/preview-backend-logo.jpg
-    :alt: Backend Logo Preview
-
-- :ref:`Modified frontend image <frontend-image>`: Modify frontend image based on the original image, the current application context and your configuration.
-
-..  figure:: /Images/preview-frontend-image.jpg
-    :alt: Frontend Image Preview
-
+* - Image
+    - Description
+    - Frontend
+    - Backend
+* - .. figure:: /Images/preview-frontend-hint.png
+        :alt: Frontend Hint Preview
+    - :ref:`Frontend Hint <frontend-hint>`: Adds an informative hint to the frontend showing the website title and current environment.
+    - ✔️
+    -
+* - .. figure:: /Images/preview-backend-toolbar-item.png
+        :alt: Backend Toolbar Item Preview
+    - :ref:`Backend toolbar item <backend-toolbar-item>`: Adds an informative item to the backend toolbar showing the current environment.
+    -
+    - ✔️
+* - .. figure:: /Images/preview-backend-topbar.jpg
+        :alt: Backend Topbar Preview
+    - :ref:`Backend topbar <backend-topbar>`: Colors the backend header topbar according to the environment.
+    -
+    - ✔️
+* - .. figure:: /Images/preview-favicon.png
+        :alt: Favicon Preview
+    - :ref:`Modified favicon <favicon>`: Modifies the favicon for frontend and backend based on the original favicon, current environment, and your configuration.
+    - ✔️
+    - ✔️
+* - .. figure:: /Images/preview-backend-logo.jpg
+        :alt: Backend Logo Preview
+    - :ref:`Modified backend logo <backend-logo>`: Modifies the backend logo based on the original logo, current environment, and your configuration.
+    -
+    - ✔️
+* - .. figure:: /Images/preview-frontend-image.jpg
+        :alt: Frontend Image Preview
+    - :ref:`Modified frontend image <frontend-image>`: Modifies the frontend image based on the original image, current environment, and your configuration.
+    - ✔️
+    -
 
 ..  _support:
 

@@ -3,6 +3,7 @@
 namespace KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Toolbar;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
@@ -26,7 +27,7 @@ class ContextItem implements ToolbarItemInterface
     public function getItem(): string
     {
         if (!$this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['context'] ||
-            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['toolbar'])) {
+            ! GeneralHelper::isCurrentIndicator(Toolbar::class)) {
             return '';
         }
 
@@ -36,15 +37,6 @@ class ContextItem implements ToolbarItemInterface
 
         if (empty($this->getBackendToolbarConfiguration())) {
             return '';
-        }
-
-        if ($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'] !== '' && Environment::getContext()->__toString() === 'Production' && !$GLOBALS['BE_USER']->isAdmin()) {
-            $backendUser = $GLOBALS['BE_USER']->user;
-            $matchingGroupIds = array_intersect(explode(',', $backendUser['usergroup']), GeneralUtility::trimExplode(',', $this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['contextProductionUserGroups'], true));
-
-            if (empty($matchingGroupIds)) {
-                return '';
-            }
         }
 
         /*
@@ -85,9 +77,6 @@ class ContextItem implements ToolbarItemInterface
 
     private function getBackendToolbarConfiguration(): array
     {
-        return array_merge(
-            GeneralHelper::getGlobalConfiguration()['backend']['toolbar'],
-            $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['backend']['toolbar'] ?? []
-        );
+        return GeneralHelper::getIndicatorConfiguration()[Toolbar::class] ?? [];
     }
 }

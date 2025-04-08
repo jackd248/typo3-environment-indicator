@@ -34,8 +34,7 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
                 $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
                 $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon, $request);
                 $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFrontendFavicon;
-            } elseif ($typo3Version >= 13
-            ) {
+            } elseif ($typo3Version >= 13) {
                 $typoScript = $request->getAttribute('frontend.typoscript');
                 if ($typoScript->hasPage() && array_key_exists('shortcutIcon', $typoScript->getPageArray()) && $typoScript->getPageArray()['shortcutIcon'] !== '') {
                     $typoScriptPageArray = $typoScript->getPageArray();

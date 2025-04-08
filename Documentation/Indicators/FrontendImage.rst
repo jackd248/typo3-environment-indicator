@@ -6,7 +6,7 @@
 Frontend Image
 =======================
 
-The frontend image will be modified regarding the application context and the associated
+The frontend image will be modified regarding the environment and the associated
 configuration.
 
 ..  figure:: /Images/preview-frontend-image.jpg
@@ -42,20 +42,28 @@ The configuration key for the frontend image is :code:`frontendImageModifierConf
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Testing',
-        frontendImageModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Testing')
+    ],
+    indicators: [
+        new Indicator\Frontend\Image([
+            new Image\TextModifier([
                 'text' => 'TEST',
                 'color' => '#f39c12',
                 'stroke' => [
                     'color' => '#ffffff',
                     'width' => 3,
                 ],
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-test.png
     :alt: Frontend Image Modifier Example

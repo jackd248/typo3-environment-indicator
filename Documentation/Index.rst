@@ -59,6 +59,20 @@ This extension provides several features to show an environment indicator in the
         ..  card-footer::   :ref:`View configuration options <configuration>`
             :button-style: btn btn-secondary stretched-link
 
+    ..  card::  Indicators
+
+        Indicators are the main feature of this extension. They are used to show e.g. the current application context in the frontend and backend.
+
+        ..  card-footer::   :ref:`Indicator overview <indicators>`
+            :button-style: btn btn-secondary stretched-link
+
+    ..  card::  Triggers
+
+        Triggers are conditions that can be used to show or hide the environment indicator in the frontend and backend.
+
+        ..  card-footer::   :ref:`Trigger overview <triggers>`
+            :button-style: btn btn-secondary stretched-link
+
     ..  card::  Developer corner
 
         A quick overview of the possibilities for extending the extension
@@ -73,6 +87,8 @@ This extension provides several features to show an environment indicator in the
     Introduction/Index
     Installation/Index
     Configuration/Index
+    Indicators/Index
+    Triggers/Index
     DeveloperCorner/Index
 
 ..  toctree::

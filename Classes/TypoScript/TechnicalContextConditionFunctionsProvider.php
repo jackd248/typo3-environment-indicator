@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\TypoScript;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Core\Environment;
 
 class TechnicalContextConditionFunctionsProvider implements ExpressionFunctionProviderInterface
 {
@@ -32,8 +33,7 @@ class TechnicalContextConditionFunctionsProvider implements ExpressionFunctionPr
             static fn () => null,
             static function () use ($extensionConfiguration) {
                 return $extensionConfiguration->get(Configuration::EXT_KEY)['frontend']['context'] &&
-                    array_key_exists(Environment::getContext()->__toString(), $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context']) &&
-                    isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['context'][Environment::getContext()->__toString()]['frontend']['hint']);
+                    GeneralHelper::isCurrentIndicator(Hint::class);
             }
         );
     }

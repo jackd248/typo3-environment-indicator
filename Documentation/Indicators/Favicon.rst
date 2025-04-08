@@ -6,7 +6,7 @@
 Favicon
 =======================
 
-The favicon of the frontend or backend context will be modified regarding the application context and the associated
+The favicon of the frontend or backend context will be modified regarding the environment and the associated
 configuration.
 
 ..  figure:: /Images/preview-favicon.png
@@ -60,25 +60,33 @@ Modifiers
 The favicon modification configuration can be found in
 :code:`$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['typo3_environment_indicator']`.
 
-Add a configured favicon modifier to the desired application context (e.g. :code:`Testing`) in your :code:`ext_localconf.php`:
+Add a configured favicon modifier to the desired environment (e.g. :code:`Testing`) in your :code:`ext_localconf.php`:
 
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Testing',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Testing')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\TextModifier([
                 'text' => 'TEST',
                 'color' => '#f39c12',
                 'stroke' => [
                     'color' => '#ffffff',
                     'width' => 3,
                 ],
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-test.png
     :alt: Favicon Modifier Example
@@ -100,20 +108,28 @@ This is the default modifier if no own configuration is set.
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\TextModifier([
                 'text' => 'DEV',
                 'color' => '#bd593a',
                 'stroke' => [
                     'color' => '#ffffff',
                     'width' => 3,
                 ],
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 
 ..  figure:: /Images/Favicons/typo3-text.png
@@ -140,15 +156,23 @@ Adds a triangle indicator to the favicon.
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\TriangleModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\TriangleModifier([
                 'color' => '#bd593a',
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-triangle.png
     :alt: Favicon TriangleModifier Example
@@ -173,15 +197,23 @@ Adds a circle indicator to the favicon.
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\CircleModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\CircleModifier([
                 'color' => '#bd593a',
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-circle.png
     :alt: Favicon CircleModifier Example
@@ -207,15 +239,23 @@ Adds a frame around the favicon.
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\FrameModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\FrameModifier([
                 'color' => '#bd593a',
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-frame.png
     :alt: Favicon FrameModifier Example
@@ -234,20 +274,28 @@ Additional optional configuration keys:
 ReplaceModifier
 ===========
 
-Replace the original favicon with a custom one regarding the application context.
+Replace the original favicon with a custom one regarding the environment.
 
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\ReplaceModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\ReplaceModifier([
                 'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/replace.png
     :alt: Favicon ReplaceModifier Example
@@ -261,20 +309,28 @@ Replace the original favicon with a custom one regarding the application context
 OverlayModifier
 ===========
 
-Overlay an additional image to the original favicon regarding the application context.
+Overlay an additional image to the original favicon regarding the environment.
 
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\OverlayModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\OverlayModifier([
                 'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-overlay.png
     :alt: Favicon OverlayModifier Example
@@ -295,7 +351,7 @@ Additional optional configuration keys:
 ColorizeModifier
 ===========
 
-Overlay an additional image to the original favicon regarding the application context.
+Overlay an additional image to the original favicon regarding the environment.
 
 ..  warning::
     This modifier is only available with "Imagick" image driver.
@@ -303,15 +359,23 @@ Overlay an additional image to the original favicon regarding the application co
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility::configByContext(
-        applicationContext: 'Development',
-        faviconModifierConfiguration: [
-            \KonradMichalik\Typo3EnvironmentIndicator\Image\ColorizeModifier::class =>
-            [
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
+    use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
+    use KonradMichalik\Typo3EnvironmentIndicator\Image;
+
+    Configuration\Handler::addIndicator(
+    triggers: [
+        new Trigger\ApplicationContext('Development')
+    ],
+    indicators: [
+        new Indicator\Favicon([
+            new Image\ColorizeModifier([
                 'color' => '#039BE5',
-            ]
-        ],
-    );
+            ])
+        ])
+    ]
+);
 
 ..  figure:: /Images/Favicons/typo3-colorize.png
     :alt: Favicon ColorizeModifier Example
