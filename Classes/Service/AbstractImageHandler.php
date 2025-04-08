@@ -57,6 +57,10 @@ abstract class AbstractImageHandler
                 continue;
             }
 
+            if (!method_exists($modifier, 'modify')) {
+                continue;
+            }
+
             $modifier->modify($image);
         }
 
