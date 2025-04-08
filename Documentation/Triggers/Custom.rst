@@ -19,7 +19,7 @@ The :code:`Custom` trigger is used to show the indicators in the TYPO3 backend f
                     return true;
                 }
             ),
-            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\Custom(\YourExtension\YourClass::yourMethod()),
+            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\Custom('\YourExtension\YourClass::yourMethod()'),
         ],
         indicators: [
             new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Topbar([
