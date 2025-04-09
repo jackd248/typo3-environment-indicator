@@ -19,8 +19,6 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterface
 {
-    protected ServerRequestInterface $request;
-
     public function __construct(
         protected readonly WidgetConfigurationInterface $configuration,
         protected readonly ?ButtonProviderInterface $buttonProvider = null,
