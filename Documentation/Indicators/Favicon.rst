@@ -76,7 +76,7 @@ Add a configured favicon modifier to the desired environment (e.g. :code:`Testin
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'TEST',
                     'color' => '#f39c12',
                     'stroke' => [
@@ -119,7 +119,7 @@ This is the default modifier if no own configuration is set.
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'DEV',
                     'color' => '#bd593a',
                     'stroke' => [
@@ -167,7 +167,7 @@ Adds a triangle indicator to the favicon.
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TriangleModifier([
+                new Image\Modifier\TriangleModifier([
                     'color' => '#bd593a',
                 ])
             ])
@@ -208,7 +208,7 @@ Adds a circle indicator to the favicon.
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\CircleModifier([
+                new Image\Modifier\CircleModifier([
                     'color' => '#bd593a',
                 ])
             ])
@@ -250,7 +250,7 @@ Adds a frame around the favicon.
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\FrameModifier([
+                new Image\Modifier\FrameModifier([
                     'color' => '#bd593a',
                 ])
             ])
@@ -290,7 +290,7 @@ Replace the original favicon with a custom one regarding the environment.
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\ReplaceModifier([
+                new Image\Modifier\ReplaceModifier([
                     'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
                 ])
             ])
@@ -325,7 +325,7 @@ Overlay an additional image to the original favicon regarding the environment.
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\OverlayModifier([
+                new Image\Modifier\OverlayModifier([
                     'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
                 ])
             ])
@@ -370,7 +370,7 @@ Overlay an additional image to the original favicon regarding the environment.
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\ColorizeModifier([
+                new Image\Modifier\ColorizeModifier([
                     'color' => '#039BE5',
                 ])
             ])

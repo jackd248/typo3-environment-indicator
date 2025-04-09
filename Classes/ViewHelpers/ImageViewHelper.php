@@ -6,7 +6,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\ViewHelpers;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Image;
-use KonradMichalik\Typo3EnvironmentIndicator\Service\FrontendImageHandler;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\FrontendImageHandler;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;

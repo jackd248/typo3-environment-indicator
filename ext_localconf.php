@@ -15,26 +15,26 @@ $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = \KonradMichalik\
 // Default configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] = [];
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'] = [
-    Image\TextModifier::class => [
+    Image\Modifier\TextModifier::class => [
         'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
         'position' => 'top left',
     ],
-    Image\TriangleModifier::class => [
+    Image\Modifier\TriangleModifier::class => [
         'size' => 0.7,
         'position' => 'bottom right',
     ],
-    Image\CircleModifier::class => [
+    Image\Modifier\CircleModifier::class => [
         'size' => 0.4,
         'padding' => 0.1,
         'position' => 'bottom right',
     ],
-    Image\FrameModifier::class => [
+    Image\Modifier\FrameModifier::class => [
         'borderSize' => 5,
     ],
-    Image\ColorizeModifier::class => [
+    Image\Modifier\ColorizeModifier::class => [
         'opacity' => 1,
     ],
-    Image\OverlayModifier::class => [
+    Image\Modifier\OverlayModifier::class => [
         'size' => 0.5,
         'padding' => 0.1,
         'position' => 'bottom right',
@@ -67,7 +67,7 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'DEV',
                     'color' => '#bd593a',
                     'stroke' => [
@@ -91,7 +91,7 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'TEST',
                     'color' => '#f39c12',
                     'stroke' => [
@@ -115,7 +115,7 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'STG',
                     'color' => '#2f9c91',
                     'stroke' => [

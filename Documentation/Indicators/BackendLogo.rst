@@ -37,7 +37,7 @@ The backend logo modification is identical to the :ref:`favicon modification <fa
         ],
         indicators: [
             new Indicator\Backend\Logo([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'TEST',
                     'color' => '#f39c12',
                     'stroke' => [

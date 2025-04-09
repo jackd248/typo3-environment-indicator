@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
+namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 
 use ImagickPixel;
 use Intervention\Image\Interfaces\ImageInterface;

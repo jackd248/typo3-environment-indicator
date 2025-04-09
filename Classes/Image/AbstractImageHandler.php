@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KonradMichalik\Typo3EnvironmentIndicator\Service;
+namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 use Intervention\Image\ImageManager;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;

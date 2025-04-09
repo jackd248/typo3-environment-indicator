@@ -26,7 +26,7 @@ You can combine multiple indicators.
             ],
             indicators: [
                 new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Favicon([
-                    new \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier([
+                    new \KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TextModifier([
                         'text' => 'TEST',
                         'color' => '#f39c12',
                         'stroke' => [

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
+namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 
 use Intervention\Image\Geometry\Factories\PolygonFactory;
 use Intervention\Image\Interfaces\ImageInterface;

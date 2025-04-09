@@ -19,7 +19,7 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\TextModifier([
+            new Image\Modifier\TextModifier([
                 'text' => 'TEST',
                 'color' => '#f39c12',
                 'stroke' => [
@@ -29,7 +29,7 @@ Configuration\Handler::addIndicator(
             ])
         ]),
         new Indicator\Backend\Logo([
-            new Image\TextModifier([
+            new Image\Modifier\TextModifier([
                 'text' => 'TEST',
                 'color' => '#f39c12',
                 'stroke' => [
@@ -39,7 +39,7 @@ Configuration\Handler::addIndicator(
             ])
         ]),
         new Indicator\Frontend\Image([
-            new Image\TextModifier([
+            new Image\Modifier\TextModifier([
                 'text' => 'TEST',
                 'color' => '#f39c12',
                 'stroke' => [
@@ -73,7 +73,7 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\TriangleModifier([
+            new Image\Modifier\TriangleModifier([
                 'color' => '#283593',
                 'position' => 'top right'
             ])
@@ -96,7 +96,7 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\CircleModifier([
+            new Image\Modifier\CircleModifier([
                 'color' => '#1B5E20',
                 'position' => 'top left'
             ])
@@ -119,7 +119,7 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\FrameModifier([
+            new Image\Modifier\FrameModifier([
                 'color' => '#AA00FF',
             ])
         ]),
@@ -141,12 +141,12 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\ColorizeModifier([
+            new Image\Modifier\ColorizeModifier([
                 'color' => '#039BE5',
             ]),
         ]),
         new Indicator\Favicon([
-            new Image\ColorizeModifier([
+            new Image\Modifier\ColorizeModifier([
                 'color' => '#EC407A',
                 'opacity' => 0.5,
             ])
@@ -169,7 +169,7 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\ReplaceModifier([
+            new Image\Modifier\ReplaceModifier([
                 'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
             ])
         ]),
@@ -191,7 +191,7 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\OverlayModifier([
+            new Image\Modifier\OverlayModifier([
                 'path' => 'EXT:sitepackage/Resources/Public/Icons/favicon.png',
             ])
         ]),
@@ -213,7 +213,7 @@ Configuration\Handler::addIndicator(
     ],
     indicators: [
         new Indicator\Favicon([
-            new Image\ColorizeModifier([
+            new Image\Modifier\ColorizeModifier([
                 'color' => '#FFF176',
                 'brightness' => 100,
             ])
