@@ -48,22 +48,22 @@ The configuration key for the frontend image is :code:`frontendImageModifierConf
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
     Configuration\Handler::addIndicator(
-    triggers: [
-        new Trigger\ApplicationContext('Testing')
-    ],
-    indicators: [
-        new Indicator\Frontend\Image([
-            new Image\TextModifier([
-                'text' => 'TEST',
-                'color' => '#f39c12',
-                'stroke' => [
-                    'color' => '#ffffff',
-                    'width' => 3,
-                ],
+        triggers: [
+            new Trigger\ApplicationContext('Testing')
+        ],
+        indicators: [
+            new Indicator\Frontend\Image([
+                new Image\TextModifier([
+                    'text' => 'TEST',
+                    'color' => '#f39c12',
+                    'stroke' => [
+                        'color' => '#ffffff',
+                        'width' => 3,
+                    ],
+                ])
             ])
-        ])
-    ]
-);
+        ]
+    );
 
 ..  figure:: /Images/Favicons/typo3-test.png
     :alt: Frontend Image Modifier Example

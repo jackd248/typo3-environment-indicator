@@ -24,21 +24,21 @@ You can adjust the color of the toolbar item in your :code:`ext_localconf.php`:
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
 
     Configuration\Handler::addIndicator(
-    triggers: [
-        new Trigger\ApplicationContext('Testing')
-    ],
-    indicators: [
-        new Indicator\Backend\Toolbar([
-            'color' => '#bd593a',
-        ])
-    ]
-);
+        triggers: [
+            new Trigger\ApplicationContext('Testing')
+        ],
+        indicators: [
+            new Indicator\Backend\Toolbar([
+                'color' => '#bd593a',
+            ])
+        ]
+    );
 
 Additional optional configuration keys:
 
-- :code:`text` (string): The text of the toolbar item. Default is the environment.
+- :code:`text` (string): The text of the toolbar item. Default is the application context.
 - :code:`icon` (string): The icon of the toolbar item. Default is :code:`information-application-context`.
 - :code:`index` (int): The positioning index of the toolbar item. Default is :code:`0`.
 
 ..  note::
-    The backend toolbar item is a feature, which can also be shown in production environments. Use the :ref:`extension settings <extconf-backend.contextProduction>` to enable, disable or restrict it.
+    The backend toolbar item is a feature, which can also be shown in production context. Use the :ref:`extension settings <extconf-backend.contextProduction>` to enable, disable or restrict it.

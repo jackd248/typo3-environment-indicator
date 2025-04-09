@@ -41,7 +41,7 @@ class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterf
             'button' => $this->buttonProvider,
             'options' => $this->options,
             'context' => [
-                'icon' => $this->getWidgetConfiguration()['icon']['context'] ?? 'information-application-context',
+                'icon' => $this->getWidgetConfiguration()['icon'] ?? 'information-application-context',
                 'name' => $this->getWidgetConfiguration()['name'] ?? Environment::getContext()->__toString(),
                 'color' => $this->getWidgetConfiguration()['color'] ?? 'transparent',
                 'textColor' => ColorUtility::getOptimalTextColor($this->getWidgetConfiguration()['color'] ?? 'transparent', fallbackColor: '#ffffff'),

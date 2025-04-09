@@ -20,29 +20,29 @@ You can combine multiple indicators.
 ..  code-block:: php
     :caption: ext_localconf.php
 
-    \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler::addIndicator(
-        triggers: [
-            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\ApplicationContext('Development'),
-        ],
-        indicators: [
-            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Favicon([
-                new \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier([
-                    'text' => 'TEST',
-                    'color' => '#f39c12',
-                    'stroke' => [
-                        'color' => '#ffffff',
-                        'width' => 3,
-                    ],
-                ])
-            ]),
-            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint([
-                'color' => '#FFF176',
-            ]),
-            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Topbar([
-                'color' => '#00ACC1',
-            ]),
-        ]
-    );
+        \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler::addIndicator(
+            triggers: [
+                new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\ApplicationContext('Development'),
+            ],
+            indicators: [
+                new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Favicon([
+                    new \KonradMichalik\Typo3EnvironmentIndicator\Image\TextModifier([
+                        'text' => 'TEST',
+                        'color' => '#f39c12',
+                        'stroke' => [
+                            'color' => '#ffffff',
+                            'width' => 3,
+                        ],
+                    ])
+                ]),
+                new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint([
+                    'color' => '#FFF176',
+                ]),
+                new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Topbar([
+                    'color' => '#00ACC1',
+                ]),
+            ]
+        );
 
 
 The following indicators are available:
@@ -56,3 +56,4 @@ The following indicators are available:
     BackendTopbar
     Favicon
     BackendLogo
+    DashboardWidget

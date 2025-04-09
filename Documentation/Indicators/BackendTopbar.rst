@@ -24,15 +24,15 @@ You can adjust the color of the topbar in your :code:`ext_localconf.php`:
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
 
     Configuration\Handler::addIndicator(
-    triggers: [
-        new Trigger\ApplicationContext('Testing')
-    ],
-    indicators: [
-        new Indicator\Backend\Topbar([
-            'color' => '#bd593a',
-        ])
-    ]
-);
+        triggers: [
+            new Trigger\ApplicationContext('Testing')
+        ],
+        indicators: [
+            new Indicator\Backend\Topbar([
+                'color' => '#bd593a',
+            ])
+        ]
+    );
 
 Additional optional configuration keys:
 
