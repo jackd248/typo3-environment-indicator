@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" datatype="plaintext" original="messages">
+        <header/>
+        <body>
+            <trans-unit id="widgets.environmentIndicator.title">
+                <source>Environment Indicator</source>
+            </trans-unit>
+            <trans-unit id="widgets.environmentIndicator.description">
+                <source></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
