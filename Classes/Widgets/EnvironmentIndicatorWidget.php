@@ -8,7 +8,6 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Widget;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
-use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Dashboard\Widgets\AdditionalCssInterface;
