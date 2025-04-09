@@ -24,7 +24,7 @@ services:
         identifier: 'environmentIndicator'
         groupNames: 'systemInfo'
         title: 'LLL:EXT:typo3_environment_indicator/Resources/Private/Language/locallang.xlf:widgets.environmentIndicator.title'
-        description: 'LLL:EXT:xima_typo3_content_planner/Resources/Private/Language/locallang.xlf:widgets.environmentIndicator.description'
+        description: 'LLL:EXT:typo3_environment_indicator/Resources/Private/Language/locallang.xlf:widgets.environmentIndicator.description'
         iconIdentifier: 'actions-globe-alt'
         height: 'small'
         width: 'small'
