@@ -7,7 +7,7 @@ Backend Logo
 =======================
 
 The backend logo will be modified regarding the environment and the associated
-configuration.
+configuration. This can be used to e.g. show the current environment in the website logo.
 
 ..  figure:: /Images/preview-backend-logo.jpg
     :alt: Backend Logo Example

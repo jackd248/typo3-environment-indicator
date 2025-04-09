@@ -13,7 +13,12 @@ The dashboard widget can be placed to the TYPO3 backend dashboard. It shows the 
 
     Dashboard Widget Example
 
-You can adjust the widget in your :code:`ext_localconf.php`:
+..  figure:: /Images/widget-selection.jpg
+    :alt: Dashboard Widget Selection
+
+    Dashboard Widget Selection
+
+You can adjust the widget configuration in your :code:`ext_localconf.php`:
 
 ..  code-block:: php
     :caption: ext_localconf.php

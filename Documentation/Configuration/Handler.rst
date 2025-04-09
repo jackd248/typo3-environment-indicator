@@ -15,7 +15,7 @@ See the configuration for :ref:`triggers <triggers>` and :ref:`indicators <indic
 
     \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler::addIndicator(
         triggers: [
-            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\FrontendUserGroups(1,2)
+            new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\FrontendUserGroup(1,2)
         ],
         indicators: [
             new \KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Topbar([

@@ -37,8 +37,6 @@ Modifiers
 
 The frontend image modification is identical to the :ref:`favicon modification <favicon-modifiers>`. You can use the same modifiers and configuration.
 
-The configuration key for the frontend image is :code:`frontendImageModifierConfiguration`.
-
 ..  code-block:: php
     :caption: ext_localconf.php
 

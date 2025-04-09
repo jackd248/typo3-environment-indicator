@@ -7,7 +7,7 @@
                 <source>Environment Indicator</source>
             </trans-unit>
             <trans-unit id="widgets.environmentIndicator.description">
-                <source></source>
+                <source>Shows the current environment regarding the indicator configuration.</source>
             </trans-unit>
         </body>
     </file>

@@ -28,7 +28,7 @@ General
     :type: boolean
     :Default: 1
 
-    Enable the default configuration for the environment indicators. If you want to configure the environment indicators by yourself, set this to false.
+    Enable the default configuration for the environment indicators. If you want to configure the environment indicators by yourself, set this to false. See :ref:`configuration`.
 
 Frontend
 =======

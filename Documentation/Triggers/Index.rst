@@ -6,7 +6,7 @@
 Triggers
 ============
 
-Triggers are used to define when environment indicators should be shown.
+Triggers acts like conditions and are used to define when environment indicators should be shown.
 
 You can combine multiple different triggers to build up flexible conditions.
 
@@ -25,7 +25,7 @@ You can combine multiple different triggers to build up flexible conditions.
         ]
     );
 
-Their are several triggers available, which can be used to show the indicators in different contexts.
+There are several triggers available, which can be used to show the indicators in different contexts.
 
 
 ..  toctree::
