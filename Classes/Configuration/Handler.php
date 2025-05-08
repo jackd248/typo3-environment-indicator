@@ -30,6 +30,11 @@ class Handler
             $configuration['indicators'][] = $indicator;
         }
 
+        if ((empty($configuration['triggers']) && empty($configuration['indicators'])) ||
+            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'])
+        ) {
+            return;
+        }
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'][] = $configuration;
     }
 
