@@ -51,7 +51,6 @@ class TopbarItem implements ToolbarItemInterface
             return '';
         }
 
-        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
         if (($extensionConfig['backend']['contextProduction'] ?? false) !== true && Environment::getContext()->__toString() === 'Production') {
             return '';
         }

@@ -49,7 +49,6 @@ class ContextItem implements ToolbarItemInterface
             return '';
         }
 
-        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
         if (($extensionConfig['backend']['contextProduction'] ?? false) !== true && Environment::getContext()->__toString() === 'Production') {
             return '';
         }
@@ -59,14 +58,18 @@ class ContextItem implements ToolbarItemInterface
             return '';
         }
 
+        $contextName = Environment::getContext()->__toString();
+        $defaultColor = 'transparent';
+        $contextColor = $toolbarConfig['color'] ?? $defaultColor;
+
         return ViewFactoryHelper::renderView(
             template: 'ToolbarItems/ContextItem.html',
             values: [
                 'context' => [
-                    'icon' => $this->getBackendToolbarConfiguration()['icon']['context'] ?? 'information-application-context',
-                    'name' => $this->getBackendToolbarConfiguration()['name'] ?? Environment::getContext()->__toString(),
-                    'color' => $this->getBackendToolbarConfiguration()['color'] ?? 'transparent',
-                    'textColor' => ColorUtility::getOptimalTextColor($this->getBackendToolbarConfiguration()['color'] ?? 'transparent'),
+                    'icon' => $toolbarConfig['icon']['context'] ?? 'information-application-context',
+                    'name' => $toolbarConfig['name'] ?? $contextName,
+                    'color' => $contextColor,
+                    'textColor' => ColorUtility::getOptimalTextColor($contextColor),
                 ],
             ]
         );
