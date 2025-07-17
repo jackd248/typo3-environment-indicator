@@ -2,6 +2,25 @@
 
 declare(strict_types=1);
 
+/*
+ * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ *
+ * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
 
 class Ip implements TriggerInterface
@@ -15,7 +34,7 @@ class Ip implements TriggerInterface
 
     public function check(): bool
     {
-        $currentIp = $_SERVER['REMOTE_ADDR'];
+        $currentIp = $_SERVER['REMOTE_ADDR']; // @phpstan-ignore-line disallowed.variable
         foreach ($this->ips as $ip) {
             if ($this->ipMatches($currentIp, $ip)) {
                 return true;
@@ -33,7 +52,7 @@ class Ip implements TriggerInterface
     */
     protected function ipMatches(string $currentIp, string $ip): bool
     {
-        if (strpos($ip, '/') !== false) {
+        if (str_contains($ip, '/')) {
             return $this->cidrMatch($currentIp, $ip);
         }
         return $currentIp === $ip;
@@ -48,7 +67,7 @@ class Ip implements TriggerInterface
     */
     protected function cidrMatch(string $ip, string $cidr): bool
     {
-        list($subnet, $mask) = explode('/', $cidr);
+        [$subnet, $mask] = explode('/', $cidr);
         if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
             $ip = ip2long($ip);
             $subnet = ip2long($subnet);
