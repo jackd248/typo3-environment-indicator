@@ -28,12 +28,12 @@ class ContextUtility
 
     public function getPositionX(): string
     {
-        return explode(' ', $this->getFrontendHintConfiguration()['position'])[0] . ':0';
+        return explode(' ', $this->getFrontendHintConfiguration()['position'] ?? 'left top')[0] . ':0';
     }
 
     public function getPositionY(): string
     {
-        return explode(' ', $this->getFrontendHintConfiguration()['position'])[1] . ':0';
+        return explode(' ', $this->getFrontendHintConfiguration()['position'] ?? 'left top')[1] . ':0';
     }
 
     public function getTitle(): string
