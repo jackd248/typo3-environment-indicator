@@ -22,7 +22,7 @@ The following configuration is also the default configuration. This shall show t
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'DEV',
                     'color' => '#bd593a',
                     'stroke' => [
@@ -46,7 +46,7 @@ The following configuration is also the default configuration. This shall show t
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'TEST',
                     'color' => '#f39c12',
                     'stroke' => [
@@ -70,7 +70,7 @@ The following configuration is also the default configuration. This shall show t
         ],
         indicators: [
             new Indicator\Favicon([
-                new Image\TextModifier([
+                new Image\Modifier\TextModifier([
                     'text' => 'STG',
                     'color' => '#2f9c91',
                     'stroke' => [
