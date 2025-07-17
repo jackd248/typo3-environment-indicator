@@ -13,10 +13,19 @@
 	],
 	"require": {
 		"php": "^8.1",
+		"ext-filter": "*",
 		"intervention/image": "^3.0",
 		"lordelph/icofileloader": "^3.0.0",
 		"meyfa/php-svg": "^0.16",
-		"typo3/cms-core": "^11.5 || ^12.4 || ^13.4"
+		"psr/http-message": "^1.0 || ^2.0",
+		"psr/http-server-handler": "^1.0",
+		"psr/http-server-middleware": "^1.0",
+		"symfony/expression-language": "^5.4 || ^6.4 || ^7.0",
+		"typo3/cms-backend": "^11.5 || ^12.4 || ^13.4",
+		"typo3/cms-core": "^11.5 || ^12.4 || ^13.4",
+		"typo3/cms-dashboard": "^11.5 || ^12.4 || ^13.4",
+		"typo3/cms-fluid": "^11.5 || ^12.4 || ^13.4",
+		"typo3fluid/fluid": "^2.15 || ^4.2"
 	},
 	"require-dev": {
 		"armin/editorconfig-cli": "^2.0",
@@ -39,6 +48,11 @@
 		"typo3/cms-base-distribution": "^12.0 || ^13.4",
 		"typo3/cms-lowlevel": "^12.0 || ^13.4",
 		"typo3/coding-standards": "0.8.0"
+	},
+	"suggest": {
+		"ext-gd": "Required for image processing and rendering of SVG icons.",
+		"ext-imagick": "Required for image processing and rendering of SVG icons with Imagick support.",
+		"intervention/image-driver-vips": "Required for image processing and rendering of SVG icons with VIPS support."
 	},
 	"autoload": {
 		"psr-4": {
