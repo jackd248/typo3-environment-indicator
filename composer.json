@@ -13,24 +13,45 @@
 	],
 	"require": {
 		"php": "^8.1",
-		"intervention/image": "^3.0",
+		"ext-filter": "*",
+		"intervention/image": "^3.7",
 		"lordelph/icofileloader": "^3.0.0",
 		"meyfa/php-svg": "^0.16",
-		"typo3/cms-core": "^11.5 || ^12.4 || ^13.4"
+		"psr/http-message": "^1.0 || ^2.0",
+		"psr/http-server-handler": "^1.0",
+		"psr/http-server-middleware": "^1.0",
+		"symfony/expression-language": "^5.4 || ^6.4 || ^7.0",
+		"typo3/cms-backend": "^11.5 || ^12.4 || ^13.4",
+		"typo3/cms-core": "^11.5 || ^12.4 || ^13.4",
+		"typo3/cms-dashboard": "^11.5 || ^12.4 || ^13.4",
+		"typo3/cms-fluid": "^11.5 || ^12.4 || ^13.4",
+		"typo3fluid/fluid": "^2.15 || ^4.2"
 	},
 	"require-dev": {
-		"armin/editorconfig-cli": "^1.0 || ^2.0",
+		"armin/editorconfig-cli": "^2.0",
+		"eliashaeussler/php-cs-fixer-config": "2.3.0",
+		"eliashaeussler/version-bumper": "^2.4 || ^3.0",
 		"ergebnis/composer-normalize": "^2.44",
 		"friendsofphp/php-cs-fixer": "^3.52",
-		"helhum/typo3-console": "^8.1",
+		"helhum/typo3-console": "^7.0 || ^8.1",
 		"helmich/typo3-typoscript-lint": "^3.2",
-		"roave/security-advisories": "dev-latest",
-		"saschaegerer/phpstan-typo3": "^1.0 || ^2.0",
-		"ssch/typo3-rector": "^2.0 || ^3.0",
-		"symfony/translation": "^6.3 || ^7.0",
+		"phpstan/phpstan-deprecation-rules": "^1.0 || ^2.0",
+		"phpstan/phpstan-phpunit": "^1.0 || ^2.0",
+		"phpstan/phpstan-strict-rules": "^1.0 || ^2.0",
+		"phpunit/phpunit": "^10.2 || ^11.0 || ^12.0",
+		"saschaegerer/phpstan-typo3": "^1.10 || ^2.0",
+		"spaze/phpstan-disallowed-calls": "^4.0",
+		"ssch/typo3-rector": "^2.10 || ^3.0",
+		"symfony/translation": "^5.0 || ^6.3 || ^7.0",
+		"tomasvotruba/type-coverage": "^1.0 || ^2.0",
 		"typo3/cms-base-distribution": "^11.5 || ^12.4 || ^13.4",
 		"typo3/cms-lowlevel": "^11.5 || ^12.4 || ^13.4",
-		"typo3/tailor": "^1.6"
+		"typo3/coding-standards": "^0.7 || ^0.8"
+	},
+	"suggest": {
+		"ext-gd": "Required for image processing and rendering of SVG icons.",
+		"ext-imagick": "Required for image processing and rendering of SVG icons with Imagick support.",
+		"intervention/image-driver-vips": "Required for image processing and rendering of SVG icons with VIPS support."
 	},
 	"autoload": {
 		"psr-4": {
@@ -39,6 +60,7 @@
 	},
 	"config": {
 		"allow-plugins": {
+			"eliashaeussler/version-bumper": true,
 			"ergebnis/composer-normalize": true,
 			"helhum/dotenv-connector": true,
 			"php-http/discovery": true,
@@ -56,19 +78,6 @@
 		}
 	},
 	"scripts": {
-		"check": [
-			"@composer:normalize:check",
-			"@editorconfig:lint:check",
-			"@php:lint:check",
-			"@yaml:lint:check",
-			"@xml:lint:check",
-			"@typoscript:lint:check",
-			"@php:stan:check",
-			"@php:rector:check",
-			"@php:fixer:check"
-		],
-		"composer:normalize": "@composer normalize --no-check-lock",
-		"composer:normalize:check": "@composer normalize --no-check-lock --dry-run",
 		"docs": [
 			"@docs:cleanup",
 			"@docs:build",
@@ -77,33 +86,35 @@
 		"docs:build": "docker compose run --rm docs",
 		"docs:cleanup": "rm -rf .Build/docs",
 		"docs:open": "open .Build/docs/Index.html",
-		"editorconfig:lint": "ec --strict --fix --git-only -n",
-		"editorconfig:lint:check": "ec --strict --git-only -n",
 		"fix": [
-			"@composer:normalize",
-			"@editorconfig:lint",
-			"@php:fixer",
-			"@yaml:lint",
-			"@xml:lint",
-			"@typoscript:lint",
-			"@php:stan",
-			"@php:rector"
+			"@fix:composer",
+			"@fix:editorconfig",
+			"@fix:php"
 		],
-		"php:fixer": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
-		"php:fixer:check": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix --dry-run --format=checkstyle > php-cs-fixer.xml || true",
-		"php:lint": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*'  ! -path './.Build/*' ! -path './public/*' -print0 | xargs -0 -n 1 -P 4 php -l",
-		"php:lint:check": "find *.php . -name '*.php' ! -path './vendor/*'  ! -path './var/*' ! -path '*node_modules/*'  ! -path './.Build/*' ! -path './public/*' -print0 | xargs -0 -n 1 -P 4 php -l",
-		"php:rector": "rector",
-		"php:rector:check": "rector --dry-run",
-		"php:stan": "php vendor/bin/phpstan --generate-baseline=phpstan-baseline.neon --allow-empty-baseline --memory-limit=2G",
-		"php:stan:check": "phpstan --no-progress --error-format=checkstyle > phpstan.xml || true",
-		"ter:artefact": "php vendor/bin/tailor create-artefact",
-		"ter:version": "php vendor/bin/tailor set-version",
-		"typoscript:lint": "typoscript-lint",
-		"typoscript:lint:check": "typoscript-lint --fail-on-warnings",
-		"xml:lint": "find . -name '*.xlf' ! -path './vendor/*' ! -path './var/*' ! -path './.Build/*'  ! -path './public/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
-		"xml:lint:check": "find ./ -name '*.xlf' ! -path './vendor/*' ! -path './var/*' ! -path './.Build/*'  ! -path './public/*' | xargs -r xmllint --schema vendor/symfony/translation/Resources/schemas/xliff-core-1.2-transitional.xsd --noout",
-		"yaml:lint": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' ! -path './.Build/*'  ! -path './public/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint",
-		"yaml:lint:check": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' ! -path './.Build/*'  ! -path './public/*' \\( -name '*.yaml' -o -name '*.yml' \\) | xargs -r yaml-lint"
+		"fix:composer": "@composer normalize",
+		"fix:editorconfig": "@lint:editorconfig --fix",
+		"fix:php": "php vendor/bin/php-cs-fixer --config=php-cs-fixer.php fix",
+		"lint": [
+			"@lint:composer",
+			"@lint:editorconfig",
+			"@lint:php",
+			"@lint:typoscript",
+			"@lint:yaml"
+		],
+		"lint:composer": "@fix:composer --dry-run",
+		"lint:editorconfig": "ec --git-only",
+		"lint:php": "@fix:php --dry-run",
+		"lint:typoscript": "typoscript-lint --fail-on-warnings",
+		"lint:yaml": "find ./ ! -path './vendor/*' ! -path '*/node_modules/*' ! -path './.Build/*' ! -path './xima_typo3_content_planner/*' \\( -name '*.yaml' -o -name '*.yml' \\) -exec yaml-lint {} +",
+		"migration": [
+			"@migration:rector"
+		],
+		"migration:rector": "rector process -c rector.php",
+		"sca": [
+			"@sca:php"
+		],
+		"sca:php": "phpstan analyse --memory-limit=2G",
+		"test": "@test:coverage --no-coverage",
+		"test:coverage": "XDEBUG_MODE=coverage phpunit -c phpunit.xml"
 	}
 }

@@ -14,3 +14,4 @@ node_modules
 php-cs-fixer.xml
 phpstan.xml
 tailor-version-artefact/
+/.phpunit.result.cache

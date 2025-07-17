@@ -1,0 +1,7 @@
+{
+	"symbol-whitelist": [
+		"imagepng",
+		"ImagickPixel",
+		"Intervention\\Image\\Drivers\\Vips\\Driver"
+	]
+}
