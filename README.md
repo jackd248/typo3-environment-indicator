@@ -15,6 +15,8 @@
 
 This extension provides several features to show an environment indicator in the TYPO3 frontend and backend.
 
+## ✨ Features
+
 | Preview                                                                                | Feature                                                                                                                                                                                                                                                                      | Frontend | Backend |
 |----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|---------|
 | ![Frontend Hint Preview](Documentation/Images/preview-frontend-hint.png)               | **[Frontend hint](https://docs.typo3.org/p/konradmichalik/typo3-environment-indicator/main/en-us/Indicators/FrontendHint.html)** <br/><br/> Adds an informative hint to the frontend showing the website title and the current application context.                          | ✔️       |         |
@@ -29,11 +31,12 @@ This extension provides several features to show an environment indicator in the
 > These environment indicators are mainly for development purposes (e.g. distinguishing between different test systems)
 > and will not show in production environments.
 
-## Requirements
+## 🔥 Installation
 
-- TYPO3 >= 11.5 & PHP 8.1+
+### Requirements
 
-## Installation
+- TYPO3 >= 11.5
+- PHP 8.1+
 
 ### Composer
 
@@ -54,31 +57,25 @@ composer require konradmichalik/typo3-environment-indicator
 Download the zip file
 from [TYPO3 extension repository (TER)](https://extensions.typo3.org/extension/typo3_environment_indicator).
 
-## Documentation
+## 📙 Documentation
 
 Please have a look at the
 [official extension documentation](https://docs.typo3.org/p/konradmichalik/typo3-environment-indicator/main/en-us/Index.html).
 
-## Migration from version 1.x to 2.x
+## 🚧 Migration from version 1.x to 2.x
 
 Since version 2.x, the extension is using the new `Handler::addIndicator` method to add the environment indicator
 configuration instead of the old `ConfigurationUtility::configByContext` method.
 
-## Development
+## 🧑‍💻 Contributing
 
-Use the following ddev command to easily install all supported TYPO3 versions for locale development.
+Please have a look at [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
-```bash
-ddev install all
-```
-
-Use the `context` command to easily change the application context in all supported TYPO3 versions.
-
-## Credits
+## 💎 Credits
 
 This project is partly inspired by the [laravel-favicon](https://github.com/beyondcode/laravel-favicon) package.
 
-## License
+## ⭐ License
 
 This project is licensed
 under [GNU General Public License 2.0 (or later)](LICENSE.md).
