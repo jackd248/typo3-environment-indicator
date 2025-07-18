@@ -71,31 +71,50 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         );
     }
 
-    public function validateConfiguration(array $configuration): bool
+    public function validateConfigurationWithErrors(array $configuration): array
     {
-        if (!isset($configuration['color']) || !is_string($configuration['color'])) {
-            return false;
+        $errors = [];
+
+        // Validate required color
+        if (!isset($configuration['color'])) {
+            $errors[] = 'Missing required configuration key: color';
+        } elseif (!is_string($configuration['color'])) {
+            $errors[] = 'Configuration key "color" must be a string';
         }
 
-        if (!isset($configuration['size']) || !is_numeric($configuration['size']) ||
-            $configuration['size'] < 0 || $configuration['size'] > 1) {
-            return false;
+        // Validate required size
+        if (!isset($configuration['size'])) {
+            $errors[] = 'Missing required configuration key: size';
+        } elseif (!is_numeric($configuration['size'])) {
+            $errors[] = 'Configuration key "size" must be numeric';
+        } elseif ($configuration['size'] < 0 || $configuration['size'] > 1) {
+            $errors[] = 'Configuration key "size" must be between 0 and 1';
         }
 
-        if (!isset($configuration['padding']) || !is_numeric($configuration['padding']) ||
-            $configuration['padding'] < 0 || $configuration['padding'] > 1) {
-            return false;
+        // Validate required padding
+        if (!isset($configuration['padding'])) {
+            $errors[] = 'Missing required configuration key: padding';
+        } elseif (!is_numeric($configuration['padding'])) {
+            $errors[] = 'Configuration key "padding" must be numeric';
+        } elseif ($configuration['padding'] < 0 || $configuration['padding'] > 1) {
+            $errors[] = 'Configuration key "padding" must be between 0 and 1';
         }
 
-        if (!isset($configuration['position']) || !is_string($configuration['position'])) {
-            return false;
+        // Validate required position
+        if (!isset($configuration['position'])) {
+            $errors[] = 'Missing required configuration key: position';
+        } elseif (!is_string($configuration['position'])) {
+            $errors[] = 'Configuration key "position" must be a string';
+        } else {
+            $validPositions = ['top left', 'top center', 'top right', 'center left', 'center', 'center right', 'bottom left', 'bottom center', 'bottom right'];
+            if (!in_array($configuration['position'], $validPositions, true)) {
+                $errors[] = 'Configuration key "position" must be one of: ' . implode(', ', $validPositions);
+            }
         }
 
-        $validPositions = ['top left', 'top right', 'bottom left', 'bottom right'];
-        if (!in_array($configuration['position'], $validPositions, true)) {
-            return false;
-        }
-
-        return true;
+        return [
+            'valid' => $errors === [],
+            'errors' => $errors,
+        ];
     }
 }

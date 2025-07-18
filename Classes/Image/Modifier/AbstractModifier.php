@@ -32,15 +32,19 @@ class AbstractModifier
     public function __construct(array $configuration)
     {
         $this->mergeGlobalConfiguration($configuration);
-        if (!$this->validateConfiguration($configuration)) {
+
+        $validationResult = $this->validateConfigurationWithErrors($configuration);
+        if (!$validationResult['valid']) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'Invalid configuration for %s',
-                    static::class
+                    'Invalid configuration for %s: %s',
+                    static::class,
+                    implode(', ', $validationResult['errors'])
                 ),
                 1740401564
             );
         }
+
         $this->configuration = $configuration;
     }
 
@@ -53,7 +57,22 @@ class AbstractModifier
      */
     public function validateConfiguration(array $configuration): bool
     {
-        return true; // Default implementation accepts all configurations
+        return $this->validateConfigurationWithErrors($configuration)['valid'];
+    }
+
+    /**
+     * Validates the configuration and returns detailed error information.
+     * Override this method in subclasses for custom validation logic.
+     *
+     * @param array $configuration The configuration to validate
+     * @return array Array with 'valid' (bool) and 'errors' (array) keys
+     */
+    public function validateConfigurationWithErrors(array $configuration): array
+    {
+        return [
+            'valid' => true,
+            'errors' => [],
+        ];
     }
 
     protected function mergeGlobalConfiguration(array &$configuration): void
