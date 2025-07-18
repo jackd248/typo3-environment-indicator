@@ -41,7 +41,7 @@ class BackendFaviconMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (($extensionConfig['backend']['favicon'] ?? false) === true) {
+        if ((bool)($extensionConfig['backend']['favicon'] ?? false) === true) {
             $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
             $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
             $newBackendFavicon = $faviconHandler->process($currentBackendFavicon, $request);

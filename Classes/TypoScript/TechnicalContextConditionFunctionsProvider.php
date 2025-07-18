@@ -51,7 +51,7 @@ class TechnicalContextConditionFunctionsProvider implements ExpressionFunctionPr
             static fn() => null,
             static function () use ($extensionConfiguration) {
                 $extensionConfig = $extensionConfiguration->get(Configuration::EXT_KEY);
-                return ($extensionConfig['frontend']['context'] ?? false) === true &&
+                return (bool)($extensionConfig['frontend']['context'] ?? false) === true &&
                     GeneralHelper::isCurrentIndicator(Hint::class);
             }
         );

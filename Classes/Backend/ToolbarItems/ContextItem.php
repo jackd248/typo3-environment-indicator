@@ -44,12 +44,12 @@ class ContextItem implements ToolbarItemInterface
     public function getItem(): string
     {
         $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (($extensionConfig['backend']['context'] ?? false) !== true ||
+        if ((bool)($extensionConfig['backend']['context'] ?? false) !== true ||
             !GeneralHelper::isCurrentIndicator(Toolbar::class)) {
             return '';
         }
 
-        if (($extensionConfig['backend']['contextProduction'] ?? false) !== true && Environment::getContext()->__toString() === 'Production') {
+        if ((bool)($extensionConfig['backend']['contextProduction'] ?? false) !== true && Environment::getContext()->__toString() === 'Production') {
             return '';
         }
 
