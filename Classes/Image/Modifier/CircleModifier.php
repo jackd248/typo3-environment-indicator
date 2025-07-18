@@ -91,7 +91,7 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
             return false;
         }
 
-        $validPositions = ['top left', 'top center', 'top right', 'center left', 'center', 'center right', 'bottom left', 'bottom center', 'bottom right'];
+        $validPositions = ['top left', 'top right', 'bottom left', 'bottom right'];
         if (!in_array($configuration['position'], $validPositions, true)) {
             return false;
         }
