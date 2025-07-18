@@ -42,9 +42,5 @@ lib.technicalContext {
     }
 }
 
-[compatVersion("11.5")]
-    lib.technicalContext.file = EXT:typo3_environment_indicator/Resources/Private/Templates/TechnicalContextHintV11.html
-[END]
-
 page.1740392890 =< lib.technicalContext
 [GLOBAL]
