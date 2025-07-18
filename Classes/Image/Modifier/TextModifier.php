@@ -71,37 +71,58 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         });
     }
 
-    public function validateConfiguration(array $configuration): bool
+    public function validateConfigurationWithErrors(array $configuration): array
     {
-        if (!isset($configuration['text']) || !is_string($configuration['text']) ||
-            trim($configuration['text']) === '') {
-            return false;
+        $errors = [];
+
+        // Validate required text
+        if (!isset($configuration['text'])) {
+            $errors[] = 'Missing required configuration key: text';
+        } elseif (!is_string($configuration['text'])) {
+            $errors[] = 'Configuration key "text" must be a string';
+        } elseif (trim($configuration['text']) === '') {
+            $errors[] = 'Configuration key "text" cannot be empty';
         }
 
-        if (!isset($configuration['color']) || !is_string($configuration['color'])) {
-            return false;
+        // Validate required color
+        if (!isset($configuration['color'])) {
+            $errors[] = 'Missing required configuration key: color';
+        } elseif (!is_string($configuration['color'])) {
+            $errors[] = 'Configuration key "color" must be a string';
         }
 
+        // Validate optional font
         if (isset($configuration['font']) && !is_string($configuration['font'])) {
-            return false;
+            $errors[] = 'Configuration key "font" must be a string';
         }
 
+        // Validate optional position
         if (isset($configuration['position']) && !in_array($configuration['position'], ['top', 'bottom'], true)) {
-            return false;
+            $errors[] = 'Configuration key "position" must be one of: top, bottom';
         }
 
+        // Validate optional stroke configuration
         if (isset($configuration['stroke'])) {
             if (!is_array($configuration['stroke'])) {
-                return false;
-            }
-            if (!isset($configuration['stroke']['color']) || !is_string($configuration['stroke']['color'])) {
-                return false;
-            }
-            if (!isset($configuration['stroke']['width']) || !is_numeric($configuration['stroke']['width'])) {
-                return false;
+                $errors[] = 'Configuration key "stroke" must be an array';
+            } else {
+                if (!isset($configuration['stroke']['color'])) {
+                    $errors[] = 'Missing required stroke configuration key: color';
+                } elseif (!is_string($configuration['stroke']['color'])) {
+                    $errors[] = 'Stroke configuration key "color" must be a string';
+                }
+
+                if (!isset($configuration['stroke']['width'])) {
+                    $errors[] = 'Missing required stroke configuration key: width';
+                } elseif (!is_numeric($configuration['stroke']['width'])) {
+                    $errors[] = 'Stroke configuration key "width" must be numeric';
+                }
             }
         }
 
-        return true;
+        return [
+            'valid' => $errors === [],
+            'errors' => $errors,
+        ];
     }
 }

@@ -36,4 +36,12 @@ interface ModifierInterface
      * @return bool True if configuration is valid, false otherwise
      */
     public function validateConfiguration(array $configuration): bool;
+
+    /**
+     * Validates the configuration and returns detailed error information.
+     *
+     * @param array $configuration The configuration to validate
+     * @return array Array with 'valid' (bool) and 'errors' (array) keys
+     */
+    public function validateConfigurationWithErrors(array $configuration): array;
 }

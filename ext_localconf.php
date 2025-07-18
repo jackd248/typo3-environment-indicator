@@ -21,6 +21,8 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ContextItem;
+use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\TopbarItem;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
@@ -28,15 +30,15 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 defined('TYPO3') || die();
 
-$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = \KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ContextItem::class;
-$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = \KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\TopbarItem::class;
+$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = ContextItem::class;
+$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = TopbarItem::class;
 
 // Default configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] = [];
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'] = [
     Image\Modifier\TextModifier::class => [
         'font' => 'EXT:typo3_environment_indicator/Resources/Public/Fonts/OpenSans-Bold.ttf',
-        'position' => 'top left',
+        'position' => 'top',
     ],
     Image\Modifier\TriangleModifier::class => [
         'size' => 0.7,
