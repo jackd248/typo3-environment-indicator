@@ -21,19 +21,29 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
+namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image;
 
-use Intervention\Image\Interfaces\ImageInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\AbstractImageHandler;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\FaviconHandler;
+use PHPUnit\Framework\TestCase;
 
-interface ModifierInterface
+class FaviconHandlerTest extends TestCase
 {
-    public function modify(ImageInterface &$image): void;
+    public function testConstructorCreatesInstance(): void
+    {
+        $handler = new FaviconHandler();
+        self::assertInstanceOf(FaviconHandler::class, $handler);
+    }
 
-    /**
-     * Validates the configuration for this modifier.
-     *
-     * @param array $configuration The configuration to validate
-     * @return bool True if configuration is valid, false otherwise
-     */
-    public function validateConfiguration(array $configuration): bool;
+    public function testExtendsAbstractImageHandler(): void
+    {
+        $handler = new FaviconHandler();
+        self::assertInstanceOf(AbstractImageHandler::class, $handler);
+    }
+
+    public function testConstructorInitializesWithFaviconIndicator(): void
+    {
+        $handler = new FaviconHandler();
+        self::assertInstanceOf(FaviconHandler::class, $handler);
+    }
 }

@@ -42,8 +42,17 @@ class FrameModifier extends AbstractModifier implements ModifierInterface
         });
     }
 
-    public function getRequiredConfigurationKeys(): array
+    public function validateConfiguration(array $configuration): bool
     {
-        return ['color'];
+        if (!isset($configuration['color']) || !is_string($configuration['color'])) {
+            return false;
+        }
+
+        if (isset($configuration['borderSize']) &&
+            (!is_numeric($configuration['borderSize']) || $configuration['borderSize'] < 0)) {
+            return false;
+        }
+
+        return true;
     }
 }

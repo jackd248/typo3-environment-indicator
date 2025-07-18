@@ -24,11 +24,14 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Image;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FrontendImageHandler extends AbstractImageHandler
 {
-    public function __construct()
+    public function __construct(?IndicatorInterface $indicator = null)
     {
-        parent::__construct(new Image());
+        $indicator = $indicator ?? GeneralUtility::makeInstance(Image::class);
+        parent::__construct($indicator);
     }
 }

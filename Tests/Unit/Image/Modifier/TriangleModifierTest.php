@@ -21,19 +21,28 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
+namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 
-use Intervention\Image\Interfaces\ImageInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TriangleModifier;
+use PHPUnit\Framework\TestCase;
 
-interface ModifierInterface
+class TriangleModifierTest extends TestCase
 {
-    public function modify(ImageInterface &$image): void;
+    public function testInstantiationWithRequiredValues(): void
+    {
+        $modifier = new TriangleModifier([
+            'color' => '#ff0000',
+        ]);
 
-    /**
-     * Validates the configuration for this modifier.
-     *
-     * @param array $configuration The configuration to validate
-     * @return bool True if configuration is valid, false otherwise
-     */
-    public function validateConfiguration(array $configuration): bool;
+        self::assertInstanceOf(TriangleModifier::class, $modifier);
+    }
+
+    public function testInstantiationWithCustomValues(): void
+    {
+        $modifier = new TriangleModifier([
+            'color' => '#00ff00',
+        ]);
+
+        self::assertInstanceOf(TriangleModifier::class, $modifier);
+    }
 }

@@ -51,12 +51,29 @@ class ColorizeModifier extends AbstractModifier implements ModifierInterface
         }
 
         if (array_key_exists('contrast', $this->configuration)) {
-            $image->brightness((int)$this->configuration['contrast']);
+            $image->contrast((int)$this->configuration['contrast']);
         }
     }
 
-    public function getRequiredConfigurationKeys(): array
+    public function validateConfiguration(array $configuration): bool
     {
-        return ['color'];
+        if (!isset($configuration['color']) || !is_string($configuration['color'])) {
+            return false;
+        }
+
+        if (isset($configuration['opacity']) &&
+            (!is_numeric($configuration['opacity']) || $configuration['opacity'] < 0 || $configuration['opacity'] > 1)) {
+            return false;
+        }
+
+        if (isset($configuration['brightness']) && !is_numeric($configuration['brightness'])) {
+            return false;
+        }
+
+        if (isset($configuration['contrast']) && !is_numeric($configuration['contrast'])) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -21,29 +21,34 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
+namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 
-use Intervention\Image\ImageManager;
-use Intervention\Image\Interfaces\ImageInterface;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\CircleModifier;
+use PHPUnit\Framework\TestCase;
 
-class ReplaceModifier extends AbstractModifier implements ModifierInterface
+class CircleModifierTest extends TestCase
 {
-    public function modify(ImageInterface &$image): void
+    public function testInstantiationWithRequiredValues(): void
     {
-        $manager = new ImageManager(
-            ImageDriverUtility::resolveDriver()
-        );
-        $image = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['path']));
+        $modifier = new CircleModifier([
+            'color' => '#ff0000',
+            'size' => 0.4,
+            'padding' => 0.1,
+            'position' => 'bottom right',
+        ]);
+
+        self::assertInstanceOf(CircleModifier::class, $modifier);
     }
 
-    public function validateConfiguration(array $configuration): bool
+    public function testInstantiationWithCustomValues(): void
     {
-        if (!isset($configuration['path']) || !is_string($configuration['path'])) {
-            return false;
-        }
+        $modifier = new CircleModifier([
+            'color' => '#00ff00',
+            'size' => 0.6,
+            'padding' => 0.2,
+            'position' => 'top left',
+        ]);
 
-        return true;
+        self::assertInstanceOf(CircleModifier::class, $modifier);
     }
 }

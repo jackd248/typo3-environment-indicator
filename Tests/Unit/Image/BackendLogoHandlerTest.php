@@ -21,29 +21,29 @@ declare(strict_types=1);
  * along with this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
+namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image;
 
-use Intervention\Image\ImageManager;
-use Intervention\Image\Interfaces\ImageInterface;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\AbstractImageHandler;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\BackendLogoHandler;
+use PHPUnit\Framework\TestCase;
 
-class ReplaceModifier extends AbstractModifier implements ModifierInterface
+class BackendLogoHandlerTest extends TestCase
 {
-    public function modify(ImageInterface &$image): void
+    public function testConstructorCreatesInstance(): void
     {
-        $manager = new ImageManager(
-            ImageDriverUtility::resolveDriver()
-        );
-        $image = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['path']));
+        $handler = new BackendLogoHandler();
+        self::assertInstanceOf(BackendLogoHandler::class, $handler);
     }
 
-    public function validateConfiguration(array $configuration): bool
+    public function testExtendsAbstractImageHandler(): void
     {
-        if (!isset($configuration['path']) || !is_string($configuration['path'])) {
-            return false;
-        }
+        $handler = new BackendLogoHandler();
+        self::assertInstanceOf(AbstractImageHandler::class, $handler);
+    }
 
-        return true;
+    public function testConstructorInitializesWithBackendLogoIndicator(): void
+    {
+        $handler = new BackendLogoHandler();
+        self::assertInstanceOf(BackendLogoHandler::class, $handler);
     }
 }

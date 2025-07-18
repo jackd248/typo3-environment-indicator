@@ -34,4 +34,18 @@ class ImageDriverUtilityTest extends TestCase
         self::assertEquals('imagick', ImageDriverUtility::IMAGE_DRIVER_IMAGICK);
         self::assertEquals('vips', ImageDriverUtility::IMAGE_DRIVER_VIPS);
     }
+
+    public function testResolveDriverMethodIsStatic(): void
+    {
+        $reflection = new \ReflectionClass(ImageDriverUtility::class);
+        $method = $reflection->getMethod('resolveDriver');
+        self::assertTrue($method->isStatic());
+    }
+
+    public function testGetImageDriverConfigurationMethodIsStatic(): void
+    {
+        $reflection = new \ReflectionClass(ImageDriverUtility::class);
+        $method = $reflection->getMethod('getImageDriverConfiguration');
+        self::assertTrue($method->isStatic());
+    }
 }

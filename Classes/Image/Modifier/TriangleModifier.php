@@ -76,8 +76,22 @@ class TriangleModifier extends AbstractModifier implements ModifierInterface
         });
     }
 
-    public function getRequiredConfigurationKeys(): array
+    public function validateConfiguration(array $configuration): bool
     {
-        return ['color'];
+        if (!isset($configuration['color']) || !is_string($configuration['color'])) {
+            return false;
+        }
+
+        if (isset($configuration['size']) &&
+            (!is_numeric($configuration['size']) || $configuration['size'] < 0 || $configuration['size'] > 1)) {
+            return false;
+        }
+
+        if (isset($configuration['position']) && !is_string($configuration['position'])) {
+            return false;
+        }
+
+        $validPositions = ['top left', 'top right', 'bottom left', 'bottom right'];
+        return !(isset($configuration['position']) && !in_array($configuration['position'], $validPositions, true));
     }
 }
