@@ -38,8 +38,12 @@ class ReplaceModifier extends AbstractModifier implements ModifierInterface
         $image = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['path']));
     }
 
-    public function getRequiredConfigurationKeys(): array
+    public function validateConfiguration(array $configuration): bool
     {
-        return ['path'];
+        if (!isset($configuration['path']) || !is_string($configuration['path'])) {
+            return false;
+        }
+
+        return true;
     }
 }

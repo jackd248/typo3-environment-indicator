@@ -71,8 +71,31 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         );
     }
 
-    public function getRequiredConfigurationKeys(): array
+    public function validateConfiguration(array $configuration): bool
     {
-        return ['color', 'size', 'padding', 'position'];
+        if (!isset($configuration['color']) || !is_string($configuration['color'])) {
+            return false;
+        }
+
+        if (!isset($configuration['size']) || !is_numeric($configuration['size']) ||
+            $configuration['size'] < 0 || $configuration['size'] > 1) {
+            return false;
+        }
+
+        if (!isset($configuration['padding']) || !is_numeric($configuration['padding']) ||
+            $configuration['padding'] < 0 || $configuration['padding'] > 1) {
+            return false;
+        }
+
+        if (!isset($configuration['position']) || !is_string($configuration['position'])) {
+            return false;
+        }
+
+        $validPositions = ['top left', 'top center', 'top right', 'center left', 'center', 'center right', 'bottom left', 'bottom center', 'bottom right'];
+        if (!in_array($configuration['position'], $validPositions, true)) {
+            return false;
+        }
+
+        return true;
     }
 }

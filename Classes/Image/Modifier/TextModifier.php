@@ -71,8 +71,37 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         });
     }
 
-    public function getRequiredConfigurationKeys(): array
+    public function validateConfiguration(array $configuration): bool
     {
-        return ['text', 'color'];
+        if (!isset($configuration['text']) || !is_string($configuration['text']) ||
+            trim($configuration['text']) === '') {
+            return false;
+        }
+
+        if (!isset($configuration['color']) || !is_string($configuration['color'])) {
+            return false;
+        }
+
+        if (isset($configuration['font']) && !is_string($configuration['font'])) {
+            return false;
+        }
+
+        if (isset($configuration['position']) && !in_array($configuration['position'], ['top', 'bottom'], true)) {
+            return false;
+        }
+
+        if (isset($configuration['stroke'])) {
+            if (!is_array($configuration['stroke'])) {
+                return false;
+            }
+            if (!isset($configuration['stroke']['color']) || !is_string($configuration['stroke']['color'])) {
+                return false;
+            }
+            if (!isset($configuration['stroke']['width']) || !is_numeric($configuration['stroke']['width'])) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

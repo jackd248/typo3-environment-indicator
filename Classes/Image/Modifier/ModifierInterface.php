@@ -29,5 +29,11 @@ interface ModifierInterface
 {
     public function modify(ImageInterface &$image): void;
 
-    public function getRequiredConfigurationKeys(): array;
+    /**
+     * Validates the configuration for this modifier.
+     *
+     * @param array $configuration The configuration to validate
+     * @return bool True if configuration is valid, false otherwise
+     */
+    public function validateConfiguration(array $configuration): bool;
 }
