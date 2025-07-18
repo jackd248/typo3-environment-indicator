@@ -29,12 +29,22 @@ class Ip implements TriggerInterface
 
     public function __construct(...$ip)
     {
+        foreach ($ip as $ipAddress) {
+            if (!$this->validateIpFormat($ipAddress)) {
+                throw new \InvalidArgumentException('Invalid IP address or CIDR format: ' . $ipAddress, 1726357768);
+            }
+        }
         $this->ips = $ip;
     }
 
     public function check(): bool
     {
-        $currentIp = $_SERVER['REMOTE_ADDR']; // @phpstan-ignore-line disallowed.variable
+        $currentIp = $_SERVER['REMOTE_ADDR'] ?? ''; // @phpstan-ignore-line disallowed.variable
+
+        if (!filter_var($currentIp, FILTER_VALIDATE_IP)) {
+            return false;
+        }
+
         foreach ($this->ips as $ip) {
             if ($this->ipMatches($currentIp, $ip)) {
                 return true;
@@ -67,26 +77,82 @@ class Ip implements TriggerInterface
     */
     protected function cidrMatch(string $ip, string $cidr): bool
     {
-        [$subnet, $mask] = explode('/', $cidr);
+        $parts = explode('/', $cidr);
+        if (count($parts) !== 2) {
+            return false;
+        }
+
+        [$subnet, $mask] = $parts;
+        $maskInt = (int)$mask;
+
         if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-            $ip = ip2long($ip);
-            $subnet = ip2long($subnet);
-            $mask = (int)$mask;
-            $mask = ~((1 << (32 - $mask)) - 1);
-            return ($ip & $mask) === ($subnet & $mask);
+            if ($maskInt < 0 || $maskInt > 32) {
+                return false;
+            }
+
+            $ipLong = ip2long($ip);
+            $subnetLong = ip2long($subnet);
+
+            if ($ipLong === false || $subnetLong === false) {
+                return false;
+            }
+
+            $maskBits = ~((1 << (32 - $maskInt)) - 1);
+            return ($ipLong & $maskBits) === ($subnetLong & $maskBits);
         }
 
         if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
-            $ip = inet_pton($ip);
-            $subnet = inet_pton($subnet);
-            if ($ip === false || $subnet === false) {
+            if ($maskInt < 0 || $maskInt > 128) {
                 return false;
             }
-            $mask = (int)$mask;
-            $mask = str_repeat('f', $mask / 4) . str_repeat('0', 32 - $mask / 4);
-            $mask = pack('H*', $mask);
-            return ($ip & $mask) === ($subnet & $mask);
+
+            $ipBinary = inet_pton($ip);
+            $subnetBinary = inet_pton($subnet);
+
+            if ($ipBinary === false || $subnetBinary === false) {
+                return false;
+            }
+
+            $maskHex = str_repeat('f', $maskInt / 4) . str_repeat('0', 32 - $maskInt / 4);
+            $maskBinary = pack('H*', $maskHex);
+
+            return ($ipBinary & $maskBinary) === ($subnetBinary & $maskBinary);
         }
+
         return false;
+    }
+
+    /**
+     * Validates IP address or CIDR format.
+     *
+     * @param string $ip The IP address or CIDR to validate.
+     * @return bool True if valid, false otherwise.
+     */
+    protected function validateIpFormat(string $ip): bool
+    {
+        // Check if it's a CIDR notation
+        if (str_contains($ip, '/')) {
+            $parts = explode('/', $ip);
+            if (count($parts) !== 2) {
+                return false;
+            }
+
+            [$address, $mask] = $parts;
+
+            // Validate mask range
+            $maskInt = (int)$mask;
+            if (filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                return $maskInt >= 0 && $maskInt <= 32;
+            }
+
+            if (filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+                return $maskInt >= 0 && $maskInt <= 128;
+            }
+
+            return false;
+        }
+
+        // Check if it's a valid IP address
+        return filter_var($ip, FILTER_VALIDATE_IP) !== false;
     }
 }

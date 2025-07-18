@@ -51,7 +51,7 @@ class ColorizeModifier extends AbstractModifier implements ModifierInterface
         }
 
         if (array_key_exists('contrast', $this->configuration)) {
-            $image->brightness((int)$this->configuration['contrast']);
+            $image->contrast((int)$this->configuration['contrast']);
         }
     }
 
