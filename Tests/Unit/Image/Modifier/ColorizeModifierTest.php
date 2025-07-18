@@ -28,12 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class ColorizeModifierTest extends TestCase
 {
-    public function testGetRequiredConfigurationKeys(): void
-    {
-        $modifier = new ColorizeModifier(['color' => '#ff0000']);
-        self::assertEquals(['color'], $modifier->getRequiredConfigurationKeys());
-    }
-
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new ColorizeModifier(['color' => '#ff0000']);

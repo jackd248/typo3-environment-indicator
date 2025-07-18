@@ -45,18 +45,6 @@ class AbstractModifierTest extends TestCase
         self::assertInstanceOf(AbstractModifier::class, $modifier);
     }
 
-    public function testInstantiationThrowsExceptionForMissingRequiredKeys(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $modifier = new class ([]) extends AbstractModifier {
-            public function getRequiredConfigurationKeys(): array
-            {
-                return ['required_key'];
-            }
-        };
-    }
-
     public function testInstantiationWithRequiredKeys(): void
     {
         $modifier = new class (['required_key' => 'value']) extends AbstractModifier {

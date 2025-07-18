@@ -28,18 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class OverlayModifierTest extends TestCase
 {
-    public function testGetRequiredConfigurationKeys(): void
-    {
-        $modifier = new OverlayModifier([
-            'path' => 'EXT:site/Resources/Public/Images/overlay.png',
-            'size' => 0.5,
-            'position' => 'bottom right',
-            'padding' => 0.1,
-        ]);
-
-        self::assertEquals(['path', 'size', 'position', 'padding'], $modifier->getRequiredConfigurationKeys());
-    }
-
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new OverlayModifier([

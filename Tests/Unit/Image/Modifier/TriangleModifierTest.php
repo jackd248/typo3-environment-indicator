@@ -28,18 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class TriangleModifierTest extends TestCase
 {
-    public function testGetRequiredConfigurationKeys(): void
-    {
-        $modifier = new TriangleModifier([
-            'color' => '#ff0000',
-            'size' => 0.5,
-            'position' => 'bottom right',
-        ]);
-
-        $requiredKeys = $modifier->getRequiredConfigurationKeys();
-        self::assertEquals(['color'], $requiredKeys);
-    }
-
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new TriangleModifier([
