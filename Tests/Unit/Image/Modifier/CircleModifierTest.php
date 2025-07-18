@@ -28,19 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class CircleModifierTest extends TestCase
 {
-    public function testGetRequiredConfigurationKeys(): void
-    {
-        $modifier = new CircleModifier([
-            'color' => '#ff0000',
-            'size' => 0.5,
-            'padding' => 0.1,
-            'position' => 'bottom right',
-        ]);
-
-        $requiredKeys = $modifier->getRequiredConfigurationKeys();
-        self::assertEquals(['color', 'size', 'padding', 'position'], $requiredKeys);
-    }
-
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new CircleModifier([

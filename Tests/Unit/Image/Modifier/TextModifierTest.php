@@ -28,16 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class TextModifierTest extends TestCase
 {
-    public function testGetRequiredConfigurationKeys(): void
-    {
-        $modifier = new TextModifier([
-            'text' => 'Test',
-            'color' => '#ffffff',
-        ]);
-
-        self::assertEquals(['text', 'color'], $modifier->getRequiredConfigurationKeys());
-    }
-
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new TextModifier([

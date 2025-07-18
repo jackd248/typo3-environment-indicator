@@ -23,70 +23,132 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\ConfigurationStorage;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\IndicatorResolver;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\TriggerEvaluator;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * Main handler class for managing environment indicator configuration.
+ *
+ * This class acts as a facade for the configuration management system,
+ * delegating responsibilities to specialized service classes.
+ */
 class Handler
 {
+    private static ?IndicatorResolver $indicatorResolver = null;
+    private static ?ConfigurationStorage $configurationStorage = null;
+    private static ?TriggerEvaluator $triggerEvaluator = null;
+
     /**
-    * Adds a new indicator/trigger configuration.
-    *
-    * @param TriggerInterface[] $triggers
-    * @param IndicatorInterface[] $indicators
-    */
+     * Adds a new indicator/trigger configuration.
+     *
+     * @param TriggerInterface[] $triggers Array of trigger objects
+     * @param IndicatorInterface[] $indicators Array of indicator objects
+     */
     public static function addIndicator(array $triggers = [], array $indicators = []): void
     {
-        $configuration = [
-            'triggers' => [],
-            'indicators' => [],
-        ];
-        foreach ($triggers as $trigger) {
-            $configuration['triggers'][] = $trigger;
-        }
-
-        foreach ($indicators as $indicator) {
-            $configuration['indicators'][] = $indicator;
-        }
-
-        if (($configuration['triggers'] === [] && $configuration['indicators'] === []) ||
-            !isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'])
-        ) {
+        if (!self::validateConfiguration($triggers, $indicators)) {
             return;
         }
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'][] = $configuration;
+
+        $configuration = [
+            'triggers' => $triggers,
+            'indicators' => $indicators,
+        ];
+
+        $configurationStorage = self::getConfigurationStorage();
+
+        if ($configurationStorage->hasConfigurations() || $triggers !== [] || $indicators !== []) {
+            $configurationStorage->addConfiguration($configuration);
+        }
     }
 
     /**
-    * Resolves the current indicators based on the registered configurations and the checked triggers.
-    *
-    * @return array Current indicators
-    */
+     * Resolves the current indicators based on the registered configurations and the checked triggers.
+     *
+     * @return array Current indicators
+     */
     public static function resolveIndicators(): array
     {
-        if (($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] ?? []) !== []) {
-            return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'];
+        return self::getIndicatorResolver()->resolveIndicators();
+    }
+
+    /**
+     * Validates the configuration input.
+     *
+     * @param array $triggers Array of potential trigger objects
+     * @param array $indicators Array of potential indicator objects
+     * @return bool True if configuration is valid, false otherwise
+     */
+    private static function validateConfiguration(array $triggers, array $indicators): bool
+    {
+        if ($triggers === [] && $indicators === []) {
+            return false;
         }
 
-        foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] as $configuration) {
-            foreach ($configuration['triggers'] as $trigger) {
-                if (!$trigger->check()) {
-                    continue 2;
-                }
-            }
+        $triggerEvaluator = self::getTriggerEvaluator();
+        $indicatorResolver = self::getIndicatorResolver();
 
-            foreach ($configuration['indicators'] as $indicator) {
-                if (isset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class])) {
-                    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class] = array_replace_recursive(
-                        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class],
-                        $indicator->getConfiguration()
-                    );
-                } else {
-                    $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'][$indicator::class] = $indicator->getConfiguration();
-                }
-            }
+        if ($triggers !== [] && !$triggerEvaluator->validateTriggers($triggers)) {
+            return false;
         }
 
-        return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] ?? [];
+        if ($indicators !== [] && !$indicatorResolver->validateIndicators($indicators)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Gets the configuration storage service.
+     *
+     * @return ConfigurationStorage
+     */
+    private static function getConfigurationStorage(): ConfigurationStorage
+    {
+        if (self::$configurationStorage === null) {
+            self::$configurationStorage = GeneralUtility::makeInstance(ConfigurationStorage::class);
+        }
+
+        return self::$configurationStorage;
+    }
+
+    /**
+     * Gets the trigger evaluator service.
+     *
+     * @return TriggerEvaluator
+     */
+    private static function getTriggerEvaluator(): TriggerEvaluator
+    {
+        if (self::$triggerEvaluator === null) {
+            self::$triggerEvaluator = GeneralUtility::makeInstance(TriggerEvaluator::class);
+        }
+
+        return self::$triggerEvaluator;
+    }
+
+    /**
+     * Gets the indicator resolver service.
+     *
+     * @return IndicatorResolver
+     */
+    private static function getIndicatorResolver(): IndicatorResolver
+    {
+        if (self::$indicatorResolver === null) {
+            $configurationStorage = self::getConfigurationStorage();
+            $triggerEvaluator = self::getTriggerEvaluator();
+
+            self::$indicatorResolver = GeneralUtility::makeInstance(
+                IndicatorResolver::class,
+                $configurationStorage,
+                $triggerEvaluator
+            );
+        }
+
+        return self::$indicatorResolver;
     }
 }

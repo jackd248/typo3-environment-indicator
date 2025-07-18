@@ -32,28 +32,28 @@ class AbstractModifier
     public function __construct(array $configuration)
     {
         $this->mergeGlobalConfiguration($configuration);
-        $this->verifyRequiredArrayKeys($configuration);
-        $this->configuration = $configuration;
-    }
-
-    public function getRequiredConfigurationKeys(): array
-    {
-        return [];
-    }
-
-    protected function verifyRequiredArrayKeys(array $configuration): void
-    {
-        $missingKeys = array_diff($this->getRequiredConfigurationKeys(), array_keys($configuration));
-        if ($missingKeys !== []) {
+        if (!$this->validateConfiguration($configuration)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    'Missing required configuration keys for %s: %s',
-                    static::class,
-                    implode(', ', $missingKeys)
+                    'Invalid configuration for %s',
+                    static::class
                 ),
                 1740401564
             );
         }
+        $this->configuration = $configuration;
+    }
+
+    /**
+     * Validates the configuration for this modifier.
+     * Override this method in subclasses for custom validation logic.
+     *
+     * @param array $configuration The configuration to validate
+     * @return bool True if configuration is valid, false otherwise
+     */
+    public function validateConfiguration(array $configuration): bool
+    {
+        return true; // Default implementation accepts all configurations
     }
 
     protected function mergeGlobalConfiguration(array &$configuration): void

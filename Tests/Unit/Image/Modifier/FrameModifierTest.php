@@ -28,12 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class FrameModifierTest extends TestCase
 {
-    public function testGetRequiredConfigurationKeys(): void
-    {
-        $modifier = new FrameModifier(['color' => '#ff0000']);
-        self::assertEquals(['color'], $modifier->getRequiredConfigurationKeys());
-    }
-
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new FrameModifier(['color' => '#ff0000']);

@@ -28,12 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class ReplaceModifierTest extends TestCase
 {
-    public function testGetRequiredConfigurationKeys(): void
-    {
-        $modifier = new ReplaceModifier(['path' => 'EXT:site/Resources/Public/Images/replacement.png']);
-        self::assertEquals(['path'], $modifier->getRequiredConfigurationKeys());
-    }
-
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new ReplaceModifier(['path' => 'EXT:extension/Resources/Public/replacement.svg']);
