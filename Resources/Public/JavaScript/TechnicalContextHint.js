@@ -3,7 +3,6 @@
  */
 
 (function() {
-    'use strict';
 
     /**
      * Apply dynamic styles from data attributes
