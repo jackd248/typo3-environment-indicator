@@ -55,8 +55,6 @@ class AbstractModifierTest extends TestCase
                 return ['required_key'];
             }
         };
-
-        self::fail('Expected InvalidArgumentException was not thrown');
     }
 
     public function testInstantiationWithRequiredKeys(): void
