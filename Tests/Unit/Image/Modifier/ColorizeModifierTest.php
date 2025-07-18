@@ -24,7 +24,6 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ColorizeModifier;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
 use PHPUnit\Framework\TestCase;
 
 class ColorizeModifierTest extends TestCase
@@ -47,7 +46,7 @@ class ColorizeModifierTest extends TestCase
             'color' => '#ff0000',
             'opacity' => 0.5,
             'brightness' => 50,
-            'contrast' => 25
+            'contrast' => 25,
         ]);
         self::assertInstanceOf(ColorizeModifier::class, $modifier);
     }

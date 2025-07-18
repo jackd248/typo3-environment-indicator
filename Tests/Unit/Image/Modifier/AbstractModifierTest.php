@@ -23,8 +23,6 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 
-use InvalidArgumentException;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\AbstractModifier;
 use PHPUnit\Framework\TestCase;
 
@@ -37,7 +35,7 @@ class AbstractModifierTest extends TestCase
 
     public function testInstantiationWithoutRequiredKeys(): void
     {
-        $modifier = new class([]) extends AbstractModifier {
+        $modifier = new class ([]) extends AbstractModifier {
             public function getRequiredConfigurationKeys(): array
             {
                 return [];
@@ -49,21 +47,21 @@ class AbstractModifierTest extends TestCase
 
     public function testInstantiationThrowsExceptionForMissingRequiredKeys(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        
-        $modifier = new class([]) extends AbstractModifier {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $modifier = new class ([]) extends AbstractModifier {
             public function getRequiredConfigurationKeys(): array
             {
                 return ['required_key'];
             }
         };
-        
+
         self::fail('Expected InvalidArgumentException was not thrown');
     }
 
     public function testInstantiationWithRequiredKeys(): void
     {
-        $modifier = new class(['required_key' => 'value']) extends AbstractModifier {
+        $modifier = new class (['required_key' => 'value']) extends AbstractModifier {
             public function getRequiredConfigurationKeys(): array
             {
                 return ['required_key'];

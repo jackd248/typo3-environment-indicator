@@ -34,7 +34,7 @@ class CircleModifierTest extends TestCase
             'color' => '#ff0000',
             'size' => 0.5,
             'padding' => 0.1,
-            'position' => 'bottom right'
+            'position' => 'bottom right',
         ]);
 
         $requiredKeys = $modifier->getRequiredConfigurationKeys();
@@ -47,7 +47,7 @@ class CircleModifierTest extends TestCase
             'color' => '#ff0000',
             'size' => 0.4,
             'padding' => 0.1,
-            'position' => 'bottom right'
+            'position' => 'bottom right',
         ]);
 
         self::assertInstanceOf(CircleModifier::class, $modifier);
@@ -59,7 +59,7 @@ class CircleModifierTest extends TestCase
             'color' => '#00ff00',
             'size' => 0.6,
             'padding' => 0.2,
-            'position' => 'top left'
+            'position' => 'top left',
         ]);
 
         self::assertInstanceOf(CircleModifier::class, $modifier);

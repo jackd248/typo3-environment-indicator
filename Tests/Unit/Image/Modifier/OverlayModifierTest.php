@@ -34,9 +34,9 @@ class OverlayModifierTest extends TestCase
             'path' => 'EXT:site/Resources/Public/Images/overlay.png',
             'size' => 0.5,
             'position' => 'bottom right',
-            'padding' => 0.1
+            'padding' => 0.1,
         ]);
-        
+
         self::assertEquals(['path', 'size', 'position', 'padding'], $modifier->getRequiredConfigurationKeys());
     }
 
@@ -46,9 +46,9 @@ class OverlayModifierTest extends TestCase
             'path' => 'EXT:site/Resources/Public/Images/watermark.png',
             'size' => 0.3,
             'position' => 'top left',
-            'padding' => 0.05
+            'padding' => 0.05,
         ]);
-        
+
         self::assertInstanceOf(OverlayModifier::class, $modifier);
     }
 
@@ -58,9 +58,9 @@ class OverlayModifierTest extends TestCase
             'path' => 'EXT:extension/Resources/Public/badge.svg',
             'size' => 0.4,
             'position' => 'bottom right',
-            'padding' => 0.1
+            'padding' => 0.1,
         ]);
-        
+
         self::assertInstanceOf(OverlayModifier::class, $modifier);
     }
 
@@ -70,9 +70,9 @@ class OverlayModifierTest extends TestCase
             'path' => 'EXT:site/Resources/Public/logo.png',
             'size' => 0.6,
             'position' => 'top center',
-            'padding' => 0.2
+            'padding' => 0.2,
         ]);
-        
+
         self::assertInstanceOf(OverlayModifier::class, $modifier);
     }
 
@@ -82,15 +82,15 @@ class OverlayModifierTest extends TestCase
             'path' => 'EXT:site/Resources/Public/small.png',
             'size' => 0.1,
             'position' => 'center',
-            'padding' => 0.01
+            'padding' => 0.01,
         ]);
         self::assertInstanceOf(OverlayModifier::class, $modifier1);
-        
+
         $modifier2 = new OverlayModifier([
             'path' => 'EXT:site/Resources/Public/large.png',
             'size' => 0.8,
             'position' => 'center',
-            'padding' => 0.05
+            'padding' => 0.05,
         ]);
         self::assertInstanceOf(OverlayModifier::class, $modifier2);
     }

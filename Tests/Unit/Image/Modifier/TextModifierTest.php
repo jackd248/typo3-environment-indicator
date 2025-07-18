@@ -32,9 +32,9 @@ class TextModifierTest extends TestCase
     {
         $modifier = new TextModifier([
             'text' => 'Test',
-            'color' => '#ffffff'
+            'color' => '#ffffff',
         ]);
-        
+
         self::assertEquals(['text', 'color'], $modifier->getRequiredConfigurationKeys());
     }
 
@@ -42,9 +42,9 @@ class TextModifierTest extends TestCase
     {
         $modifier = new TextModifier([
             'text' => 'Development',
-            'color' => '#ffffff'
+            'color' => '#ffffff',
         ]);
-        
+
         self::assertInstanceOf(TextModifier::class, $modifier);
     }
 
@@ -57,10 +57,10 @@ class TextModifierTest extends TestCase
             'position' => 'top',
             'stroke' => [
                 'color' => '#000000',
-                'width' => 2
-            ]
+                'width' => 2,
+            ],
         ]);
-        
+
         self::assertInstanceOf(TextModifier::class, $modifier);
     }
 
@@ -71,10 +71,10 @@ class TextModifierTest extends TestCase
             'color' => '#ff0000',
             'stroke' => [
                 'color' => '#000000',
-                'width' => 1
-            ]
+                'width' => 1,
+            ],
         ]);
-        
+
         self::assertInstanceOf(TextModifier::class, $modifier);
     }
 
@@ -83,9 +83,9 @@ class TextModifierTest extends TestCase
         $modifier = new TextModifier([
             'text' => 'Local',
             'color' => '#00ff00',
-            'position' => 'top'
+            'position' => 'top',
         ]);
-        
+
         self::assertInstanceOf(TextModifier::class, $modifier);
     }
 
@@ -94,9 +94,9 @@ class TextModifierTest extends TestCase
         $modifier = new TextModifier([
             'text' => 'Testing',
             'color' => '#0000ff',
-            'position' => 'bottom'
+            'position' => 'bottom',
         ]);
-        
+
         self::assertInstanceOf(TextModifier::class, $modifier);
     }
 }

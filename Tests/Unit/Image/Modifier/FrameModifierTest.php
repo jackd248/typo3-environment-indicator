@@ -44,7 +44,7 @@ class FrameModifierTest extends TestCase
     {
         $modifier = new FrameModifier([
             'color' => '#00ff00',
-            'borderSize' => 10
+            'borderSize' => 10,
         ]);
         self::assertInstanceOf(FrameModifier::class, $modifier);
     }
@@ -53,10 +53,10 @@ class FrameModifierTest extends TestCase
     {
         $modifier = new FrameModifier(['color' => 'blue']);
         self::assertInstanceOf(FrameModifier::class, $modifier);
-        
+
         $modifier2 = new FrameModifier(['color' => '#336699']);
         self::assertInstanceOf(FrameModifier::class, $modifier2);
-        
+
         $modifier3 = new FrameModifier(['color' => 'rgba(255, 0, 0, 0.5)']);
         self::assertInstanceOf(FrameModifier::class, $modifier3);
     }
@@ -65,7 +65,7 @@ class FrameModifierTest extends TestCase
     {
         $modifier = new FrameModifier([
             'color' => '#000000',
-            'borderSize' => 2
+            'borderSize' => 2,
         ]);
         self::assertInstanceOf(FrameModifier::class, $modifier);
     }

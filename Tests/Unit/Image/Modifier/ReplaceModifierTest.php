@@ -44,10 +44,10 @@ class ReplaceModifierTest extends TestCase
     {
         $modifier1 = new ReplaceModifier(['path' => 'EXT:site/Resources/Public/Images/dev.png']);
         self::assertInstanceOf(ReplaceModifier::class, $modifier1);
-        
+
         $modifier2 = new ReplaceModifier(['path' => 'EXT:extension/Resources/Public/staging.jpg']);
         self::assertInstanceOf(ReplaceModifier::class, $modifier2);
-        
+
         $modifier3 = new ReplaceModifier(['path' => 'EXT:custom/Resources/Private/production.gif']);
         self::assertInstanceOf(ReplaceModifier::class, $modifier3);
     }

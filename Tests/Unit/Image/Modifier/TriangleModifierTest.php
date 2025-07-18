@@ -33,7 +33,7 @@ class TriangleModifierTest extends TestCase
         $modifier = new TriangleModifier([
             'color' => '#ff0000',
             'size' => 0.5,
-            'position' => 'bottom right'
+            'position' => 'bottom right',
         ]);
 
         $requiredKeys = $modifier->getRequiredConfigurationKeys();
@@ -43,7 +43,7 @@ class TriangleModifierTest extends TestCase
     public function testInstantiationWithRequiredValues(): void
     {
         $modifier = new TriangleModifier([
-            'color' => '#ff0000'
+            'color' => '#ff0000',
         ]);
 
         self::assertInstanceOf(TriangleModifier::class, $modifier);
@@ -52,7 +52,7 @@ class TriangleModifierTest extends TestCase
     public function testInstantiationWithCustomValues(): void
     {
         $modifier = new TriangleModifier([
-            'color' => '#00ff00'
+            'color' => '#00ff00',
         ]);
 
         self::assertInstanceOf(TriangleModifier::class, $modifier);

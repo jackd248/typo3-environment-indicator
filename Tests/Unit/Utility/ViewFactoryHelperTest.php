@@ -25,8 +25,6 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ViewFactoryHelper;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ViewFactoryHelperTest extends TestCase
 {
@@ -35,8 +33,8 @@ class ViewFactoryHelperTest extends TestCase
         parent::setUp();
         $GLOBALS['TYPO3_CONF_VARS'] = [
             'SYS' => [
-                'Objects' => []
-            ]
+                'Objects' => [],
+            ],
         ];
     }
 
@@ -68,7 +66,7 @@ class ViewFactoryHelperTest extends TestCase
         $reflection = new \ReflectionClass(ViewFactoryHelper::class);
         $method = $reflection->getMethod('renderView');
         $parameters = $method->getParameters();
-        
+
         self::assertCount(3, $parameters);
         self::assertEquals('template', $parameters[0]->getName());
         self::assertEquals('values', $parameters[1]->getName());
@@ -81,7 +79,7 @@ class ViewFactoryHelperTest extends TestCase
         $reflection = new \ReflectionClass(ViewFactoryHelper::class);
         $method = $reflection->getMethod('renderView12');
         $parameters = $method->getParameters();
-        
+
         self::assertCount(2, $parameters);
         self::assertEquals('template', $parameters[0]->getName());
         self::assertEquals('values', $parameters[1]->getName());
@@ -92,7 +90,7 @@ class ViewFactoryHelperTest extends TestCase
         $reflection = new \ReflectionClass(ViewFactoryHelper::class);
         $method = $reflection->getMethod('renderView13');
         $parameters = $method->getParameters();
-        
+
         self::assertCount(3, $parameters);
         self::assertEquals('template', $parameters[0]->getName());
         self::assertEquals('values', $parameters[1]->getName());
