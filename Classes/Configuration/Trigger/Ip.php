@@ -113,10 +113,13 @@ class Ip implements TriggerInterface
                 return false;
             }
 
-            $maskHex = str_repeat('f', $maskInt / 4) . str_repeat('0', 32 - $maskInt / 4);
-            $maskBinary = pack('H*', $maskHex);
+            $maskBinary = str_repeat("\xff", (int)($maskInt / 8));
+            if ($maskInt % 8 !== 0) {
+                $maskBinary .= chr((0xff << (8 - ($maskInt % 8))) & 0xff);
+            }
+            $maskBinary = str_pad($maskBinary, 16, "\x00");
 
-            return ($ipBinary & $maskBinary) === ($subnetBinary & $maskBinary);
+            return substr($ipBinary & $maskBinary, 0, 16) === substr($subnetBinary & $maskBinary, 0, 16);
         }
 
         return false;
