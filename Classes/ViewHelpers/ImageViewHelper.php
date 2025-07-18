@@ -64,7 +64,7 @@ class ImageViewHelper extends AbstractViewHelper
         $image = $this->renderChildren();
 
         $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (($extensionConfig['frontend']['image'] ?? false) !== true ||
+        if ((bool)($extensionConfig['frontend']['image'] ?? false) !== true ||
             !GeneralHelper::isCurrentIndicator(Image::class)
         ) {
             return $image;

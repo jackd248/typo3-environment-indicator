@@ -43,7 +43,7 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
     {
         $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
         $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (($extensionConfig['frontend']['favicon'] ?? false) === true) {
+        if ((bool)($extensionConfig['frontend']['favicon'] ?? false) === true) {
             if ($typo3Version < 13 &&
                 is_array($GLOBALS['TSFE']->pSetup) &&
                 array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup) &&
