@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\ConfigurationStorage;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ConfigurationStorageTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ConfigurationStorageTest extends TestCase
 {
     private ConfigurationStorage $configurationStorage;

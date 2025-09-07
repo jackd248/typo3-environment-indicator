@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Indi
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Image;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ImageTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ImageTest extends TestCase
 {
     public function testConstructorWithEmptyConfiguration(): void

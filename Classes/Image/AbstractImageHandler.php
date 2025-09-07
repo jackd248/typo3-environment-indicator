@@ -32,6 +32,12 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
+/**
+ * AbstractImageHandler.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 abstract class AbstractImageHandler
 {
     public function __construct(protected IndicatorInterface $indicator) {}

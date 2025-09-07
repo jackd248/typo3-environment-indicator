@@ -29,6 +29,12 @@ use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
+/**
+ * TopbarItemTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TopbarItemTest extends TestCase
 {
     protected function setUp(): void

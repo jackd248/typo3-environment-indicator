@@ -26,10 +26,10 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 
 /**
- * Service for resolving and processing indicators.
+ * IndicatorResolver.
  *
- * This service handles the resolution of indicators based on
- * configuration and trigger evaluation results.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 class IndicatorResolver
 {

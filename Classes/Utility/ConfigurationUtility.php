@@ -25,6 +25,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 
+/**
+ * ConfigurationUtility.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ConfigurationUtility
 {
     public static function configByContext(

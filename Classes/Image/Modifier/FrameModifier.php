@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 use Intervention\Image\Geometry\Factories\RectangleFactory;
 use Intervention\Image\Interfaces\ImageInterface;
 
+/**
+ * FrameModifier.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FrameModifier extends AbstractModifier implements ModifierInterface
 {
     public function modify(ImageInterface &$image): void

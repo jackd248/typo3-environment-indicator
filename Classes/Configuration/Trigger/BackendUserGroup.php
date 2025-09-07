@@ -23,6 +23,12 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
 
+/**
+ * BackendUserGroup.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class BackendUserGroup implements TriggerInterface
 {
     protected array $groups;

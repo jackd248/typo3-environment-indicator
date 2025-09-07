@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\TriggerEvalua
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * TriggerEvaluatorTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TriggerEvaluatorTest extends TestCase
 {
     private TriggerEvaluator $triggerEvaluator;

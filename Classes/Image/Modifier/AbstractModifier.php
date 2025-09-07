@@ -25,6 +25,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 
+/**
+ * AbstractModifier.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class AbstractModifier
 {
     protected array $configuration = [];

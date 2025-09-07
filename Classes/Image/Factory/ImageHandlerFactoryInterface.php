@@ -28,10 +28,10 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\FaviconHandler;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\FrontendImageHandler;
 
 /**
- * Factory interface for creating image handlers.
+ * ImageHandlerFactoryInterface.
  *
- * This interface defines the contract for creating different types of image handlers
- * with proper dependency injection and configuration.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 interface ImageHandlerFactoryInterface
 {

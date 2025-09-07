@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Utility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ColorUtilityTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ColorUtilityTest extends TestCase
 {
     public function testGetColoredStringWithName(): void

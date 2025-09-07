@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ConfigurationTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ConfigurationTest extends TestCase
 {
     public function testExtensionKeyConstant(): void

@@ -27,6 +27,12 @@ use Intervention\Image\Interfaces\ImageInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
 
+/**
+ * ColorizeModifier.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ColorizeModifier extends AbstractModifier implements ModifierInterface
 {
     public function modify(ImageInterface &$image): void

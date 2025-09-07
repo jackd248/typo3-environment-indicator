@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Trig
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\Custom;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * CustomTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class CustomTest extends TestCase
 {
     public function testConstructorAcceptsClosure(): void

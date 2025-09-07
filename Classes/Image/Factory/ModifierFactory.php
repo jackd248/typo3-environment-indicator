@@ -34,10 +34,10 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TriangleModifier;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Factory for creating image modifiers with proper configuration validation.
+ * ModifierFactory.
  *
- * This factory centralizes modifier creation logic and provides consistent
- * configuration validation across all modifier types.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 class ModifierFactory implements ModifierFactoryInterface
 {

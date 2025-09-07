@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Indi
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Toolbar;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ToolbarTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ToolbarTest extends TestCase
 {
     public function testConstructorWithEmptyConfiguration(): void

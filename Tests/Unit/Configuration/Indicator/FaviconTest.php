@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Favicon;
 use KonradMichalik\Typo3EnvironmentIndicator\Enum\Scope;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * FaviconTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FaviconTest extends TestCase
 {
     protected function setUp(): void

@@ -26,10 +26,10 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
 
 /**
- * Service for evaluating trigger conditions.
+ * TriggerEvaluator.
  *
- * This service is responsible for checking trigger conditions
- * and determining whether a configuration should be active.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 class TriggerEvaluator
 {

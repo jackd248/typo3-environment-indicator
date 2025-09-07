@@ -26,4 +26,10 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backe
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\AbstractIndicator;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 
+/**
+ * Logo.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Logo extends AbstractIndicator implements IndicatorInterface {}

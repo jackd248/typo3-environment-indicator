@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Indi
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Widget;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * WidgetTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class WidgetTest extends TestCase
 {
     public function testConstructorWithEmptyConfiguration(): void

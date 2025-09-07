@@ -29,6 +29,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorIn
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * AbstractIndicatorTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class AbstractIndicatorTest extends TestCase
 {
     protected function setUp(): void
@@ -105,6 +111,12 @@ class AbstractIndicatorTest extends TestCase
     }
 }
 
+/**
+ * ConcreteIndicator.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ConcreteIndicator extends AbstractIndicator implements IndicatorInterface
 {
     public function getConfiguration(): array

@@ -29,6 +29,12 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
+/**
+ * TechnicalContextConditionFunctionsProviderTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TechnicalContextConditionFunctionsProviderTest extends TestCase
 {
     protected function setUp(): void

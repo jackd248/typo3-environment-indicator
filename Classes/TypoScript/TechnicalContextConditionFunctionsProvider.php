@@ -30,6 +30,12 @@ use Symfony\Component\ExpressionLanguage\ExpressionFunction;
 use Symfony\Component\ExpressionLanguage\ExpressionFunctionProviderInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 
+/**
+ * TechnicalContextConditionFunctionsProvider.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TechnicalContextConditionFunctionsProvider implements ExpressionFunctionProviderInterface
 {
     public function __construct(

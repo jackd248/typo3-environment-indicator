@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Indi
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * HintTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class HintTest extends TestCase
 {
     public function testConstructorWithEmptyConfiguration(): void

@@ -32,6 +32,12 @@ use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * BackendFaviconMiddleware.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class BackendFaviconMiddleware implements MiddlewareInterface
 {
     public function __construct(

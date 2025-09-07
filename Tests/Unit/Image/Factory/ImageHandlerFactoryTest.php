@@ -30,6 +30,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\FaviconHandler;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\FrontendImageHandler;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ImageHandlerFactoryTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ImageHandlerFactoryTest extends TestCase
 {
     private ImageHandlerFactory $factory;

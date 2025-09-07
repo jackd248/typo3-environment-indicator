@@ -28,6 +28,12 @@ use Intervention\Image\Interfaces\ImageInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * ReplaceModifier.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ReplaceModifier extends AbstractModifier implements ModifierInterface
 {
     public function modify(ImageInterface &$image): void

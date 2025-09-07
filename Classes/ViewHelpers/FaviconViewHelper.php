@@ -34,17 +34,11 @@ use TYPO3\CMS\Core\Utility\PathUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
-* Favicon ViewHelper
-*
-* This ViewHelper processes the given favicon regarding the application context.
-*
-* Usages:
-* ::
-*    <html xmlns:env="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers" data-namespace-typo3-fluid="true">
-*
-*     {f:uri.resource(path:'EXT:your_extension/Resources/Public/Favicon/favicon.png') -> env:favicon()}
-*     {env:favicon(favicon:'EXT:your_extension/Resources/Public/Favicon/favicon.png')}
-*/
+ * FaviconViewHelper.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FaviconViewHelper extends AbstractViewHelper
 {
     public function __construct(

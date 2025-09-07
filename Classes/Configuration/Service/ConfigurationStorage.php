@@ -26,10 +26,10 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 
 /**
- * Service for managing configuration storage and retrieval.
+ * ConfigurationStorage.
  *
- * This service abstracts the access to TYPO3's global configuration
- * and provides a clean interface for configuration operations.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 class ConfigurationStorage
 {

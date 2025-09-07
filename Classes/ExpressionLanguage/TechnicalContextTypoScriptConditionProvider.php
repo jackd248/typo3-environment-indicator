@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\ExpressionLanguage;
 use KonradMichalik\Typo3EnvironmentIndicator\TypoScript\TechnicalContextConditionFunctionsProvider;
 use TYPO3\CMS\Core\ExpressionLanguage\AbstractProvider;
 
+/**
+ * TechnicalContextTypoScriptConditionProvider.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TechnicalContextTypoScriptConditionProvider extends AbstractProvider
 {
     public function __construct()

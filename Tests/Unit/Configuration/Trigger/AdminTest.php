@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Trig
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\Admin;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * AdminTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class AdminTest extends TestCase
 {
     protected function setUp(): void

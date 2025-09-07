@@ -23,6 +23,12 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator;
 
+/**
+ * Configuration.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Configuration
 {
     final public const EXT_KEY = 'typo3_environment_indicator';

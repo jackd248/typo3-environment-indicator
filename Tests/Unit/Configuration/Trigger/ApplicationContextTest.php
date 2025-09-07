@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Trig
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\ApplicationContext;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ApplicationContextTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ApplicationContextTest extends TestCase
 {
     public function testInstantiation(): void

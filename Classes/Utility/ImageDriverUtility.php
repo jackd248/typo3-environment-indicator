@@ -28,6 +28,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * ImageDriverUtility.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ImageDriverUtility
 {
     public const IMAGE_DRIVER_GD = 'gd';

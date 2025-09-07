@@ -25,6 +25,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 
 use Intervention\Image\Interfaces\ImageInterface;
 
+/**
+ * ModifierInterface.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 interface ModifierInterface
 {
     public function modify(ImageInterface &$image): void;
