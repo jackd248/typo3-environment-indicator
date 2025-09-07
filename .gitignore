@@ -2,7 +2,6 @@
 .test/
 .Build/
 config
-composer.lock
 public
 !Resources/Public
 vendor
