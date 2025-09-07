@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\AbstractImageHandler;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\FrontendImageHandler;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * FrontendImageHandlerTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FrontendImageHandlerTest extends TestCase
 {
     public function testConstructorCreatesInstance(): void

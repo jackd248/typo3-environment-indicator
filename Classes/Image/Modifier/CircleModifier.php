@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 use Intervention\Image\Geometry\Factories\CircleFactory;
 use Intervention\Image\Interfaces\ImageInterface;
 
+/**
+ * CircleModifier.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class CircleModifier extends AbstractModifier implements ModifierInterface
 {
     public function modify(ImageInterface &$image): void

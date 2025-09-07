@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Im
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * FrontendImageHandler.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FrontendImageHandler extends AbstractImageHandler
 {
     public function __construct(?IndicatorInterface $indicator = null)

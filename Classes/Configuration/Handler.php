@@ -31,10 +31,10 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterf
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Main handler class for managing environment indicator configuration.
+ * Handler.
  *
- * This class acts as a facade for the configuration management system,
- * delegating responsibilities to specialized service classes.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 class Handler
 {

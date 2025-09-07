@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Enum\Scope;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\ApplicationType;
 
+/**
+ * Favicon.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Favicon extends AbstractIndicator implements IndicatorInterface
 {
     public function __construct(protected array $configuration = [], protected Scope $scope = Scope::Global, ?ServerRequestInterface $request = null)

@@ -32,10 +32,10 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\FrontendImageHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Factory for creating image handlers with proper dependency injection.
+ * ImageHandlerFactory.
  *
- * This factory removes the hardcoded dependencies from handler constructors
- * and provides a centralized way to create handlers with their required indicators.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 class ImageHandlerFactory implements ImageHandlerFactoryInterface
 {

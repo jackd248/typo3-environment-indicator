@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Trig
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\BackendUserGroup;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * BackendUserGroupTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class BackendUserGroupTest extends TestCase
 {
     protected function setUp(): void

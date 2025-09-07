@@ -28,6 +28,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Top
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * TopbarTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TopbarTest extends TestCase
 {
     public function testConstructorCreatesInstance(): void

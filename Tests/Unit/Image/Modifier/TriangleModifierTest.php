@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TriangleModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * TriangleModifierTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TriangleModifierTest extends TestCase
 {
     public function testInstantiationWithRequiredValues(): void

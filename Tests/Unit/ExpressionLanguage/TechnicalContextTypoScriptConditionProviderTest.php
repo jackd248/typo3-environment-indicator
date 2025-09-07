@@ -28,6 +28,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\TypoScript\TechnicalContextConditio
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\ExpressionLanguage\AbstractProvider;
 
+/**
+ * TechnicalContextTypoScriptConditionProviderTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TechnicalContextTypoScriptConditionProviderTest extends TestCase
 {
     public function testConstructorSetsExpressionLanguageProviders(): void

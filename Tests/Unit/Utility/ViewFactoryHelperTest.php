@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Utility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ViewFactoryHelper;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ViewFactoryHelperTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ViewFactoryHelperTest extends TestCase
 {
     protected function setUp(): void

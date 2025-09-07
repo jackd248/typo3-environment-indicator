@@ -32,6 +32,12 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * TopbarItem.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TopbarItem implements ToolbarItemInterface
 {
     public function __construct(

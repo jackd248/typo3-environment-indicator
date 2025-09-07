@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Utility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ConfigurationUtility;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ConfigurationUtilityTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ConfigurationUtilityTest extends TestCase
 {
     public function testConfigByContextThrowsException(): void

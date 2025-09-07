@@ -26,10 +26,10 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Factory;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 
 /**
- * Factory interface for creating image modifiers.
+ * ModifierFactoryInterface.
  *
- * This interface defines the contract for creating different types of image modifiers
- * with proper configuration validation and dependency injection.
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
  */
 interface ModifierFactoryInterface
 {

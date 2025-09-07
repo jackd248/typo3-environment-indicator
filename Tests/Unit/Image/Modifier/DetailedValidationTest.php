@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\CircleModifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TextModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * DetailedValidationTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class DetailedValidationTest extends TestCase
 {
     public function testTextModifierDetailedValidationErrors(): void

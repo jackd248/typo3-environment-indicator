@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Enum;
 use KonradMichalik\Typo3EnvironmentIndicator\Enum\Scope;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ScopeTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ScopeTest extends TestCase
 {
     public function testScopeValues(): void

@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\AbstractModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * AbstractModifierTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class AbstractModifierTest extends TestCase
 {
     protected function setUp(): void
@@ -35,24 +41,34 @@ class AbstractModifierTest extends TestCase
 
     public function testInstantiationWithoutRequiredKeys(): void
     {
-        $modifier = new class ([]) extends AbstractModifier {
-            public function getRequiredConfigurationKeys(): array
-            {
-                return [];
-            }
-        };
+        $modifier = new
+/**
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
+class ([]) extends AbstractModifier {
+    public function getRequiredConfigurationKeys(): array
+    {
+        return [];
+    }
+};
 
         self::assertInstanceOf(AbstractModifier::class, $modifier);
     }
 
     public function testInstantiationWithRequiredKeys(): void
     {
-        $modifier = new class (['required_key' => 'value']) extends AbstractModifier {
-            public function getRequiredConfigurationKeys(): array
-            {
-                return ['required_key'];
-            }
-        };
+        $modifier = new
+/**
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
+class (['required_key' => 'value']) extends AbstractModifier {
+    public function getRequiredConfigurationKeys(): array
+    {
+        return ['required_key'];
+    }
+};
 
         self::assertInstanceOf(AbstractModifier::class, $modifier);
     }

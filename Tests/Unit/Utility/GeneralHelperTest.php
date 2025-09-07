@@ -29,6 +29,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * GeneralHelperTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class GeneralHelperTest extends TestCase
 {
     protected function setUp(): void

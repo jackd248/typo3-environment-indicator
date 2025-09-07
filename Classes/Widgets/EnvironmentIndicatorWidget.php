@@ -34,6 +34,12 @@ use TYPO3\CMS\Dashboard\Widgets\ButtonProviderInterface;
 use TYPO3\CMS\Dashboard\Widgets\WidgetConfigurationInterface;
 use TYPO3\CMS\Dashboard\Widgets\WidgetInterface;
 
+/**
+ * EnvironmentIndicatorWidget.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterface
 {
     public function __construct(

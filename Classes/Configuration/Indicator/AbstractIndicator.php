@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * AbstractIndicator.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 abstract class AbstractIndicator
 {
     public function __construct(protected array $configuration = [], protected ?ServerRequestInterface $request = null)

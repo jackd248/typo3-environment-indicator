@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Utility;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ImageDriverUtilityTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ImageDriverUtilityTest extends TestCase
 {
     public function testConstantsAreCorrect(): void

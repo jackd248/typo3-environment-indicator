@@ -33,6 +33,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TextModifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TriangleModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ModifierFactoryTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ModifierFactoryTest extends TestCase
 {
     private ModifierFactory $factory;

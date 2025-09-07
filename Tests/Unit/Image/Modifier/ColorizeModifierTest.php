@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ColorizeModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ColorizeModifierTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ColorizeModifierTest extends TestCase
 {
     public function testInstantiationWithRequiredValues(): void

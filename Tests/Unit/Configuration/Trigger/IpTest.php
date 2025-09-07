@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Trig
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\Ip;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * IpTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class IpTest extends TestCase
 {
     private string $originalRemoteAddr;

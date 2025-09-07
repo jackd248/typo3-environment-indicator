@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\CircleModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * CircleModifierTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class CircleModifierTest extends TestCase
 {
     public function testInstantiationWithRequiredValues(): void

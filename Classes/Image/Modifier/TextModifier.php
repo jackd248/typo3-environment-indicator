@@ -27,6 +27,12 @@ use Intervention\Image\Interfaces\ImageInterface;
 use Intervention\Image\Typography\FontFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * TextModifier.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TextModifier extends AbstractModifier implements ModifierInterface
 {
     private const DEFAULT_PADDING = 5;

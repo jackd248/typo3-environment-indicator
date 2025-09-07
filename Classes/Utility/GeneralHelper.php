@@ -30,6 +30,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorIn
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * GeneralHelper.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class GeneralHelper
 {
     public static function getFolder(IndicatorInterface $indicator, bool $publicPath = true): string

@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Favicon;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * FaviconHandler.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FaviconHandler extends AbstractImageHandler
 {
     public function __construct(?IndicatorInterface $indicator = null)

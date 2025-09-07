@@ -34,7 +34,7 @@ jobs:
       - name: Check dependencies
         run: composer-require-checker check
       - name: Reset composer.json
-        run: git checkout composer.json
+        run: git checkout composer.json composer.lock
       - name: Re-install Composer dependencies
         uses: ramsey/composer-install@v3
       - name: Check for unused dependencies

@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\AbstractImageHandler;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\BackendLogoHandler;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * BackendLogoHandlerTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class BackendLogoHandlerTest extends TestCase
 {
     public function testConstructorCreatesInstance(): void

@@ -33,6 +33,12 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * FrontendFaviconMiddleware.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FrontendFaviconMiddleware implements MiddlewareInterface
 {
     public function __construct(

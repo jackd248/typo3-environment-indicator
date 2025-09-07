@@ -29,6 +29,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorIn
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * HandlerTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class HandlerTest extends TestCase
 {
     protected function setUp(): void

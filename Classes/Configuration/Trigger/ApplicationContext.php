@@ -25,6 +25,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
 
 use TYPO3\CMS\Core\Core\Environment;
 
+/**
+ * ApplicationContext.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ApplicationContext implements TriggerInterface
 {
     protected array $contexts;

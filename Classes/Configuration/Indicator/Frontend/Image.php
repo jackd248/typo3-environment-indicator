@@ -26,4 +26,10 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Front
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\AbstractIndicator;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 
+/**
+ * Image.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class Image extends AbstractIndicator implements IndicatorInterface {}

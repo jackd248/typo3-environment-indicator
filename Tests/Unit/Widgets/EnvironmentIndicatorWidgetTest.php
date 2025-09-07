@@ -29,6 +29,12 @@ use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Dashboard\Widgets\ButtonProviderInterface;
 use TYPO3\CMS\Dashboard\Widgets\WidgetConfigurationInterface;
 
+/**
+ * EnvironmentIndicatorWidgetTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class EnvironmentIndicatorWidgetTest extends TestCase
 {
     protected function setUp(): void

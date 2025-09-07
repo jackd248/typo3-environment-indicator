@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\OverlayModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * OverlayModifierTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class OverlayModifierTest extends TestCase
 {
     public function testInstantiationWithRequiredValues(): void

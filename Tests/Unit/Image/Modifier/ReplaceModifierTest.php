@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Modifier;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ReplaceModifier;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * ReplaceModifierTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class ReplaceModifierTest extends TestCase
 {
     public function testInstantiationWithRequiredValues(): void

@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Log
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * BackendLogoHandler.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class BackendLogoHandler extends AbstractImageHandler
 {
     public function __construct(?IndicatorInterface $indicator = null)

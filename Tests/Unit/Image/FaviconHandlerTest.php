@@ -27,6 +27,12 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\AbstractImageHandler;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\FaviconHandler;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * FaviconHandlerTest.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class FaviconHandlerTest extends TestCase
 {
     public function testConstructorCreatesInstance(): void

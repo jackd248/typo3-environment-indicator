@@ -26,6 +26,12 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 use Intervention\Image\Geometry\Factories\PolygonFactory;
 use Intervention\Image\Interfaces\ImageInterface;
 
+/**
+ * TriangleModifier.
+ *
+ * @author Konrad Michalik <hej@konradmichalik.dev>
+ * @license GPL-2.0
+ */
 class TriangleModifier extends AbstractModifier implements ModifierInterface
 {
     public function modify(ImageInterface &$image): void
