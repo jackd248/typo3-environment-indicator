@@ -61,6 +61,11 @@ abstract class AbstractImageHandler
             return $newImagePath;
         }
 
+        $absoluteNewImagePath = GeneralHelper::getFolder($this->indicator) . $newImageFilename;
+        if (file_exists($absoluteNewImagePath)) {
+            return $newImagePath;
+        }
+
         $manager = new ImageManager(
             ImageDriverUtility::resolveDriver()
         );
