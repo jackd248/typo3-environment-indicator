@@ -15,6 +15,10 @@
 
 This extension provides several features to show an environment indicator in the TYPO3 frontend and backend.
 
+> [!NOTE]
+> Has it ever happened to you that you changed data on a test system and then realized: oh no, that's the live system. 
+> Well, to prevent that from happening (again), I created this extension.
+
 ## ✨ Features
 
 | Preview                                                                                | Feature                                                                                                                                                                                                                                                                      | Frontend | Backend |
