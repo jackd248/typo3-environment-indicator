@@ -34,24 +34,44 @@ class BackendFaviconMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (true === (bool) ($extensionConfig['backend']['favicon'] ?? false)) {
-            $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
-            $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-            $newBackendFavicon = $faviconHandler->process($currentBackendFavicon, $request);
-            $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon'] = $newBackendFavicon;
+        if (!$this->isFeatureEnabled()) {
+            return $handler->handle($request);
         }
+
+        $this->processFavicon($request);
 
         return $handler->handle($request);
     }
 
-    protected function getBackendFavicon(ExtensionConfiguration $extensionConfiguration, ServerRequestInterface $request): string
+    private function isFeatureEnabled(): bool
     {
-        $backendFavicon = $extensionConfiguration->get('backend', 'backendFavicon');
+        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
+
+        return true === (bool) ($extensionConfig['backend']['favicon'] ?? false);
+    }
+
+    private function processFavicon(ServerRequestInterface $request): void
+    {
+        $currentFavicon = $this->getCurrentFavicon();
+        $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
+        $newFavicon = $faviconHandler->process($currentFavicon, $request);
+
+        $this->setBackendFavicon($newFavicon);
+    }
+
+    private function getCurrentFavicon(): string
+    {
+        $backendFavicon = $this->extensionConfiguration->get('backend', 'backendFavicon');
+
         if (null !== $backendFavicon && '' !== $backendFavicon) {
             return $backendFavicon;
         }
 
         return 'EXT:backend/Resources/Public/Icons/favicon.ico';
+    }
+
+    private function setBackendFavicon(string $faviconPath): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon'] = $faviconPath;
     }
 }

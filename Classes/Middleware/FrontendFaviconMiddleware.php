@@ -38,31 +38,67 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (true === (bool) ($extensionConfig['frontend']['favicon'] ?? false)) {
-            if ($typo3Version < 13
-                && is_array($GLOBALS['TSFE']->pSetup)
-                && array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup)
-                && '' !== $GLOBALS['TSFE']->pSetup['shortcutIcon']
-            ) {
-                $currentFrontendFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
-                $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-                $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon, $request);
-                $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFrontendFavicon;
-            } elseif ($typo3Version >= 13) {
-                $typoScript = $request->getAttribute('frontend.typoscript');
-                if ($typoScript->hasPage() && array_key_exists('shortcutIcon', $typoScript->getPageArray()) && '' !== $typoScript->getPageArray()['shortcutIcon']) {
-                    $typoScriptPageArray = $typoScript->getPageArray();
-                    $currentFrontendFavicon = $typoScriptPageArray['shortcutIcon'];
-                    $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-                    $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon, $request);
-                    $typoScriptPageArray['shortcutIcon'] = $newFrontendFavicon;
-                    $typoScript->setPageArray($typoScriptPageArray);
-                }
-            }
+        if (!$this->isFeatureEnabled()) {
+            return $handler->handle($request);
         }
 
+        $this->processFavicon($request);
+
         return $handler->handle($request);
+    }
+
+    private function isFeatureEnabled(): bool
+    {
+        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
+
+        return true === (bool) ($extensionConfig['frontend']['favicon'] ?? false);
+    }
+
+    private function processFavicon(ServerRequestInterface $request): void
+    {
+        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
+
+        if ($typo3Version < 13) {
+            $this->processFaviconLegacy($request);
+        } else {
+            $this->processFaviconModern($request);
+        }
+    }
+
+    private function processFaviconLegacy(ServerRequestInterface $request): void
+    {
+        if (!is_array($GLOBALS['TSFE']->pSetup)
+            || !array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup)
+            || '' === $GLOBALS['TSFE']->pSetup['shortcutIcon']
+        ) {
+            return;
+        }
+
+        $currentFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
+        $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
+        $newFavicon = $faviconHandler->process($currentFavicon, $request);
+
+        $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFavicon;
+    }
+
+    private function processFaviconModern(ServerRequestInterface $request): void
+    {
+        $typoScript = $request->getAttribute('frontend.typoscript');
+
+        if (!$typoScript->hasPage()
+            || !array_key_exists('shortcutIcon', $typoScript->getPageArray())
+            || '' === $typoScript->getPageArray()['shortcutIcon']
+        ) {
+            return;
+        }
+
+        $typoScriptPageArray = $typoScript->getPageArray();
+        $currentFavicon = $typoScriptPageArray['shortcutIcon'];
+
+        $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
+        $newFavicon = $faviconHandler->process($currentFavicon, $request);
+
+        $typoScriptPageArray['shortcutIcon'] = $newFavicon;
+        $typoScript->setPageArray($typoScriptPageArray);
     }
 }

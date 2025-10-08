@@ -34,23 +34,44 @@ class BackendLogoMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['logo'] ?? false) === true) {
-            $currentBackendLogo = $this->getBackendLogo($this->extensionConfiguration, $request);
-            $imageHandler = GeneralUtility::makeInstance(BackendLogoHandler::class);
-            $newBackendLogo = $imageHandler->process($currentBackendLogo, $request);
-            $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendLogo'] = $newBackendLogo;
+        if (!$this->isFeatureEnabled()) {
+            return $handler->handle($request);
         }
+
+        $this->processLogo($request);
 
         return $handler->handle($request);
     }
 
-    protected function getBackendLogo(ExtensionConfiguration $extensionConfiguration, ServerRequestInterface $request): string
+    private function isFeatureEnabled(): bool
     {
-        $backendLogo = $extensionConfiguration->get('backend', 'backendLogo');
+        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
+
+        return ($extensionConfig['backend']['logo'] ?? false) === true;
+    }
+
+    private function processLogo(ServerRequestInterface $request): void
+    {
+        $currentLogo = $this->getCurrentLogo();
+        $logoHandler = GeneralUtility::makeInstance(BackendLogoHandler::class);
+        $newLogo = $logoHandler->process($currentLogo, $request);
+
+        $this->setBackendLogo($newLogo);
+    }
+
+    private function getCurrentLogo(): string
+    {
+        $backendLogo = $this->extensionConfiguration->get('backend', 'backendLogo');
+
         if (null !== $backendLogo && '' !== $backendLogo) {
             return $backendLogo;
         }
 
         return 'EXT:backend/Resources/Public/Images/typo3_logo_orange.svg';
+    }
+
+    private function setBackendLogo(string $logoPath): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendLogo'] = $logoPath;
     }
 }
