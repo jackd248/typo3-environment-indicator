@@ -3,29 +3,21 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Service;
 
+use Exception;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\TriggerEvaluator;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * TriggerEvaluatorTest.
@@ -75,7 +67,7 @@ class TriggerEvaluatorTest extends TestCase
     public function testEvaluateTriggersHandlesException(): void
     {
         $trigger = $this->createMock(TriggerInterface::class);
-        $trigger->expects(self::once())->method('check')->willThrowException(new \Exception('Test exception'));
+        $trigger->expects(self::once())->method('check')->willThrowException(new Exception('Test exception'));
 
         $result = $this->triggerEvaluator->evaluateTriggers([$trigger]);
         self::assertFalse($result);
@@ -93,7 +85,7 @@ class TriggerEvaluatorTest extends TestCase
     public function testValidateTriggersReturnsFalseForInvalidTriggers(): void
     {
         $trigger = $this->createMock(TriggerInterface::class);
-        $invalidTrigger = new \stdClass();
+        $invalidTrigger = new stdClass();
 
         $result = $this->triggerEvaluator->validateTriggers([$trigger, $invalidTrigger]);
         self::assertFalse($result);

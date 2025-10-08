@@ -3,34 +3,24 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 use Intervention\Image\ImageManager;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ImageDriverUtility;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\{GeneralHelper, ImageDriverUtility};
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\PathUtility;
+use TYPO3\CMS\Core\Utility\{GeneralUtility, PathUtility};
+
+use function is_string;
 
 /**
  * AbstractImageHandler.
@@ -54,24 +44,24 @@ abstract class AbstractImageHandler
             return $path;
         }
 
-        $newImageFilename = $this->generateFilename($path, $request) . '.png';
-        $newImagePath = GeneralHelper::getFolder($this->indicator, false) . $newImageFilename;
+        $newImageFilename = $this->generateFilename($path, $request).'.png';
+        $newImagePath = GeneralHelper::getFolder($this->indicator, false).$newImageFilename;
 
         if ($path === $newImagePath) {
             return $newImagePath;
         }
 
-        $absoluteNewImagePath = GeneralHelper::getFolder($this->indicator) . $newImageFilename;
+        $absoluteNewImagePath = GeneralHelper::getFolder($this->indicator).$newImageFilename;
         if (file_exists($absoluteNewImagePath)) {
             return $newImagePath;
         }
 
         $manager = new ImageManager(
-            ImageDriverUtility::resolveDriver()
+            ImageDriverUtility::resolveDriver(),
         );
         $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
 
-        $format = pathinfo($absolutePath, PATHINFO_EXTENSION);
+        $format = pathinfo($absolutePath, \PATHINFO_EXTENSION);
         if (!GeneralHelper::supportFormat($manager, $format)) {
             return $path;
         }
@@ -92,22 +82,9 @@ abstract class AbstractImageHandler
             $modifier->modify($image);
         }
 
-        $image->save(GeneralHelper::getFolder($this->indicator) . $newImageFilename);
+        $image->save(GeneralHelper::getFolder($this->indicator).$newImageFilename);
+
         return $newImagePath;
-    }
-
-    private function preProcessImage(string &$absolutePath, string &$newImageFilename, string $format): void
-    {
-        /*
-        * GD driver does not support .ico files, so we need to convert them to .png before processing them
-        */
-        if (ImageDriverUtility::getImageDriverConfiguration() === ImageDriverUtility::IMAGE_DRIVER_GD && $format === 'ico') {
-            $this->convertIcoToPng($absolutePath, $newImageFilename);
-        }
-
-        if ($format === 'svg') {
-            $this->convertSvgToPng($absolutePath, $newImageFilename);
-        }
     }
 
     protected function getImageModifiers(ServerRequestInterface $request): array
@@ -125,6 +102,7 @@ abstract class AbstractImageHandler
             $parts[] = $modifier;
             $parts[] = json_encode($configuration);
         }
+
         return hash('sha256', implode('_', $parts));
     }
 
@@ -136,12 +114,12 @@ abstract class AbstractImageHandler
         foreach ($icoImage as $idx => $image) {
             $tmp = $loader->renderImage($image);
 
-            $basePath = Environment::getPublicPath() . '/' . GeneralHelper::getFolder($this->indicator, false) . 'processed/';
+            $basePath = Environment::getPublicPath().'/'.GeneralHelper::getFolder($this->indicator, false).'processed/';
             if (!file_exists($basePath)) {
                 GeneralUtility::mkdir_deep($basePath);
             }
 
-            $path = $basePath . $idx . '--' . $filename;
+            $path = $basePath.$idx.'--'.$filename;
 
             if (file_exists($path)) {
                 continue;
@@ -160,18 +138,32 @@ abstract class AbstractImageHandler
         $loader = new \SVG\SVG();
         $svgImage = $loader::fromFile($path);
 
-        $basePath = Environment::getPublicPath() . '/' . GeneralHelper::getFolder($this->indicator, false) . 'processed/';
+        $basePath = Environment::getPublicPath().'/'.GeneralHelper::getFolder($this->indicator, false).'processed/';
         if (!file_exists($basePath)) {
             GeneralUtility::mkdir_deep($basePath);
         }
 
-        $path = $basePath . '--' . $filename;
+        $path = $basePath.'--'.$filename;
 
         if (file_exists($path)) {
             return;
         }
 
-        $rasterImage = $svgImage->toRasterImage((int)$svgImage->getDocument()->getWidth(), (int)$svgImage->getDocument()->getHeight());
+        $rasterImage = $svgImage->toRasterImage((int) $svgImage->getDocument()->getWidth(), (int) $svgImage->getDocument()->getHeight());
         imagepng($rasterImage, $path); // @phpstan-ignore-line
+    }
+
+    private function preProcessImage(string &$absolutePath, string &$newImageFilename, string $format): void
+    {
+        /*
+        * GD driver does not support .ico files, so we need to convert them to .png before processing them
+        */
+        if (ImageDriverUtility::IMAGE_DRIVER_GD === ImageDriverUtility::getImageDriverConfiguration() && 'ico' === $format) {
+            $this->convertIcoToPng($absolutePath, $newImageFilename);
+        }
+
+        if ('svg' === $format) {
+            $this->convertSvgToPng($absolutePath, $newImageFilename);
+        }
     }
 }

@@ -3,35 +3,22 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
-use KonradMichalik\Typo3EnvironmentIndicator\Enum;
-use KonradMichalik\Typo3EnvironmentIndicator\Image;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\{Indicator, Trigger};
+use KonradMichalik\Typo3EnvironmentIndicator\{Configuration, Enum, Image};
 
-defined('TYPO3') || die();
+defined('TYPO3') || exit;
 
-/**
-* Context "Development/Text"
-*/
+/*
+ * Context "Development/Text"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Text'),
@@ -80,12 +67,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Widget([
             'color' => '#f39c12',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Triangle"
-*/
+/*
+ * Context "Development/Triangle"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Triangle'),
@@ -103,12 +90,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Toolbar([
             'color' => '#B39DDB',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Circle"
-*/
+/*
+ * Context "Development/Circle"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Circle'),
@@ -126,12 +113,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Toolbar([
             'color' => '#1B5E20',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Frame"
-*/
+/*
+ * Context "Development/Frame"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Frame'),
@@ -148,12 +135,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Toolbar([
             'color' => '#AA00FF',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Colorize"
-*/
+/*
+ * Context "Development/Colorize"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Colorize'),
@@ -176,12 +163,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Toolbar([
             'color' => '#039BE5',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Replace"
-*/
+/*
+ * Context "Development/Replace"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Replace'),
@@ -198,12 +185,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Toolbar([
             'color' => '#FFF176',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Overlay"
-*/
+/*
+ * Context "Development/Overlay"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Overlay'),
@@ -220,12 +207,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Toolbar([
             'color' => '#827717',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/FrontendHint"
-*/
+/*
+ * Context "Development/FrontendHint"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/FrontendHint'),
@@ -242,12 +229,12 @@ Configuration\Handler::addIndicator(
             'text' => 'Frontend',
             'position' => 'bottom right',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/BackendTopbar"
-*/
+/*
+ * Context "Development/BackendTopbar"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/BackendTopbar'),
@@ -256,12 +243,12 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Topbar([
             'color' => '#bd593a',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Admin"
-*/
+/*
+ * Context "Development/Admin"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Admin'),
@@ -271,24 +258,24 @@ Configuration\Handler::addIndicator(
         new Indicator\Backend\Topbar([
             'color' => '#00ACC1',
         ]),
-    ]
+    ],
 );
 
-/**
-* Context "Development/Custom"
-*/
+/*
+ * Context "Development/Custom"
+ */
 Configuration\Handler::addIndicator(
     triggers: [
         new Trigger\ApplicationContext('Development/Custom'),
         new Trigger\Custom(
             function () {
                 return false;
-            }
+            },
         ),
     ],
     indicators: [
         new Indicator\Backend\Topbar([
             'color' => '#00ACC1',
         ]),
-    ]
+    ],
 );

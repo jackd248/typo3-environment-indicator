@@ -3,34 +3,19 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Image\Factory;
 
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Factory\ModifierFactory;
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Factory\ModifierFactoryInterface;
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\CircleModifier;
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ColorizeModifier;
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\FrameModifier;
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TextModifier;
-use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\TriangleModifier;
+use InvalidArgumentException;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Factory\{ModifierFactory, ModifierFactoryInterface};
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\{CircleModifier, ColorizeModifier, FrameModifier, ModifierInterface, TextModifier, TriangleModifier};
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -106,7 +91,7 @@ class ModifierFactoryTest extends TestCase
 
     public function testCreateModifierWithInvalidType(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionCode(1726357771);
         $this->expectExceptionMessage('Unsupported modifier type: invalid');
 
@@ -115,7 +100,7 @@ class ModifierFactoryTest extends TestCase
 
     public function testCreateModifierWithMissingRequiredConfiguration(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionCode(1726357772);
         $this->expectExceptionMessage('Invalid configuration for modifier type: text');
 
@@ -160,5 +145,4 @@ class ModifierFactoryTest extends TestCase
         $result = $this->factory->validateConfiguration('invalid', []);
         self::assertFalse($result);
     }
-
 }

@@ -3,22 +3,12 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
@@ -26,6 +16,11 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier;
 use Intervention\Image\Interfaces\ImageInterface;
 use Intervention\Image\Typography\FontFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+use function count;
+use function in_array;
+use function is_array;
+use function is_string;
 
 /**
  * TextModifier.
@@ -47,7 +42,7 @@ class TextModifier extends AbstractModifier implements ModifierInterface
     {
         $padding = self::DEFAULT_PADDING;
         $maxWidth = $image->width() - self::TEXT_MARGIN;
-        $maxHeight = (int)($image->height() / self::HEIGHT_DIVISOR);
+        $maxHeight = (int) ($image->height() / self::HEIGHT_DIVISOR);
 
         $configuration = $this->configuration;
         $text = $configuration['text'];
@@ -56,24 +51,24 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         $fontSize = self::INITIAL_FONT_SIZE;
 
         do {
-            $fontSize++;
-            $wrappedText = wordwrap($text, (int)($maxWidth / ($fontSize * self::FONT_WIDTH_RATIO)), "\n", true);
+            ++$fontSize;
+            $wrappedText = wordwrap($text, (int) ($maxWidth / ($fontSize * self::FONT_WIDTH_RATIO)), "\n", true);
             $lines = explode("\n", $wrappedText);
             $estimatedHeight = count($lines) * $fontSize * self::LINE_HEIGHT_MULTIPLIER;
         } while ($estimatedHeight < $maxHeight && $fontSize < self::MAX_FONT_SIZE);
-        $fontSize--;
+        --$fontSize;
 
-        $yPosition = ($position === 'top') ? $padding : $image->height() - $padding;
+        $yPosition = ('top' === $position) ? $padding : $image->height() - $padding;
 
-        $image->text($wrappedText, (int)($image->width() / 2), $yPosition, function (FontFactory $font) use ($fontSize, $configuration, $fontPath, $position) {
+        $image->text($wrappedText, (int) ($image->width() / 2), $yPosition, function (FontFactory $font) use ($fontSize, $configuration, $fontPath, $position) {
             $font->filename($fontPath);
             $font->size($fontSize);
             $font->color($configuration['color']);
             if (isset($configuration['stroke']['color'])) {
-                $font->stroke($configuration['stroke']['color'], (int)$configuration['stroke']['width']);
+                $font->stroke($configuration['stroke']['color'], (int) $configuration['stroke']['width']);
             }
             $font->align('center');
-            $font->valign($position === 'top' ? 'top' : 'bottom');
+            $font->valign('top' === $position ? 'top' : 'bottom');
         });
     }
 
@@ -86,7 +81,7 @@ class TextModifier extends AbstractModifier implements ModifierInterface
             $errors[] = 'Missing required configuration key: text';
         } elseif (!is_string($configuration['text'])) {
             $errors[] = 'Configuration key "text" must be a string';
-        } elseif (trim($configuration['text']) === '') {
+        } elseif ('' === trim($configuration['text'])) {
             $errors[] = 'Configuration key "text" cannot be empty';
         }
 
@@ -127,7 +122,7 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         }
 
         return [
-            'valid' => $errors === [],
+            'valid' => [] === $errors,
             'errors' => $errors,
         ];
     }

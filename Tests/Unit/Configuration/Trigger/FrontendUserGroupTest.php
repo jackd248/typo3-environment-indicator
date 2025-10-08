@@ -3,22 +3,12 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Trigger;
@@ -61,7 +51,7 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenNoFrontendUser(): void
     {
-        $GLOBALS['TSFE'] = (object)[];
+        $GLOBALS['TSFE'] = (object) [];
         $trigger = new FrontendUserGroup(1);
         $result = $trigger->check();
         self::assertFalse($result);
@@ -69,8 +59,8 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenNoUserGroups(): void
     {
-        $GLOBALS['TSFE'] = (object)[
-            'fe_user' => (object)[],
+        $GLOBALS['TSFE'] = (object) [
+            'fe_user' => (object) [],
         ];
         $trigger = new FrontendUserGroup(1);
         $result = $trigger->check();
@@ -79,8 +69,8 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsTrueWhenUserIsInMatchingGroup(): void
     {
-        $GLOBALS['TSFE'] = (object)[
-            'fe_user' => (object)[
+        $GLOBALS['TSFE'] = (object) [
+            'fe_user' => (object) [
                 'groupData' => ['uid' => [1, 2, 3]],
             ],
         ];
@@ -91,8 +81,8 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsTrueWhenUserIsInOneOfMultipleGroups(): void
     {
-        $GLOBALS['TSFE'] = (object)[
-            'fe_user' => (object)[
+        $GLOBALS['TSFE'] = (object) [
+            'fe_user' => (object) [
                 'groupData' => ['uid' => [1, 2, 3]],
             ],
         ];
@@ -103,8 +93,8 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenUserIsNotInAnyGroup(): void
     {
-        $GLOBALS['TSFE'] = (object)[
-            'fe_user' => (object)[
+        $GLOBALS['TSFE'] = (object) [
+            'fe_user' => (object) [
                 'groupData' => ['uid' => [1, 2, 3]],
             ],
         ];
@@ -115,8 +105,8 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenUserHasEmptyGroups(): void
     {
-        $GLOBALS['TSFE'] = (object)[
-            'fe_user' => (object)[
+        $GLOBALS['TSFE'] = (object) [
+            'fe_user' => (object) [
                 'groupData' => ['uid' => []],
             ],
         ];
@@ -127,8 +117,8 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckUsesStrictComparison(): void
     {
-        $GLOBALS['TSFE'] = (object)[
-            'fe_user' => (object)[
+        $GLOBALS['TSFE'] = (object) [
+            'fe_user' => (object) [
                 'groupData' => ['uid' => [1, 2, 3]],
             ],
         ];

@@ -3,25 +3,19 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
+
+use function is_string;
+use function sprintf;
+use function strlen;
 
 /**
  * ColorUtility.
@@ -33,15 +27,17 @@ class ColorUtility
 {
     public static function getColoredString(?string $name = null): string
     {
-        $name = $name ?? (string)$GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'];
+        $name = $name ?? (string) $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'];
         $hash = hash('sha256', $name);
         $hue = hexdec(substr($hash, 0, 2)) / 255 * 360;
+
         return sprintf('hsl(%d, 70%%, 60%%)', $hue);
     }
 
     public static function getOptimalTextColor(string $color, float $opacity = 1, array|string $fallbackColor = [0, 0, 0]): string
     {
         $rgb = self::colorToRgb($color, $fallbackColor);
+
         return self::calculateLuminance($rgb[0], $rgb[1], $rgb[2]) > 0.5 ? "rgba(0,0,0,$opacity)" : "rgba(255,255,255,$opacity)";
     }
 
@@ -51,25 +47,27 @@ class ColorUtility
             return self::hexToRgb($color);
         }
         if (preg_match('/rgb\((\d+),\s*(\d+),\s*(\d+)\)/', $color, $matches)) {
-            return [(int)$matches[1], (int)$matches[2], (int)$matches[3]];
+            return [(int) $matches[1], (int) $matches[2], (int) $matches[3]];
         }
         if (preg_match('/hsl\((\d+),\s*(\d+)%?,\s*(\d+)%?\)/', $color, $matches)) {
-            return self::hslToRgb((int)$matches[1], (int)$matches[2], (int)$matches[3]);
+            return self::hslToRgb((int) $matches[1], (int) $matches[2], (int) $matches[3]);
         }
 
         if (is_string($fallbackColor)) {
             $fallbackColor = self::colorToRgb($fallbackColor);
         }
+
         return $fallbackColor;
     }
 
     public static function hexToRgb(string $hex): array
     {
         $hex = ltrim($hex, '#');
-        if (strlen($hex) === 3) {
+        if (3 === strlen($hex)) {
             $hex = "{$hex[0]}{$hex[0]}{$hex[1]}{$hex[1]}{$hex[2]}{$hex[2]}";
         }
-        return [hexdec($hex[0] . $hex[1]), hexdec($hex[2] . $hex[3]), hexdec($hex[4] . $hex[5])];
+
+        return [hexdec($hex[0].$hex[1]), hexdec($hex[2].$hex[3]), hexdec($hex[4].$hex[5])];
     }
 
     public static function hslToRgb(int $h, int $s, int $l): array

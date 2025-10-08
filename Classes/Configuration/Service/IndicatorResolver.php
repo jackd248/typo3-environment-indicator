@@ -3,27 +3,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
+use Throwable;
 
 /**
  * IndicatorResolver.
@@ -38,7 +29,7 @@ class IndicatorResolver
 
     public function __construct(
         ConfigurationStorage $configurationStorage,
-        TriggerEvaluator $triggerEvaluator
+        TriggerEvaluator $triggerEvaluator,
     ) {
         $this->configurationStorage = $configurationStorage;
         $this->triggerEvaluator = $triggerEvaluator;
@@ -64,6 +55,24 @@ class IndicatorResolver
     }
 
     /**
+     * Validates that indicators are properly configured.
+     *
+     * @param array $indicators Array of potential indicator objects
+     *
+     * @return bool True if all indicators are valid, false otherwise
+     */
+    public function validateIndicators(array $indicators): bool
+    {
+        foreach ($indicators as $indicator) {
+            if (!$indicator instanceof IndicatorInterface) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Processes a single configuration entry.
      *
      * @param array $configuration The configuration to process
@@ -73,7 +82,7 @@ class IndicatorResolver
         $triggers = $configuration['triggers'] ?? [];
         $indicators = $configuration['indicators'] ?? [];
 
-        if ($indicators === []) {
+        if ([] === $indicators) {
             return;
         }
 
@@ -99,26 +108,9 @@ class IndicatorResolver
 
             // Merge with existing configuration or set new one
             $this->configurationStorage->mergeCurrentIndicator($indicatorClass, $configuration);
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             // Log error but don't break the entire resolution
-            error_log('Indicator processing failed: ' . $e->getMessage());
+            error_log('Indicator processing failed: '.$e->getMessage());
         }
-    }
-
-    /**
-     * Validates that indicators are properly configured.
-     *
-     * @param array $indicators Array of potential indicator objects
-     * @return bool True if all indicators are valid, false otherwise
-     */
-    public function validateIndicators(array $indicators): bool
-    {
-        foreach ($indicators as $indicator) {
-            if (!$indicator instanceof IndicatorInterface) {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
