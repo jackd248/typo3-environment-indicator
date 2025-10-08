@@ -1,31 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Toolbar;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ViewFactoryHelper;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\{ColorUtility, GeneralHelper, ViewFactoryHelper};
 use TYPO3\CMS\Backend\Toolbar\ToolbarItemInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Core\Environment;
@@ -39,7 +29,7 @@ use TYPO3\CMS\Core\Core\Environment;
 class ContextItem implements ToolbarItemInterface
 {
     public function __construct(
-        protected readonly ExtensionConfiguration $extensionConfiguration
+        protected readonly ExtensionConfiguration $extensionConfiguration,
     ) {}
 
     public function checkAccess(): bool
@@ -50,17 +40,17 @@ class ContextItem implements ToolbarItemInterface
     public function getItem(): string
     {
         $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if ((bool)($extensionConfig['backend']['context'] ?? false) !== true ||
-            !GeneralHelper::isCurrentIndicator(Toolbar::class)) {
+        if (true !== (bool) ($extensionConfig['backend']['context'] ?? false)
+            || !GeneralHelper::isCurrentIndicator(Toolbar::class)) {
             return '';
         }
 
-        if ((bool)($extensionConfig['backend']['contextProduction'] ?? false) !== true && Environment::getContext()->__toString() === 'Production') {
+        if (true !== (bool) ($extensionConfig['backend']['contextProduction'] ?? false) && 'Production' === Environment::getContext()->__toString()) {
             return '';
         }
 
         $toolbarConfig = $this->getBackendToolbarConfiguration();
-        if ($toolbarConfig === []) {
+        if ([] === $toolbarConfig) {
             return '';
         }
 
@@ -77,7 +67,7 @@ class ContextItem implements ToolbarItemInterface
                     'color' => $contextColor,
                     'textColor' => ColorUtility::getOptimalTextColor($contextColor),
                 ],
-            ]
+            ],
         );
     }
 
@@ -99,7 +89,8 @@ class ContextItem implements ToolbarItemInterface
     public function getIndex(): int
     {
         $toolbarConfig = $this->getBackendToolbarConfiguration();
-        return $toolbarConfig !== [] ? $toolbarConfig['index'] : 0;
+
+        return [] !== $toolbarConfig ? $toolbarConfig['index'] : 0;
     }
 
     private function getBackendToolbarConfiguration(): array

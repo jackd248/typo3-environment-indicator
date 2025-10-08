@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f966172606860e6d7d6e020437204882",
+    "content-hash": "a4ac67378b2732fa2611f57ca3b7196c",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -7862,6 +7862,64 @@
                 "source": "https://github.com/jsonrainbow/json-schema/tree/6.5.2"
             },
             "time": "2025-09-09T09:42:27+00:00"
+        },
+        {
+            "name": "konradmichalik/php-cs-fixer-preset",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jackd248/php-cs-fixer-preset.git",
+                "reference": "480a70abaeef501a839bbce3c99696024c205c2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jackd248/php-cs-fixer-preset/zipball/480a70abaeef501a839bbce3c99696024c205c2c",
+                "reference": "480a70abaeef501a839bbce3c99696024c205c2c",
+                "shasum": ""
+            },
+            "require": {
+                "friendsofphp/php-cs-fixer": "^3.14",
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+                "symfony/finder": "^5.4 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "armin/editorconfig-cli": "^1.0 || ^2.0",
+                "eliashaeussler/rector-config": "^3.0",
+                "ergebnis/composer-normalize": "^2.44",
+                "konradmichalik/php-doc-block-header-fixer": "^0.2.2",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-symfony": "^2.0",
+                "phpunit/phpunit": "^10.2 || ^11.0 || ^12.0"
+            },
+            "type": "library",
+            "extra": {
+                "konradmichalik/php-cs-fixer-preset": {
+                    "copyright": 2025
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KonradMichalik\\PhpCsFixerPreset\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Konrad Michalik",
+                    "email": "hej@konradmichalik.dev",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Preset configuration for PHP-CS-Fixer",
+            "support": {
+                "issues": "https://github.com/jackd248/php-cs-fixer-preset/issues",
+                "source": "https://github.com/jackd248/php-cs-fixer-preset/tree/0.1.0"
+            },
+            "time": "2025-10-08T05:44:53+00:00"
         },
         {
             "name": "konradmichalik/php-doc-block-header-fixer",

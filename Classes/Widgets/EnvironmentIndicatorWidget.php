@@ -3,36 +3,21 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Widgets;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Backend\Widget;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ColorUtility;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
-use KonradMichalik\Typo3EnvironmentIndicator\Utility\ViewFactoryHelper;
+use KonradMichalik\Typo3EnvironmentIndicator\Utility\{ColorUtility, GeneralHelper, ViewFactoryHelper};
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Dashboard\Widgets\AdditionalCssInterface;
-use TYPO3\CMS\Dashboard\Widgets\ButtonProviderInterface;
-use TYPO3\CMS\Dashboard\Widgets\WidgetConfigurationInterface;
-use TYPO3\CMS\Dashboard\Widgets\WidgetInterface;
+use TYPO3\CMS\Dashboard\Widgets\{AdditionalCssInterface, ButtonProviderInterface, WidgetConfigurationInterface, WidgetInterface};
 
 /**
  * EnvironmentIndicatorWidget.
@@ -45,7 +30,7 @@ class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterf
     public function __construct(
         protected readonly WidgetConfigurationInterface $configuration,
         protected readonly ?ButtonProviderInterface $buttonProvider = null,
-        protected array $options = []
+        protected array $options = [],
     ) {}
 
     public function renderWidgetContent(): string
@@ -63,7 +48,7 @@ class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterf
                     'textColor' => ColorUtility::getOptimalTextColor($this->getWidgetConfiguration()['color'] ?? 'transparent', fallbackColor: '#ffffff'),
                     'textSize' => $this->getWidgetConfiguration()['textSize'] ?? '20px',
                 ],
-            ]
+            ],
         );
     }
 
@@ -74,7 +59,7 @@ class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterf
 
     public function getCssFiles(): array
     {
-        return ['EXT:' . Configuration::EXT_KEY . '/Resources/Public/Css/Widget.css'];
+        return ['EXT:'.Configuration::EXT_KEY.'/Resources/Public/Css/Widget.css'];
     }
 
     private function getWidgetConfiguration(): array

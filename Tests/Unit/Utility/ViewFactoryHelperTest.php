@@ -3,28 +3,19 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the TYPO3 CMS extension "typo3_environment_indicator".
+ * This file is part of the "typo3_environment_indicator" TYPO3 CMS extension.
  *
- * Copyright (C) 2025 Konrad Michalik <hej@konradmichalik.dev>
+ * (c) Konrad Michalik <hej@konradmichalik.dev>
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\ViewFactoryHelper;
 use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
 /**
  * ViewFactoryHelperTest.
@@ -46,14 +37,14 @@ class ViewFactoryHelperTest extends TestCase
 
     public function testRenderViewMethodIsStatic(): void
     {
-        $reflection = new \ReflectionClass(ViewFactoryHelper::class);
+        $reflection = new ReflectionClass(ViewFactoryHelper::class);
         $method = $reflection->getMethod('renderView');
         self::assertTrue($method->isStatic());
     }
 
     public function testRenderView12MethodExists(): void
     {
-        $reflection = new \ReflectionClass(ViewFactoryHelper::class);
+        $reflection = new ReflectionClass(ViewFactoryHelper::class);
         self::assertTrue($reflection->hasMethod('renderView12'));
         self::assertTrue($reflection->getMethod('renderView12')->isPrivate());
         self::assertTrue($reflection->getMethod('renderView12')->isStatic());
@@ -61,7 +52,7 @@ class ViewFactoryHelperTest extends TestCase
 
     public function testRenderView13MethodExists(): void
     {
-        $reflection = new \ReflectionClass(ViewFactoryHelper::class);
+        $reflection = new ReflectionClass(ViewFactoryHelper::class);
         self::assertTrue($reflection->hasMethod('renderView13'));
         self::assertTrue($reflection->getMethod('renderView13')->isPrivate());
         self::assertTrue($reflection->getMethod('renderView13')->isStatic());
@@ -69,7 +60,7 @@ class ViewFactoryHelperTest extends TestCase
 
     public function testRenderViewParameterSignature(): void
     {
-        $reflection = new \ReflectionClass(ViewFactoryHelper::class);
+        $reflection = new ReflectionClass(ViewFactoryHelper::class);
         $method = $reflection->getMethod('renderView');
         $parameters = $method->getParameters();
 
@@ -82,7 +73,7 @@ class ViewFactoryHelperTest extends TestCase
 
     public function testRenderView12ParameterSignature(): void
     {
-        $reflection = new \ReflectionClass(ViewFactoryHelper::class);
+        $reflection = new ReflectionClass(ViewFactoryHelper::class);
         $method = $reflection->getMethod('renderView12');
         $parameters = $method->getParameters();
 
@@ -93,7 +84,7 @@ class ViewFactoryHelperTest extends TestCase
 
     public function testRenderView13ParameterSignature(): void
     {
-        $reflection = new \ReflectionClass(ViewFactoryHelper::class);
+        $reflection = new ReflectionClass(ViewFactoryHelper::class);
         $method = $reflection->getMethod('renderView13');
         $parameters = $method->getParameters();
 
