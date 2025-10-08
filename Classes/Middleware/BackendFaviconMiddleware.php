@@ -34,13 +34,14 @@ class BackendFaviconMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (true === (bool) ($extensionConfig['backend']['favicon'] ?? false)) {
-            $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
-            $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-            $newBackendFavicon = $faviconHandler->process($currentBackendFavicon, $request);
-            $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon'] = $newBackendFavicon;
+        if (!$this->isFeatureEnabled()) {
+            return $handler->handle($request);
         }
+
+        $currentBackendFavicon = $this->getBackendFavicon($this->extensionConfiguration, $request);
+        $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
+        $newBackendFavicon = $faviconHandler->process($currentBackendFavicon, $request);
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendFavicon'] = $newBackendFavicon;
 
         return $handler->handle($request);
     }
@@ -53,5 +54,12 @@ class BackendFaviconMiddleware implements MiddlewareInterface
         }
 
         return 'EXT:backend/Resources/Public/Icons/favicon.ico';
+    }
+
+    private function isFeatureEnabled(): bool
+    {
+        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
+
+        return true === (bool) ($extensionConfig['backend']['favicon'] ?? false);
     }
 }

@@ -38,31 +38,40 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+        if (!$this->isFeatureEnabled()) {
+            return $handler->handle($request);
+        }
+
         $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
-        if (true === (bool) ($extensionConfig['frontend']['favicon'] ?? false)) {
-            if ($typo3Version < 13
-                && is_array($GLOBALS['TSFE']->pSetup)
-                && array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup)
-                && '' !== $GLOBALS['TSFE']->pSetup['shortcutIcon']
-            ) {
-                $currentFrontendFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
+
+        if ($typo3Version < 13
+            && is_array($GLOBALS['TSFE']->pSetup)
+            && array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup)
+            && '' !== $GLOBALS['TSFE']->pSetup['shortcutIcon']
+        ) {
+            $currentFrontendFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
+            $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
+            $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon, $request);
+            $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFrontendFavicon;
+        } elseif ($typo3Version >= 13) {
+            $typoScript = $request->getAttribute('frontend.typoscript');
+            if ($typoScript->hasPage() && array_key_exists('shortcutIcon', $typoScript->getPageArray()) && '' !== $typoScript->getPageArray()['shortcutIcon']) {
+                $typoScriptPageArray = $typoScript->getPageArray();
+                $currentFrontendFavicon = $typoScriptPageArray['shortcutIcon'];
                 $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
                 $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon, $request);
-                $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFrontendFavicon;
-            } elseif ($typo3Version >= 13) {
-                $typoScript = $request->getAttribute('frontend.typoscript');
-                if ($typoScript->hasPage() && array_key_exists('shortcutIcon', $typoScript->getPageArray()) && '' !== $typoScript->getPageArray()['shortcutIcon']) {
-                    $typoScriptPageArray = $typoScript->getPageArray();
-                    $currentFrontendFavicon = $typoScriptPageArray['shortcutIcon'];
-                    $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-                    $newFrontendFavicon = $faviconHandler->process($currentFrontendFavicon, $request);
-                    $typoScriptPageArray['shortcutIcon'] = $newFrontendFavicon;
-                    $typoScript->setPageArray($typoScriptPageArray);
-                }
+                $typoScriptPageArray['shortcutIcon'] = $newFrontendFavicon;
+                $typoScript->setPageArray($typoScriptPageArray);
             }
         }
 
         return $handler->handle($request);
+    }
+
+    private function isFeatureEnabled(): bool
+    {
+        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
+
+        return true === (bool) ($extensionConfig['frontend']['favicon'] ?? false);
     }
 }

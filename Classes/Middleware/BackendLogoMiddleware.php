@@ -34,12 +34,14 @@ class BackendLogoMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (($this->extensionConfiguration->get(Configuration::EXT_KEY)['backend']['logo'] ?? false) === true) {
-            $currentBackendLogo = $this->getBackendLogo($this->extensionConfiguration, $request);
-            $imageHandler = GeneralUtility::makeInstance(BackendLogoHandler::class);
-            $newBackendLogo = $imageHandler->process($currentBackendLogo, $request);
-            $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendLogo'] = $newBackendLogo;
+        if (!$this->isFeatureEnabled()) {
+            return $handler->handle($request);
         }
+
+        $currentBackendLogo = $this->getBackendLogo($this->extensionConfiguration, $request);
+        $imageHandler = GeneralUtility::makeInstance(BackendLogoHandler::class);
+        $newBackendLogo = $imageHandler->process($currentBackendLogo, $request);
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['backend']['backendLogo'] = $newBackendLogo;
 
         return $handler->handle($request);
     }
@@ -52,5 +54,12 @@ class BackendLogoMiddleware implements MiddlewareInterface
         }
 
         return 'EXT:backend/Resources/Public/Images/typo3_logo_orange.svg';
+    }
+
+    private function isFeatureEnabled(): bool
+    {
+        $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
+
+        return ($extensionConfig['backend']['logo'] ?? false) === true;
     }
 }
