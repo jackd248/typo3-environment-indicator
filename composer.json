@@ -72,6 +72,9 @@
 		"sort-packages": true
 	},
 	"extra": {
+		"konradmichalik/php-cs-fixer-preset": {
+			"copyright": 2025
+		},
 		"typo3/cms": {
 			"extension-key": "typo3_environment_indicator",
 			"web-dir": "public"
