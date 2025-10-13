@@ -22,7 +22,7 @@ use Psr\Http\Message\ServerRequestInterface;
  * AbstractIndicatorTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class AbstractIndicatorTest extends TestCase
 {
@@ -104,7 +104,7 @@ class AbstractIndicatorTest extends TestCase
  * ConcreteIndicator.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class ConcreteIndicator extends AbstractIndicator implements IndicatorInterface
 {

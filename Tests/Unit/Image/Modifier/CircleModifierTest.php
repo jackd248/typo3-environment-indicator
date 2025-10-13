@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * CircleModifierTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class CircleModifierTest extends TestCase
 {

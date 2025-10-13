@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Core\Environment;
  * ContextItem.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class ContextItem implements ToolbarItemInterface
 {

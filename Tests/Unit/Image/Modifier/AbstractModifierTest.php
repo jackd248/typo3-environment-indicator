@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * AbstractModifierTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class AbstractModifierTest extends TestCase
 {
@@ -34,7 +34,7 @@ class AbstractModifierTest extends TestCase
         $modifier = new
 /**
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class([]) extends AbstractModifier {
     public function getRequiredConfigurationKeys(): array
@@ -51,7 +51,7 @@ class([]) extends AbstractModifier {
         $modifier = new
 /**
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class(['required_key' => 'value']) extends AbstractModifier {
     public function getRequiredConfigurationKeys(): array

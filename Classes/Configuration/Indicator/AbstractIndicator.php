@@ -23,7 +23,7 @@ use function is_array;
  * AbstractIndicator.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 abstract class AbstractIndicator
 {

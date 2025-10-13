@@ -17,7 +17,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
  * IndicatorInterface.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 interface IndicatorInterface
 {

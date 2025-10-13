@@ -23,7 +23,7 @@ use function is_string;
  * CircleModifier.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class CircleModifier extends AbstractModifier implements ModifierInterface
 {

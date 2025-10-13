@@ -23,7 +23,7 @@ use PHPUnit\Framework\TestCase;
  * HandlerTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class HandlerTest extends TestCase
 {

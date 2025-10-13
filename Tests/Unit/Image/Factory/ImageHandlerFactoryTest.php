@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
  * ImageHandlerFactoryTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class ImageHandlerFactoryTest extends TestCase
 {

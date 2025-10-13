@@ -22,7 +22,7 @@ use function is_string;
  * FrameModifier.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class FrameModifier extends AbstractModifier implements ModifierInterface
 {

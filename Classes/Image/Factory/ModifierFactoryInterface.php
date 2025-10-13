@@ -20,7 +20,7 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
  * ModifierFactoryInterface.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 interface ModifierFactoryInterface
 {

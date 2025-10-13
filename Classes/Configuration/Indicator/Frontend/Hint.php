@@ -19,6 +19,6 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\{AbstractIn
  * Hint.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class Hint extends AbstractIndicator implements IndicatorInterface {}

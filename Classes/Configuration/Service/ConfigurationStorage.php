@@ -19,7 +19,7 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
  * ConfigurationStorage.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class ConfigurationStorage
 {
