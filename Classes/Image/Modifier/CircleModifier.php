@@ -74,14 +74,34 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
     {
         $errors = [];
 
-        // Validate required color
+        $errors = array_merge($errors, $this->validateColor($configuration));
+        $errors = array_merge($errors, $this->validateSize($configuration));
+        $errors = array_merge($errors, $this->validatePadding($configuration));
+        $errors = array_merge($errors, $this->validatePosition($configuration));
+
+        return [
+            'valid' => [] === $errors,
+            'errors' => $errors,
+        ];
+    }
+
+    private function validateColor(array $configuration): array
+    {
+        $errors = [];
+
         if (!isset($configuration['color'])) {
             $errors[] = 'Missing required configuration key: color';
         } elseif (!is_string($configuration['color'])) {
             $errors[] = 'Configuration key "color" must be a string';
         }
 
-        // Validate required size
+        return $errors;
+    }
+
+    private function validateSize(array $configuration): array
+    {
+        $errors = [];
+
         if (!isset($configuration['size'])) {
             $errors[] = 'Missing required configuration key: size';
         } elseif (!is_numeric($configuration['size'])) {
@@ -90,7 +110,13 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
             $errors[] = 'Configuration key "size" must be between 0 and 1';
         }
 
-        // Validate required padding
+        return $errors;
+    }
+
+    private function validatePadding(array $configuration): array
+    {
+        $errors = [];
+
         if (!isset($configuration['padding'])) {
             $errors[] = 'Missing required configuration key: padding';
         } elseif (!is_numeric($configuration['padding'])) {
@@ -99,7 +125,13 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
             $errors[] = 'Configuration key "padding" must be between 0 and 1';
         }
 
-        // Validate required position
+        return $errors;
+    }
+
+    private function validatePosition(array $configuration): array
+    {
+        $errors = [];
+
         if (!isset($configuration['position'])) {
             $errors[] = 'Missing required configuration key: position';
         } elseif (!is_string($configuration['position'])) {
@@ -111,9 +143,6 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
             }
         }
 
-        return [
-            'valid' => [] === $errors,
-            'errors' => $errors,
-        ];
+        return $errors;
     }
 }

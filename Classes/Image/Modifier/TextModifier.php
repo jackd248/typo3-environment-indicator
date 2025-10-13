@@ -76,7 +76,22 @@ class TextModifier extends AbstractModifier implements ModifierInterface
     {
         $errors = [];
 
-        // Validate required text
+        $errors = array_merge($errors, $this->validateText($configuration));
+        $errors = array_merge($errors, $this->validateColor($configuration));
+        $errors = array_merge($errors, $this->validateFont($configuration));
+        $errors = array_merge($errors, $this->validatePosition($configuration));
+        $errors = array_merge($errors, $this->validateStroke($configuration));
+
+        return [
+            'valid' => [] === $errors,
+            'errors' => $errors,
+        ];
+    }
+
+    private function validateText(array $configuration): array
+    {
+        $errors = [];
+
         if (!isset($configuration['text'])) {
             $errors[] = 'Missing required configuration key: text';
         } elseif (!is_string($configuration['text'])) {
@@ -85,45 +100,86 @@ class TextModifier extends AbstractModifier implements ModifierInterface
             $errors[] = 'Configuration key "text" cannot be empty';
         }
 
-        // Validate required color
+        return $errors;
+    }
+
+    private function validateColor(array $configuration): array
+    {
+        $errors = [];
+
         if (!isset($configuration['color'])) {
             $errors[] = 'Missing required configuration key: color';
         } elseif (!is_string($configuration['color'])) {
             $errors[] = 'Configuration key "color" must be a string';
         }
 
-        // Validate optional font
+        return $errors;
+    }
+
+    private function validateFont(array $configuration): array
+    {
+        $errors = [];
+
         if (isset($configuration['font']) && !is_string($configuration['font'])) {
             $errors[] = 'Configuration key "font" must be a string';
         }
 
-        // Validate optional position
+        return $errors;
+    }
+
+    private function validatePosition(array $configuration): array
+    {
+        $errors = [];
+
         if (isset($configuration['position']) && !in_array($configuration['position'], ['top', 'bottom'], true)) {
             $errors[] = 'Configuration key "position" must be one of: top, bottom';
         }
 
-        // Validate optional stroke configuration
-        if (isset($configuration['stroke'])) {
-            if (!is_array($configuration['stroke'])) {
-                $errors[] = 'Configuration key "stroke" must be an array';
-            } else {
-                if (!isset($configuration['stroke']['color'])) {
-                    $errors[] = 'Missing required stroke configuration key: color';
-                } elseif (!is_string($configuration['stroke']['color'])) {
-                    $errors[] = 'Stroke configuration key "color" must be a string';
-                }
+        return $errors;
+    }
 
-                if (!isset($configuration['stroke']['width'])) {
-                    $errors[] = 'Missing required stroke configuration key: width';
-                } elseif (!is_numeric($configuration['stroke']['width'])) {
-                    $errors[] = 'Stroke configuration key "width" must be numeric';
-                }
-            }
+    private function validateStroke(array $configuration): array
+    {
+        $errors = [];
+
+        if (!isset($configuration['stroke'])) {
+            return $errors;
         }
 
-        return [
-            'valid' => [] === $errors,
-            'errors' => $errors,
-        ];
+        if (!is_array($configuration['stroke'])) {
+            $errors[] = 'Configuration key "stroke" must be an array';
+
+            return $errors;
+        }
+
+        $errors = array_merge($errors, $this->validateStrokeColor($configuration['stroke']));
+
+        return array_merge($errors, $this->validateStrokeWidth($configuration['stroke']));
+    }
+
+    private function validateStrokeColor(array $strokeConfiguration): array
+    {
+        $errors = [];
+
+        if (!isset($strokeConfiguration['color'])) {
+            $errors[] = 'Missing required stroke configuration key: color';
+        } elseif (!is_string($strokeConfiguration['color'])) {
+            $errors[] = 'Stroke configuration key "color" must be a string';
+        }
+
+        return $errors;
+    }
+
+    private function validateStrokeWidth(array $strokeConfiguration): array
+    {
+        $errors = [];
+
+        if (!isset($strokeConfiguration['width'])) {
+            $errors[] = 'Missing required stroke configuration key: width';
+        } elseif (!is_numeric($strokeConfiguration['width'])) {
+            $errors[] = 'Stroke configuration key "width" must be numeric';
+        }
+
+        return $errors;
     }
 }

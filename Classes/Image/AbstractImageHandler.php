@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 use Intervention\Image\ImageManager;
+use Intervention\Image\Interfaces\ImageInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\{GeneralHelper, ImageDriverUtility};
 use Psr\Http\Message\ServerRequestInterface;
@@ -34,13 +35,7 @@ abstract class AbstractImageHandler
 
     public function process(string $path, ServerRequestInterface $request): string
     {
-        $absolutePath = GeneralUtility::getFileAbsFileName($path);
-
-        if (!file_exists($absolutePath)) {
-            return $path;
-        }
-
-        if (!GeneralHelper::isCurrentIndicator($this->indicator::class)) {
+        if (!$this->shouldProcessImage($path)) {
             return $path;
         }
 
@@ -56,33 +51,9 @@ abstract class AbstractImageHandler
             return $newImagePath;
         }
 
-        $manager = new ImageManager(
-            ImageDriverUtility::resolveDriver(),
-        );
-        $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
-
-        $format = pathinfo($absolutePath, \PATHINFO_EXTENSION);
-        if (!GeneralHelper::supportFormat($manager, $format)) {
+        if (!$this->processAndSaveImage($path, $newImageFilename, $request)) {
             return $path;
         }
-
-        $this->preProcessImage($absolutePath, $newImageFilename, $format);
-
-        $image = $manager->read($absolutePath);
-
-        foreach ($this->getImageModifiers($request) as $key => $modifier) {
-            if (is_string($key) && str_starts_with($key, '_')) {
-                continue;
-            }
-
-            if (!method_exists($modifier, 'modify')) {
-                continue;
-            }
-
-            $modifier->modify($image);
-        }
-
-        $image->save(GeneralHelper::getFolder($this->indicator).$newImageFilename);
 
         return $newImagePath;
     }
@@ -151,6 +122,55 @@ abstract class AbstractImageHandler
 
         $rasterImage = $svgImage->toRasterImage((int) $svgImage->getDocument()->getWidth(), (int) $svgImage->getDocument()->getHeight());
         imagepng($rasterImage, $path); // @phpstan-ignore-line
+    }
+
+    private function shouldProcessImage(string $path): bool
+    {
+        $absolutePath = GeneralUtility::getFileAbsFileName($path);
+
+        if (!file_exists($absolutePath)) {
+            return false;
+        }
+
+        if (!GeneralHelper::isCurrentIndicator($this->indicator::class)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function processAndSaveImage(string $path, string $newImageFilename, ServerRequestInterface $request): bool
+    {
+        $manager = new ImageManager(ImageDriverUtility::resolveDriver());
+        $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
+
+        $format = pathinfo($absolutePath, \PATHINFO_EXTENSION);
+        if (!GeneralHelper::supportFormat($manager, $format)) {
+            return false;
+        }
+
+        $this->preProcessImage($absolutePath, $newImageFilename, $format);
+
+        $image = $manager->read($absolutePath);
+        $this->applyImageModifiers($image, $request);
+        $image->save(GeneralHelper::getFolder($this->indicator).$newImageFilename);
+
+        return true;
+    }
+
+    private function applyImageModifiers(ImageInterface $image, ServerRequestInterface $request): void
+    {
+        foreach ($this->getImageModifiers($request) as $key => $modifier) {
+            if (is_string($key) && str_starts_with($key, '_')) {
+                continue;
+            }
+
+            if (!method_exists($modifier, 'modify')) {
+                continue;
+            }
+
+            $modifier->modify($image);
+        }
     }
 
     private function preProcessImage(string &$absolutePath, string &$newImageFilename, string $format): void
