@@ -25,7 +25,7 @@ use function is_string;
  * OverlayModifier.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class OverlayModifier extends AbstractModifier implements ModifierInterface
 {

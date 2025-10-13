@@ -20,7 +20,7 @@ use PHPUnit\Framework\TestCase;
  * TextModifierTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class TextModifierTest extends TestCase
 {

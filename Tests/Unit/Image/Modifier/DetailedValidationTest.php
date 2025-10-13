@@ -21,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  * DetailedValidationTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class DetailedValidationTest extends TestCase
 {

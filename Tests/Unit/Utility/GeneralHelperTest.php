@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
  * GeneralHelperTest.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class GeneralHelperTest extends TestCase
 {

@@ -25,7 +25,7 @@ use function sprintf;
  * ModifierFactory.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class ModifierFactory implements ModifierFactoryInterface
 {

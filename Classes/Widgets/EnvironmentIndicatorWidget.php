@@ -23,7 +23,7 @@ use TYPO3\CMS\Dashboard\Widgets\{AdditionalCssInterface, ButtonProviderInterface
  * EnvironmentIndicatorWidget.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterface
 {

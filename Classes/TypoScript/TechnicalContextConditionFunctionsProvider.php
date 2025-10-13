@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
  * TechnicalContextConditionFunctionsProvider.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class TechnicalContextConditionFunctionsProvider implements ExpressionFunctionProviderInterface
 {

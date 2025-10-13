@@ -19,7 +19,7 @@ use function in_array;
  * BackendUserGroup.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class BackendUserGroup implements TriggerInterface
 {

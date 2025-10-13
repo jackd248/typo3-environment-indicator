@@ -19,6 +19,6 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\{AbstractIn
  * Topbar.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class Topbar extends AbstractIndicator implements IndicatorInterface {}

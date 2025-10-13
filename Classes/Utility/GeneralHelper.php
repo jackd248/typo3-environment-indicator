@@ -26,7 +26,7 @@ use function array_key_exists;
  * GeneralHelper.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class GeneralHelper
 {

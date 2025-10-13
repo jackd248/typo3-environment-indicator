@@ -26,7 +26,7 @@ use function is_string;
  * TextModifier.
  *
  * @author Konrad Michalik <hej@konradmichalik.dev>
- * @license GPL-2.0
+ * @license GPL-2.0-or-later
  */
 class TextModifier extends AbstractModifier implements ModifierInterface
 {
