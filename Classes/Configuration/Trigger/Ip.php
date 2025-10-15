@@ -38,14 +38,14 @@ class Ip implements TriggerInterface
                 throw new InvalidArgumentException('Invalid IP address or CIDR format: '.$ipAddress, 1726357768);
             }
         }
-        $this->ips = $ip;
+        $this->ips = array_values($ip);
     }
 
     public function check(): bool
     {
         $currentIp = $_SERVER['REMOTE_ADDR'] ?? ''; // @phpstan-ignore-line disallowed.variable
 
-        if (!filter_var($currentIp, \FILTER_VALIDATE_IP)) {
+        if (false === filter_var($currentIp, \FILTER_VALIDATE_IP)) {
             return false;
         }
 
@@ -93,7 +93,7 @@ class Ip implements TriggerInterface
         [$subnet, $mask] = $parts;
         $maskInt = (int) $mask;
 
-        if (filter_var($ip, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV4)) {
+        if (false !== filter_var($ip, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV4)) {
             if ($maskInt < 0 || $maskInt > 32) {
                 return false;
             }
@@ -110,7 +110,7 @@ class Ip implements TriggerInterface
             return ($ipLong & $maskBits) === ($subnetLong & $maskBits);
         }
 
-        if (filter_var($ip, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV6)) {
+        if (false !== filter_var($ip, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV6)) {
             if ($maskInt < 0 || $maskInt > 128) {
                 return false;
             }
@@ -154,11 +154,11 @@ class Ip implements TriggerInterface
 
             // Validate mask range
             $maskInt = (int) $mask;
-            if (filter_var($address, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV4)) {
+            if (false !== filter_var($address, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV4)) {
                 return $maskInt >= 0 && $maskInt <= 32;
             }
 
-            if (filter_var($address, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV6)) {
+            if (false !== filter_var($address, \FILTER_VALIDATE_IP, \FILTER_FLAG_IPV6)) {
                 return $maskInt >= 0 && $maskInt <= 128;
             }
 

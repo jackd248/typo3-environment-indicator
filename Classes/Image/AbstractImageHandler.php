@@ -21,6 +21,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\{GeneralUtility, PathUtility};
 
+use function is_object;
 use function is_string;
 
 /**
@@ -169,7 +170,7 @@ abstract class AbstractImageHandler
                 continue;
             }
 
-            if (!method_exists($modifier, 'modify')) {
+            if (!is_object($modifier) || !method_exists($modifier, 'modify')) {
                 continue;
             }
 

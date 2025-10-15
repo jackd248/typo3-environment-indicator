@@ -87,7 +87,6 @@ class ConfigurationStorageTest extends TestCase
 
         $indicators = $this->configurationStorage->getCurrentIndicators();
         self::assertArrayHasKey('TestClass', $indicators);
-        /* @phpstan-ignore offsetAccess.notFound */
         self::assertEquals(['config' => 'value'], $indicators['TestClass']);
         self::assertTrue($this->configurationStorage->hasCurrentIndicators());
     }
@@ -102,7 +101,7 @@ class ConfigurationStorageTest extends TestCase
         self::assertEquals([
             'config1' => 'value1',
             'config2' => 'value2',
-        ], $indicators['TestClass']); /* @phpstan-ignore offsetAccess.notFound */
+        ], $indicators['TestClass']);
     }
 
     public function testMergeCurrentIndicatorWithoutExisting(): void
@@ -110,7 +109,7 @@ class ConfigurationStorageTest extends TestCase
         $this->configurationStorage->mergeCurrentIndicator('TestClass', ['config' => 'value']);
 
         $indicators = $this->configurationStorage->getCurrentIndicators();
-        /* @phpstan-ignore offsetAccess.notFound */
+        self::assertArrayHasKey('TestClass', $indicators);
         self::assertEquals(['config' => 'value'], $indicators['TestClass']);
     }
 }

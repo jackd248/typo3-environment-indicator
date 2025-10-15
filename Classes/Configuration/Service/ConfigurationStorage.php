@@ -50,10 +50,11 @@ class ConfigurationStorage
     /**
      * Retrieves the current resolved indicators.
      *
-     * @return array<class-string, array<string, mixed>> Current indicators array
+     * @return array<class-string<Configuration\Indicator\IndicatorInterface>, array<string, mixed>> Current indicators array
      */
     public function getCurrentIndicators(): array
     {
+        /* @var array<class-string<\KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface>, array<string, mixed>> */
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] ?? [];
     }
 

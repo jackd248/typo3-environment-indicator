@@ -30,7 +30,7 @@ class ApplicationContext implements TriggerInterface
 
     public function __construct(string ...$context)
     {
-        $this->contexts = $context;
+        $this->contexts = array_values($context);
     }
 
     public function check(): bool

@@ -30,7 +30,7 @@ class BackendUserGroup implements TriggerInterface
 
     public function __construct(int ...$group)
     {
-        $this->groups = $group;
+        $this->groups = array_values($group);
     }
 
     public function check(): bool
