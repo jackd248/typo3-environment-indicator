@@ -28,7 +28,7 @@
 		"typo3fluid/fluid": "^2.15 || ^4.2"
 	},
 	"require-dev": {
-		"armin/editorconfig-cli": "^2.0",
+		"armin/editorconfig-cli": "^1.0 || ^2.0",
 		"eliashaeussler/version-bumper": "^2.4 || ^3.0",
 		"ergebnis/composer-normalize": "^2.44",
 		"friendsofphp/php-cs-fixer": "^3.52",
