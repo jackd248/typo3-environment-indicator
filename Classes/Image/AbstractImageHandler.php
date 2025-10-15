@@ -113,6 +113,10 @@ abstract class AbstractImageHandler
         $loader = new \SVG\SVG();
         $svgImage = $loader::fromFile($path);
 
+        if (null === $svgImage) {
+            return;
+        }
+
         $basePath = Environment::getPublicPath().'/'.GeneralHelper::getFolder($this->indicator, false).'processed/';
         if (!file_exists($basePath)) {
             GeneralUtility::mkdir_deep($basePath);
