@@ -26,9 +26,12 @@ use function count;
  */
 class Ip implements TriggerInterface
 {
+    /**
+     * @var array<int, string>
+     */
     protected array $ips;
 
-    public function __construct(...$ip)
+    public function __construct(string ...$ip)
     {
         foreach ($ip as $ipAddress) {
             if (!$this->validateIpFormat($ipAddress)) {

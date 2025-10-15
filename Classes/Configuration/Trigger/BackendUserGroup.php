@@ -23,9 +23,12 @@ use function in_array;
  */
 class BackendUserGroup implements TriggerInterface
 {
+    /**
+     * @var array<int, int>
+     */
     protected array $groups;
 
-    public function __construct(...$group)
+    public function __construct(int ...$group)
     {
         $this->groups = $group;
     }

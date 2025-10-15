@@ -28,7 +28,7 @@ interface ModifierInterface
     /**
      * Validates the configuration for this modifier.
      *
-     * @param array $configuration The configuration to validate
+     * @param array<string, mixed> $configuration The configuration to validate
      *
      * @return bool True if configuration is valid, false otherwise
      */
@@ -37,9 +37,9 @@ interface ModifierInterface
     /**
      * Validates the configuration and returns detailed error information.
      *
-     * @param array $configuration The configuration to validate
+     * @param array<string, mixed> $configuration The configuration to validate
      *
-     * @return array Array with 'valid' (bool) and 'errors' (array) keys
+     * @return array{valid: bool, errors: array<int, string>} Array with 'valid' (bool) and 'errors' (array) keys
      */
     public function validateConfigurationWithErrors(array $configuration): array;
 }

@@ -23,9 +23,12 @@ use TYPO3\CMS\Core\Core\Environment;
  */
 class ApplicationContext implements TriggerInterface
 {
+    /**
+     * @var array<int, string>
+     */
     protected array $contexts;
 
-    public function __construct(...$context)
+    public function __construct(string ...$context)
     {
         $this->contexts = $context;
     }

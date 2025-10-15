@@ -34,6 +34,9 @@ class ColorUtility
         return sprintf('hsl(%d, 70%%, 60%%)', $hue);
     }
 
+    /**
+     * @param array<int, int>|string $fallbackColor
+     */
     public static function getOptimalTextColor(string $color, float $opacity = 1, array|string $fallbackColor = [0, 0, 0]): string
     {
         $rgb = self::colorToRgb($color, $fallbackColor);
@@ -41,6 +44,11 @@ class ColorUtility
         return self::calculateLuminance($rgb[0], $rgb[1], $rgb[2]) > 0.5 ? "rgba(0,0,0,$opacity)" : "rgba(255,255,255,$opacity)";
     }
 
+    /**
+     * @param array<int, int>|string $fallbackColor
+     *
+     * @return array<int, int>
+     */
     public static function colorToRgb(string $color, array|string $fallbackColor = [0, 0, 0]): array
     {
         if (preg_match('/^#([a-fA-F0-9]{3,6})$/', $color, $matches)) {
@@ -60,6 +68,9 @@ class ColorUtility
         return $fallbackColor;
     }
 
+    /**
+     * @return array<int, int>
+     */
     public static function hexToRgb(string $hex): array
     {
         $hex = ltrim($hex, '#');
@@ -70,6 +81,9 @@ class ColorUtility
         return [hexdec($hex[0].$hex[1]), hexdec($hex[2].$hex[3]), hexdec($hex[4].$hex[5])];
     }
 
+    /**
+     * @return array<int, float|int>
+     */
     public static function hslToRgb(int $h, int $s, int $l): array
     {
         $s /= 100;

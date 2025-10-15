@@ -26,6 +26,17 @@ use function sprintf;
  */
 class ConfigurationUtility
 {
+    /**
+     * @param array<string, mixed>|null $frontendHintConfiguration
+     * @param array<string, mixed>|null $backendToolbarConfiguration
+     * @param array<string, mixed>|null $backendTopbarConfiguration
+     * @param array<string, mixed>|null $faviconModifierConfiguration
+     * @param array<string, mixed>|null $faviconModifierFrontendConfiguration
+     * @param array<string, mixed>|null $faviconModifierBackendConfiguration
+     * @param array<string, mixed>|null $frontendImageModifierConfiguration
+     * @param array<string, mixed>|null $backendLogoModifierConfiguration
+     * @param array<string, mixed>|null $globalImageModifierConfiguration
+     */
     public static function configByContext(
         string $applicationContext,
         ?array $frontendHintConfiguration = [],

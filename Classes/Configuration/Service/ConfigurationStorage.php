@@ -26,7 +26,7 @@ class ConfigurationStorage
     /**
      * Adds a configuration entry to the global configuration.
      *
-     * @param array $configuration The configuration array to add
+     * @param array<string, mixed> $configuration The configuration array to add
      */
     public function addConfiguration(array $configuration): void
     {
@@ -40,7 +40,7 @@ class ConfigurationStorage
     /**
      * Retrieves all registered configurations.
      *
-     * @return array Array of configuration arrays
+     * @return array<int, array<string, mixed>> Array of configuration arrays
      */
     public function getConfigurations(): array
     {
@@ -50,7 +50,7 @@ class ConfigurationStorage
     /**
      * Retrieves the current resolved indicators.
      *
-     * @return array Current indicators array
+     * @return array<class-string, array<string, mixed>> Current indicators array
      */
     public function getCurrentIndicators(): array
     {
@@ -70,8 +70,8 @@ class ConfigurationStorage
     /**
      * Sets an indicator configuration for the current request.
      *
-     * @param string $indicatorClass The indicator class name
-     * @param array  $configuration  The indicator configuration
+     * @param string               $indicatorClass The indicator class name
+     * @param array<string, mixed> $configuration  The indicator configuration
      */
     public function setCurrentIndicator(string $indicatorClass, array $configuration): void
     {
@@ -85,8 +85,8 @@ class ConfigurationStorage
     /**
      * Merges an indicator configuration with existing one.
      *
-     * @param string $indicatorClass The indicator class name
-     * @param array  $configuration  The indicator configuration to merge
+     * @param string               $indicatorClass The indicator class name
+     * @param array<string, mixed> $configuration  The indicator configuration to merge
      */
     public function mergeCurrentIndicator(string $indicatorClass, array $configuration): void
     {

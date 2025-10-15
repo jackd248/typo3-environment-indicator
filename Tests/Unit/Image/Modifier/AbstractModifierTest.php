@@ -37,6 +37,9 @@ class AbstractModifierTest extends TestCase
  * @license GPL-2.0-or-later
  */
 class([]) extends AbstractModifier {
+    /**
+     * @return array<int, string>
+     */
     public function getRequiredConfigurationKeys(): array
     {
         return [];
@@ -54,6 +57,9 @@ class([]) extends AbstractModifier {
  * @license GPL-2.0-or-later
  */
 class(['required_key' => 'value']) extends AbstractModifier {
+    /**
+     * @return array<int, string>
+     */
     public function getRequiredConfigurationKeys(): array
     {
         return ['required_key'];

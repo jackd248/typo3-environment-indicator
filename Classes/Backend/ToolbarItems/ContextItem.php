@@ -81,6 +81,9 @@ class ContextItem implements ToolbarItemInterface
         return '';
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getAdditionalAttributes(): array
     {
         return [];
@@ -93,6 +96,9 @@ class ContextItem implements ToolbarItemInterface
         return [] !== $toolbarConfig ? $toolbarConfig['index'] : 0;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function getBackendToolbarConfiguration(): array
     {
         return GeneralHelper::getIndicatorConfiguration()[Toolbar::class] ?? [];

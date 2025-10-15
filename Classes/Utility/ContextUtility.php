@@ -67,6 +67,9 @@ class ContextUtility
         return array_key_exists('websiteTitle', $site->getConfiguration()) ? $site->getConfiguration()['websiteTitle'] : $site->getIdentifier();
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function getFrontendHintConfiguration(): array
     {
         return GeneralHelper::getIndicatorConfiguration()[Hint::class] ?? [];

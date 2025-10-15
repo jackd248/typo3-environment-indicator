@@ -48,6 +48,9 @@ class OverlayModifier extends AbstractModifier implements ModifierInterface
         $image->place($overlay, $position, $paddingX, $paddingY);
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     */
     public function validateConfiguration(array $configuration): bool
     {
         if (!isset($configuration['path']) || !is_string($configuration['path'])) {

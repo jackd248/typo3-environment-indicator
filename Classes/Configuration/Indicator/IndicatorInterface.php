@@ -21,5 +21,8 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
  */
 interface IndicatorInterface
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function getConfiguration(): array;
 }

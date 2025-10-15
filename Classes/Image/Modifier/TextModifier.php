@@ -72,6 +72,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         });
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array{valid: bool, errors: array<int, string>}
+     */
     public function validateConfigurationWithErrors(array $configuration): array
     {
         $errors = [];
@@ -88,6 +93,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         ];
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validateText(array $configuration): array
     {
         $errors = [];
@@ -103,6 +113,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validateColor(array $configuration): array
     {
         $errors = [];
@@ -116,6 +131,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validateFont(array $configuration): array
     {
         $errors = [];
@@ -127,6 +147,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validatePosition(array $configuration): array
     {
         $errors = [];
@@ -138,6 +163,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validateStroke(array $configuration): array
     {
         $errors = [];
@@ -157,6 +187,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         return array_merge($errors, $this->validateStrokeWidth($configuration['stroke']));
     }
 
+    /**
+     * @param array<string, mixed> $strokeConfiguration
+     *
+     * @return array<int, string>
+     */
     private function validateStrokeColor(array $strokeConfiguration): array
     {
         $errors = [];
@@ -170,6 +205,11 @@ class TextModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $strokeConfiguration
+     *
+     * @return array<int, string>
+     */
     private function validateStrokeWidth(array $strokeConfiguration): array
     {
         $errors = [];

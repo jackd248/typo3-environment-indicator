@@ -105,6 +105,9 @@ class TopbarItem implements ToolbarItemInterface
         return '';
     }
 
+    /**
+     * @return array<string, string>
+     */
     public function getAdditionalAttributes(): array
     {
         return [];
@@ -115,6 +118,9 @@ class TopbarItem implements ToolbarItemInterface
         return 0;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function getBackendTopbarConfiguration(): array
     {
         return GeneralHelper::getIndicatorConfiguration()[Topbar::class] ?? [];

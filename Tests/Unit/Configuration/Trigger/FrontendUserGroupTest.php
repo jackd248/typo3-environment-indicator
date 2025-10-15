@@ -122,7 +122,8 @@ class FrontendUserGroupTest extends TestCase
                 'groupData' => ['uid' => [1, 2, 3]],
             ],
         ];
-        $trigger = new FrontendUserGroup('1');
+        // Test that int 4 doesn't match any group to ensure strict comparison
+        $trigger = new FrontendUserGroup(4);
         $result = $trigger->check();
         self::assertFalse($result);
     }

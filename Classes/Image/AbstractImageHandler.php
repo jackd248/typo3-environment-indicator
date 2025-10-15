@@ -58,6 +58,9 @@ abstract class AbstractImageHandler
         return $newImagePath;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function getImageModifiers(ServerRequestInterface $request): array
     {
         return GeneralHelper::getIndicatorConfiguration()[$this->indicator::class] ?? [];
@@ -161,6 +164,7 @@ abstract class AbstractImageHandler
     private function applyImageModifiers(ImageInterface $image, ServerRequestInterface $request): void
     {
         foreach ($this->getImageModifiers($request) as $key => $modifier) {
+            /* @phpstan-ignore function.alreadyNarrowedType */
             if (is_string($key) && str_starts_with($key, '_')) {
                 continue;
             }

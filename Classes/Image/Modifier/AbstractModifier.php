@@ -26,8 +26,14 @@ use function sprintf;
  */
 class AbstractModifier
 {
+    /**
+     * @var array<string, mixed>
+     */
     protected array $configuration = [];
 
+    /**
+     * @param array<string, mixed> $configuration
+     */
     public function __construct(array $configuration)
     {
         $this->mergeGlobalConfiguration($configuration);
@@ -44,7 +50,7 @@ class AbstractModifier
      * Validates the configuration for this modifier.
      * Override this method in subclasses for custom validation logic.
      *
-     * @param array $configuration The configuration to validate
+     * @param array<string, mixed> $configuration The configuration to validate
      *
      * @return bool True if configuration is valid, false otherwise
      */
@@ -57,9 +63,9 @@ class AbstractModifier
      * Validates the configuration and returns detailed error information.
      * Override this method in subclasses for custom validation logic.
      *
-     * @param array $configuration The configuration to validate
+     * @param array<string, mixed> $configuration The configuration to validate
      *
-     * @return array Array with 'valid' (bool) and 'errors' (array) keys
+     * @return array{valid: bool, errors: array<int, string>} Array with 'valid' (bool) and 'errors' (array) keys
      */
     public function validateConfigurationWithErrors(array $configuration): array
     {
@@ -69,9 +75,14 @@ class AbstractModifier
         ];
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     */
     protected function mergeGlobalConfiguration(array &$configuration): void
     {
+        /** @var array<string, mixed> $globalConfiguration */
         $globalConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'][static::class] ?? [];
+        /** @phpstan-ignore parameterByRef.type */
         $configuration = array_replace_recursive($globalConfiguration, $configuration);
     }
 }

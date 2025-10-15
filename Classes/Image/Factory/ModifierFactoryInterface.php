@@ -27,8 +27,8 @@ interface ModifierFactoryInterface
     /**
      * Creates a modifier instance by type and configuration.
      *
-     * @param string $type          The modifier type
-     * @param array  $configuration The modifier configuration
+     * @param string               $type          The modifier type
+     * @param array<string, mixed> $configuration The modifier configuration
      *
      * @throws InvalidArgumentException If the modifier type is not supported or configuration is invalid
      */
@@ -44,8 +44,8 @@ interface ModifierFactoryInterface
     /**
      * Validates configuration for a specific modifier type.
      *
-     * @param string $type          The modifier type
-     * @param array  $configuration The configuration to validate
+     * @param string               $type          The modifier type
+     * @param array<string, mixed> $configuration The configuration to validate
      *
      * @return bool True if configuration is valid, false otherwise
      */
