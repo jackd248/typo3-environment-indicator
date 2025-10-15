@@ -75,6 +75,9 @@ class TriangleModifier extends AbstractModifier implements ModifierInterface
         });
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     */
     public function validateConfiguration(array $configuration): bool
     {
         if (!isset($configuration['color']) || !is_string($configuration['color'])) {

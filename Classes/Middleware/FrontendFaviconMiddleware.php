@@ -85,7 +85,8 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
     {
         $typoScript = $request->getAttribute('frontend.typoscript');
 
-        if (!$typoScript->hasPage()
+        if (null === $typoScript
+            || !$typoScript->hasPage()
             || !array_key_exists('shortcutIcon', $typoScript->getPageArray())
             || '' === $typoScript->getPageArray()['shortcutIcon']
         ) {

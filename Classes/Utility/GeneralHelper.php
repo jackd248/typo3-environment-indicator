@@ -46,6 +46,9 @@ class GeneralHelper
         return $path;
     }
 
+    /**
+     * @return array<class-string<IndicatorInterface>, array<string, mixed>>
+     */
     public static function getIndicatorConfiguration(): array
     {
         return Handler::resolveIndicators();

@@ -21,6 +21,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\{GeneralUtility, PathUtility};
 
+use function is_object;
 use function is_string;
 
 /**
@@ -58,6 +59,9 @@ abstract class AbstractImageHandler
         return $newImagePath;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function getImageModifiers(ServerRequestInterface $request): array
     {
         return GeneralHelper::getIndicatorConfiguration()[$this->indicator::class] ?? [];
@@ -108,6 +112,10 @@ abstract class AbstractImageHandler
     {
         $loader = new \SVG\SVG();
         $svgImage = $loader::fromFile($path);
+
+        if (null === $svgImage) {
+            return;
+        }
 
         $basePath = Environment::getPublicPath().'/'.GeneralHelper::getFolder($this->indicator, false).'processed/';
         if (!file_exists($basePath)) {
@@ -161,11 +169,12 @@ abstract class AbstractImageHandler
     private function applyImageModifiers(ImageInterface $image, ServerRequestInterface $request): void
     {
         foreach ($this->getImageModifiers($request) as $key => $modifier) {
+            /* @phpstan-ignore function.alreadyNarrowedType */
             if (is_string($key) && str_starts_with($key, '_')) {
                 continue;
             }
 
-            if (!method_exists($modifier, 'modify')) {
+            if (!is_object($modifier) || !method_exists($modifier, 'modify')) {
                 continue;
             }
 

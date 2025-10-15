@@ -49,7 +49,7 @@ class TriggerEvaluator
     /**
      * Validates that triggers are properly configured.
      *
-     * @param array $triggers Array of potential trigger objects
+     * @param array<int, mixed> $triggers Array of potential trigger objects
      *
      * @return bool True if all triggers are valid, false otherwise
      */

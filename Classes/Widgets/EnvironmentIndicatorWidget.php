@@ -27,6 +27,9 @@ use TYPO3\CMS\Dashboard\Widgets\{AdditionalCssInterface, ButtonProviderInterface
  */
 class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterface
 {
+    /**
+     * @param array<string, mixed> $options
+     */
     public function __construct(
         protected readonly WidgetConfigurationInterface $configuration,
         protected readonly ?ButtonProviderInterface $buttonProvider = null,
@@ -52,16 +55,25 @@ class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterf
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getOptions(): array
     {
         return $this->options;
     }
 
+    /**
+     * @return array<int, string>
+     */
     public function getCssFiles(): array
     {
         return ['EXT:'.Configuration::EXT_KEY.'/Resources/Public/Css/Widget.css'];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function getWidgetConfiguration(): array
     {
         return GeneralHelper::getIndicatorConfiguration()[Widget::class] ?? [];

@@ -97,6 +97,7 @@ class ConfigurationStorageTest extends TestCase
         $this->configurationStorage->mergeCurrentIndicator('TestClass', ['config2' => 'value2']);
 
         $indicators = $this->configurationStorage->getCurrentIndicators();
+        self::assertArrayHasKey('TestClass', $indicators);
         self::assertEquals([
             'config1' => 'value1',
             'config2' => 'value2',
@@ -108,6 +109,7 @@ class ConfigurationStorageTest extends TestCase
         $this->configurationStorage->mergeCurrentIndicator('TestClass', ['config' => 'value']);
 
         $indicators = $this->configurationStorage->getCurrentIndicators();
+        self::assertArrayHasKey('TestClass', $indicators);
         self::assertEquals(['config' => 'value'], $indicators['TestClass']);
     }
 }

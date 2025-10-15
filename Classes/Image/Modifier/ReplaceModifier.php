@@ -36,6 +36,9 @@ class ReplaceModifier extends AbstractModifier implements ModifierInterface
         $image = $manager->read(GeneralUtility::getFileAbsFileName($this->configuration['path']));
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     */
     public function validateConfiguration(array $configuration): bool
     {
         if (!isset($configuration['path']) || !is_string($configuration['path'])) {

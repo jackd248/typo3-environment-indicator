@@ -18,8 +18,10 @@ use InvalidArgumentException;
 use ReflectionMethod;
 use Throwable;
 
+use function assert;
 use function call_user_func;
 use function count;
+use function is_callable;
 
 /**
  * Custom.
@@ -50,11 +52,11 @@ class Custom implements TriggerInterface
 
         [$className, $methodName] = $parts;
 
-        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\\\\]*$/', $className)) {
+        if (1 !== preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff\\\\]*$/', $className)) {
             throw new InvalidArgumentException('Invalid class name format', 1726357767);
         }
 
-        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $methodName)) {
+        if (1 !== preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $methodName)) {
             throw new InvalidArgumentException('Invalid method name format', 1726357767);
         }
 
@@ -73,6 +75,8 @@ class Custom implements TriggerInterface
     public function check(): bool
     {
         try {
+            // The function is validated as callable in the constructor
+            assert(is_callable($this->function));
             $result = call_user_func($this->function);
 
             return (bool) $result;

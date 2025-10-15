@@ -27,16 +27,27 @@ use function is_array;
  */
 abstract class AbstractIndicator
 {
+    /**
+     * @param array<string, mixed> $configuration
+     */
     public function __construct(protected array $configuration = [], protected ?ServerRequestInterface $request = null)
     {
         $this->configuration = $this->mergeGlobalConfiguration($this->configuration);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getConfiguration(): array
     {
         return $this->configuration;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<string, mixed>
+     */
     protected function mergeGlobalConfiguration(array $configuration): array
     {
         $globalConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults'] ?? [];

@@ -70,6 +70,11 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         );
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array{valid: bool, errors: array<int, string>}
+     */
     public function validateConfigurationWithErrors(array $configuration): array
     {
         $errors = [];
@@ -85,6 +90,11 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         ];
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validateColor(array $configuration): array
     {
         $errors = [];
@@ -98,6 +108,11 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validateSize(array $configuration): array
     {
         $errors = [];
@@ -113,6 +128,11 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validatePadding(array $configuration): array
     {
         $errors = [];
@@ -128,6 +148,11 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         return $errors;
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     *
+     * @return array<int, string>
+     */
     private function validatePosition(array $configuration): array
     {
         $errors = [];

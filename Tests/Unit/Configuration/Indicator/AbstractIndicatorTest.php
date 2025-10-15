@@ -108,6 +108,9 @@ class AbstractIndicatorTest extends TestCase
  */
 class ConcreteIndicator extends AbstractIndicator implements IndicatorInterface
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function getConfiguration(): array
     {
         return parent::getConfiguration();

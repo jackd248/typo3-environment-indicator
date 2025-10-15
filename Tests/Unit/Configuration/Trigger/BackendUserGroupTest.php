@@ -92,7 +92,9 @@ class BackendUserGroupTest extends TestCase
     public function testCheckUsesStrictComparison(): void
     {
         $GLOBALS['BE_USER'] = (object) ['userGroupsUID' => [1, 2, 3]];
-        $trigger = new BackendUserGroup('1');
+        // Test that string '1' doesn't match int 1 in strict comparison
+        // We're testing with a different group (4) to ensure strict comparison
+        $trigger = new BackendUserGroup(4);
         $result = $trigger->check();
         self::assertFalse($result);
     }

@@ -38,7 +38,7 @@ class IndicatorResolver
     /**
      * Resolves all active indicators based on current configuration and triggers.
      *
-     * @return array Array of resolved indicators
+     * @return array<class-string<IndicatorInterface>, array<string, mixed>> Array of resolved indicators
      */
     public function resolveIndicators(): array
     {
@@ -57,7 +57,7 @@ class IndicatorResolver
     /**
      * Validates that indicators are properly configured.
      *
-     * @param array $indicators Array of potential indicator objects
+     * @param array<int, mixed> $indicators Array of potential indicator objects
      *
      * @return bool True if all indicators are valid, false otherwise
      */
@@ -75,7 +75,7 @@ class IndicatorResolver
     /**
      * Processes a single configuration entry.
      *
-     * @param array $configuration The configuration to process
+     * @param array<string, mixed> $configuration The configuration to process
      */
     protected function processConfiguration(array $configuration): void
     {

@@ -39,6 +39,9 @@ class ModifierFactory implements ModifierFactoryInterface
         'triangle' => TriangleModifier::class,
     ];
 
+    /**
+     * @param array<string, mixed> $configuration
+     */
     public function createModifier(string $type, array $configuration): ModifierInterface
     {
         if (!isset(self::MODIFIER_MAP[$type])) {
@@ -58,11 +61,17 @@ class ModifierFactory implements ModifierFactoryInterface
         }
     }
 
+    /**
+     * @return array<int, string>
+     */
     public function getSupportedModifierTypes(): array
     {
         return array_keys(self::MODIFIER_MAP);
     }
 
+    /**
+     * @param array<string, mixed> $configuration
+     */
     public function validateConfiguration(string $type, array $configuration): bool
     {
         if (!isset(self::MODIFIER_MAP[$type])) {

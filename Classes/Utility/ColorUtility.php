@@ -34,6 +34,9 @@ class ColorUtility
         return sprintf('hsl(%d, 70%%, 60%%)', $hue);
     }
 
+    /**
+     * @param array<int, int>|string $fallbackColor
+     */
     public static function getOptimalTextColor(string $color, float $opacity = 1, array|string $fallbackColor = [0, 0, 0]): string
     {
         $rgb = self::colorToRgb($color, $fallbackColor);
@@ -41,16 +44,23 @@ class ColorUtility
         return self::calculateLuminance($rgb[0], $rgb[1], $rgb[2]) > 0.5 ? "rgba(0,0,0,$opacity)" : "rgba(255,255,255,$opacity)";
     }
 
+    /**
+     * @param array<int, int>|string $fallbackColor
+     *
+     * @return array<int, int>
+     */
     public static function colorToRgb(string $color, array|string $fallbackColor = [0, 0, 0]): array
     {
-        if (preg_match('/^#([a-fA-F0-9]{3,6})$/', $color, $matches)) {
+        if (1 === preg_match('/^#([a-fA-F0-9]{3,6})$/', $color, $matches)) {
             return self::hexToRgb($color);
         }
-        if (preg_match('/rgb\((\d+),\s*(\d+),\s*(\d+)\)/', $color, $matches)) {
+        if (1 === preg_match('/rgb\((\d+),\s*(\d+),\s*(\d+)\)/', $color, $matches)) {
             return [(int) $matches[1], (int) $matches[2], (int) $matches[3]];
         }
-        if (preg_match('/hsl\((\d+),\s*(\d+)%?,\s*(\d+)%?\)/', $color, $matches)) {
-            return self::hslToRgb((int) $matches[1], (int) $matches[2], (int) $matches[3]);
+        if (1 === preg_match('/hsl\((\d+),\s*(\d+)%?,\s*(\d+)%?\)/', $color, $matches)) {
+            $hslResult = self::hslToRgb((int) $matches[1], (int) $matches[2], (int) $matches[3]);
+
+            return [(int) $hslResult[0], (int) $hslResult[1], (int) $hslResult[2]];
         }
 
         if (is_string($fallbackColor)) {
@@ -60,6 +70,9 @@ class ColorUtility
         return $fallbackColor;
     }
 
+    /**
+     * @return array<int, int>
+     */
     public static function hexToRgb(string $hex): array
     {
         $hex = ltrim($hex, '#');
@@ -67,9 +80,12 @@ class ColorUtility
             $hex = "{$hex[0]}{$hex[0]}{$hex[1]}{$hex[1]}{$hex[2]}{$hex[2]}";
         }
 
-        return [hexdec($hex[0].$hex[1]), hexdec($hex[2].$hex[3]), hexdec($hex[4].$hex[5])];
+        return [(int) hexdec($hex[0].$hex[1]), (int) hexdec($hex[2].$hex[3]), (int) hexdec($hex[4].$hex[5])];
     }
 
+    /**
+     * @return array<int, float|int>
+     */
     public static function hslToRgb(int $h, int $s, int $l): array
     {
         $s /= 100;

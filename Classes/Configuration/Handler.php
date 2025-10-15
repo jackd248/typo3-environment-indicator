@@ -57,7 +57,7 @@ class Handler
     /**
      * Resolves the current indicators based on the registered configurations and the checked triggers.
      *
-     * @return array Current indicators
+     * @return array<class-string<IndicatorInterface>, array<string, mixed>> Current indicators
      */
     public static function resolveIndicators(): array
     {
@@ -67,8 +67,8 @@ class Handler
     /**
      * Validates the configuration input.
      *
-     * @param array $triggers   Array of potential trigger objects
-     * @param array $indicators Array of potential indicator objects
+     * @param array<int, TriggerInterface>   $triggers   Array of potential trigger objects
+     * @param array<int, IndicatorInterface> $indicators Array of potential indicator objects
      *
      * @return bool True if configuration is valid, false otherwise
      */

@@ -55,7 +55,7 @@ class HandlerTest extends TestCase
         $config = $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'];
         self::assertNotEmpty($config);
         self::assertArrayHasKey(0, $config);
-        /** @var array{triggers: array, indicators: array} $firstConfig */
+        /** @var array{triggers: array<int, TriggerInterface>, indicators: array<int, IndicatorInterface>} $firstConfig */
         $firstConfig = $config[0];
         self::assertCount(1, $firstConfig['triggers']);
         self::assertCount(1, $firstConfig['indicators']);
