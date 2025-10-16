@@ -17,7 +17,6 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Interfaces\ImageInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\{GeneralHelper, ImageDriverUtility};
-use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\{GeneralUtility, PathUtility};
 
@@ -43,7 +42,7 @@ abstract class AbstractImageHandler
         $this->imageModifiers = $this->getImageModifiers();
     }
 
-    public function process(string $path, ServerRequestInterface $request): string
+    public function process(string $path): string
     {
         if (!$this->shouldProcessImage($path)) {
             return $path;

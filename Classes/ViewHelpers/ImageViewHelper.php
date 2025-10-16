@@ -17,7 +17,6 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Image;
 use KonradMichalik\Typo3EnvironmentIndicator\Image\FrontendImageHandler;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\GeneralHelper;
-use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\{GeneralUtility, PathUtility};
@@ -43,7 +42,6 @@ class ImageViewHelper extends AbstractViewHelper
 
     public function render(): string
     {
-        $request = $this->renderingContext->hasAttribute(ServerRequestInterface::class) ? $this->renderingContext->getAttribute(ServerRequestInterface::class) : $GLOBALS['TYPO3_REQUEST'];
         $image = $this->renderChildren();
 
         $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
@@ -57,6 +55,6 @@ class ImageViewHelper extends AbstractViewHelper
             $image = Environment::getPublicPath().(str_contains($image, '?') ? strtok($image, '?') : $image);
         }
 
-        return GeneralUtility::makeInstance(FrontendImageHandler::class)->process($image, $request);
+        return GeneralUtility::makeInstance(FrontendImageHandler::class)->process($image);
     }
 }

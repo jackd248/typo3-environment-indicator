@@ -38,7 +38,7 @@ class BackendLogoMiddleware implements MiddlewareInterface
             return $handler->handle($request);
         }
 
-        $this->processLogo($request);
+        $this->processLogo();
 
         return $handler->handle($request);
     }
@@ -50,11 +50,11 @@ class BackendLogoMiddleware implements MiddlewareInterface
         return ($extensionConfig['backend']['logo'] ?? false) === true;
     }
 
-    private function processLogo(ServerRequestInterface $request): void
+    private function processLogo(): void
     {
         $currentLogo = $this->getCurrentLogo();
         $logoHandler = GeneralUtility::makeInstance(BackendLogoHandler::class);
-        $newLogo = $logoHandler->process($currentLogo, $request);
+        $newLogo = $logoHandler->process($currentLogo);
 
         $this->setBackendLogo($newLogo);
     }
