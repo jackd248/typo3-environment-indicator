@@ -128,7 +128,7 @@ class HandlerTest extends TestCase
         $invalidTrigger = new stdClass();
         $indicator = $this->createMock(IndicatorInterface::class);
 
-        /** @phpstan-ignore argument.type */
+        /* @phpstan-ignore argument.type */
         Handler::addIndicator([$invalidTrigger], [$indicator]);
 
         self::assertEquals([], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);
@@ -141,7 +141,7 @@ class HandlerTest extends TestCase
         $trigger = $this->createMock(TriggerInterface::class);
         $invalidIndicator = new stdClass();
 
-        /** @phpstan-ignore argument.type */
+        /* @phpstan-ignore argument.type */
         Handler::addIndicator([$trigger], [$invalidIndicator]);
 
         self::assertEquals([], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);
