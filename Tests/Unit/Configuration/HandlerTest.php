@@ -119,4 +119,50 @@ class HandlerTest extends TestCase
 
         self::assertEquals([$indicator::class => ['test' => 'value']], $result);
     }
+
+    public function testAddIndicatorWithInvalidTriggers(): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
+
+        $invalidTrigger = new \stdClass();
+        $indicator = $this->createMock(IndicatorInterface::class);
+
+        Handler::addIndicator([$invalidTrigger], [$indicator]);
+
+        self::assertEquals([], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);
+    }
+
+    public function testAddIndicatorWithInvalidIndicators(): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
+
+        $trigger = $this->createMock(TriggerInterface::class);
+        $invalidIndicator = new \stdClass();
+
+        Handler::addIndicator([$trigger], [$invalidIndicator]);
+
+        self::assertEquals([], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);
+    }
+
+    public function testAddIndicatorWithOnlyTriggers(): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
+
+        $trigger = $this->createMock(TriggerInterface::class);
+
+        Handler::addIndicator([$trigger], []);
+
+        self::assertCount(1, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);
+    }
+
+    public function testAddIndicatorWithOnlyIndicators(): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
+
+        $indicator = $this->createMock(IndicatorInterface::class);
+
+        Handler::addIndicator([], [$indicator]);
+
+        self::assertCount(1, $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);
+    }
 }
