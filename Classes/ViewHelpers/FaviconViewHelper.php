@@ -61,6 +61,6 @@ class FaviconViewHelper extends AbstractViewHelper
             $favicon = Environment::getPublicPath().(str_contains($favicon, '?') ? strtok($favicon, '?') : $favicon);
         }
 
-        return GeneralUtility::makeInstance(FaviconHandler::class)->process($favicon, $request);
+        return GeneralUtility::makeInstance(FaviconHandler::class)->process($favicon);
     }
 }

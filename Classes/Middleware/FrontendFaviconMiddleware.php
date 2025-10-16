@@ -59,13 +59,13 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
         $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
 
         if ($typo3Version < 13) {
-            $this->processFaviconLegacy($request);
+            $this->processFaviconLegacy();
         } else {
             $this->processFaviconModern($request);
         }
     }
 
-    private function processFaviconLegacy(ServerRequestInterface $request): void
+    private function processFaviconLegacy(): void
     {
         if (!is_array($GLOBALS['TSFE']->pSetup)
             || !array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup)
@@ -76,7 +76,7 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
 
         $currentFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
         $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-        $newFavicon = $faviconHandler->process($currentFavicon, $request);
+        $newFavicon = $faviconHandler->process($currentFavicon);
 
         $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFavicon;
     }
@@ -97,7 +97,7 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
         $currentFavicon = $typoScriptPageArray['shortcutIcon'];
 
         $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-        $newFavicon = $faviconHandler->process($currentFavicon, $request);
+        $newFavicon = $faviconHandler->process($currentFavicon);
 
         $typoScriptPageArray['shortcutIcon'] = $newFavicon;
         $typoScript->setPageArray($typoScriptPageArray);

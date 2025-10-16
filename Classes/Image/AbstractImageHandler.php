@@ -17,7 +17,6 @@ use Intervention\Image\ImageManager;
 use Intervention\Image\Interfaces\ImageInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\{GeneralHelper, ImageDriverUtility};
-use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\{GeneralUtility, PathUtility};
 
@@ -32,15 +31,28 @@ use function is_string;
  */
 abstract class AbstractImageHandler
 {
-    public function __construct(protected IndicatorInterface $indicator) {}
+    /**
+     * @var array<string, mixed>
+     */
+    protected array $imageModifiers = [];
 
-    public function process(string $path, ServerRequestInterface $request): string
+    public function __construct(
+        protected readonly IndicatorInterface $indicator,
+    ) {
+        $this->imageModifiers = $this->getImageModifiers();
+    }
+
+    public function process(string $path): string
     {
         if (!$this->shouldProcessImage($path)) {
             return $path;
         }
 
-        $newImageFilename = $this->generateFilename($path, $request).'.png';
+        if ([] === $this->imageModifiers) {
+            return $path;
+        }
+
+        $newImageFilename = $this->generateFilename($path).'.png';
         $newImagePath = GeneralHelper::getFolder($this->indicator, false).$newImageFilename;
 
         if ($path === $newImagePath) {
@@ -52,28 +64,20 @@ abstract class AbstractImageHandler
             return $newImagePath;
         }
 
-        if (!$this->processAndSaveImage($path, $newImageFilename, $request)) {
+        if (!$this->processAndSaveImage($path, $newImageFilename)) {
             return $path;
         }
 
         return $newImagePath;
     }
 
-    /**
-     * @return array<string, mixed>
-     */
-    protected function getImageModifiers(ServerRequestInterface $request): array
-    {
-        return GeneralHelper::getIndicatorConfiguration()[$this->indicator::class] ?? [];
-    }
-
-    protected function generateFilename(string $originalPath, ServerRequestInterface $request): string
+    protected function generateFilename(string $originalPath): string
     {
         $parts = [
             $originalPath,
             Environment::getContext()->__toString(),
         ];
-        foreach ($this->getImageModifiers($request) as $modifier => $configuration) {
+        foreach ($this->imageModifiers as $modifier => $configuration) {
             $parts[] = $modifier;
             $parts[] = json_encode($configuration);
         }
@@ -132,6 +136,14 @@ abstract class AbstractImageHandler
         imagepng($rasterImage, $path); // @phpstan-ignore-line
     }
 
+    /**
+     * @return array<string, mixed>
+     */
+    private function getImageModifiers(): array
+    {
+        return GeneralHelper::getIndicatorConfiguration()[$this->indicator::class] ?? [];
+    }
+
     private function shouldProcessImage(string $path): bool
     {
         $absolutePath = GeneralUtility::getFileAbsFileName($path);
@@ -147,7 +159,7 @@ abstract class AbstractImageHandler
         return true;
     }
 
-    private function processAndSaveImage(string $path, string $newImageFilename, ServerRequestInterface $request): bool
+    private function processAndSaveImage(string $path, string $newImageFilename): bool
     {
         $manager = new ImageManager(ImageDriverUtility::resolveDriver());
         $absolutePath = PathUtility::isAbsolutePath($path) ? $path : GeneralUtility::getFileAbsFileName($path);
@@ -160,15 +172,15 @@ abstract class AbstractImageHandler
         $this->preProcessImage($absolutePath, $newImageFilename, $format);
 
         $image = $manager->read($absolutePath);
-        $this->applyImageModifiers($image, $request);
+        $this->applyImageModifiers($image);
         $image->save(GeneralHelper::getFolder($this->indicator).$newImageFilename);
 
         return true;
     }
 
-    private function applyImageModifiers(ImageInterface $image, ServerRequestInterface $request): void
+    private function applyImageModifiers(ImageInterface $image): void
     {
-        foreach ($this->getImageModifiers($request) as $key => $modifier) {
+        foreach ($this->imageModifiers as $key => $modifier) {
             /* @phpstan-ignore function.alreadyNarrowedType */
             if (is_string($key) && str_starts_with($key, '_')) {
                 continue;

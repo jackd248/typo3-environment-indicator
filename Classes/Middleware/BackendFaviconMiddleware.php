@@ -38,7 +38,7 @@ class BackendFaviconMiddleware implements MiddlewareInterface
             return $handler->handle($request);
         }
 
-        $this->processFavicon($request);
+        $this->processFavicon();
 
         return $handler->handle($request);
     }
@@ -50,11 +50,11 @@ class BackendFaviconMiddleware implements MiddlewareInterface
         return true === (bool) ($extensionConfig['backend']['favicon'] ?? false);
     }
 
-    private function processFavicon(ServerRequestInterface $request): void
+    private function processFavicon(): void
     {
         $currentFavicon = $this->getCurrentFavicon();
         $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-        $newFavicon = $faviconHandler->process($currentFavicon, $request);
+        $newFavicon = $faviconHandler->process($currentFavicon);
 
         $this->setBackendFavicon($newFavicon);
     }
