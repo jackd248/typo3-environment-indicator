@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c34c05be43ce4e8534cde58936a99a18",
+    "content-hash": "4efea8885c2e7dac7f9002e9700d80cd",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -6594,59 +6594,6 @@
             "time": "2024-11-26T16:23:11+00:00"
         },
         {
-            "name": "eliashaeussler/php-cs-fixer-config",
-            "version": "2.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/eliashaeussler/php-cs-fixer-config.git",
-                "reference": "130111f9aef350910bd2224cd244e6e1b8b5ba82"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/eliashaeussler/php-cs-fixer-config/zipball/130111f9aef350910bd2224cd244e6e1b8b5ba82",
-                "reference": "130111f9aef350910bd2224cd244e6e1b8b5ba82",
-                "shasum": ""
-            },
-            "require": {
-                "friendsofphp/php-cs-fixer": "^3.14",
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
-                "symfony/finder": "^5.4 || ^6.0 || ^7.0"
-            },
-            "require-dev": {
-                "armin/editorconfig-cli": "^1.5 || ^2.0",
-                "eliashaeussler/phpstan-config": "^2.0.0",
-                "eliashaeussler/phpunit-attributes": "^1.1",
-                "eliashaeussler/rector-config": "^3.0",
-                "ergebnis/composer-normalize": "^2.29",
-                "phpstan/extension-installer": "^1.2",
-                "phpunit/phpunit": "^10.4 || ^11.0 || ^12.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "EliasHaeussler\\PhpCsFixerConfig\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Elias Häußler",
-                    "email": "elias@haeussler.dev",
-                    "homepage": "https://haeussler.dev",
-                    "role": "Maintainer"
-                }
-            ],
-            "description": "My personal configuration for PHP-CS-Fixer",
-            "support": {
-                "issues": "https://github.com/eliashaeussler/php-cs-fixer-config/issues",
-                "source": "https://github.com/eliashaeussler/php-cs-fixer-config/tree/2.3.0"
-            },
-            "time": "2025-05-18T14:45:22+00:00"
-        },
-        {
             "name": "eliashaeussler/version-bumper",
             "version": "3.0.1",
             "source": {
@@ -9336,6 +9283,68 @@
                 }
             ],
             "time": "2024-07-03T05:09:35+00:00"
+        },
+        {
+            "name": "phpunit/phpcov",
+            "version": "10.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpcov.git",
+                "reference": "a6029f35b6aa4934f3acfe520e60aa7a0285e845"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpcov/zipball/a6029f35b6aa4934f3acfe520e60aa7a0285e845",
+                "reference": "a6029f35b6aa4934f3acfe520e60aa7a0285e845",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "phpunit/php-code-coverage": "^11.0.8",
+                "phpunit/php-file-iterator": "^5.1",
+                "phpunit/phpunit": "^11.5.1",
+                "sebastian/cli-parser": "^3.0.2",
+                "sebastian/diff": "^6.0.2",
+                "sebastian/version": "^5.0.2"
+            },
+            "bin": [
+                "phpcov"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "10.0-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian Bergmann",
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
+                }
+            ],
+            "description": "CLI frontend for php-code-coverage",
+            "homepage": "https://github.com/sebastianbergmann/phpcov",
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/phpcov/issues",
+                "source": "https://github.com/sebastianbergmann/phpcov/tree/10.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sebastianbergmann",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-12-20T09:43:28+00:00"
         },
         {
             "name": "phpunit/phpunit",
