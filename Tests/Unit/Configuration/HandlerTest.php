@@ -18,6 +18,7 @@ use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
 use PHPUnit\Framework\TestCase;
+use stdClass;
 
 /**
  * HandlerTest.
@@ -124,9 +125,10 @@ class HandlerTest extends TestCase
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
 
-        $invalidTrigger = new \stdClass();
+        $invalidTrigger = new stdClass();
         $indicator = $this->createMock(IndicatorInterface::class);
 
+        /** @phpstan-ignore argument.type */
         Handler::addIndicator([$invalidTrigger], [$indicator]);
 
         self::assertEquals([], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);
@@ -137,8 +139,9 @@ class HandlerTest extends TestCase
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
 
         $trigger = $this->createMock(TriggerInterface::class);
-        $invalidIndicator = new \stdClass();
+        $invalidIndicator = new stdClass();
 
+        /** @phpstan-ignore argument.type */
         Handler::addIndicator([$trigger], [$invalidIndicator]);
 
         self::assertEquals([], $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration']);

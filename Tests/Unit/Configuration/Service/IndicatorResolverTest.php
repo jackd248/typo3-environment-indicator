@@ -14,11 +14,8 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Service;
 
 use Exception;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Favicon;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\ConfigurationStorage;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\IndicatorResolver;
-use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\TriggerEvaluator;
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\{Favicon, IndicatorInterface};
+use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\{ConfigurationStorage, IndicatorResolver, TriggerEvaluator};
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
 use PHPUnit\Framework\TestCase;
 use stdClass;
