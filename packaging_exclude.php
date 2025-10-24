@@ -37,6 +37,7 @@ return [
         'codecov.yml',
         'CODEOWNERS',
         'composer.lock',
+        'composer-require-checker.json',
         'CONTRIBUTING.md',
         'crowdin.yaml',
         'dependency-checker.json',
@@ -59,8 +60,10 @@ return [
         'phpstan.neon',
         'phpunit.functional.xml',
         'phpunit.unit.xml',
+        'phpunit.xml',
         'rector.php',
         'renovate.json',
         'typoscript-lint.yml',
+        'version-bumper.yaml',
     ],
 ];
