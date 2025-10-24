@@ -15,6 +15,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Image;
 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Interfaces\ImageInterface;
+use KonradMichalik\PhpIcoFileLoader\IcoFileService;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Utility\{GeneralHelper, ImageDriverUtility};
 use TYPO3\CMS\Core\Core\Environment;
@@ -87,7 +88,7 @@ abstract class AbstractImageHandler
 
     protected function convertIcoToPng(string &$path, string $filename): void
     {
-        $loader = new \Elphin\IcoFileLoader\IcoFileService();
+        $loader = new IcoFileService();
         $icoImage = $loader->fromFile($path);
 
         foreach ($icoImage as $idx => $image) {
