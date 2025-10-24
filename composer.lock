@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4efea8885c2e7dac7f9002e9700d80cd",
+    "content-hash": "65cd47a1c5507240468a4949d9679f5b",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1283,6 +1283,66 @@
             "time": "2025-07-30T13:13:19+00:00"
         },
         {
+            "name": "konradmichalik/php-ico-file-loader",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jackd248/php-ico-file-loader.git",
+                "reference": "3470e2783a4280b6585aaecbb652afdcf02bf128"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jackd248/php-ico-file-loader/zipball/3470e2783a4280b6585aaecbb652afdcf02bf128",
+                "reference": "3470e2783a4280b6585aaecbb652afdcf02bf128",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0"
+            },
+            "require-dev": {
+                "armin/editorconfig-cli": "^1.0 || ^2.0",
+                "eliashaeussler/rector-config": "^3.0",
+                "ergebnis/composer-normalize": "^2.44",
+                "konradmichalik/php-cs-fixer-preset": "^0.1",
+                "konradmichalik/php-doc-block-header-fixer": "^0.3",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-symfony": "^2.0",
+                "phpunit/phpunit": "^10.2 || ^11.0 || ^12.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "KonradMichalik\\PhpIcoFileLoader\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konrad Michalik",
+                    "email": "hej@konradmichalik.dev",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Powerful PHP package for reading and converting .ico files, perfect for handling website favicons",
+            "keywords": [
+                "convert",
+                "extract",
+                "favicon",
+                "ico",
+                "icon",
+                "load"
+            ],
+            "support": {
+                "source": "https://github.com/jackd248/php-ico-file-loader/tree/0.1.0"
+            },
+            "time": "2025-10-23T16:35:22+00:00"
+        },
+        {
             "name": "lolli42/finediff",
             "version": "1.1.1",
             "source": {
@@ -1346,60 +1406,6 @@
                 "source": "https://github.com/lolli42/FineDiff/tree/1.1.1"
             },
             "time": "2024-07-09T14:25:40+00:00"
-        },
-        {
-            "name": "lordelph/icofileloader",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lordelph/icofileloader.git",
-                "reference": "3a31c97bff21984f50c4b4240f0a94b04a7f7881"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lordelph/icofileloader/zipball/3a31c97bff21984f50c4b4240f0a94b04a7f7881",
-                "reference": "3a31c97bff21984f50c4b4240f0a94b04a7f7881",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "php": ">=8.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~9",
-                "squizlabs/php_codesniffer": "3.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Elphin\\IcoFileLoader\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Dixon",
-                    "email": "paul@elphin.com"
-                }
-            ],
-            "description": "High quality PHP package for reading and converting any .ico icon file, particularly website favicons",
-            "homepage": "http://icofileloader.dixo.net/",
-            "keywords": [
-                "convert",
-                "extract",
-                "favicon",
-                "ico",
-                "icon",
-                "load"
-            ],
-            "support": {
-                "issues": "https://github.com/lordelph/icofileloader/issues",
-                "source": "https://github.com/lordelph/icofileloader/tree/3.0.0"
-            },
-            "time": "2022-08-19T19:02:48+00:00"
         },
         {
             "name": "masterminds/html5",
