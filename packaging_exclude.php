@@ -35,7 +35,6 @@ return [
         'CODE_OF_CONDUCT.md',
         'codeception.yml',
         'codecov.yml',
-        'CODE_OF_CONDUCT.md',
         'CODEOWNERS',
         'composer.lock',
         'composer-require-checker.json',
