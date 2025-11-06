@@ -28,16 +28,14 @@ class ScopeTest extends TestCase
     {
         $scopes = Scope::cases();
 
-        self::assertCount(4, $scopes);
-        self::assertEquals(Scope::Both, $scopes[0]);
-        self::assertEquals(Scope::Frontend, $scopes[1]);
-        self::assertEquals(Scope::Backend, $scopes[2]);
-        self::assertEquals(Scope::Global, $scopes[3]);
+        self::assertCount(3, $scopes);
+        self::assertEquals(Scope::Frontend, $scopes[0]);
+        self::assertEquals(Scope::Backend, $scopes[1]);
+        self::assertEquals(Scope::Global, $scopes[2]);
     }
 
     public function testScopeNames(): void
     {
-        self::assertEquals('Both', Scope::Both->name);
         self::assertEquals('Frontend', Scope::Frontend->name);
         self::assertEquals('Backend', Scope::Backend->name);
         self::assertEquals('Global', Scope::Global->name);
