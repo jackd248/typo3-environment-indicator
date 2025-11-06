@@ -38,7 +38,7 @@ class Favicon extends AbstractIndicator implements IndicatorInterface
     }
 
     /**
-     * @return array|ModifierInterface[]|mixed[]
+     * @return array<string|int, mixed|ModifierInterface>
      */
     public function getConfiguration(): array
     {
