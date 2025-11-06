@@ -16,6 +16,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service\{ConfigurationStorage, IndicatorResolver, TriggerEvaluator};
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\TriggerInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -57,7 +58,7 @@ class Handler
     /**
      * Resolves the current indicators based on the registered configurations and the checked triggers.
      *
-     * @return array<class-string<IndicatorInterface>, array<string, mixed>> Current indicators
+     * @return array<class-string<IndicatorInterface>, array<string|int, mixed|ModifierInterface>> Current indicators
      */
     public static function resolveIndicators(): array
     {

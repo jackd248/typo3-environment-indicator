@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 
 /**
  * ConfigurationStorage.
@@ -50,11 +51,11 @@ class ConfigurationStorage
     /**
      * Retrieves the current resolved indicators.
      *
-     * @return array<class-string<Configuration\Indicator\IndicatorInterface>, array<string, mixed>> Current indicators array
+     * @return array<class-string<Configuration\Indicator\IndicatorInterface>, array<string|int, mixed|ModifierInterface>> Current indicators array
      */
     public function getCurrentIndicators(): array
     {
-        /* @var array<class-string<\KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface>, array<string, mixed>> */
+        /* @var array<class-string<\KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface>, array<string|int, mixed|ModifierInterface>> */
         return $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] ?? [];
     }
 
@@ -71,8 +72,8 @@ class ConfigurationStorage
     /**
      * Sets an indicator configuration for the current request.
      *
-     * @param string               $indicatorClass The indicator class name
-     * @param array<string, mixed> $configuration  The indicator configuration
+     * @param string                                     $indicatorClass The indicator class name
+     * @param array<string|int, mixed|ModifierInterface> $configuration  The indicator configuration
      */
     public function setCurrentIndicator(string $indicatorClass, array $configuration): void
     {
@@ -86,8 +87,8 @@ class ConfigurationStorage
     /**
      * Merges an indicator configuration with existing one.
      *
-     * @param string               $indicatorClass The indicator class name
-     * @param array<string, mixed> $configuration  The indicator configuration to merge
+     * @param string                                     $indicatorClass The indicator class name
+     * @param array<string|int, mixed|ModifierInterface> $configuration  The indicator configuration to merge
      */
     public function mergeCurrentIndicator(string $indicatorClass, array $configuration): void
     {

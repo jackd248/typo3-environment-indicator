@@ -15,6 +15,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Indi
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\{AbstractIndicator, IndicatorInterface};
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -109,7 +110,7 @@ class AbstractIndicatorTest extends TestCase
 class ConcreteIndicator extends AbstractIndicator implements IndicatorInterface
 {
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed|ModifierInterface>
      */
     public function getConfiguration(): array
     {

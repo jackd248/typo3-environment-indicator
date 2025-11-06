@@ -33,7 +33,7 @@ use function is_string;
 abstract class AbstractImageHandler
 {
     /**
-     * @var array<string, mixed>
+     * @var array<string|int, mixed>
      */
     protected array $imageModifiers = [];
 
@@ -138,7 +138,7 @@ abstract class AbstractImageHandler
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed>
      */
     private function getImageModifiers(): array
     {
@@ -182,7 +182,6 @@ abstract class AbstractImageHandler
     private function applyImageModifiers(ImageInterface $image): void
     {
         foreach ($this->imageModifiers as $key => $modifier) {
-            /* @phpstan-ignore function.alreadyNarrowedType */
             if (is_string($key) && str_starts_with($key, '_')) {
                 continue;
             }

@@ -97,7 +97,7 @@ class ContextItem implements ToolbarItemInterface
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed>
      */
     private function getBackendToolbarConfiguration(): array
     {

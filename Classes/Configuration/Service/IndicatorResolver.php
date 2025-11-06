@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Service;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 use Throwable;
 
 /**
@@ -38,7 +39,7 @@ class IndicatorResolver
     /**
      * Resolves all active indicators based on current configuration and triggers.
      *
-     * @return array<class-string<IndicatorInterface>, array<string, mixed>> Array of resolved indicators
+     * @return array<class-string<IndicatorInterface>, array<string|int, mixed|ModifierInterface>> Array of resolved indicators
      */
     public function resolveIndicators(): array
     {

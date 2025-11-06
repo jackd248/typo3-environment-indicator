@@ -72,7 +72,7 @@ class EnvironmentIndicatorWidget implements WidgetInterface, AdditionalCssInterf
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed>
      */
     private function getWidgetConfiguration(): array
     {

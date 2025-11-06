@@ -17,6 +17,7 @@ use Intervention\Image\Interfaces\ImageManagerInterface;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Handler;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\IndicatorInterface;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -47,7 +48,7 @@ class GeneralHelper
     }
 
     /**
-     * @return array<class-string<IndicatorInterface>, array<string, mixed>>
+     * @return array<class-string<IndicatorInterface>, array<string|int, mixed|ModifierInterface>>
      */
     public static function getIndicatorConfiguration(): array
     {
