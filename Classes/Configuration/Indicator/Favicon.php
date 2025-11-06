@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Enum\Scope;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\ApplicationType;
 
@@ -25,11 +26,20 @@ use TYPO3\CMS\Core\Http\ApplicationType;
  */
 class Favicon extends AbstractIndicator implements IndicatorInterface
 {
-    public function __construct(protected array $configuration = [], protected Scope $scope = Scope::Global, ?ServerRequestInterface $request = null)
-    {
+    /**
+     * @param array<string|int, mixed|ModifierInterface> $configuration
+     */
+    public function __construct(
+        protected array $configuration = [],
+        protected Scope $scope = Scope::Global,
+        ?ServerRequestInterface $request = null,
+    ) {
         parent::__construct($this->configuration, $request);
     }
 
+    /**
+     * @return array<string|int, mixed|ModifierInterface>
+     */
     public function getConfiguration(): array
     {
         $request = $this->getRequest();

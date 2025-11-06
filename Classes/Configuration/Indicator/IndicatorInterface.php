@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
 
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
+
 /**
  * IndicatorInterface.
  *
@@ -22,7 +24,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
 interface IndicatorInterface
 {
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed|ModifierInterface>
      */
     public function getConfiguration(): array;
 }

@@ -68,7 +68,7 @@ class ContextUtility
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed>
      */
     private function getFrontendHintConfiguration(): array
     {

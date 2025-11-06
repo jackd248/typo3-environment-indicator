@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration;
+use KonradMichalik\Typo3EnvironmentIndicator\Image\Modifier\ModifierInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 use function array_key_exists;
@@ -28,7 +29,7 @@ use function is_array;
 abstract class AbstractIndicator
 {
     /**
-     * @param array<string, mixed> $configuration
+     * @param array<string|int, mixed|ModifierInterface> $configuration
      */
     public function __construct(protected array $configuration = [], protected ?ServerRequestInterface $request = null)
     {
@@ -36,7 +37,7 @@ abstract class AbstractIndicator
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string|int, mixed|ModifierInterface>
      */
     public function getConfiguration(): array
     {
@@ -44,9 +45,9 @@ abstract class AbstractIndicator
     }
 
     /**
-     * @param array<string, mixed> $configuration
+     * @param array<string|int, mixed|ModifierInterface> $configuration
      *
-     * @return array<string, mixed>
+     * @return array<string|int, mixed|ModifierInterface>
      */
     protected function mergeGlobalConfiguration(array $configuration): array
     {
