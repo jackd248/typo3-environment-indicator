@@ -7,3 +7,5 @@ on:
 jobs:
   tests:
     uses: jackd248/reusable-github-actions/.github/workflows/tests-typo3.yml@main
+    with:
+      typo3-versions: '["12.4", "13.4"]'

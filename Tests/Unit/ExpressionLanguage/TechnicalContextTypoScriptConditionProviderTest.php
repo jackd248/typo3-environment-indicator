@@ -44,7 +44,6 @@ class TechnicalContextTypoScriptConditionProviderTest extends TestCase
         $provider = new TechnicalContextTypoScriptConditionProvider();
         $reflection = new ReflectionClass($provider);
         $property = $reflection->getProperty('expressionLanguageProviders');
-        $property->setAccessible(true);
         $providers = $property->getValue($provider);
 
         self::assertIsArray($providers);
