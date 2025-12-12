@@ -31,7 +31,11 @@ class NonceViewHelper extends AbstractViewHelper
             return null;
         }
 
-        $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
+        $request = $this->getRequest();
+        if (null === $request) {
+            return null;
+        }
+
         $nonce = $request->getAttribute('nonce');
 
         // TYPO3 v12 uses Nonce directly
@@ -48,5 +52,19 @@ class NonceViewHelper extends AbstractViewHelper
         }
 
         return null;
+    }
+
+    private function getRequest(): ?ServerRequestInterface
+    {
+        // TYPO3 v12+ provides request via RenderingContext::getAttribute()
+        // @phpstan-ignore function.alreadyNarrowedType (TYPO3 v11 compatibility - method doesn't exist there)
+        if (method_exists($this->renderingContext, 'hasAttribute')
+            && $this->renderingContext->hasAttribute(ServerRequestInterface::class)
+        ) {
+            return $this->renderingContext->getAttribute(ServerRequestInterface::class);
+        }
+
+        // Fallback to global request (TYPO3 v11 compatibility)
+        return $GLOBALS['TYPO3_REQUEST'] ?? null;
     }
 }
