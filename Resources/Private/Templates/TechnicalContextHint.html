@@ -1,5 +1,9 @@
-<f:asset.css identifier="technical-context-hint" href="EXT:typo3_environment_indicator/Resources/Public/Css/TechnicalContextHint.css" />
-<f:asset.script identifier="technical-context-hint-js" src="EXT:typo3_environment_indicator/Resources/Public/JavaScript/TechnicalContextHint.js" />
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ei="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="technical-context-hint" href="EXT:typo3_environment_indicator/Resources/Public/Css/TechnicalContextHint.css" nonce="{ei:nonce()}"/>
+<f:asset.script identifier="technical-context-hint-js" src="EXT:typo3_environment_indicator/Resources/Public/JavaScript/TechnicalContextHint.js" nonce="{ei:nonce()}"/>
 
 <div
     class="technical-context technical-context--custom-colors"
@@ -19,3 +23,5 @@
         aria-label="Close context hint"
     ></button>
 </div>
+
+</html>
