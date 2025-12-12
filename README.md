@@ -46,10 +46,6 @@ This extension provides several features to show an environment indicator in the
 | 3.x     | 13.4 - 14.x | 8.2 - 8.5    |
 | 2.x     | 12.4 - 14.x | 8.1 - 8.4    |
 
-> [!IMPORTANT]
-> Starting with version 3.0, **Site Sets** are required for the frontend TypoScript configuration.
-> The legacy static TypoScript include is no longer supported.
-
 ### Composer
 
 [![Packagist](https://img.shields.io/packagist/v/konradmichalik/typo3-environment-indicator?label=version&logo=packagist)](https://packagist.org/packages/konradmichalik/typo3-environment-indicator)
