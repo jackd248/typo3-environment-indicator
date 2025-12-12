@@ -19,6 +19,8 @@ This extension provides several features to show an environment indicator in the
 > Has it ever happened to you that you changed data on a test system and then realized: oh no, that's the live system. 
 > Well, to prevent that from happening (again), I created this extension.
 
+![Environment Indicator Preview](Documentation/Images/intro.jpg)
+
 ## ✨ Features
 
 | Preview                                                                                | Feature                                                                                                                                                                                                                                                                      | Frontend | Backend |
