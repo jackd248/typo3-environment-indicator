@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
 
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+
 use function in_array;
 
 /**
@@ -35,8 +38,18 @@ class FrontendUserGroup implements TriggerInterface
 
     public function check(): bool
     {
-        // Deprecated: $GLOBALS['TSFE'] is deprecated since TYPO3 v13.
-        $currentUserGroups = $GLOBALS['TSFE']->fe_user->groupData['uid'] ?? [];
+        $request = $this->getRequest();
+        if (null === $request) {
+            return false;
+        }
+
+        /** @var FrontendUserAuthentication|null $frontendUser */
+        $frontendUser = $request->getAttribute('frontend.user');
+        if (null === $frontendUser) {
+            return false;
+        }
+
+        $currentUserGroups = $frontendUser->groupData['uid'] ?? [];
         foreach ($this->groups as $group) {
             if (in_array($group, $currentUserGroups, true)) {
                 return true;
@@ -44,5 +57,10 @@ class FrontendUserGroup implements TriggerInterface
         }
 
         return false;
+    }
+
+    protected function getRequest(): ?ServerRequestInterface
+    {
+        return $GLOBALS['TYPO3_REQUEST'] ?? null;
     }
 }

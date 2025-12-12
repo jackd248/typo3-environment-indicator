@@ -39,7 +39,7 @@ This extension provides several features to show an environment indicator in the
 
 ### Requirements
 
-- TYPO3 >= 11.5
+- TYPO3 >= 13.4
 - PHP 8.1+
 
 ### Composer

@@ -18,11 +18,9 @@ use KonradMichalik\Typo3EnvironmentIndicator\Image\FaviconHandler;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\{MiddlewareInterface, RequestHandlerInterface};
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use function array_key_exists;
-use function is_array;
 
 /**
  * FrontendFaviconMiddleware.
@@ -55,33 +53,6 @@ class FrontendFaviconMiddleware implements MiddlewareInterface
     }
 
     private function processFavicon(ServerRequestInterface $request): void
-    {
-        $typo3Version = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
-
-        if ($typo3Version < 13) {
-            $this->processFaviconLegacy();
-        } else {
-            $this->processFaviconModern($request);
-        }
-    }
-
-    private function processFaviconLegacy(): void
-    {
-        if (!is_array($GLOBALS['TSFE']->pSetup)
-            || !array_key_exists('shortcutIcon', $GLOBALS['TSFE']->pSetup)
-            || '' === $GLOBALS['TSFE']->pSetup['shortcutIcon']
-        ) {
-            return;
-        }
-
-        $currentFavicon = $GLOBALS['TSFE']->pSetup['shortcutIcon'];
-        $faviconHandler = GeneralUtility::makeInstance(FaviconHandler::class);
-        $newFavicon = $faviconHandler->process($currentFavicon);
-
-        $GLOBALS['TSFE']->pSetup['shortcutIcon'] = $newFavicon;
-    }
-
-    private function processFaviconModern(ServerRequestInterface $request): void
     {
         $typoScript = $request->getAttribute('frontend.typoscript');
 

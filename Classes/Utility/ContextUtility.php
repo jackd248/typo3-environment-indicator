@@ -14,7 +14,9 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -59,12 +61,28 @@ class ContextUtility
         if (null !== $title) {
             return $title;
         }
-        // Deprecated: $GLOBALS['TSFE'] is deprecated since TYPO3 v13.
-        $pid = $GLOBALS['TSFE']->id;
+
+        $request = $this->getRequest();
+        if (null === $request) {
+            return '';
+        }
+
+        /** @var PageArguments|null $routing */
+        $routing = $request->getAttribute('routing');
+        if (null === $routing) {
+            return '';
+        }
+
+        $pid = $routing->getPageId();
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
         $site = $siteFinder->getSiteByPageId($pid);
 
         return array_key_exists('websiteTitle', $site->getConfiguration()) ? $site->getConfiguration()['websiteTitle'] : $site->getIdentifier();
+    }
+
+    protected function getRequest(): ?ServerRequestInterface
+    {
+        return $GLOBALS['TYPO3_REQUEST'] ?? null;
     }
 
     /**
