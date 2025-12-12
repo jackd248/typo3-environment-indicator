@@ -27,7 +27,7 @@ class BackendLogoHandler extends AbstractImageHandler
 {
     public function __construct(?IndicatorInterface $indicator = null)
     {
-        $indicator = $indicator ?? GeneralUtility::makeInstance(Logo::class);
+        $indicator ??= GeneralUtility::makeInstance(Logo::class);
         parent::__construct($indicator);
     }
 }

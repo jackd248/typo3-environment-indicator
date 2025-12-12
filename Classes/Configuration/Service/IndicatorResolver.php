@@ -25,16 +25,7 @@ use Throwable;
  */
 class IndicatorResolver
 {
-    private ConfigurationStorage $configurationStorage;
-    private TriggerEvaluator $triggerEvaluator;
-
-    public function __construct(
-        ConfigurationStorage $configurationStorage,
-        TriggerEvaluator $triggerEvaluator,
-    ) {
-        $this->configurationStorage = $configurationStorage;
-        $this->triggerEvaluator = $triggerEvaluator;
-    }
+    public function __construct(private readonly ConfigurationStorage $configurationStorage, private readonly TriggerEvaluator $triggerEvaluator) {}
 
     /**
      * Resolves all active indicators based on current configuration and triggers.

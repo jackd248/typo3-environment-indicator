@@ -1,15 +1,14 @@
 name: typo3-environment-indicator
 type: php
 docroot: .test
-php_version: "8.2"
+php_version: "8.3"
 webserver_type: apache-fpm
 router_http_port: "80"
 router_https_port: "443"
 xdebug_enabled: false
 additional_hostnames:
-  - 11.typo3-environment-indicator
-  - 12.typo3-environment-indicator
   - 13.typo3-environment-indicator
+  - 14.typo3-environment-indicator
 additional_fqdns: []
 database:
   type: mariadb
@@ -20,7 +19,7 @@ corepack_enable: false
 hooks:
   post-start:
     - exec: composer install --no-scripts
-    - exec: mkdir -p /var/www/html/.Build/ && cp /var/www/html/.ddev/.typo3-setup/templates/* /var/www/html/.Build/
+    - exec: mkdir -p /var/www/html/.Build/ && cp /var/www/html/.ddev/.setup/templates/* /var/www/html/.Build/
 
 # Key features of DDEV's config.yaml:
 

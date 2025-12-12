@@ -29,7 +29,6 @@ class AbstractIndicatorTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['defaults']);
     }
 
@@ -48,7 +47,7 @@ class AbstractIndicatorTest extends TestCase
 
     public function testConstructorWithRequest(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $config = ['key' => 'value'];
         $indicator = new ConcreteIndicator($config, $request);
         self::assertEquals($config, $indicator->getConfiguration());

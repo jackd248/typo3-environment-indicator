@@ -14,11 +14,16 @@ declare(strict_types=1);
 namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
+use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use function array_key_exists;
+use function is_string;
 
 /**
  * ContextUtility.
@@ -28,43 +33,73 @@ use function array_key_exists;
  */
 class ContextUtility
 {
+    #[AsAllowedCallable]
     public function getContext(): string
     {
         return Environment::getContext()->__toString();
     }
 
+    #[AsAllowedCallable]
     public function getColor(): string
     {
         return $this->getFrontendHintConfiguration()['color'] ?? 'transparent';
     }
 
+    #[AsAllowedCallable]
     public function getTextColor(): string
     {
         return ColorUtility::getOptimalTextColor($this->getFrontendHintConfiguration()['color'] ?? 'transparent');
     }
 
+    #[AsAllowedCallable]
     public function getPositionX(): string
     {
         return explode(' ', $this->getFrontendHintConfiguration()['position'] ?? 'left top')[0].':0';
     }
 
+    #[AsAllowedCallable]
     public function getPositionY(): string
     {
         return explode(' ', $this->getFrontendHintConfiguration()['position'] ?? 'left top')[1].':0';
     }
 
+    #[AsAllowedCallable]
     public function getTitle(): string
     {
         $title = $this->getFrontendHintConfiguration()['text'] ?? null;
         if (null !== $title) {
             return $title;
         }
-        // Deprecated: $GLOBALS['TSFE'] is deprecated since TYPO3 v13.
-        $pid = $GLOBALS['TSFE']->id;
-        $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
-        $site = $siteFinder->getSiteByPageId($pid);
 
-        return array_key_exists('websiteTitle', $site->getConfiguration()) ? $site->getConfiguration()['websiteTitle'] : $site->getIdentifier();
+        $request = $this->getRequest();
+        if (null === $request) {
+            return '';
+        }
+
+        $routing = $request->getAttribute('routing');
+        if (!$routing instanceof PageArguments) {
+            return '';
+        }
+
+        $pid = $routing->getPageId();
+        $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
+
+        try {
+            $site = $siteFinder->getSiteByPageId($pid);
+        } catch (SiteNotFoundException) {
+            return '';
+        }
+
+        $configuration = $site->getConfiguration();
+
+        return array_key_exists('websiteTitle', $configuration) && is_string($configuration['websiteTitle'])
+            ? $configuration['websiteTitle']
+            : $site->getIdentifier();
+    }
+
+    protected function getRequest(): ?ServerRequestInterface
+    {
+        return $GLOBALS['TYPO3_REQUEST'] ?? null;
     }
 
     /**

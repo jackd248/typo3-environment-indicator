@@ -30,7 +30,6 @@ class ImageHandlerFactoryTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
         $this->factory = new ImageHandlerFactory();
     }
 

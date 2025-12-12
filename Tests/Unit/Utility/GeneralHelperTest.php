@@ -28,20 +28,19 @@ class GeneralHelperTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] = [];
     }
 
     public function testSupportFormatWithIco(): void
     {
-        $manager = $this->createMock(ImageManagerInterface::class);
+        $manager = $this->createStub(ImageManagerInterface::class);
         $result = GeneralHelper::supportFormat($manager, 'ico');
         self::assertTrue($result);
     }
 
     public function testSupportFormatWithSvg(): void
     {
-        $manager = $this->createMock(ImageManagerInterface::class);
+        $manager = $this->createStub(ImageManagerInterface::class);
         $result = GeneralHelper::supportFormat($manager, 'svg');
         self::assertTrue($result);
     }

@@ -1,0 +1,46 @@
+[enableTechnicalContext()]
+lib.applicationContextTitle = USER
+lib.applicationContextTitle {
+    userFunc = KonradMichalik\Typo3EnvironmentIndicator\Utility\ContextUtility->getContext
+}
+
+lib.applicationContextColor = USER
+lib.applicationContextColor {
+    userFunc = KonradMichalik\Typo3EnvironmentIndicator\Utility\ContextUtility->getColor
+}
+
+lib.applicationContextTextColor = USER
+lib.applicationContextTextColor {
+    userFunc = KonradMichalik\Typo3EnvironmentIndicator\Utility\ContextUtility->getTextColor
+}
+
+lib.websiteTitle = USER
+lib.websiteTitle {
+    userFunc = KonradMichalik\Typo3EnvironmentIndicator\Utility\ContextUtility->getTitle
+}
+
+lib.applicationContextPositionX = USER
+lib.applicationContextPositionX {
+    userFunc = KonradMichalik\Typo3EnvironmentIndicator\Utility\ContextUtility->getPositionX
+}
+
+lib.applicationContextPositionY = USER
+lib.applicationContextPositionY {
+    userFunc = KonradMichalik\Typo3EnvironmentIndicator\Utility\ContextUtility->getPositionY
+}
+
+lib.technicalContext = FLUIDTEMPLATE
+lib.technicalContext {
+    file = EXT:typo3_environment_indicator/Resources/Private/Templates/TechnicalContextHint.html
+    variables {
+    context < lib.applicationContextTitle
+    color < lib.applicationContextColor
+    title < lib.websiteTitle
+    textColor < lib.applicationContextTextColor
+    positionX < lib.applicationContextPositionX
+    positionY < lib.applicationContextPositionY
+    }
+}
+
+page.1740392890 =< lib.technicalContext
+[GLOBAL]

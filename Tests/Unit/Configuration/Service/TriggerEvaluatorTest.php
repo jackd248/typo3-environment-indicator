@@ -31,7 +31,6 @@ class TriggerEvaluatorTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
         $this->triggerEvaluator = new TriggerEvaluator();
     }
 
@@ -75,8 +74,8 @@ class TriggerEvaluatorTest extends TestCase
 
     public function testValidateTriggersReturnsTrueForValidTriggers(): void
     {
-        $trigger1 = $this->createMock(TriggerInterface::class);
-        $trigger2 = $this->createMock(TriggerInterface::class);
+        $trigger1 = $this->createStub(TriggerInterface::class);
+        $trigger2 = $this->createStub(TriggerInterface::class);
 
         $result = $this->triggerEvaluator->validateTriggers([$trigger1, $trigger2]);
         self::assertTrue($result);
@@ -84,7 +83,7 @@ class TriggerEvaluatorTest extends TestCase
 
     public function testValidateTriggersReturnsFalseForInvalidTriggers(): void
     {
-        $trigger = $this->createMock(TriggerInterface::class);
+        $trigger = $this->createStub(TriggerInterface::class);
         $invalidTrigger = new stdClass();
 
         $result = $this->triggerEvaluator->validateTriggers([$trigger, $invalidTrigger]);

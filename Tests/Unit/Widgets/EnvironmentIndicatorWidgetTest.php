@@ -28,28 +28,27 @@ class EnvironmentIndicatorWidgetTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] = [];
     }
 
     public function testConstructorWithConfiguration(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
         $widget = new EnvironmentIndicatorWidget($configuration);
         self::assertInstanceOf(EnvironmentIndicatorWidget::class, $widget);
     }
 
     public function testConstructorWithButtonProvider(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
-        $buttonProvider = $this->createMock(ButtonProviderInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
+        $buttonProvider = $this->createStub(ButtonProviderInterface::class);
         $widget = new EnvironmentIndicatorWidget($configuration, $buttonProvider);
         self::assertInstanceOf(EnvironmentIndicatorWidget::class, $widget);
     }
 
     public function testConstructorWithOptions(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
         $options = ['test' => 'value'];
         $widget = new EnvironmentIndicatorWidget($configuration, null, $options);
         self::assertInstanceOf(EnvironmentIndicatorWidget::class, $widget);
@@ -57,7 +56,7 @@ class EnvironmentIndicatorWidgetTest extends TestCase
 
     public function testGetOptionsReturnsOptions(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
         $options = ['test' => 'value', 'another' => 'option'];
         $widget = new EnvironmentIndicatorWidget($configuration, null, $options);
         self::assertEquals($options, $widget->getOptions());
@@ -65,14 +64,14 @@ class EnvironmentIndicatorWidgetTest extends TestCase
 
     public function testGetOptionsReturnsEmptyArrayWhenNoOptions(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
         $widget = new EnvironmentIndicatorWidget($configuration);
         self::assertEquals([], $widget->getOptions());
     }
 
     public function testGetCssFilesReturnsCorrectPath(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
         $widget = new EnvironmentIndicatorWidget($configuration);
         $cssFiles = $widget->getCssFiles();
         self::assertCount(1, $cssFiles);
@@ -81,14 +80,14 @@ class EnvironmentIndicatorWidgetTest extends TestCase
 
     public function testImplementsWidgetInterface(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
         $widget = new EnvironmentIndicatorWidget($configuration);
         self::assertInstanceOf(\TYPO3\CMS\Dashboard\Widgets\WidgetInterface::class, $widget);
     }
 
     public function testImplementsAdditionalCssInterface(): void
     {
-        $configuration = $this->createMock(WidgetConfigurationInterface::class);
+        $configuration = $this->createStub(WidgetConfigurationInterface::class);
         $widget = new EnvironmentIndicatorWidget($configuration);
         self::assertInstanceOf(\TYPO3\CMS\Dashboard\Widgets\AdditionalCssInterface::class, $widget);
     }

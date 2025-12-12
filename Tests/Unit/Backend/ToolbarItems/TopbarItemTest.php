@@ -29,55 +29,54 @@ class TopbarItemTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] = [];
     }
 
     public function testConstructorWithExtensionConfiguration(): void
     {
-        $extensionConfiguration = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfiguration = $this->createStub(ExtensionConfiguration::class);
         $topbarItem = new TopbarItem($extensionConfiguration);
         self::assertInstanceOf(TopbarItem::class, $topbarItem);
     }
 
     public function testCheckAccessReturnsTrue(): void
     {
-        $extensionConfiguration = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfiguration = $this->createStub(ExtensionConfiguration::class);
         $topbarItem = new TopbarItem($extensionConfiguration);
         self::assertTrue($topbarItem->checkAccess());
     }
 
     public function testHasDropDownReturnsFalse(): void
     {
-        $extensionConfiguration = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfiguration = $this->createStub(ExtensionConfiguration::class);
         $topbarItem = new TopbarItem($extensionConfiguration);
         self::assertFalse($topbarItem->hasDropDown());
     }
 
     public function testGetDropDownReturnsEmptyString(): void
     {
-        $extensionConfiguration = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfiguration = $this->createStub(ExtensionConfiguration::class);
         $topbarItem = new TopbarItem($extensionConfiguration);
         self::assertEquals('', $topbarItem->getDropDown());
     }
 
     public function testGetAdditionalAttributesReturnsEmptyArray(): void
     {
-        $extensionConfiguration = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfiguration = $this->createStub(ExtensionConfiguration::class);
         $topbarItem = new TopbarItem($extensionConfiguration);
         self::assertEquals([], $topbarItem->getAdditionalAttributes());
     }
 
     public function testGetIndexReturnsZero(): void
     {
-        $extensionConfiguration = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfiguration = $this->createStub(ExtensionConfiguration::class);
         $topbarItem = new TopbarItem($extensionConfiguration);
         self::assertEquals(0, $topbarItem->getIndex());
     }
 
     public function testImplementsToolbarItemInterface(): void
     {
-        $extensionConfiguration = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfiguration = $this->createStub(ExtensionConfiguration::class);
         $topbarItem = new TopbarItem($extensionConfiguration);
         self::assertInstanceOf(ToolbarItemInterface::class, $topbarItem);
     }

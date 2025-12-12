@@ -35,39 +35,30 @@ class TriangleModifier extends AbstractModifier implements ModifierInterface
         $triangleSize = (int) ($width * $this->configuration['size']);
         $position = $this->configuration['position'] ?? 'bottom right';
 
-        switch ($position) {
-            case 'top left':
-                $points = [
-                    [0, 0],
-                    [$triangleSize, 0],
-                    [0, $triangleSize],
-                ];
-                break;
-            case 'top right':
-                $points = [
-                    [$width, 0],
-                    [$width - $triangleSize, 0],
-                    [$width, $triangleSize],
-                ];
-                break;
-            case 'bottom left':
-                $points = [
-                    [0, $height],
-                    [$triangleSize, $height],
-                    [0, $height - $triangleSize],
-                ];
-                break;
-            case 'bottom right':
-            default:
-                $points = [
-                    [$width - $triangleSize, $height],
-                    [$width, $height - $triangleSize],
-                    [$width, $height],
-                ];
-                break;
-        }
+        $points = match ($position) {
+            'top left' => [
+                [0, 0],
+                [$triangleSize, 0],
+                [0, $triangleSize],
+            ],
+            'top right' => [
+                [$width, 0],
+                [$width - $triangleSize, 0],
+                [$width, $triangleSize],
+            ],
+            'bottom left' => [
+                [0, $height],
+                [$triangleSize, $height],
+                [0, $height - $triangleSize],
+            ],
+            default => [
+                [$width - $triangleSize, $height],
+                [$width, $height - $triangleSize],
+                [$width, $height],
+            ],
+        };
 
-        $image->drawPolygon(function (PolygonFactory $polygon) use ($points) {
+        $image->drawPolygon(function (PolygonFactory $polygon) use ($points): void {
             foreach ($points as [$x, $y]) {
                 $polygon->point($x, $y);
             }

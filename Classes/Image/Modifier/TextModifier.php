@@ -52,7 +52,7 @@ class TextModifier extends AbstractModifier implements ModifierInterface
 
         do {
             ++$fontSize;
-            $wrappedText = wordwrap($text, (int) ($maxWidth / ($fontSize * self::FONT_WIDTH_RATIO)), "\n", true);
+            $wrappedText = wordwrap((string) $text, (int) ($maxWidth / ($fontSize * self::FONT_WIDTH_RATIO)), "\n", true);
             $lines = explode("\n", $wrappedText);
             $estimatedHeight = count($lines) * $fontSize * self::LINE_HEIGHT_MULTIPLIER;
         } while ($estimatedHeight < $maxHeight && $fontSize < self::MAX_FONT_SIZE);
@@ -60,7 +60,7 @@ class TextModifier extends AbstractModifier implements ModifierInterface
 
         $yPosition = ('top' === $position) ? $padding : $image->height() - $padding;
 
-        $image->text($wrappedText, (int) ($image->width() / 2), $yPosition, function (FontFactory $font) use ($fontSize, $configuration, $fontPath, $position) {
+        $image->text($wrappedText, (int) ($image->width() / 2), $yPosition, function (FontFactory $font) use ($fontSize, $configuration, $fontPath, $position): void {
             $font->filename($fontPath);
             $font->size($fontSize);
             $font->color($configuration['color']);

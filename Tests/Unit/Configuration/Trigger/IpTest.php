@@ -28,7 +28,6 @@ class IpTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
         // Store original value and set test value
         // @phpstan-ignore-next-line disallowed.variable
         $this->originalRemoteAddr = $_SERVER['REMOTE_ADDR'] ?? '';
@@ -46,7 +45,6 @@ class IpTest extends TestCase
             // @phpstan-ignore-next-line disallowed.variable
             unset($_SERVER['REMOTE_ADDR']);
         }
-        parent::tearDown();
     }
 
     public function testCheckReturnsTrueForMatchingIp(): void

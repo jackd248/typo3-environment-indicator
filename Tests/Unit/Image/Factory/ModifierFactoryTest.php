@@ -30,7 +30,6 @@ class ModifierFactoryTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
         $this->factory = new ModifierFactory();
     }
 

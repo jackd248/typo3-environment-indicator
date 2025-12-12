@@ -30,7 +30,6 @@ class HandlerTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]);
     }
 
@@ -47,8 +46,8 @@ class HandlerTest extends TestCase
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
 
-        $trigger = $this->createMock(TriggerInterface::class);
-        $indicator = $this->createMock(IndicatorInterface::class);
+        $trigger = $this->createStub(TriggerInterface::class);
+        $indicator = $this->createStub(IndicatorInterface::class);
 
         Handler::addIndicator([$trigger], [$indicator]);
 
@@ -126,7 +125,7 @@ class HandlerTest extends TestCase
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
 
         $invalidTrigger = new stdClass();
-        $indicator = $this->createMock(IndicatorInterface::class);
+        $indicator = $this->createStub(IndicatorInterface::class);
 
         /* @phpstan-ignore argument.type */
         Handler::addIndicator([$invalidTrigger], [$indicator]);
@@ -138,7 +137,7 @@ class HandlerTest extends TestCase
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
 
-        $trigger = $this->createMock(TriggerInterface::class);
+        $trigger = $this->createStub(TriggerInterface::class);
         $invalidIndicator = new stdClass();
 
         /* @phpstan-ignore argument.type */
@@ -151,7 +150,7 @@ class HandlerTest extends TestCase
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
 
-        $trigger = $this->createMock(TriggerInterface::class);
+        $trigger = $this->createStub(TriggerInterface::class);
 
         Handler::addIndicator([$trigger], []);
 
@@ -162,7 +161,7 @@ class HandlerTest extends TestCase
     {
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['configuration'] = [];
 
-        $indicator = $this->createMock(IndicatorInterface::class);
+        $indicator = $this->createStub(IndicatorInterface::class);
 
         Handler::addIndicator([], [$indicator]);
 

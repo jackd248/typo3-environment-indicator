@@ -1,11 +1,10 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:ei="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers"
       data-namespace-typo3-fluid="true">
 
-    <f:asset.css identifier="project-status" nonce="{ei:nonce()}">
+    <f:asset.css identifier="project-status" useNonce="true">
         .topbar-header-project-status__context {
             display: inline-block;
-            padding: 13.5px;
+            padding: 10.5px 13.5px;
         }
     </f:asset.css>
     <div class="topbar-header-project-status">

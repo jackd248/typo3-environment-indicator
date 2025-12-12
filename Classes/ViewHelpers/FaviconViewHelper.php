@@ -44,7 +44,11 @@ class FaviconViewHelper extends AbstractViewHelper
 
     public function render(): string
     {
-        $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
+        $renderingContext = $this->renderingContext;
+        if (null === $renderingContext) {
+            return (string) $this->renderChildren();
+        }
+        $request = $renderingContext->getAttribute(ServerRequestInterface::class);
         $applicationType = ApplicationType::fromRequest($request);
 
         $favicon = $this->renderChildren();
@@ -58,7 +62,7 @@ class FaviconViewHelper extends AbstractViewHelper
         }
 
         if (!PathUtility::isExtensionPath($favicon)) {
-            $favicon = Environment::getPublicPath().(str_contains($favicon, '?') ? strtok($favicon, '?') : $favicon);
+            $favicon = Environment::getPublicPath().(str_contains((string) $favicon, '?') ? strtok($favicon, '?') : $favicon);
         }
 
         return GeneralUtility::makeInstance(FaviconHandler::class)->process($favicon);
