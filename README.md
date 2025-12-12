@@ -44,7 +44,7 @@ This extension provides several features to show an environment indicator in the
 | Version | TYPO3       | PHP          |
 |---------|-------------|--------------|
 | 3.x     | 13.4 - 14.x | 8.2 - 8.5    |
-| 2.x     | 12.4 - 14.x | 8.1 - 8.4    |
+| 2.x     | 11.5 - 13.4 | 8.1 - 8.4    |
 
 ### Composer
 
