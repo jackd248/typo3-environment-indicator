@@ -30,7 +30,6 @@ class HandlerTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]);
     }
 

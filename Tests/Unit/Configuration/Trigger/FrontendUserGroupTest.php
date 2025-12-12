@@ -28,13 +28,11 @@ class FrontendUserGroupTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         unset($GLOBALS['TYPO3_REQUEST']);
     }
 
     protected function tearDown(): void
     {
-        parent::tearDown();
         unset($GLOBALS['TYPO3_REQUEST']);
     }
 

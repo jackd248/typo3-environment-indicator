@@ -26,7 +26,6 @@ class AdminTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         unset($GLOBALS['BE_USER']);
     }
 

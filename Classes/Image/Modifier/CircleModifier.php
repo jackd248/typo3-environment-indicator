@@ -63,7 +63,7 @@ class CircleModifier extends AbstractModifier implements ModifierInterface
         $image->drawCircle(
             $x,
             $y,
-            function (CircleFactory $circle) use ($radius) {
+            function (CircleFactory $circle) use ($radius): void {
                 $circle->radius($radius);
                 $circle->background($this->configuration['color']);
             },

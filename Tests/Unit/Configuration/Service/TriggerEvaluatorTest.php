@@ -31,7 +31,6 @@ class TriggerEvaluatorTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
         $this->triggerEvaluator = new TriggerEvaluator();
     }
 

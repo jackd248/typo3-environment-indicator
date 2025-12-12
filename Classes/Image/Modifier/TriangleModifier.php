@@ -58,7 +58,7 @@ class TriangleModifier extends AbstractModifier implements ModifierInterface
             ],
         };
 
-        $image->drawPolygon(function (PolygonFactory $polygon) use ($points) {
+        $image->drawPolygon(function (PolygonFactory $polygon) use ($points): void {
             foreach ($points as [$x, $y]) {
                 $polygon->point($x, $y);
             }

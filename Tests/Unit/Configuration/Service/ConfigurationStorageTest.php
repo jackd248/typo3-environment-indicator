@@ -29,7 +29,6 @@ class ConfigurationStorageTest extends TestCase
 
     protected function setUp(): void
     {
-        parent::setUp();
         $this->configurationStorage = new ConfigurationStorage();
 
         // Clear global state
@@ -40,7 +39,6 @@ class ConfigurationStorageTest extends TestCase
     {
         // Clear global state
         unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]);
-        parent::tearDown();
     }
 
     public function testAddConfiguration(): void

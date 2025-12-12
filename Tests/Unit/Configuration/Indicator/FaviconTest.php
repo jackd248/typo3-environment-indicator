@@ -27,7 +27,6 @@ class FaviconTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         unset($GLOBALS['TYPO3_REQUEST']);
     }
 

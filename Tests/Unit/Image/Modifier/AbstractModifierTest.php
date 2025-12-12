@@ -24,10 +24,7 @@ use PHPUnit\Framework\TestCase;
  */
 class AbstractModifierTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
+    protected function setUp(): void {}
 
     public function testInstantiationWithoutRequiredKeys(): void
     {
