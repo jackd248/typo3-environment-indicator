@@ -15,6 +15,7 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Routing\PageArguments;
@@ -32,31 +33,37 @@ use function is_string;
  */
 class ContextUtility
 {
+    #[AsAllowedCallable]
     public function getContext(): string
     {
         return Environment::getContext()->__toString();
     }
 
+    #[AsAllowedCallable]
     public function getColor(): string
     {
         return $this->getFrontendHintConfiguration()['color'] ?? 'transparent';
     }
 
+    #[AsAllowedCallable]
     public function getTextColor(): string
     {
         return ColorUtility::getOptimalTextColor($this->getFrontendHintConfiguration()['color'] ?? 'transparent');
     }
 
+    #[AsAllowedCallable]
     public function getPositionX(): string
     {
         return explode(' ', $this->getFrontendHintConfiguration()['position'] ?? 'left top')[0].':0';
     }
 
+    #[AsAllowedCallable]
     public function getPositionY(): string
     {
         return explode(' ', $this->getFrontendHintConfiguration()['position'] ?? 'left top')[1].':0';
     }
 
+    #[AsAllowedCallable]
     public function getTitle(): string
     {
         $title = $this->getFrontendHintConfiguration()['text'] ?? null;

@@ -1,12 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+## #ddev-generated
 ## Description: Install TYPO3 instances.
 ## Usage: install
 ## Example: "ddev install" or "ddev install 12" or "ddev install all"
+## MutagenSync: true
 
 TYPO3=${1}
 
-. .ddev/.typo3-setup/scripts/.utils.sh
+. .ddev/.setup/scripts/utils.sh
 
 if [ "$TYPO3" == "all" ]; then
     mapfile -t versions < <(get_supported_typo3_versions)

@@ -11,14 +11,12 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\{ContextItem, TopbarItem};
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\{Indicator, Trigger};
 use KonradMichalik\Typo3EnvironmentIndicator\{Configuration, Image};
 
 defined('TYPO3') || exit;
 
-$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = ContextItem::class;
-$GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = TopbarItem::class;
+Configuration::addToolbarItems();
 
 // Default configuration
 $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] = [];
@@ -84,10 +82,23 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
                     ],
                 ]),
             ]),
+            new Indicator\Backend\Logo([
+                new Image\Modifier\TextModifier([
+                    'text' => 'DEV',
+                    'color' => '#bd593a',
+                    'stroke' => [
+                        'color' => '#ffffff',
+                        'width' => 3,
+                    ],
+                ]),
+            ]),
             new Indicator\Frontend\Hint([
                 'color' => '#bd593a',
             ]),
             new Indicator\Backend\Toolbar([
+                'color' => '#bd593a',
+            ]),
+            new Indicator\Backend\Widget([
                 'color' => '#bd593a',
             ]),
         ],
@@ -99,6 +110,16 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
         ],
         indicators: [
             new Indicator\Favicon([
+                new Image\Modifier\TextModifier([
+                    'text' => 'TEST',
+                    'color' => '#f39c12',
+                    'stroke' => [
+                        'color' => '#ffffff',
+                        'width' => 3,
+                    ],
+                ]),
+            ]),
+            new Indicator\Backend\Logo([
                 new Image\Modifier\TextModifier([
                     'text' => 'TEST',
                     'color' => '#f39c12',
@@ -123,6 +144,16 @@ if ($GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'][Configuration::EXT_KEY]['general']
         ],
         indicators: [
             new Indicator\Favicon([
+                new Image\Modifier\TextModifier([
+                    'text' => 'STG',
+                    'color' => '#2f9c91',
+                    'stroke' => [
+                        'color' => '#ffffff',
+                        'width' => 3,
+                    ],
+                ]),
+            ]),
+            new Indicator\Backend\Logo([
                 new Image\Modifier\TextModifier([
                     'text' => 'STG',
                     'color' => '#2f9c91',

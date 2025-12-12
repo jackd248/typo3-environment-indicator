@@ -1,13 +1,13 @@
 #!/bin/bash
 
-## Description: Exec command for TYPO3 instance 13.
-## Usage: 13
-## Example: "ddev 13 composer du -o" or "ddev 13 typo3 cache:flush"
+## Description: Exec command for TYPO3 instance 14.
+## Usage: 14
+## Example: "ddev 14 composer du -o" or "ddev 14 typo3 cache:flush"
 
 . .ddev/.setup/scripts/utils.sh
 
 command=$@
-version=13
+version=14
 
 if [[ $command == typo3* ]]; then
     command="/usr/bin/php vendor/bin/${command}"

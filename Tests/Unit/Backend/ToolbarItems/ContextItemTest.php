@@ -27,7 +27,7 @@ final class ContextItemTest extends TestCase
 {
     public function testCheckAccessReturnsTrue(): void
     {
-        $extensionConfig = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfig = $this->createStub(ExtensionConfiguration::class);
         $item = new ContextItem($extensionConfig);
 
         self::assertTrue($item->checkAccess());
@@ -35,7 +35,7 @@ final class ContextItemTest extends TestCase
 
     public function testHasDropDownReturnsFalse(): void
     {
-        $extensionConfig = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfig = $this->createStub(ExtensionConfiguration::class);
         $item = new ContextItem($extensionConfig);
 
         self::assertFalse($item->hasDropDown());
@@ -43,7 +43,7 @@ final class ContextItemTest extends TestCase
 
     public function testGetDropDownReturnsEmptyString(): void
     {
-        $extensionConfig = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfig = $this->createStub(ExtensionConfiguration::class);
         $item = new ContextItem($extensionConfig);
 
         self::assertSame('', $item->getDropDown());
@@ -51,7 +51,7 @@ final class ContextItemTest extends TestCase
 
     public function testGetAdditionalAttributesReturnsEmptyArray(): void
     {
-        $extensionConfig = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfig = $this->createStub(ExtensionConfiguration::class);
         $item = new ContextItem($extensionConfig);
 
         self::assertSame([], $item->getAdditionalAttributes());

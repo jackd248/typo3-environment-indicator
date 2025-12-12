@@ -19,6 +19,8 @@ This extension provides several features to show an environment indicator in the
 > Has it ever happened to you that you changed data on a test system and then realized: oh no, that's the live system. 
 > Well, to prevent that from happening (again), I created this extension.
 
+![Environment Indicator Preview](Documentation/Images/intro.jpg)
+
 ## ✨ Features
 
 | Preview                                                                                | Feature                                                                                                                                                                                                                                                                      | Frontend | Backend |
@@ -39,8 +41,10 @@ This extension provides several features to show an environment indicator in the
 
 ### Requirements
 
-- TYPO3 >= 13.4
-- PHP 8.2+
+| Version | TYPO3       | PHP          |
+|---------|-------------|--------------|
+| 3.x     | 13.4 - 14.x | 8.2 - 8.5    |
+| 2.x     | 12.4 - 14.x | 8.1 - 8.4    |
 
 ### Composer
 

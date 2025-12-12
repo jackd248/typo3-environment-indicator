@@ -14,9 +14,9 @@ configuration.
 
     Favicon Example
 
-.. contents:: Inhaltsverzeichnis
-:local:
-:depth: 2
+.. contents:: Table of Contents
+   :local:
+   :depth: 2
 
 Frontend
 **********
@@ -70,7 +70,7 @@ Add a configured favicon modifier to the desired environment (e.g. :code:`Testin
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Testing')
         ],
@@ -94,10 +94,6 @@ Add a configured favicon modifier to the desired environment (e.g. :code:`Testin
 
 The modifiers will be executed one after the other. You can combine them if you want.
 
-..  note::
-    If you want to specify the frontend or backend favicon separately, you can add the another parameter for the request context :code:`faviconModifierFrontendConfiguration` or :code:`faviconModifierBackendConfiguration` to the :code:`configByContext()` method.
-
-
 The following modifier classes are available:
 
 TextModifier
@@ -113,7 +109,7 @@ This is the default modifier if no own configuration is set.
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development')
         ],
@@ -145,7 +141,7 @@ Additional optional configuration keys:
 
     View the sources on GitHub:
 
-    -   `TextModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/TextModifier.php>`__
+    -   `TextModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/Modifier/TextModifier.php>`__
 
 TriangleModifier
 ===========
@@ -161,7 +157,7 @@ Adds a triangle indicator to the favicon.
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development')
         ],
@@ -187,7 +183,7 @@ Additional optional configuration keys:
 
     View the sources on GitHub:
 
-    -   `TriangleModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/TriangleModifier.php>`__
+    -   `TriangleModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/Modifier/TriangleModifier.php>`__
 
 CircleModifier
 ===========
@@ -202,7 +198,7 @@ Adds a circle indicator to the favicon.
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development')
         ],
@@ -229,7 +225,7 @@ Additional optional configuration keys:
 
     View the sources on GitHub:
 
-    -   `CircleModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/CircleModifier.php>`__
+    -   `CircleModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/Modifier/CircleModifier.php>`__
 
 FrameModifier
 ===========
@@ -244,7 +240,7 @@ Adds a frame around the favicon.
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development')
         ],
@@ -269,7 +265,7 @@ Additional optional configuration keys:
 
     View the sources on GitHub:
 
-    -   `FrameModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/FrameModifier.php>`__
+    -   `FrameModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/Modifier/FrameModifier.php>`__
 
 ReplaceModifier
 ===========
@@ -284,7 +280,7 @@ Replace the original favicon with a custom one regarding the environment.
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development')
         ],
@@ -304,7 +300,7 @@ Replace the original favicon with a custom one regarding the environment.
 
     View the sources on GitHub:
 
-    -   `ReplaceModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/ReplaceModifier.php>`__
+    -   `ReplaceModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/Modifier/ReplaceModifier.php>`__
 
 OverlayModifier
 ===========
@@ -319,7 +315,7 @@ Overlay an additional image to the original favicon regarding the environment.
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development')
         ],
@@ -346,7 +342,7 @@ Additional optional configuration keys:
 
     View the sources on GitHub:
 
-    -   `OverlayModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/OverlayModifier.php>`__
+    -   `OverlayModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/Modifier/OverlayModifier.php>`__
 
 ColorizeModifier
 ===========
@@ -364,7 +360,7 @@ Overlay an additional image to the original favicon regarding the environment.
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development')
         ],
@@ -391,7 +387,7 @@ Additional optional configuration keys:
 
     View the sources on GitHub:
 
-    -   `ColorizeModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/ColorizeModifier.php>`__
+    -   `ColorizeModifier <https://github.com/jackd248/typo3-environment-indicator/blob/main/Classes/Image/Modifier/ColorizeModifier.php>`__
 
 ..  note::
     If you want to modify the image to your own need, implement a :ref:`custom modifier <custom-modifiers>` class and add it to the configuration.
