@@ -27,7 +27,7 @@ class ColorUtility
 {
     public static function getColoredString(?string $name = null): string
     {
-        $name = $name ?? (string) $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'];
+        $name ??= (string) $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'];
         $hash = hash('sha256', $name);
         $hue = hexdec(substr($hash, 0, 2)) / 255 * 360;
 

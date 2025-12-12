@@ -52,7 +52,7 @@ class ImageViewHelper extends AbstractViewHelper
         }
 
         if (!PathUtility::isExtensionPath($image)) {
-            $image = Environment::getPublicPath().(str_contains($image, '?') ? strtok($image, '?') : $image);
+            $image = Environment::getPublicPath().(str_contains((string) $image, '?') ? strtok($image, '?') : $image);
         }
 
         return GeneralUtility::makeInstance(FrontendImageHandler::class)->process($image);

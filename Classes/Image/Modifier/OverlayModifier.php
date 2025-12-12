@@ -43,7 +43,7 @@ class OverlayModifier extends AbstractModifier implements ModifierInterface
         $paddingX = (int) ($image->width() * $this->configuration['padding']);
         $paddingY = (int) ($image->height() * $this->configuration['padding']);
 
-        $position = str_replace(' ', '-', strtolower($this->configuration['position']));
+        $position = str_replace(' ', '-', strtolower((string) $this->configuration['position']));
 
         $image->place($overlay, $position, $paddingX, $paddingY);
     }
