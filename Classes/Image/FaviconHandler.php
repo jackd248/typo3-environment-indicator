@@ -26,7 +26,7 @@ class FaviconHandler extends AbstractImageHandler
 {
     public function __construct(?IndicatorInterface $indicator = null)
     {
-        $indicator = $indicator ?? GeneralUtility::makeInstance(Favicon::class);
+        $indicator ??= GeneralUtility::makeInstance(Favicon::class);
         parent::__construct($indicator);
     }
 }

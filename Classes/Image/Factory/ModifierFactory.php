@@ -84,7 +84,7 @@ class ModifierFactory implements ModifierFactoryInterface
             $reflectionClass = new ReflectionClass($modifierClass);
 
             return $reflectionClass->newInstanceWithoutConstructor()->validateConfiguration($configuration);
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return false;
         }
     }

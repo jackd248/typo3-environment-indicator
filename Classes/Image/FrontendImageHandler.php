@@ -27,7 +27,7 @@ class FrontendImageHandler extends AbstractImageHandler
 {
     public function __construct(?IndicatorInterface $indicator = null)
     {
-        $indicator = $indicator ?? GeneralUtility::makeInstance(Image::class);
+        $indicator ??= GeneralUtility::makeInstance(Image::class);
         parent::__construct($indicator);
     }
 }
