@@ -16,11 +16,13 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Utility;
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator\Frontend\Hint;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 use function array_key_exists;
+use function is_string;
 
 /**
  * ContextUtility.
@@ -67,17 +69,25 @@ class ContextUtility
             return '';
         }
 
-        /** @var PageArguments|null $routing */
         $routing = $request->getAttribute('routing');
-        if (null === $routing) {
+        if (!$routing instanceof PageArguments) {
             return '';
         }
 
         $pid = $routing->getPageId();
         $siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
-        $site = $siteFinder->getSiteByPageId($pid);
 
-        return array_key_exists('websiteTitle', $site->getConfiguration()) ? $site->getConfiguration()['websiteTitle'] : $site->getIdentifier();
+        try {
+            $site = $siteFinder->getSiteByPageId($pid);
+        } catch (SiteNotFoundException) {
+            return '';
+        }
+
+        $configuration = $site->getConfiguration();
+
+        return array_key_exists('websiteTitle', $configuration) && is_string($configuration['websiteTitle'])
+            ? $configuration['websiteTitle']
+            : $site->getIdentifier();
     }
 
     protected function getRequest(): ?ServerRequestInterface
