@@ -11,8 +11,8 @@ Installation
 Requirements
 ============
 
--   PHP 8.2 - 8.4
--   TYPO3 13.4 LTS
+-   PHP 8.2 - 8.5
+-   TYPO3 13.4 LTS & 14.0
 -   ImageDriver: GD, Imagick or libvips
 
 ..  _steps:
@@ -30,18 +30,36 @@ Or download it from the
 `TYPO3 extension repository <https://extensions.typo3.org/extension/typo3_environment_indicator>`__.
 
 Configuration
-============
+=============
 
-Include the static TypoScript template "Environment Indicator" or directly import it in your sitepackage:
+..  note::
+    TypoScript configuration is only necessary if you want to use the :ref:`frontend hint <frontend-hint>`.
 
+Site Set (Recommended)
+----------------------
+
+Add the site set as a dependency in your site configuration:
+
+..  code-block:: yaml
+    :caption: config/sites/<identifier>/config.yaml
+
+    base: 'https://example.com/'
+    rootPageId: 1
+    dependencies:
+      - konradmichalik/typo3-environment-indicator
+
+Static Include (Legacy)
+-----------------------
+
+Alternatively, include the static TypoScript template via the **Template** module
+by adding "Environment Indicator" under **Include static (from extensions)**.
+
+Or directly import it in your sitepackage:
 
 ..  code-block:: typoscript
     :caption: Configuration/TypoScript/setup.typoscript
 
     @import 'EXT:typo3_environment_indicator/Configuration/TypoScript/setup.typoscript'
-
-..  note::
-    This is only necessary if you want to use the :ref:`frontend hint <frontend-hint>`.
 
 Image Support
 ============
