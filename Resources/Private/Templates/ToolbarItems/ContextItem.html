@@ -1,6 +1,8 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:ei="http://typo3.org/ns/KonradMichalik/Typo3EnvironmentIndicator/ViewHelpers"
+      data-namespace-typo3-fluid="true">
 
-    <f:asset.css identifier="project-status" nonce="{f:security.nonce()}">
+    <f:asset.css identifier="project-status" nonce="{ei:nonce()}">
         .topbar-header-project-status__context {
             display: inline-block;
             padding: 13.5px;
@@ -11,4 +13,5 @@
             <div class="topbar-header-project-status__context" data-context="{context.name}" title="Application context" style="background-color:{context.color};color:{context.textColor}"><core:icon identifier="{context.icon}" size="small" /> {context.name}</div>
         </f:if>
     </div>
+
 </html>
