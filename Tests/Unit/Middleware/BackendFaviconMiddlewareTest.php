@@ -30,16 +30,16 @@ final class BackendFaviconMiddlewareTest extends TestCase
 {
     public function testProcessSkipsWhenFeatureDisabled(): void
     {
-        $extensionConfig = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfig = $this->createStub(ExtensionConfiguration::class);
         $extensionConfig->method('get')
             ->with(Configuration::EXT_KEY)
             ->willReturn(['backend' => ['favicon' => false]]);
 
         $middleware = new BackendFaviconMiddleware($extensionConfig);
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
 
         $handler->expects(self::once())
             ->method('handle')
@@ -52,16 +52,16 @@ final class BackendFaviconMiddlewareTest extends TestCase
 
     public function testProcessSkipsWhenFeatureMissing(): void
     {
-        $extensionConfig = $this->createMock(ExtensionConfiguration::class);
+        $extensionConfig = $this->createStub(ExtensionConfiguration::class);
         $extensionConfig->method('get')
             ->with(Configuration::EXT_KEY)
             ->willReturn(['backend' => []]);
 
         $middleware = new BackendFaviconMiddleware($extensionConfig);
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $handler = $this->createMock(RequestHandlerInterface::class);
-        $response = $this->createMock(ResponseInterface::class);
+        $response = $this->createStub(ResponseInterface::class);
 
         $handler->expects(self::once())
             ->method('handle')

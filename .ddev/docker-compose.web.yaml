@@ -4,7 +4,7 @@ services:
             - EXTENSION_KEY=typo3_environment_indicator
             - EXTENSION_NAME=typo3-environment-indicator
             - PACKAGE_NAME=konradmichalik/typo3-environment-indicator
-            - TYPO3_VERSIONS=13
+            - TYPO3_VERSIONS=13 14
 
             # TYPO3 v13 config
             - TYPO3_DB_DRIVER=mysqli

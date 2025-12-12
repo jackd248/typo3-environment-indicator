@@ -47,7 +47,7 @@ class AbstractIndicatorTest extends TestCase
 
     public function testConstructorWithRequest(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $config = ['key' => 'value'];
         $indicator = new ConcreteIndicator($config, $request);
         self::assertEquals($config, $indicator->getConfiguration());

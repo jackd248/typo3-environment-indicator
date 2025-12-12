@@ -57,7 +57,7 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenNoFrontendUser(): void
     {
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->with('frontend.user')->willReturn(null);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
@@ -68,10 +68,10 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenNoUserGroups(): void
     {
-        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser = $this->createStub(FrontendUserAuthentication::class);
         $frontendUser->groupData = [];
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
@@ -82,10 +82,10 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsTrueWhenUserIsInMatchingGroup(): void
     {
-        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser = $this->createStub(FrontendUserAuthentication::class);
         $frontendUser->groupData = ['uid' => [1, 2, 3]];
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
@@ -96,10 +96,10 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsTrueWhenUserIsInOneOfMultipleGroups(): void
     {
-        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser = $this->createStub(FrontendUserAuthentication::class);
         $frontendUser->groupData = ['uid' => [1, 2, 3]];
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
@@ -110,10 +110,10 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenUserIsNotInAnyGroup(): void
     {
-        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser = $this->createStub(FrontendUserAuthentication::class);
         $frontendUser->groupData = ['uid' => [1, 2, 3]];
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
@@ -124,10 +124,10 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenUserHasEmptyGroups(): void
     {
-        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser = $this->createStub(FrontendUserAuthentication::class);
         $frontendUser->groupData = ['uid' => []];
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
@@ -138,10 +138,10 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckUsesStrictComparison(): void
     {
-        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser = $this->createStub(FrontendUserAuthentication::class);
         $frontendUser->groupData = ['uid' => [1, 2, 3]];
 
-        $request = $this->createMock(ServerRequestInterface::class);
+        $request = $this->createStub(ServerRequestInterface::class);
         $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
         $GLOBALS['TYPO3_REQUEST'] = $request;
 

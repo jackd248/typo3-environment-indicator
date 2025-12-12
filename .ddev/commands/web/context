@@ -4,7 +4,7 @@
 ## Usage: context
 ## Example: "ddev context Development"
 
-. .ddev/.typo3-setup/scripts/.utils.sh
+. .ddev/.setup/scripts/utils.sh
 
 TYPO3=${1}
 

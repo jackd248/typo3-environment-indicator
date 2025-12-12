@@ -59,19 +59,20 @@ class TopbarItem implements ToolbarItemInterface
             return '';
         }
 
-        $backendCssPath = Environment::getPublicPath().'/typo3temp/assets/css/'.Configuration::EXT_KEY.'/';
-        if (!file_exists($backendCssPath)) {
-            GeneralUtility::mkdir_deep($backendCssPath);
+        $relativeCssPath = 'typo3temp/assets/css/'.Configuration::EXT_KEY.'/';
+        $absoluteCssPath = Environment::getPublicPath().'/'.$relativeCssPath;
+        if (!file_exists($absoluteCssPath)) {
+            GeneralUtility::mkdir_deep($absoluteCssPath);
         }
 
         $removeTransition = $this->getBackendTopbarConfiguration()['removeTransition'] ?? false;
-        $backendCssFile = sprintf(
-            '%sbackend-%s.css',
-            $backendCssPath,
+        $cssFileName = sprintf(
+            'backend-%s.css',
             hash('sha256', implode('_', [Environment::getContext()->__toString(), $color, $removeTransition])),
         );
+        $absoluteCssFile = $absoluteCssPath.$cssFileName;
 
-        if (!file_exists($backendCssFile)) {
+        if (!file_exists($absoluteCssFile)) {
             $textColor = ColorUtility::getOptimalTextColor($color);
             $subTextColor = ColorUtility::getOptimalTextColor($color, 0.8);
 
@@ -85,12 +86,12 @@ class TopbarItem implements ToolbarItemInterface
                 ],
             );
 
-            GeneralUtility::writeFile($backendCssFile, $fileContent);
+            GeneralUtility::writeFile($absoluteCssFile, $fileContent);
         }
 
         /** @var PageRenderer $pageRenderer */
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
-        $pageRenderer->addCssFile($backendCssFile);
+        $pageRenderer->addCssFile($relativeCssPath.$cssFileName);
 
         return '';
     }
