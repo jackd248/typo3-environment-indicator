@@ -45,7 +45,7 @@ The frontend image modification is identical to the :ref:`favicon modification <
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
     use KonradMichalik\Typo3EnvironmentIndicator\Image;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Testing')
         ],

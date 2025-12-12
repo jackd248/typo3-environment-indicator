@@ -34,7 +34,6 @@ class BackendLogoMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-
         if (!$this->isFeatureEnabled()) {
             return $handler->handle($request);
         }

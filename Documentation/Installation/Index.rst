@@ -11,8 +11,21 @@ Installation
 Requirements
 ============
 
--   PHP 8.2 - 8.5
--   TYPO3 13.4 LTS & 14.0
+..  list-table:: Version Compatibility
+    :header-rows: 1
+
+    * - Version
+      - TYPO3
+      - PHP
+    * - 3.x
+      - 13.4 - 14.x
+      - 8.2 - 8.5
+    * - 2.x
+      - 12.4 - 14.x
+      - 8.1 - 8.4
+
+Additional requirements:
+
 -   ImageDriver: GD, Imagick or libvips
 
 ..  _steps:
@@ -38,6 +51,10 @@ Configuration
 Site Set (Recommended)
 ----------------------
 
+..  important::
+    Starting with version 3.0, **Site Sets** are required for the frontend TypoScript configuration.
+    The legacy static TypoScript include is no longer supported.
+
 Add the site set as a dependency in your site configuration:
 
 ..  code-block:: yaml
@@ -48,8 +65,12 @@ Add the site set as a dependency in your site configuration:
     dependencies:
       - konradmichalik/typo3-environment-indicator
 
-Static Include (Legacy)
------------------------
+Static Include (Version 2.x only)
+----------------------------------
+
+..  deprecated:: 3.0
+    The static TypoScript include is deprecated and removed in version 3.0.
+    Please use Site Sets instead.
 
 Alternatively, include the static TypoScript template via the **Template** module
 by adding "Environment Indicator" under **Include static (from extensions)**.

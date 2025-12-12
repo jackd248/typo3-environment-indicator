@@ -65,10 +65,9 @@ class TopbarItem implements ToolbarItemInterface
             GeneralUtility::mkdir_deep($absoluteCssPath);
         }
 
-        $removeTransition = $this->getBackendTopbarConfiguration()['removeTransition'] ?? false;
         $cssFileName = sprintf(
             'backend-%s.css',
-            hash('sha256', implode('_', [Environment::getContext()->__toString(), $color, $removeTransition])),
+            hash('sha256', implode('_', [Environment::getContext()->__toString(), $color])),
         );
         $absoluteCssFile = $absoluteCssPath.$cssFileName;
 
@@ -82,7 +81,6 @@ class TopbarItem implements ToolbarItemInterface
                     'color' => $color,
                     'textColor' => $textColor,
                     'subTextColor' => $subTextColor,
-                    'removeTransition' => $removeTransition,
                 ],
             );
 

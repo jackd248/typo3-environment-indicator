@@ -41,8 +41,14 @@ This extension provides several features to show an environment indicator in the
 
 ### Requirements
 
-- TYPO3 >= 13.4
-- PHP 8.2+
+| Version | TYPO3       | PHP          |
+|---------|-------------|--------------|
+| 3.x     | 13.4 - 14.x | 8.2 - 8.5    |
+| 2.x     | 12.4 - 14.x | 8.1 - 8.4    |
+
+> [!IMPORTANT]
+> Starting with version 3.0, **Site Sets** are required for the frontend TypoScript configuration.
+> The legacy static TypoScript include is no longer supported.
 
 ### Composer
 

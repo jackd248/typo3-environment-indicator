@@ -27,7 +27,7 @@ You can adjust the widget configuration in your :code:`ext_localconf.php`:
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Indicator;
     use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger;
 
-    Configuration\Handler::addIndicator(
+    Handler::addIndicator(
         triggers: [
             new Trigger\ApplicationContext('Development/Text')
         ],
