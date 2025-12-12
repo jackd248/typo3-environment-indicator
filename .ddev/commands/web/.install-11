@@ -11,6 +11,7 @@ pre_setup 11
 # This command installs the TYPO3 base distribution, TYPO3 console, and additional packages.
 # Add any additional packages you want to install to the command below.
 composer config allow-plugins.helhum/dotenv-connector true -d $BASE_PATH
+composer config audit.block-insecure false -d $BASE_PATH
 composer req typo3/cms-base-distribution:'^11.5' \
         helhum/typo3-console:'^7.1' \
         $PACKAGE_NAME:'*@dev' \
