@@ -34,10 +34,10 @@ class BackendLogoMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
+
         if (!$this->isFeatureEnabled()) {
             return $handler->handle($request);
         }
-
         $this->processLogo();
 
         return $handler->handle($request);
@@ -47,7 +47,7 @@ class BackendLogoMiddleware implements MiddlewareInterface
     {
         $extensionConfig = $this->extensionConfiguration->get(Configuration::EXT_KEY);
 
-        return ($extensionConfig['backend']['logo'] ?? false) === true;
+        return true === (bool) ($extensionConfig['backend']['logo'] ?? false);
     }
 
     private function processLogo(): void
