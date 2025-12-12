@@ -28,7 +28,6 @@ class EnvironmentIndicatorWidgetTest extends TestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][Configuration::EXT_KEY]['current'] = [];
     }
 
