@@ -11,7 +11,6 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\{ContextItem, TopbarItem};
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\{Indicator, Trigger};
 use KonradMichalik\Typo3EnvironmentIndicator\{Configuration, Image};
 

@@ -13,8 +13,7 @@ declare(strict_types=1);
 
 namespace KonradMichalik\Typo3EnvironmentIndicator;
 
-use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\ContextItem;
-use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\TopbarItem;
+use KonradMichalik\Typo3EnvironmentIndicator\Backend\ToolbarItems\{ContextItem, TopbarItem};
 
 /**
  * Configuration.
@@ -28,7 +27,8 @@ class Configuration
 
     final public const EXT_NAME = 'Typo3EnvironmentIndicator';
 
-    public static function addToolbarItems() {
+    public static function addToolbarItems(): void
+    {
         $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392103] = ContextItem::class;
         $GLOBALS['TYPO3_CONF_VARS']['BE']['toolbarItems'][1740392104] = TopbarItem::class;
     }
