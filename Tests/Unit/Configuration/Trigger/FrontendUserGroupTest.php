@@ -15,6 +15,8 @@ namespace KonradMichalik\Typo3EnvironmentIndicator\Tests\Unit\Configuration\Trig
 
 use KonradMichalik\Typo3EnvironmentIndicator\Configuration\Trigger\FrontendUserGroup;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
  * FrontendUserGroupTest.
@@ -27,7 +29,13 @@ class FrontendUserGroupTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        unset($GLOBALS['TSFE']);
+        unset($GLOBALS['TYPO3_REQUEST']);
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        unset($GLOBALS['TYPO3_REQUEST']);
     }
 
     public function testConstructorAcceptsSingleGroup(): void
@@ -42,7 +50,7 @@ class FrontendUserGroupTest extends TestCase
         self::assertInstanceOf(FrontendUserGroup::class, $trigger);
     }
 
-    public function testCheckReturnsFalseWhenNoTSFE(): void
+    public function testCheckReturnsFalseWhenNoRequest(): void
     {
         $trigger = new FrontendUserGroup(1);
         $result = $trigger->check();
@@ -51,7 +59,10 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenNoFrontendUser(): void
     {
-        $GLOBALS['TSFE'] = (object) [];
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getAttribute')->with('frontend.user')->willReturn(null);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
         $trigger = new FrontendUserGroup(1);
         $result = $trigger->check();
         self::assertFalse($result);
@@ -59,9 +70,13 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenNoUserGroups(): void
     {
-        $GLOBALS['TSFE'] = (object) [
-            'fe_user' => (object) [],
-        ];
+        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser->groupData = [];
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
         $trigger = new FrontendUserGroup(1);
         $result = $trigger->check();
         self::assertFalse($result);
@@ -69,11 +84,13 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsTrueWhenUserIsInMatchingGroup(): void
     {
-        $GLOBALS['TSFE'] = (object) [
-            'fe_user' => (object) [
-                'groupData' => ['uid' => [1, 2, 3]],
-            ],
-        ];
+        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser->groupData = ['uid' => [1, 2, 3]];
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
         $trigger = new FrontendUserGroup(2);
         $result = $trigger->check();
         self::assertTrue($result);
@@ -81,11 +98,13 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsTrueWhenUserIsInOneOfMultipleGroups(): void
     {
-        $GLOBALS['TSFE'] = (object) [
-            'fe_user' => (object) [
-                'groupData' => ['uid' => [1, 2, 3]],
-            ],
-        ];
+        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser->groupData = ['uid' => [1, 2, 3]];
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
         $trigger = new FrontendUserGroup(4, 5, 2);
         $result = $trigger->check();
         self::assertTrue($result);
@@ -93,11 +112,13 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenUserIsNotInAnyGroup(): void
     {
-        $GLOBALS['TSFE'] = (object) [
-            'fe_user' => (object) [
-                'groupData' => ['uid' => [1, 2, 3]],
-            ],
-        ];
+        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser->groupData = ['uid' => [1, 2, 3]];
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
         $trigger = new FrontendUserGroup(4, 5, 6);
         $result = $trigger->check();
         self::assertFalse($result);
@@ -105,11 +126,13 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckReturnsFalseWhenUserHasEmptyGroups(): void
     {
-        $GLOBALS['TSFE'] = (object) [
-            'fe_user' => (object) [
-                'groupData' => ['uid' => []],
-            ],
-        ];
+        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser->groupData = ['uid' => []];
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
         $trigger = new FrontendUserGroup(1);
         $result = $trigger->check();
         self::assertFalse($result);
@@ -117,11 +140,13 @@ class FrontendUserGroupTest extends TestCase
 
     public function testCheckUsesStrictComparison(): void
     {
-        $GLOBALS['TSFE'] = (object) [
-            'fe_user' => (object) [
-                'groupData' => ['uid' => [1, 2, 3]],
-            ],
-        ];
+        $frontendUser = $this->createMock(FrontendUserAuthentication::class);
+        $frontendUser->groupData = ['uid' => [1, 2, 3]];
+
+        $request = $this->createMock(ServerRequestInterface::class);
+        $request->method('getAttribute')->with('frontend.user')->willReturn($frontendUser);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
         // Test that int 4 doesn't match any group to ensure strict comparison
         $trigger = new FrontendUserGroup(4);
         $result = $trigger->check();

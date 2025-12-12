@@ -12,7 +12,7 @@ Requirements
 ============
 
 -   PHP 8.1 - 8.4
--   TYPO3 11.5 LTS - 13.4 LTS
+-   TYPO3 13.4 LTS
 -   ImageDriver: GD, Imagick or libvips
 
 ..  _steps:
